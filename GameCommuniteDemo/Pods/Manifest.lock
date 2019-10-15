@@ -1,0 +1,105 @@
+PODS:
+  - Alamofire (4.8.2)
+  - ESTabBarController-swift (2.7)
+  - KeychainAccess (3.2.0)
+  - Kingfisher (4.10.1)
+  - LZImageBrowser (1.0.2):
+    - SDWebImage (~> 4.3.3)
+  - MJRefresh (3.2.0)
+  - Moya (13.0.1):
+    - Moya/Core (= 13.0.1)
+  - Moya/Core (13.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.1)
+  - "NSObject+Rx (5.0.0)":
+    - RxSwift (~> 5.0)
+  - ObjectMapper (3.5.1)
+  - Result (4.1.0)
+  - Reusable (4.1.0):
+    - Reusable/Storyboard (= 4.1.0)
+    - Reusable/View (= 4.1.0)
+  - Reusable/Storyboard (4.1.0)
+  - Reusable/View (4.1.0)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
+  - SnapKit (4.2.0)
+  - Then (2.5.0)
+  - Toast-Swift (5.0.0)
+  - TYCyclePagerView (1.2.0)
+  - TYPagerController (2.1.2)
+
+DEPENDENCIES:
+  - Alamofire
+  - ESTabBarController-swift
+  - KeychainAccess
+  - Kingfisher
+  - LZImageBrowser
+  - MJRefresh
+  - Moya
+  - "NSObject+Rx"
+  - ObjectMapper
+  - Reusable
+  - RxCocoa
+  - RxSwift
+  - SnapKit
+  - Then
+  - Toast-Swift
+  - TYCyclePagerView
+  - TYPagerController
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Kingfisher
+    - MJRefresh
+    - Moya
+    - "NSObject+Rx"
+    - Result
+    - Reusable
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - Then
+    - Toast-Swift
+    - TYCyclePagerView
+    - TYPagerController
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+    - ESTabBarController-swift
+    - KeychainAccess
+    - LZImageBrowser
+    - ObjectMapper
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  ESTabBarController-swift: 4fb52ad03d94d0717ef97bc9eb09a5abfdded0a2
+  KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  LZImageBrowser: 22f9630d61c3369fa226772de00df6e52a39d05d
+  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
+  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
+  "NSObject+Rx": 6151a97d171f7187c4183746acc42d9451952a7b
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  Reusable: 82be188f29d96dc5eff0db7b2393bcc08d2cdd5b
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  Then: 0157115e883545c77967b452fe74a1d25fb796e1
+  Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
+  TYCyclePagerView: 2b051dade0615c70784aa34f40c646feeddb7344
+  TYPagerController: 262556ecef99986d26ed77fb1288a198ed42f4af
+
+PODFILE CHECKSUM: f17eb3268fd05ad2fa6c93893ae1d6733f10e3fb
+
+COCOAPODS: 1.7.4

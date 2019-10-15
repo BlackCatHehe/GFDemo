@@ -1,0 +1,37 @@
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+ platform :ios, '9.0'
+
+target 'GameCommuniteDemo' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  inhibit_all_warnings!
+  
+  #network
+  pod 'Alamofire'
+  pod 'Kingfisher'
+  pod 'Moya'
+  
+  #model
+  pod 'ObjectMapper' #配合https://github.com/Ahmed-Ali/JSONExport 快速建立model
+  
+  #UI
+  pod 'MJRefresh'
+  pod 'SnapKit'
+  pod 'Toast-Swift' #弹出信息
+  pod 'TYCyclePagerView'
+  pod 'TYPagerController'
+  pod 'ESTabBarController-swift' #带点击动画的tabbar
+  pod 'LZImageBrowser' #图片浏览器
+  
+  #rx
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'NSObject+Rx'
+
+  #other
+  pod 'Reusable'
+  pod 'Then'
+  pod 'KeychainAccess' #keychain
+
+
+end
