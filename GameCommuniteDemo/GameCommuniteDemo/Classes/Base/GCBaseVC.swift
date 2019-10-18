@@ -16,10 +16,9 @@ class GCBaseVC: UIViewController {
         super.viewDidLoad()
         
         setBackItem()
-        setTitleAttri()
         setBackgroundColor(bgColor: kRGB(r: 24, g: 23, b: 40), shadowColor: .clear)
-        
-        view.backgroundColor = .white
+        setTitleAttri(color: .white, font: kFont(adaptW(18.0), "HelveticaNeue-Medium"))
+        view.backgroundColor = MetricGlobal.mainBgColor
     }
     
     func showToast(_ msg: String, position: ToastPosition = .center) {
@@ -34,6 +33,18 @@ class GCBaseVC: UIViewController {
         vc.hidesBottomBarWhenPushed = true
         
         navigationController?.pushViewController(vc, animated: animated)
+        
+    }
+    func dismissOrPop(_ animated: Bool = true) {
+        
+        if self.presentingViewController != nil {
+            self.dismiss(animated: animated, completion: nil)
+        }else {
+
+            navigationController?.popViewController(animated: animated)
+        }
+        
+        
         
     }
     

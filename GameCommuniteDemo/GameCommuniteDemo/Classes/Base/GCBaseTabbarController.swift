@@ -28,17 +28,18 @@ class GCBaseTabbarController: UITabBarController {
 extension GCBaseTabbarController {
     private func setupUI() {
         
-        self.tabBar.tintColor = kRGB(r: 0, g: 122, b: 255)
+        //self.tabBar.tintColor = MetricGlobal.mainButtonBgColor
         self.tabBar.barTintColor = MetricGlobal.mainBarColor
         
         for i in 0..<Metric.titles.count {
             let title = Metric.titles[i]
             let imgStr = "tabbar_" + Metric.cate[i]
+            let selImgStr = imgStr + "_sel"
             let vcStr = kAppNamespace + "." + Metric.prefix + Metric.cate[i] + "VC"
-            JYLog(vcStr)
+           // JYLog(vcStr)
             if let vcClass = NSClassFromString(vcStr) as? GCBaseVC.Type {
                 let vc = vcClass.init()
-                addTabbarBar(with: vc, title: title, normalImg: UIImage(named: imgStr), selectImg: nil)
+                addTabbarBar(with: vc, title: title, normalImg: UIImage(named: imgStr), selectImg: UIImage(named: selImgStr))
             }
         }
     }
@@ -46,13 +47,14 @@ extension GCBaseTabbarController {
     /// 快速设置navcontroller的子控制器
     private func addTabbarBar(with controller: UIViewController, title: String, normalImg: UIImage?, selectImg: UIImage?) {
         controller.tabBarItem.title = title
-        controller.tabBarItem.image = normalImg
+        controller.tabBarItem.image = normalImg?.withRenderingMode(.alwaysOriginal)
         //controller.hidesBottomBarWhenPushed = true
-        controller.tabBarItem.selectedImage = selectImg
+        controller.tabBarItem.selectedImage = selectImg?.withRenderingMode(.alwaysOriginal)
         let navVC = UINavigationController(rootViewController: controller)
-        navVC.navigationBar.barTintColor = .white
        // navVC.navigationBar.barStyle = .default
         self.addChild(navVC)
+
     }
 }
+
 

@@ -66,6 +66,8 @@ extension GCRecommendSearchHeaderBar: JYNavigationComponentProtocol{
         }
         guard let searchView = searchViews.first else {return}
         guard let searchTF = searchViews.last as? UITextField else {return}
+        searchTF.textColor = kRGB(r: 229, g: 229, b: 229)
+        searchTF.font = kFont(13.0)
         searchTF.backgroundColor = MetricGlobal.mainBgColor
         searchView.backgroundColor = MetricGlobal.mainBgColor
         self.searchTF = searchTF

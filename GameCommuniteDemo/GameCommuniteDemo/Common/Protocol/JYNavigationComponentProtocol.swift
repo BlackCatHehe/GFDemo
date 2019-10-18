@@ -193,13 +193,15 @@ extension JYNavigationComponentProtocol where Self: UIViewController {
     }
 }
 
-enum ItemPosition {
-    case left
-    case right
-}
+
 
 struct JYNavigationComponentModel {
     
+    enum ItemPosition {
+        case left
+        case right
+    }
+
     var title: String?
     var img: UIImage?
     var selectedImg: UIImage?

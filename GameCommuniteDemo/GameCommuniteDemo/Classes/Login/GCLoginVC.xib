@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GCLoginVC" customModule="GameCommuniteDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="iconImgV" destination="bD2-hE-eJM" id="3ZP-Ga-ezy"/>
+                <outlet property="phoneTF" destination="8Bv-20-MOH" id="mgQ-vE-kKM"/>
+                <outlet property="prefixPhoneNumbt" destination="WyW-WE-Fpp" id="cVJ-Pj-0YQ"/>
+                <outlet property="protocolBt" destination="Kwh-ZO-CHm" id="EaR-i7-fnm"/>
+                <outlet property="sendCodeBt" destination="ACq-kd-FE1" id="3RQ-Eq-DiT"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weixinLoginBt" destination="eUJ-nh-bVX" id="PNY-qB-Mb0"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vR-BO-KME">
+                    <rect key="frame" x="15" y="54" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="ZBh-rw-ogm"/>
+                        <constraint firstAttribute="height" constant="20" id="r9N-cb-Juj"/>
+                    </constraints>
+                    <state key="normal" title="+"/>
+                    <connections>
+                        <action selector="clickBack:" destination="-1" eventType="touchUpInside" id="Uvq-1E-W2U"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsa-3a-vkK">
+                    <rect key="frame" x="0.0" y="205" width="414" height="486"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bD2-hE-eJM">
+                            <rect key="frame" x="161" y="0.0" width="92" height="92"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="92" id="ldu-n8-JKq">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
+                                <constraint firstAttribute="width" secondItem="bD2-hE-eJM" secondAttribute="height" id="lfp-Kj-kXl"/>
+                            </constraints>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A4s-0i-Uey">
+                            <rect key="frame" x="40" y="142" width="334" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WyW-WE-Fpp">
+                                    <rect key="frame" x="5" y="10" width="40" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="6Xd-SF-KMp">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </constraint>
+                                    </constraints>
+                                    <state key="normal" title="+86">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clickChoosePrefixPhoneNum:" destination="-1" eventType="touchUpInside" id="JPR-bi-3Se"/>
+                                    </connections>
+                                </button>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Bv-20-MOH">
+                                    <rect key="frame" x="50" y="5" width="279" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="DJ3-IG-PJ5"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nc1-yX-quP">
+                                    <rect key="frame" x="0.0" y="49" width="334" height="1"/>
+                                    <color key="backgroundColor" red="0.2196078431372549" green="0.21176470588235294" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="7Jc-mR-pN6"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="8Bv-20-MOH" secondAttribute="trailing" constant="5" id="1e2-6O-UyV"/>
+                                <constraint firstItem="Nc1-yX-quP" firstAttribute="leading" secondItem="A4s-0i-Uey" secondAttribute="leading" id="Eg1-ik-lo1"/>
+                                <constraint firstAttribute="bottom" secondItem="Nc1-yX-quP" secondAttribute="bottom" id="Q7Q-LE-qHM"/>
+                                <constraint firstItem="WyW-WE-Fpp" firstAttribute="centerY" secondItem="A4s-0i-Uey" secondAttribute="centerY" id="QaC-rs-477"/>
+                                <constraint firstItem="8Bv-20-MOH" firstAttribute="centerY" secondItem="WyW-WE-Fpp" secondAttribute="centerY" id="S6f-pK-vWI"/>
+                                <constraint firstItem="WyW-WE-Fpp" firstAttribute="leading" secondItem="A4s-0i-Uey" secondAttribute="leading" constant="5" id="TUQ-oe-i61"/>
+                                <constraint firstAttribute="height" constant="50" id="aRL-rq-LjU">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
+                                <constraint firstAttribute="trailing" secondItem="Nc1-yX-quP" secondAttribute="trailing" id="d7e-ce-cxZ"/>
+                                <constraint firstItem="8Bv-20-MOH" firstAttribute="leading" secondItem="WyW-WE-Fpp" secondAttribute="trailing" constant="5" id="ovb-ND-LtD"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACq-kd-FE1">
+                            <rect key="frame" x="15" y="254" width="384" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="Wqt-At-4M8">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="clickSendCode:" destination="-1" eventType="touchUpInside" id="Rdr-e8-RcH"/>
+                            </connections>
+                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fH0-0w-NWS">
+                            <rect key="frame" x="96" y="340" width="222" height="15"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2y-8I-eh3">
+                                    <rect key="frame" x="0.0" y="7" width="55" height="1"/>
+                                    <color key="backgroundColor" red="0.21960784310000001" green="0.21176470589999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="55" id="IxC-Ok-jWv">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </constraint>
+                                        <constraint firstAttribute="height" constant="1" id="YfB-d4-4B7"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="授权登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXl-V1-tIh">
+                                    <rect key="frame" x="76.5" y="0.0" width="69.5" height="15"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.75686274509803919" green="0.74901960784313726" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuj-nD-PnP">
+                                    <rect key="frame" x="167" y="7" width="55" height="1"/>
+                                    <color key="backgroundColor" red="0.21960784310000001" green="0.21176470589999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="wrm-ml-he7"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="yuj-nD-PnP" firstAttribute="width" secondItem="k2y-8I-eh3" secondAttribute="width" id="BLH-IX-7BR"/>
+                                <constraint firstAttribute="height" constant="15" id="XU5-Dr-xKi">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
+                            </constraints>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUJ-nh-bVX">
+                            <rect key="frame" x="184" y="377" width="46" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="eUJ-nh-bVX" secondAttribute="height" id="IQd-IE-jfx"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="clickWeixinLogin:" destination="-1" eventType="touchUpInside" id="OhO-Jd-Pg4"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kwh-ZO-CHm">
+                            <rect key="frame" x="59" y="471" width="296" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="fev-O2-ozA"/>
+                            </constraints>
+                            <state key="normal" title="注册即代表您同意《carry服务及隐私条款》"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
+                                    <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="clickLookForProtocol:" destination="-1" eventType="touchUpInside" id="5go-RK-rLe"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="bD2-hE-eJM" firstAttribute="top" secondItem="rsa-3a-vkK" secondAttribute="top" id="3AD-7k-OGC"/>
+                        <constraint firstItem="fH0-0w-NWS" firstAttribute="leading" secondItem="rsa-3a-vkK" secondAttribute="leading" constant="96" id="98U-rO-296">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstItem="Kwh-ZO-CHm" firstAttribute="centerX" secondItem="rsa-3a-vkK" secondAttribute="centerX" id="9RO-TO-A5C"/>
+                        <constraint firstAttribute="bottom" secondItem="Kwh-ZO-CHm" secondAttribute="bottom" id="9wx-OE-UJx"/>
+                        <constraint firstItem="ACq-kd-FE1" firstAttribute="top" secondItem="A4s-0i-Uey" secondAttribute="bottom" constant="62" id="JtH-ma-Ih3">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstItem="bD2-hE-eJM" firstAttribute="centerX" secondItem="rsa-3a-vkK" secondAttribute="centerX" id="LH7-T3-bbB"/>
+                        <constraint firstAttribute="trailing" secondItem="fH0-0w-NWS" secondAttribute="trailing" constant="96" id="M1O-qZ-Ehn">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstItem="ACq-kd-FE1" firstAttribute="leading" secondItem="rsa-3a-vkK" secondAttribute="leading" constant="15" id="Pm5-HT-O10">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstItem="fH0-0w-NWS" firstAttribute="top" secondItem="ACq-kd-FE1" secondAttribute="bottom" constant="42" id="SZ3-5L-u1Y">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstAttribute="trailing" secondItem="ACq-kd-FE1" secondAttribute="trailing" constant="15" id="eLh-xJ-HiB">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstItem="eUJ-nh-bVX" firstAttribute="centerX" secondItem="fH0-0w-NWS" secondAttribute="centerX" id="fbv-In-JIR"/>
+                        <constraint firstAttribute="trailing" secondItem="A4s-0i-Uey" secondAttribute="trailing" constant="40" id="frB-iL-jVB">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstItem="A4s-0i-Uey" firstAttribute="top" secondItem="bD2-hE-eJM" secondAttribute="bottom" constant="50" id="j55-NF-evW">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstItem="Kwh-ZO-CHm" firstAttribute="top" secondItem="eUJ-nh-bVX" secondAttribute="bottom" constant="48" id="lZI-TT-qXu"/>
+                        <constraint firstItem="eUJ-nh-bVX" firstAttribute="top" secondItem="fH0-0w-NWS" secondAttribute="bottom" constant="22" id="qaa-Ze-HLg">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstItem="A4s-0i-Uey" firstAttribute="leading" secondItem="rsa-3a-vkK" secondAttribute="leading" constant="40" id="rLv-ma-8d1">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="rsa-3a-vkK" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="007-Ks-4yK"/>
+                <constraint firstItem="rsa-3a-vkK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Kpf-tm-Z4n"/>
+                <constraint firstItem="8vR-BO-KME" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="Or9-Eu-dax">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rsa-3a-vkK" secondAttribute="trailing" id="mXd-Da-G2L"/>
+                <constraint firstItem="8vR-BO-KME" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="tTH-qN-nHl">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-771" y="38"/>
+        </view>
+    </objects>
+</document>

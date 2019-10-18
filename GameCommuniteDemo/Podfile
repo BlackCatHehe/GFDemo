@@ -1,4 +1,4 @@
-source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+#source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
  platform :ios, '9.0'
 
 target 'GameCommuniteDemo' do
@@ -20,8 +20,11 @@ target 'GameCommuniteDemo' do
   pod 'Toast-Swift' #弹出信息
   pod 'TYCyclePagerView'
   pod 'TYPagerController'
+  pod 'SDCycleScrollView'
   pod 'ESTabBarController-swift' #带点击动画的tabbar
   pod 'LZImageBrowser' #图片浏览器
+  pod 'JYTagView', '~> 0.1.0'
+  pod 'Charts'
   
   #rx
   pod 'RxSwift'

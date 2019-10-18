@@ -66,7 +66,7 @@ class GCRecommendVC: GCBaseVC {
 extension GCRecommendVC {
     
     private func initUI() {
-        view.backgroundColor = MetricGlobal.mainBgColor
+
         initNaviSearchBar()
         initCollectionView()
     }
@@ -116,6 +116,8 @@ extension GCRecommendVC: GCRecommendSearchHeaderBarDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
+        let vc = GCSearchVC()
+        push(vc)
         
         return false
     }
@@ -150,7 +152,7 @@ extension GCRecommendVC: UICollectionViewDelegate, UICollectionViewDataSource, U
 
         let header: GCNormalReusableHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, for: indexPath, viewType: GCNormalReusableHeaderView.self)
         header.backgroundColor = kRGB(r: 27, g: 26, b: 47)
-        header.iconImgV.image = UIImage(named: "view_num")
+        header.iconImgV.image = UIImage(named: "recommend_section")
         header.titleLb.text = "最新资讯"
             return header
 

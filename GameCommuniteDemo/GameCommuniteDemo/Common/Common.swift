@@ -178,8 +178,14 @@ func changeScreenOrientationToLandscape(_ isLandscape : Bool){
 }
 
 // MARK:- Font
-func kFont(_ size: CGFloat) -> UIFont{
-    return UIFont.systemFont(ofSize: size)
+
+func kFont( _ size: CGFloat, _ fontName: String? = nil) -> UIFont{
+    if fontName == nil {
+        return UIFont.systemFont(ofSize: size)
+    }else {
+        return UIFont(name: fontName!, size: size)!
+    }
+    
 }
 
 // MARK:- ---快速获取沙盒路径---

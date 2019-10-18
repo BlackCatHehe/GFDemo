@@ -56,7 +56,7 @@
                 <outlet property="iconImgV" destination="iwj-3E-NH7" id="7fP-bw-Ywd"/>
                 <outlet property="titleLb" destination="uWh-Zf-wba" id="cKU-Bz-ITo"/>
             </connections>
-            <point key="canvasLocation" x="-529" y="5"/>
+            <point key="canvasLocation" x="-17" y="22"/>
         </collectionReusableView>
     </objects>
 </document>

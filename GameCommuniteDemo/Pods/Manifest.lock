@@ -1,6 +1,11 @@
 PODS:
   - Alamofire (4.8.2)
+  - Charts (3.3.0):
+    - Charts/Core (= 3.3.0)
+  - Charts/Core (3.3.0)
   - ESTabBarController-swift (2.7)
+  - JYTagView (0.1.0):
+    - SnapKit (~> 4.2.0)
   - KeychainAccess (3.2.0)
   - Kingfisher (4.10.1)
   - LZImageBrowser (1.0.2):
@@ -26,6 +31,8 @@ PODS:
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
+  - SDCycleScrollView (1.75):
+    - SDWebImage (>= 4.0.0)
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
@@ -37,7 +44,9 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Charts
   - ESTabBarController-swift
+  - JYTagView (~> 0.1.0)
   - KeychainAccess
   - Kingfisher
   - LZImageBrowser
@@ -48,6 +57,7 @@ DEPENDENCIES:
   - Reusable
   - RxCocoa
   - RxSwift
+  - SDCycleScrollView
   - SnapKit
   - Then
   - Toast-Swift
@@ -57,6 +67,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Charts
+    - JYTagView
     - Kingfisher
     - MJRefresh
     - Moya
@@ -66,6 +78,7 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
+    - SDCycleScrollView
     - SnapKit
     - Then
     - Toast-Swift
@@ -80,7 +93,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
   ESTabBarController-swift: 4fb52ad03d94d0717ef97bc9eb09a5abfdded0a2
+  JYTagView: 5d7433fd74c9d78ec9d164fc9fa91d5cde5ff5cd
   KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   LZImageBrowser: 22f9630d61c3369fa226772de00df6e52a39d05d
@@ -93,6 +108,7 @@ SPEC CHECKSUMS:
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Then: 0157115e883545c77967b452fe74a1d25fb796e1
@@ -100,6 +116,6 @@ SPEC CHECKSUMS:
   TYCyclePagerView: 2b051dade0615c70784aa34f40c646feeddb7344
   TYPagerController: 262556ecef99986d26ed77fb1288a198ed42f4af
 
-PODFILE CHECKSUM: f17eb3268fd05ad2fa6c93893ae1d6733f10e3fb
+PODFILE CHECKSUM: 704cdab265520d5e592a59a76a970e7cc850aec3
 
 COCOAPODS: 1.7.4
