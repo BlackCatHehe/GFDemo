@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GCLoginVC" customModule="GameCommuniteDemo" customModuleProvider="target">
             <connections>
+                <outlet property="bgView" destination="rsa-3a-vkK" id="zMj-qe-xKW"/>
                 <outlet property="iconImgV" destination="bD2-hE-eJM" id="3ZP-Ga-ezy"/>
+                <outlet property="phoneBgV" destination="A4s-0i-Uey" id="QVU-Va-qUD"/>
                 <outlet property="phoneTF" destination="8Bv-20-MOH" id="mgQ-vE-kKM"/>
                 <outlet property="prefixPhoneNumbt" destination="WyW-WE-Fpp" id="cVJ-Pj-0YQ"/>
                 <outlet property="protocolBt" destination="Kwh-ZO-CHm" id="EaR-i7-fnm"/>
@@ -38,7 +42,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsa-3a-vkK">
                     <rect key="frame" x="0.0" y="205" width="414" height="486"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bD2-hE-eJM">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="111" translatesAutoresizingMaskIntoConstraints="NO" id="bD2-hE-eJM">
                             <rect key="frame" x="161" y="0.0" width="92" height="92"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="92" id="ldu-n8-JKq">
@@ -53,9 +57,9 @@
                             <rect key="frame" x="40" y="142" width="334" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WyW-WE-Fpp">
-                                    <rect key="frame" x="5" y="10" width="40" height="30"/>
+                                    <rect key="frame" x="5" y="10" width="50" height="30"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="40" id="6Xd-SF-KMp">
+                                        <constraint firstAttribute="width" constant="50" id="6Xd-SF-KMp">
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                             </userDefinedRuntimeAttributes>
@@ -69,7 +73,7 @@
                                     </connections>
                                 </button>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Bv-20-MOH">
-                                    <rect key="frame" x="50" y="5" width="279" height="40"/>
+                                    <rect key="frame" x="60" y="5" width="269" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="DJ3-IG-PJ5"/>
                                     </constraints>
@@ -84,7 +88,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" red="0.1333333333" green="0.12941176469999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="8Bv-20-MOH" secondAttribute="trailing" constant="5" id="1e2-6O-UyV"/>
                                 <constraint firstItem="Nc1-yX-quP" firstAttribute="leading" secondItem="A4s-0i-Uey" secondAttribute="leading" id="Eg1-ik-lo1"/>
@@ -115,14 +119,14 @@
                                 <action selector="clickSendCode:" destination="-1" eventType="touchUpInside" id="Rdr-e8-RcH"/>
                             </connections>
                         </button>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fH0-0w-NWS">
-                            <rect key="frame" x="96" y="340" width="222" height="15"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fH0-0w-NWS">
+                            <rect key="frame" x="110.5" y="340" width="193.5" height="15"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2y-8I-eh3">
-                                    <rect key="frame" x="0.0" y="7" width="55" height="1"/>
+                                    <rect key="frame" x="0.0" y="7" width="52" height="1"/>
                                     <color key="backgroundColor" red="0.21960784310000001" green="0.21176470589999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="55" id="IxC-Ok-jWv">
+                                        <constraint firstAttribute="width" constant="52" id="IxC-Ok-jWv">
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                             </userDefinedRuntimeAttributes>
@@ -131,13 +135,18 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="授权登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXl-V1-tIh">
-                                    <rect key="frame" x="76.5" y="0.0" width="69.5" height="15"/>
+                                    <rect key="frame" x="62" y="0.0" width="69.5" height="15"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.75686274509803919" green="0.74901960784313726" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuj-nD-PnP">
-                                    <rect key="frame" x="167" y="7" width="55" height="1"/>
+                                    <rect key="frame" x="141.5" y="7" width="52" height="1"/>
                                     <color key="backgroundColor" red="0.21960784310000001" green="0.21176470589999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="wrm-ml-he7"/>
@@ -179,27 +188,18 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" red="0.13333333333333333" green="0.12941176470588234" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="bD2-hE-eJM" firstAttribute="top" secondItem="rsa-3a-vkK" secondAttribute="top" id="3AD-7k-OGC"/>
-                        <constraint firstItem="fH0-0w-NWS" firstAttribute="leading" secondItem="rsa-3a-vkK" secondAttribute="leading" constant="96" id="98U-rO-296">
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
-                            </userDefinedRuntimeAttributes>
-                        </constraint>
                         <constraint firstItem="Kwh-ZO-CHm" firstAttribute="centerX" secondItem="rsa-3a-vkK" secondAttribute="centerX" id="9RO-TO-A5C"/>
                         <constraint firstAttribute="bottom" secondItem="Kwh-ZO-CHm" secondAttribute="bottom" id="9wx-OE-UJx"/>
+                        <constraint firstItem="fH0-0w-NWS" firstAttribute="centerX" secondItem="rsa-3a-vkK" secondAttribute="centerX" id="CKl-33-wdE"/>
                         <constraint firstItem="ACq-kd-FE1" firstAttribute="top" secondItem="A4s-0i-Uey" secondAttribute="bottom" constant="62" id="JtH-ma-Ih3">
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </constraint>
                         <constraint firstItem="bD2-hE-eJM" firstAttribute="centerX" secondItem="rsa-3a-vkK" secondAttribute="centerX" id="LH7-T3-bbB"/>
-                        <constraint firstAttribute="trailing" secondItem="fH0-0w-NWS" secondAttribute="trailing" constant="96" id="M1O-qZ-Ehn">
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
-                            </userDefinedRuntimeAttributes>
-                        </constraint>
                         <constraint firstItem="ACq-kd-FE1" firstAttribute="leading" secondItem="rsa-3a-vkK" secondAttribute="leading" constant="15" id="Pm5-HT-O10">
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
@@ -260,4 +260,7 @@
             <point key="canvasLocation" x="-771" y="38"/>
         </view>
     </objects>
+    <resources>
+        <image name="111" width="500" height="834"/>
+    </resources>
 </document>

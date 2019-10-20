@@ -10,21 +10,33 @@ import UIKit
 
 class GCMineVC: GCBaseVC {
 
+    private lazy var loginBt: UIButton = {
+        let button = UIButton()
+        button.setTitle("login", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.setImage(nil, for: .normal)
+        button.backgroundColor = UIColor.blue
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        view.addSubview(self.loginBt)
+        loginBt.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.size.equalTo(CGSize(width: 100, height: 44))
+        }
+        
+        
+        loginBt.rx.tap
+            .bind{[weak self] in
+                let vc = GCLoginVC()
+                vc.addTransition(type: .push, position: .fromBottom)
+                self?.push(vc)
+        }.disposed(by: rx.disposeBag)
+        
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+extension GCLoginVC: JYNaviControllerTransitionProtocol {}

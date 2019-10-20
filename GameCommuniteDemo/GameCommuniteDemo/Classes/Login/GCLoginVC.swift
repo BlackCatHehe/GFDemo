@@ -11,6 +11,10 @@ import UIKit
 class GCLoginVC: GCBaseVC {
 
     
+    @IBOutlet weak var bgView: UIView!
+    
+    @IBOutlet weak var phoneBgV: UIView!
+    
     @IBOutlet weak var iconImgV: UIImageView!
     
     @IBOutlet weak var prefixPhoneNumbt: UIButton!
@@ -23,20 +27,37 @@ class GCLoginVC: GCBaseVC {
     
     @IBOutlet weak var protocolBt: UIButton!
     
-    
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-        
-
-        
+    private var isHui: Bool = false {
+        didSet {
+            if isHui {
+                sendCodeBt.backgroundColor = .gray
+                
+            }else {
+                sendCodeBt.backgroundColor = kRGB(r: 0, g: 122, b: 255)
+                
+            }
+            sendCodeBt.isEnabled = !isHui
+        }
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        initUI()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
+    }
     
     //MARK: -----------click------------
     
@@ -67,15 +88,30 @@ class GCLoginVC: GCBaseVC {
 extension GCLoginVC {
     
     private func initUI() {
-        prefixPhoneNumbt.setTitleColor(.white, for: .normal)
+       
+       bgView.backgroundColor = MetricGlobal.mainBgColor
+        phoneBgV.backgroundColor = MetricGlobal.mainBgColor
         
-        phoneTF.clearButtonMode = .whileEditing
+        prefixPhoneNumbt.setTitleColor(.white, for: .normal)
+        prefixPhoneNumbt.setImage(UIImage(named: "shop_jiantou_xia"), for: .normal)
+        prefixPhoneNumbt.layoutButton(style: .Right, imageTitleSpace: 10.0)
+        
+        sendCodeBt.layer.cornerRadius = adaptW(22.0)
+        sendCodeBt.layer.masksToBounds = true
+        sendCodeBt.setTitleColor(.white, for: .normal)
+        sendCodeBt.backgroundColor = kRGB(r: 0, g: 122, b: 255)
+        sendCodeBt.setTitle("发送验证码", for: .normal)
+        
+        phoneTF.rightViewMode = .whileEditing
+        phoneTF.textColor = .white
         phoneTF.attributedPlaceholder = "请输入手机号".jys.add(kFont(adaptW(17.0))).add(kRGB(r: 193, g: 191, b: 255)).base
         let input = phoneTF.rx.text.orEmpty.asDriver().throttle(0.3)
         
         input.map{RegularExpressionTool.isPhoneNumber(phoneNumber: $0)}
-            .drive(sendCodeBt.rx.isEnabled)
-            .disposed(by: rx.disposeBag)
+            .drive(onNext: {[weak self] (isPass) in
+                self?.isHui = !isPass
+            }).disposed(by: rx.disposeBag)
         
+
     }
 }

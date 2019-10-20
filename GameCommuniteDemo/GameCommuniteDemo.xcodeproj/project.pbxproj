@@ -97,6 +97,7 @@
 		E10A2AD122D57F6A00ADEFC9 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A2AD022D57F6A00ADEFC9 /* Common.swift */; };
 		E10A2AD422D5882700ADEFC9 /* JYWDownloadTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A2AD322D5882700ADEFC9 /* JYWDownloadTool.swift */; };
 		E10A2AD622D5883600ADEFC9 /* GCNetTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A2AD522D5883600ADEFC9 /* GCNetTool.swift */; };
+		E10BFC47235ACB6B00F43ACE /* JYNaviControllerPushProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BFC46235ACB6B00F43ACE /* JYNaviControllerPushProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +214,7 @@
 		E10A2AD022D57F6A00ADEFC9 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		E10A2AD322D5882700ADEFC9 /* JYWDownloadTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JYWDownloadTool.swift; sourceTree = "<group>"; };
 		E10A2AD522D5883600ADEFC9 /* GCNetTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCNetTool.swift; sourceTree = "<group>"; };
+		E10BFC46235ACB6B00F43ACE /* JYNaviControllerPushProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYNaviControllerPushProtocol.swift; sourceTree = "<group>"; };
 		EC8C41D73679C4D994973A2B /* Pods_GameCommuniteDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameCommuniteDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9EF01D6EEC45C773C63A3CF /* Pods-GameCommuniteDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameCommuniteDemo.debug.xcconfig"; path = "Target Support Files/Pods-GameCommuniteDemo/Pods-GameCommuniteDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -707,6 +709,7 @@
 				DD6DD3E2234EB18F008C4FA7 /* JYAttributeable.swift */,
 				E10A2AC122D57D2200ADEFC9 /* JYWNavigationBackItemEditAble.swift */,
 				DD21DD56231CA20300F74A31 /* DateFormatterable.swift */,
+				E10BFC46235ACB6B00F43ACE /* JYNaviControllerPushProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1011,6 +1014,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E10BFC47235ACB6B00F43ACE /* JYNaviControllerPushProtocol.swift in Sources */,
 				DD5E56D723596703004126FC /* GCSwiftCommentCell.swift in Sources */,
 				E10A2AC622D57EA400ADEFC9 /* JYWFaceIDAndTouchIDManager.swift in Sources */,
 				DD06FB4C22FEB5EA00FC07E7 /* JYWLocationManager.swift in Sources */,
