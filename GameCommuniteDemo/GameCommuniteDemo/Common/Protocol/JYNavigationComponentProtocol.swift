@@ -188,11 +188,9 @@ extension JYNavigationComponentProtocol where Self: UIViewController {
                 items?.append(item)
                 navigationItem.rightBarButtonItems = items
             }
-        default: break
         }
     }
 }
-
 
 
 struct JYNavigationComponentModel {
@@ -206,10 +204,7 @@ struct JYNavigationComponentModel {
     var img: UIImage?
     var selectedImg: UIImage?
     
-    var searchLeftImg: UIImage?
-    var searchRightImg: UIImage?
-    
-    var postiton: ItemPosition? = .left
+    var postiton: ItemPosition = .left
     
 }
 
