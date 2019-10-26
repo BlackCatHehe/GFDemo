@@ -15,8 +15,12 @@ struct MetricGlobal {
     static let mainBarColor = kRGB(r: 24, g: 23, b: 40)
     ///视图主背景色
     static let mainCellBgColor = kRGB(r: 27, g: 26, b: 47)
-    ///主button背景色
-    static let mainButtonBgColor = kRGB(r: 0, g: 122, b: 255)
+    ///主题蓝色
+    static let mainBlue = kRGB(r: 0, g: 122, b: 255)
+    ///主题灰色
+    static let mainGray = kRGB(r: 209, g: 208, b: 231)
     ///主中粗字体
     static let mainMediumFamily = "HelveticaNeue-Medium"
+    
+
 }

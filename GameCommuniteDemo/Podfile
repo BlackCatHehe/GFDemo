@@ -13,6 +13,7 @@ target 'GameCommuniteDemo' do
   
   #model
   pod 'ObjectMapper' #配合https://github.com/Ahmed-Ali/JSONExport 快速建立model
+  pod 'SwiftyJSON'
   
   #UI
   pod 'MJRefresh'
@@ -23,8 +24,14 @@ target 'GameCommuniteDemo' do
   pod 'SDCycleScrollView'
   pod 'ESTabBarController-swift' #带点击动画的tabbar
   pod 'LZImageBrowser' #图片浏览器
-  pod 'JYTagView', '~> 0.1.0'
   pod 'Charts'
+  pod 'JXSegmentedView', '~> 0.0.19' #分页控制器
+  pod 'JXPagingView/Paging', '~> 1.1.15'#分页控制器
+  pod 'PlaceholderTextView'
+  pod 'HXPhotoPicker' #图片浏览器
+  pod 'GrowingTextView', '0.7.0'
+  pod 'YYText'
+  pod 'DYFoldLabel'
   
   #rx
   pod 'RxSwift'
@@ -35,6 +42,7 @@ target 'GameCommuniteDemo' do
   pod 'Reusable'
   pod 'Then'
   pod 'KeychainAccess' #keychain
+  
 
 
 end

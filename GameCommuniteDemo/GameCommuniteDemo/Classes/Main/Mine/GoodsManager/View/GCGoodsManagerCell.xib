@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="190" id="KGk-i7-Jjw" customClass="GCGoodsManagerCell" customModule="GameCommuniteDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="484" height="190"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="484" height="190"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Zf-Cr-fCK">
+                        <rect key="frame" x="15" y="10" width="454" height="454"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nGI-LM-DHo">
+                                <rect key="frame" x="12" y="12" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="Yro-w9-1fN">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstAttribute="width" secondItem="nGI-LM-DHo" secondAttribute="height" multiplier="1:1" id="lcY-eP-fBU"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mC5-2i-LFv">
+                                <rect key="frame" x="397" y="12" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIr-vr-QiY">
+                                <rect key="frame" x="397" y="341.5" width="42" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="fC9-cQ-P2Q">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLd-bl-1LS">
+                                <rect key="frame" x="447" y="339" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdt-tG-YFN">
+                                <rect key="frame" x="0.0" y="399" width="454" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="cV7-B8-bfZ"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qob-lq-IM7">
+                                <rect key="frame" x="396" y="412" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="aIu-Gu-7mO"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="clickMore:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="c9F-Uj-ZVh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRR-xm-zVh">
+                                <rect key="frame" x="397" y="366.5" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop_xiajia" translatesAutoresizingMaskIntoConstraints="NO" id="54O-Bn-814">
+                                <rect key="frame" x="390" y="37.5" width="49" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49" id="EYq-1I-omM">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstAttribute="width" secondItem="54O-Bn-814" secondAttribute="height" multiplier="1:1" id="Rt0-DH-4Nj"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fGd-Jp-qmw">
+                                <rect key="frame" x="343" y="412" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jMg-GG-Zgd"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="clickDel:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="E58-wA-QIk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="TRR-xm-zVh" firstAttribute="top" secondItem="TIr-vr-QiY" secondAttribute="bottom" constant="10" id="1Eg-54-132">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="JLd-bl-1LS" firstAttribute="leading" secondItem="TIr-vr-QiY" secondAttribute="trailing" constant="8" id="5ic-fN-O3g">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="Qob-lq-IM7" firstAttribute="centerY" secondItem="fGd-Jp-qmw" secondAttribute="centerY" id="6Ud-qu-Lqj"/>
+                            <constraint firstItem="nGI-LM-DHo" firstAttribute="leading" secondItem="6Zf-Cr-fCK" secondAttribute="leading" constant="12" id="8On-66-vLu">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="Qob-lq-IM7" secondAttribute="trailing" constant="12" id="BTS-KL-aIH"/>
+                            <constraint firstItem="Qob-lq-IM7" firstAttribute="leading" secondItem="fGd-Jp-qmw" secondAttribute="trailing" constant="7" id="CSA-Tb-BJp">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="wdt-tG-YFN" secondAttribute="trailing" id="MeJ-ik-OGX"/>
+                            <constraint firstItem="TRR-xm-zVh" firstAttribute="leading" secondItem="mC5-2i-LFv" secondAttribute="leading" id="NrG-Ky-l35"/>
+                            <constraint firstAttribute="bottom" secondItem="Qob-lq-IM7" secondAttribute="bottom" constant="12" id="RIW-ss-4sB">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="54O-Bn-814" secondAttribute="trailing" constant="15" id="Rgq-xi-bJ5">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="mC5-2i-LFv" firstAttribute="leading" secondItem="nGI-LM-DHo" secondAttribute="trailing" constant="10" id="SPN-Kq-BWW">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="54O-Bn-814" firstAttribute="top" secondItem="mC5-2i-LFv" secondAttribute="bottom" constant="5" id="UFP-Ma-0cv">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="wdt-tG-YFN" firstAttribute="leading" secondItem="6Zf-Cr-fCK" secondAttribute="leading" id="UO2-k2-g4o"/>
+                            <constraint firstItem="wdt-tG-YFN" firstAttribute="top" secondItem="nGI-LM-DHo" secondAttribute="bottom" constant="12" id="WGa-Xi-mJO"/>
+                            <constraint firstItem="TRR-xm-zVh" firstAttribute="bottom" secondItem="nGI-LM-DHo" secondAttribute="bottom" id="X7G-jG-vf0"/>
+                            <constraint firstItem="mC5-2i-LFv" firstAttribute="top" secondItem="nGI-LM-DHo" secondAttribute="top" id="adl-7a-nlh"/>
+                            <constraint firstAttribute="trailing" secondItem="mC5-2i-LFv" secondAttribute="trailing" constant="15" id="bMM-a0-JPT">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="Qob-lq-IM7" firstAttribute="top" secondItem="wdt-tG-YFN" secondAttribute="bottom" constant="12" id="hVF-gr-Xyk"/>
+                            <constraint firstItem="nGI-LM-DHo" firstAttribute="top" secondItem="6Zf-Cr-fCK" secondAttribute="top" constant="12" id="lfW-FM-Eyo">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="JLd-bl-1LS" firstAttribute="centerY" secondItem="TIr-vr-QiY" secondAttribute="centerY" id="vjf-7U-mVu"/>
+                            <constraint firstItem="TRR-xm-zVh" firstAttribute="leading" secondItem="TIr-vr-QiY" secondAttribute="leading" id="yhy-uU-z1c"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6Zf-Cr-fCK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="3kb-cH-DXz">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
+                    <constraint firstAttribute="trailing" secondItem="6Zf-Cr-fCK" secondAttribute="trailing" constant="15" id="9pN-9h-Hu4">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
+                    <constraint firstItem="6Zf-Cr-fCK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Yph-zu-e4G">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
+                    <constraint firstAttribute="bottom" secondItem="6Zf-Cr-fCK" secondAttribute="bottom" id="jzt-Nw-l8Q"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bLineV" destination="wdt-tG-YFN" id="T3i-Og-MIi"/>
+                <outlet property="bgView" destination="6Zf-Cr-fCK" id="sdR-ak-kei"/>
+                <outlet property="deleteBt" destination="fGd-Jp-qmw" id="ARH-hs-NSK"/>
+                <outlet property="goodsDescLb" destination="mC5-2i-LFv" id="9Nz-Bc-Hzd"/>
+                <outlet property="goodsImgV" destination="nGI-LM-DHo" id="wgh-YF-Ta9"/>
+                <outlet property="moreBt" destination="Qob-lq-IM7" id="dH8-pY-9uR"/>
+                <outlet property="resNumLb" destination="TIr-vr-QiY" id="acf-Ip-MIk"/>
+                <outlet property="saledLb" destination="JLd-bl-1LS" id="NMV-qd-Fuf"/>
+                <outlet property="totalLb" destination="TRR-xm-zVh" id="c7v-C9-Vwa"/>
+                <outlet property="withdrawImgV" destination="54O-Bn-814" id="A1B-ql-4Zt"/>
+            </connections>
+            <point key="canvasLocation" x="-182.60869565217394" y="104.46428571428571"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="shop_xiajia" width="49" height="39.5"/>
+    </resources>
+</document>

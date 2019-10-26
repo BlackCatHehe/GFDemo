@@ -35,7 +35,7 @@ extension GCChartView {
         //x轴设置
         let xValues = ["今天", "3天", "7天", "30天", "60天"]
         chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xValues)
-        chartView.xAxis.labelTextColor = kRGB(r: 209, g: 208, b: 231) //x轴字体颜色
+        chartView.xAxis.labelTextColor = MetricGlobal.mainGray //x轴字体颜色
         chartView.xAxis.labelFont = kFont(adaptW(12.0))//x轴字体font
         chartView.xAxis.labelPosition = .bottom //x轴在下方
         chartView.xAxis.labelCount = xValues.count
@@ -47,9 +47,9 @@ extension GCChartView {
         //y轴设置
         chartView.rightAxis.enabled = false
         
-        chartView.leftAxis.labelTextColor = kRGB(r: 209, g: 208, b: 231) //x轴字体颜色
+        chartView.leftAxis.labelTextColor = MetricGlobal.mainGray //x轴字体颜色
         chartView.leftAxis.labelFont = kFont(adaptW(12.0))//x轴字体font
-        chartView.leftAxis.gridColor = kRGB(r: 209, g: 208, b: 231)
+        chartView.leftAxis.gridColor = MetricGlobal.mainGray
         chartView.leftAxis.gridLineDashLengths = [4.0, 2.0]
         chartView.leftAxis.gridLineWidth = 0.5
         chartView.leftAxis.drawAxisLineEnabled = false
@@ -78,7 +78,7 @@ extension GCChartView {
         chartDataSet.mode = .horizontalBezier //平滑
         chartDataSet.drawValuesEnabled = false //不绘制拐点上的文字
         chartDataSet.drawCirclesEnabled = false //不绘制拐点
-        chartDataSet.highlightEnabled = false //不显示十字线
+       // chartDataSet.highlightEnabled = false //不显示十字线
         
         chartDataSet.drawFilledEnabled = true
         //渐变颜色数组

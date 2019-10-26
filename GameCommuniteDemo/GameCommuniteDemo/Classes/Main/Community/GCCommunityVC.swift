@@ -35,6 +35,7 @@ class GCCommunityVC: GCBaseVC {
         $0.view.backgroundColor = .white
         $0.pagerController.view.backgroundColor = MetricGlobal.mainBarColor
         $0.pagerController.scrollView?.backgroundColor = .white
+        $0.pagerController.scrollView?.bounces = false
         $0.tabBar.layout.progressColor = Metric.progressLineColor
         $0.tabBar.layout.normalTextColor = Metric.selectTitleColor
         $0.tabBar.layout.selectedTextColor = Metric.selectTitleColor

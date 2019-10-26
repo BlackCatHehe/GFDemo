@@ -8,3 +8,4 @@
 
 #import <CommonCrypto/CommonDigest.h>
 #import "JYVerityCodeView.h"
+#import "Demo2ViewController.h"

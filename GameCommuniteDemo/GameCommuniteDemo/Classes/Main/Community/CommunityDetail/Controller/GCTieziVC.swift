@@ -7,14 +7,15 @@
 //
 
 import UIKit
-
+import JXPagingView
 class GCTieziVC: GCBaseVC {
     
     var tableHeaderV: UIView?
     
+    private var scrollBlock: ((UIScrollView)->())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         initTableView()
         
@@ -43,7 +44,18 @@ extension GCTieziVC {
     
     private func initTableView() {
         
-        tableview.tableHeaderView = self.tableHeaderV
+        if let headerV = tableHeaderV as? GCCommunityHeaderView {
+            let height = headerV.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+            headerV.frame = CGRect(x: 0, y: 0, width: kScreenW, height: height)
+            tableview.tableHeaderView = headerV
+            
+            headerV.updateLayout = {[weak self] in
+                let height = headerV.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+                headerV.frame = CGRect(x: 0, y: 0, width: kScreenW, height: height)
+                self?.tableview.tableHeaderView = headerV
+            }
+        }
+        
         
         tableview.register(headerFooterViewType: GCTieziHeaderView.self)
         tableview.register(cellType: GCSwiftCommentCell.self)
@@ -55,8 +67,11 @@ extension GCTieziVC {
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+
     }
 }
+
+
 
 extension GCTieziVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -78,6 +93,7 @@ extension GCTieziVC: UITableViewDelegate, UITableViewDataSource {
         }else {
             let headerV = tableView.dequeueReusableHeaderFooterView(GCTieziHeaderView.self)
             headerV?.setModel()
+            headerV?.delegate = self
             return headerV
         }
         
@@ -106,7 +122,69 @@ extension GCTieziVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let vc = GCPeopleMainPageVC()
+        push(vc)
     }
     
+}
+
+extension GCTieziVC: GCTieziHeaderViewDelegate {
+    
+    func headerView(_ headerV: GCTieziHeaderView, didSelectItemAt index: Int) {
+        
+        let alertVC = GCAlertShareVC()
+        
+        let preAniVC = JYWPrestentCustomVC(presentedViewController: alertVC, presenting: self)
+        preAniVC.toFrame = CGRect(x: 0, y: kScreenH - adaptW(230.0) - kBottomH, width: kScreenW, height: adaptW(230.0))
+        alertVC.modalPresentationStyle = .custom
+        alertVC.transitioningDelegate = preAniVC
+
+        alertVC.clickChoosePlatForm = {[weak self] index in
+            switch index {
+            case 0:
+                JYLog("weixin")
+            case 1:
+                JYLog("pengyouquan")
+            case 2:
+                JYLog("xinlang")
+            default:
+                JYLog("qq")
+            }
+        }
+        var rootVC = kWindow?.rootViewController
+        while rootVC?.presentedViewController != nil {
+            if let vc = rootVC?.presentedViewController {
+                if let nvc = vc as? UINavigationController{
+                    rootVC = nvc.visibleViewController
+                }else if let tvc = vc as? UITabBarController{
+                    rootVC = tvc.selectedViewController
+                }
+            }
+            
+        }
+        rootVC?.present(alertVC, animated: true, completion: nil)
+    }
+}
+
+extension GCTieziVC: JXPagingViewListViewDelegate, UIScrollViewDelegate {
+    
+    func listView() -> UIView {
+        return view
+    }
+    
+    func listScrollView() -> UIScrollView {
+        return self.tableview
+    }
+    
+    func listViewDidScrollCallback(callback: @escaping (UIScrollView) -> ()) {
+        self.scrollBlock = callback
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if self.scrollBlock != nil {
+            self.scrollBlock!(scrollView)
+        }
+        
+    }
 }

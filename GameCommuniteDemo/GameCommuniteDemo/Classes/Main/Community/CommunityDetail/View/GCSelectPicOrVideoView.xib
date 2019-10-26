@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GCSelectPicOrVideoView" customModule="GameCommuniteDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="447" height="621"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FhH-Eq-H6O">
+                    <rect key="frame" x="0.0" y="225.5" width="447" height="170"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0L-vz-w79">
+                            <rect key="frame" x="369" y="0.0" width="38" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="38" id="01z-i0-KN7">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
+                                <constraint firstAttribute="width" constant="38" id="0w4-5y-WxD">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
+                            </constraints>
+                            <state key="normal" image="x"/>
+                            <connections>
+                                <action selector="clickBack:" destination="iN0-l3-epB" eventType="touchUpInside" id="M34-wW-aR2"/>
+                            </connections>
+                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="62" translatesAutoresizingMaskIntoConstraints="NO" id="yaQ-0Q-QCH">
+                            <rect key="frame" x="112.5" y="64" width="222" height="106"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nau-8R-jMG">
+                                    <rect key="frame" x="0.0" y="0.0" width="80" height="106"/>
+                                    <state key="normal" title="发图文" image="1111"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
+                                            <real key="value" value="15"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="clickChoose:" destination="iN0-l3-epB" eventType="touchUpInside" id="9xt-gm-Qlg"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2z-2Y-4gB">
+                                    <rect key="frame" x="142" y="0.0" width="80" height="106"/>
+                                    <state key="normal" title="发视频" image="2222"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
+                                            <real key="value" value="15"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="clickChoose:" destination="iN0-l3-epB" eventType="touchUpInside" id="sBx-oO-IGL"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="222" id="A1T-2h-Zgb">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
+                                <constraint firstItem="V2z-2Y-4gB" firstAttribute="width" secondItem="nau-8R-jMG" secondAttribute="width" id="Tru-Ff-k4d"/>
+                                <constraint firstItem="V2z-2Y-4gB" firstAttribute="height" secondItem="nau-8R-jMG" secondAttribute="height" id="jif-ib-Ro3"/>
+                                <constraint firstAttribute="height" constant="106" id="rZt-6Z-2S5"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="yaQ-0Q-QCH" secondAttribute="bottom" id="HRU-2d-Qvd"/>
+                        <constraint firstAttribute="trailing" secondItem="r0L-vz-w79" secondAttribute="trailing" constant="40" id="Pja-2S-MAM"/>
+                        <constraint firstItem="yaQ-0Q-QCH" firstAttribute="top" secondItem="r0L-vz-w79" secondAttribute="bottom" constant="26" id="cur-dy-mJP">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstItem="yaQ-0Q-QCH" firstAttribute="centerX" secondItem="FhH-Eq-H6O" secondAttribute="centerX" id="psl-To-a6g"/>
+                        <constraint firstItem="r0L-vz-w79" firstAttribute="top" secondItem="FhH-Eq-H6O" secondAttribute="top" id="rxf-gg-Q7s"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="FhH-Eq-H6O" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="7WN-gw-x9i"/>
+                <constraint firstItem="FhH-Eq-H6O" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="E9B-eY-CFd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="FhH-Eq-H6O" secondAttribute="trailing" id="cOR-nm-lIE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="backBt" destination="r0L-vz-w79" id="8HW-sk-0vw"/>
+                <outlet property="picBt" destination="nau-8R-jMG" id="u3K-Vl-aw6"/>
+                <outlet property="videoBt" destination="V2z-2Y-4gB" id="CiA-zj-ulD"/>
+            </connections>
+            <point key="canvasLocation" x="-121" y="90"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="1111" width="61" height="61"/>
+        <image name="2222" width="61" height="61"/>
+        <image name="x" width="14" height="14"/>
+    </resources>
+</document>

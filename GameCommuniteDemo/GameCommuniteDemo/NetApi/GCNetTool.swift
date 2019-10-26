@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import SwiftyJSON
 
 #if DEBUG
 fileprivate let baseUrl = "http://playtest.uioj.com/api/"
@@ -17,7 +18,8 @@ fileprivate let baseUrl = "http://playtest.uioj.com/api/"
 
 enum GCNetApi {
     case register(prama: [String: String])
-
+    case sendCode(prama: [String: String])
+    case getUserInfo(prama: [String: String])
 }
 
 extension GCNetApi: TargetType{
@@ -27,10 +29,14 @@ extension GCNetApi: TargetType{
     }
     
     var path: String {
+        
         switch self {
-
         case .register:
             return "users"
+        case .sendCode:
+            return "verificationCodes"
+        case .getUserInfo:
+            return "user"
         }
     }
     
@@ -46,18 +52,19 @@ extension GCNetApi: TargetType{
     
     var task: Task {
         switch self {
-            /**
-             * 所有的说说
-             */
         case let .register(prama):
+            return .requestParameters(parameters: prama, encoding: URLEncoding.default)
+        case let .sendCode(prama):
+            return .requestParameters(parameters: prama, encoding: URLEncoding.default)
+        case let .getUserInfo(prama):
             return .requestParameters(parameters: prama, encoding: URLEncoding.default)
         }
     }
     
     var headers: [String : String]? {
-        if let token = UserDefaults.standard.value(forKey: "loadToken") as? String{
+        if let token = UserDefaults.standard.value(forKey: "access_token") as? String{
             print("token:\(token)")
-            return ["token_name" : token]
+            return ["Authorization" : token]
             
         }else {
             return [:]
@@ -68,6 +75,9 @@ extension GCNetApi: TargetType{
 
 class GCNetTool {
     static func requestData<T: TargetType>(target: T, showAcvitity: Bool = false, success: @escaping (_ responseData: [String : Any]) ->(), fail: @escaping (_ error: MoyaError?)->()){
+        
+        JYLog("请求接口为: \(target.path)")
+        
         //设置请求发起者
         let provider = MoyaProvider<T>()
         
@@ -89,18 +99,7 @@ class GCNetTool {
                
                 //解析json数据
                 if let data = try? response.mapJSON() as? [String : Any]{
-                    print(data)
-                    let status = data["status"] as! Int
-                    
-                    guard status == 200 else {
-                        if status == 2000{//异地登录或者没有登录
-                            kWindow?.makeToast("请登录")
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "jump"), object: "login")
-                        }
-                        fail(nil)
-                        print("状态码不对:\(status)")
-                        return}
-                    
+                    print(JSON(data).description)
                     
                     success(data)
                 }else{

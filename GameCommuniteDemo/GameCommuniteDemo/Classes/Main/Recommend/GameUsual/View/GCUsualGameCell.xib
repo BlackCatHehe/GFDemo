@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GCUsualGameCell" customModule="GameCommuniteDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="360"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="395" height="360"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fat-rv-Q4p">
+                        <rect key="frame" x="0.0" y="0.0" width="395" height="360"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wjv-O9-zN9">
+                                <rect key="frame" x="0.0" y="0.0" width="395" height="242"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Wjv-O9-zN9" secondAttribute="height" multiplier="168:103" id="uie-hX-XBX"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5m-mX-JlA">
+                                <rect key="frame" x="5" y="250" width="35.5" height="100"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nz8-lX-V1Z">
+                                <rect key="frame" x="323" y="289" width="67" height="22"/>
+                                <state key="normal" title="Button" image="game_hot">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Wjv-O9-zN9" secondAttribute="trailing" id="5gd-S1-BJe"/>
+                            <constraint firstItem="Wjv-O9-zN9" firstAttribute="top" secondItem="fat-rv-Q4p" secondAttribute="top" id="HPs-ku-R4G"/>
+                            <constraint firstAttribute="trailing" secondItem="Nz8-lX-V1Z" secondAttribute="trailing" constant="5" id="LL4-RV-vrK">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="h5m-mX-JlA" firstAttribute="top" secondItem="Wjv-O9-zN9" secondAttribute="bottom" constant="8" id="RjB-mt-mDx">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstAttribute="bottom" secondItem="h5m-mX-JlA" secondAttribute="bottom" constant="10" id="RwB-op-HlO">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="h5m-mX-JlA" firstAttribute="leading" secondItem="Wjv-O9-zN9" secondAttribute="leading" constant="5" id="Uln-dy-5UZ">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="Wjv-O9-zN9" firstAttribute="leading" secondItem="fat-rv-Q4p" secondAttribute="leading" id="b9D-YM-qvp"/>
+                            <constraint firstItem="Nz8-lX-V1Z" firstAttribute="centerY" secondItem="h5m-mX-JlA" secondAttribute="centerY" id="o1p-oF-A0I"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="fat-rv-Q4p" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1Pw-uh-RGQ"/>
+                <constraint firstAttribute="trailing" secondItem="fat-rv-Q4p" secondAttribute="trailing" id="7qf-uQ-SFs"/>
+                <constraint firstItem="fat-rv-Q4p" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="FVY-TN-JId"/>
+                <constraint firstAttribute="bottom" secondItem="fat-rv-Q4p" secondAttribute="bottom" id="kiq-u8-05R"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="395" height="360"/>
+            <connections>
+                <outlet property="bgView" destination="fat-rv-Q4p" id="1ce-L8-WTs"/>
+                <outlet property="hotBt" destination="Nz8-lX-V1Z" id="qrM-Nj-G8b"/>
+                <outlet property="imageV" destination="Wjv-O9-zN9" id="oFQ-YB-VSn"/>
+                <outlet property="titleLb" destination="h5m-mX-JlA" id="QCu-SM-8a6"/>
+            </connections>
+            <point key="canvasLocation" x="-260" y="134"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="game_hot" width="12.5" height="14.5"/>
+    </resources>
+</document>

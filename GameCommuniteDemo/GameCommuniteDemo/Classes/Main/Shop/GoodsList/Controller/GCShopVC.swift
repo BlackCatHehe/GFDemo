@@ -8,33 +8,27 @@
 
 import UIKit
 import Kingfisher
-import JYTagView
-
+import SnapKit
 fileprivate struct Metric {
     static let goodsItemSize = CGSize(width: (kScreenW - 15 * 2 - 10)/2, height: (kScreenW - 15 * 2 - 10)/2 * 103.0/167.0 + adaptW(47.0 + 10.0))
     
     static let normalTagBgColor = kRGB(r: 79, g: 107, b: 149)
-    static let selTagBgColor = MetricGlobal.mainButtonBgColor
+    static let selTagBgColor = MetricGlobal.mainBlue
     static let normalTagFont = kFont(adaptW(14.0))
     static let selTagFont = kFont(adaptW(15.0), "HelveticaNeue-Medium")
+    
+    static let tagWidth = (kScreenW - adaptW(12.0*3) - adaptW(15.0*2) - adaptW(30.0 + 20.0))/4
 }
 
 class GCShopVC: GCBaseVC {
-    
-    private let datas = [
-        ["title": "姜还是老的辣？如何看待doda2高龄化现象", "view_num": "12523", "time": "刚刚", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
-        ["title": "魔兽世界怀旧复：玩家吵了十五年，发誓开门到底该不该收钱", "view_num": "12523", "time": "5分钟前", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
-        ["title": "姜还是老的辣？如何看待doda2高龄化现象", "view_num": "12523", "time": "刚刚", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
-        ["title": "魔兽世界怀旧复：玩家吵了十五年，发誓开门到底该不该收钱", "view_num": "12523", "time": "10-09", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
-        ["title": "姜还是老的辣？如何看待doda2高龄化现象", "view_num": "12523", "time": "03-12", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"]
-    ]
+
+    private var selectIndex: Int = 0
     
     //MARK: ------------cyclelife------------
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "商城"
-        
         
         initUI()
     }
@@ -63,15 +57,20 @@ class GCShopVC: GCBaseVC {
     private lazy var tagView: JYTagView = {[weak self] in
         let tagV = JYTagView()
         tagV.itemHeight = adaptW(34.0)
+        tagV.itemWidth = Metric.tagWidth
         tagV.itemSpacing = adaptW(12.0)
         tagV.itemInsetPadding = adaptW(21.0)
+        tagV.clipsToBounds = true
         tagV.moreButton = {
             let bt = UIButton()
             bt.setImage(UIImage(named: "shop_jiantou_xia"), for: .normal)
+            bt.setImage(UIImage(named: "shop_jiantou_shang"), for: .selected)
             bt.addTarget(self!, action: #selector(self?.moreTag(_ :)), for: .touchUpInside)
             return bt
         }()
-        let titles = ["全部", "嗷嗷", "播报", "等等"]
+        tagV.buttonMargin = adaptW(10.0)
+        
+        let titles = ["全部", "嗷嗷", "播报", "等等", "间隔下降"]
         tagV.itemBuilder = {index -> UIView in
             let bt = UIButton()
             bt.setTitle(titles[index], for: .normal)
@@ -101,12 +100,17 @@ extension GCShopVC {
     private func initCateTopView() {
         view.addSubview(self.tagView)
         tagView.snp.makeConstraints { (make) in
-            make.top.equalTo(kStatusBarheight + kNavBarHeight)
-            make.left.right.equalToSuperview()
-//            make.height.equalTo(adaptW(50.0))
+            make.top.equalTo(kStatusBarheight + kNavBarHeight + adaptW(10.0))
+            make.left.equalToSuperview().offset(adaptW(15.0))
+            make.right.equalToSuperview().offset(-adaptW(15.0))
+            make.height.equalTo(tagView.itemHeight)
         }
         
-        tagView.titles = ["全部", "嗷嗷", "播报", "等等"]
+        tagView.titles = ["全部", "嗷嗷", "播报", "等等", "间隔下降"]
+        
+        if tagView.titles.count < 5 {
+            tagView.moreButton?.isHidden = true
+        }
         tagView.reloadData()
     }
     
@@ -114,7 +118,7 @@ extension GCShopVC {
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(tagView.snp.bottom)
+            make.top.equalTo(tagView.snp.bottom).offset(adaptW(10.0))
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview().offset(-kTabBarHeight)
         }
@@ -176,31 +180,54 @@ extension GCShopVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        
         return UIEdgeInsets(top: 0, left: 15, bottom: kBottomH + 10, right: 15)
-        
-        
-    }
     
+    }
 }
+
 //MARK: ------------click------------
 extension GCShopVC {
     
     @objc private func selectTag(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        if sender.isSelected {
-            sender.backgroundColor = Metric.selTagBgColor
-            sender.titleLabel?.font = Metric.selTagFont
-        }else {
-            sender.backgroundColor = Metric.normalTagBgColor
-            sender.titleLabel?.font = Metric.normalTagFont
+        let tag = sender.tag - 100
+        
+        //点击选中的按钮，直接返回
+        if tag == selectIndex {
+            return
         }
+        
+        //反之 设置其为选中的样式
+        sender.backgroundColor = Metric.selTagBgColor
+        sender.titleLabel?.font = Metric.selTagFont
+        
+        //拿到之前选中的按钮，将其变为未选中
+        for tagV in tagView.tagViews {
+            if let bt = tagV as? UIButton, bt.tag == selectIndex + 100 {
+                bt.isSelected = false
+                bt.backgroundColor = Metric.normalTagBgColor
+                bt.titleLabel?.font = Metric.normalTagFont
+                break
+            }
+        }
+        
+        //将点击的按钮赋值给selectindex
+        selectIndex = tag
         
     }
     
     @objc private func moreTag(_ sender: UIButton) {
         
+        sender.isSelected = !sender.isSelected
         
+        tagView.snp.remakeConstraints { (make) in
+            make.top.equalTo(kStatusBarheight + kNavBarHeight + adaptW(10.0))
+            make.left.equalToSuperview().offset(adaptW(15.0))
+            make.right.equalToSuperview().offset(-adaptW(15.0))
+            if !sender.isSelected {
+                make.height.equalTo(tagView.itemHeight)
+            }
+            
+        }
         
     }
     

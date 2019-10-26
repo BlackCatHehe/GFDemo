@@ -27,7 +27,7 @@ class GCSwiftCommentCell: UITableViewCell, NibReusable {
     func setModel() {
         let str = "一生不羁：再说一句，世界频道的在喊人来"
         
-        commentLb.attributedText = str.jys.add(kRGB(r: 209, g: 208, b: 231)).add(UIColor.white, at: NSMakeRange(0, "一生不羁：".count)).add(kFont(adaptW(13.0), MetricGlobal.mainMediumFamily), at: NSMakeRange(0, "一生不羁：".count)).base
+        commentLb.attributedText = str.jys.add(MetricGlobal.mainGray).add(UIColor.white, at: NSMakeRange(0, "一生不羁：".count)).add(kFont(adaptW(13.0), MetricGlobal.mainMediumFamily), at: NSMakeRange(0, "一生不羁：".count)).base
         timeLb.text = "10分钟前"
     }
 

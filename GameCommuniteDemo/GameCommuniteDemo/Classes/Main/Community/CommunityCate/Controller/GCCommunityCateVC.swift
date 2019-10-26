@@ -57,7 +57,7 @@ class GCCommunityCateVC: GCBaseVC {
     private lazy var addCateButton: UIButton = {[weak self] in
        let button = UIButton()
         button.setTitle("创建社区", for: .normal)
-        button.backgroundColor = MetricGlobal.mainButtonBgColor
+        button.backgroundColor = MetricGlobal.mainBlue
         button.titleLabel?.font = kFont(14.0)
         button.layer.cornerRadius = adaptW(14.0)
         button.layer.masksToBounds = true
@@ -192,6 +192,7 @@ extension GCCommunityCateVC: GCCommuniteCateCellDelegate {
 extension GCCommunityCateVC {
     
     @objc private func clickCreate() {
-        
+        let vc = GCCreateCommuniteVC()
+        push(vc)
     }
 }

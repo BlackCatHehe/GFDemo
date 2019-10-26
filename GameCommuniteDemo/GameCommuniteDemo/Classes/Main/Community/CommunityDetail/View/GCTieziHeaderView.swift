@@ -12,12 +12,18 @@ import Reusable
 import SnapKit
 
 fileprivate struct Metric {
-    static let buttomButtonImages = ["shop_jinbi", "shop_jinbi", "shop_jinbi"]
+    static let buttomButtonImages = ["communite_share", "communite_comment", "communite_like"]
     static let imageW = (kScreenW - adaptW(15.0*2 + 10.0))/2
+}
+
+protocol GCTieziHeaderViewDelegate {
+    func headerView(_ headerV: GCTieziHeaderView, didSelectItemAt index: Int)
 }
 
 class GCTieziHeaderView: UITableViewHeaderFooterView, Reusable {
 
+    var delegate: GCTieziHeaderViewDelegate?
+    
     private var iconImgV: UIImageView!
     private var nameLb: UILabel!
     private var timeLb: UILabel!
@@ -43,8 +49,8 @@ class GCTieziHeaderView: UITableViewHeaderFooterView, Reusable {
     }
     
     func setModel() {
-        layoutIfNeeded()
-//        iconImgV.kf.setImage(with: URL(string:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(43.0)/2, targetSize: self.iconImgV.bounds.size, roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
+        
+        iconImgV.kf.setImage(with: URL(string: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(43.0/2), targetSize: CGSize(width: adaptW(43.0), height: adaptW(43.0)), roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
         
         nameLb.text = "欧巴嘻嘻"
         timeLb.text = "10分钟前"
@@ -66,12 +72,12 @@ class GCTieziHeaderView: UITableViewHeaderFooterView, Reusable {
             imageV.clipsToBounds = true
             centerContentBgView.addSubview(imageV)
             imageV.snp.makeConstraints { (make) in
-                make.left.equalToSuperview().offset(adaptW(15.0 + (Metric.imageW + 10.0)*CGFloat(i)))
+                make.left.equalToSuperview().offset((Metric.imageW + adaptW(10.0))*CGFloat(i))
                 make.top.bottom.equalToSuperview()
                 make.height.equalTo(Metric.imageW * 129.0/167.0)
             }
-//            layoutIfNeeded()
-//            imageV.kf.setImage(with: URL(string:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: 5.0, targetSize: imageV.bounds.size, roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
+            
+            imageV.kf.setImage(with: URL(string:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(5.0), targetSize: CGSize(width: Metric.imageW, height: Metric.imageW * 129.0/167.0), roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
         }
     }
 
@@ -154,7 +160,7 @@ extension GCTieziHeaderView {
         //TODO: ----------content-----------
         let stLb = UILabel()
         stLb.font = kFont(adaptW(14.0))
-        stLb.textColor = kRGB(r: 209, g: 208, b: 231)
+        stLb.textColor = MetricGlobal.mainGray
         stLb.preferredMaxLayoutWidth = kScreenW - adaptW(15.0)*2
         stLb.numberOfLines = 0
         bgView.addSubview(stLb)
@@ -196,6 +202,9 @@ extension GCTieziHeaderView {
             let imageStr = Metric.buttomButtonImages[i]
             let button = UIButton()
             button.setImage(UIImage(named: imageStr), for: .normal)
+            if i == 2 {
+                button.setImage(UIImage(named: "communite_like_sel"), for: .selected)
+            }
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = kFont(adaptW(11.0))
             button.tag = 100 + i
@@ -233,6 +242,8 @@ extension GCTieziHeaderView {
     
     @objc func clickButtonButtons(_ sender: UIButton) {
         
+        delegate?.headerView(self, didSelectItemAt: sender.tag - 100)
+        
         switch sender.tag - 100 {
         case 0://分享
             JYLog("点击了分享")
@@ -240,6 +251,7 @@ extension GCTieziHeaderView {
             JYLog("点击了评论")
         case 2://喜欢
             JYLog("点击了喜欢")
+            sender.isSelected = !sender.isSelected
         default:
             break
         }

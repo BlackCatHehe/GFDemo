@@ -32,8 +32,6 @@ public extension UIBarButtonItem {
             objc_setAssociatedObject(self, Badge_badgeLabel, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             initBadge()
         }
-        
-        
     }
     
     var badgeBackgroundColor: UIColor  {

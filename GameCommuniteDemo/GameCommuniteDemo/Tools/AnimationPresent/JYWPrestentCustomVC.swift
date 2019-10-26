@@ -62,7 +62,7 @@ extension JYWPrestentCustomVC {
         // 获取presentingViewController 的转换协调器，负责动画的一个东西
         let transCoorDinator = presentingViewController.transitionCoordinator
         transCoorDinator?.animate(alongsideTransition: { (context) in
-            view.alpha = 0.4
+            view.alpha = 0.7
         }, completion: nil)
         
     }

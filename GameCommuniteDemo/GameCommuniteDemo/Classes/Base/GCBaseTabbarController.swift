@@ -28,7 +28,7 @@ class GCBaseTabbarController: UITabBarController {
 extension GCBaseTabbarController {
     private func setupUI() {
         
-        //self.tabBar.tintColor = MetricGlobal.mainButtonBgColor
+        //self.tabBar.tintColor = MetricGlobal.mainBlue
         self.tabBar.barTintColor = MetricGlobal.mainBarColor
         
         for i in 0..<Metric.titles.count {

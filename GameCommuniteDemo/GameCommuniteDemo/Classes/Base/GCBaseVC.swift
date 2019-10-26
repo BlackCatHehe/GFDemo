@@ -53,7 +53,7 @@ class GCBaseVC: UIViewController {
         
         //        let backItem = UIBarButtonItem(title: title, style: .done, target: nil, action: nil)
         
-        let backItem = UIBarButtonItem(image: UIImage(named: "back"), style: .done, target: self, action: #selector(clickPop))
+        let backItem = UIBarButtonItem(image: UIImage(named: "navigation_back")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(clickPop))
         backItem.tintColor = tintColor
         navigationItem.leftBarButtonItem = backItem
         navigationController?.interactivePopGestureRecognizer?.delegate = self

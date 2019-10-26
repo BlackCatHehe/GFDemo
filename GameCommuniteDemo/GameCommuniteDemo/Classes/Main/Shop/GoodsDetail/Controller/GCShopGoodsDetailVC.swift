@@ -43,11 +43,23 @@ class GCShopGoodsDetailVC: GCBaseVC {
         
         return headerV
     }()
+    
+    private lazy var buyBt: UIButton = {
+        let button = UIButton()
+        button.setTitle("立即购买", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = MetricGlobal.mainBlue
+        button.layer.cornerRadius = adaptW(22.0)
+        button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(clickBuy), for: .touchUpInside)
+        return button
+    }()
 }
 
 extension GCShopGoodsDetailVC {
     
     private func initTableView() {
+
         tableview.tableHeaderView = self.theaderV
         self.theaderV.setModel()
         
@@ -130,16 +142,35 @@ extension GCShopGoodsDetailVC: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        let cView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: adaptW(120.0)))
+        cView.addSubview(self.buyBt)
+        buyBt.frame = CGRect(x: adaptW(15.0), y: adaptW(120.0) - adaptW(44.0) - adaptW(20.0), width: kScreenW - adaptW(15.0)*2, height: adaptW(44.0))
+        return section == 3 ? cView : UIView()
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return section == 3 ? adaptW(120.0) : 0
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     
 }
 
+//MARK: ------------click------------
 extension GCShopGoodsDetailVC {
     
     @objc private func clickMoreCommend() {
         
+    }
+    
+    @objc private func clickBuy() {
+        let vc = GCPostOrderVC()
+        push(vc)
     }
     
 }

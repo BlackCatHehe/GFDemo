@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="195" id="KGk-i7-Jjw" customClass="GCSaleListCell" customModule="GameCommuniteDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="531" height="195"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="531" height="195"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="smM-uL-XBQ">
+                        <rect key="frame" x="15" y="10" width="501" height="185"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BhH-B4-MS9">
+                                <rect key="frame" x="447" y="12" width="42" height="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xcl-AF-nsb">
+                                <rect key="frame" x="0.0" y="37" width="501" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="qoP-jI-d0m"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NXj-DG-zr5">
+                                <rect key="frame" x="12" y="55" width="57" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="57" id="Pk9-C7-KM8">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstAttribute="width" secondItem="NXj-DG-zr5" secondAttribute="height" id="TV7-U9-Ext"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gQ-KI-gse">
+                                <rect key="frame" x="79" y="55" width="170" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="seB-Xg-5qD">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wo-sL-P71">
+                                <rect key="frame" x="447" y="55" width="42" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="xzd-Uf-L4I">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Fl-nJ-A9M">
+                                <rect key="frame" x="447" y="77" width="42" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="6V9-dd-z2T">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GoR-2d-ZPX">
+                                <rect key="frame" x="0.0" y="129" width="501" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="neT-M4-pzT"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gds-Y8-CIS">
+                                <rect key="frame" x="15" y="150" width="42" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="ySJ-bJ-CKH">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Vb-1U-kAW">
+                                <rect key="frame" x="443" y="142.5" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9Ut-WE-gkI">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Gds-Y8-CIS" firstAttribute="top" secondItem="GoR-2d-ZPX" secondAttribute="bottom" constant="20" id="6Zb-LA-x2L">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="4Vb-1U-kAW" secondAttribute="trailing" constant="12" id="8OH-Sd-xot">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="xcl-AF-nsb" secondAttribute="trailing" id="FdL-7E-M4T"/>
+                            <constraint firstAttribute="trailing" secondItem="BhH-B4-MS9" secondAttribute="trailing" constant="12" id="GED-82-C85"/>
+                            <constraint firstItem="GoR-2d-ZPX" firstAttribute="top" secondItem="NXj-DG-zr5" secondAttribute="bottom" constant="17" id="GR5-EG-H1e"/>
+                            <constraint firstItem="9gQ-KI-gse" firstAttribute="top" secondItem="NXj-DG-zr5" secondAttribute="top" id="Hh6-Fy-B52"/>
+                            <constraint firstItem="xcl-AF-nsb" firstAttribute="leading" secondItem="smM-uL-XBQ" secondAttribute="leading" id="IMw-VC-XSI"/>
+                            <constraint firstAttribute="bottom" secondItem="Gds-Y8-CIS" secondAttribute="bottom" constant="20" id="Iq2-rR-ooQ">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="GoR-2d-ZPX" secondAttribute="trailing" id="TMy-w6-IIK"/>
+                            <constraint firstItem="xcl-AF-nsb" firstAttribute="top" secondItem="BhH-B4-MS9" secondAttribute="bottom" constant="12" id="Wfc-jp-NbG"/>
+                            <constraint firstItem="GoR-2d-ZPX" firstAttribute="leading" secondItem="smM-uL-XBQ" secondAttribute="leading" id="c6t-hF-892"/>
+                            <constraint firstAttribute="trailing" secondItem="4Wo-sL-P71" secondAttribute="trailing" constant="12" id="ehc-f1-1bN">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="1Fl-nJ-A9M" firstAttribute="top" secondItem="4Wo-sL-P71" secondAttribute="bottom" constant="10" id="hbv-Ql-wvW">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="NXj-DG-zr5" firstAttribute="leading" secondItem="smM-uL-XBQ" secondAttribute="leading" constant="12" id="lhf-FR-9Ce"/>
+                            <constraint firstItem="9gQ-KI-gse" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="NXj-DG-zr5" secondAttribute="bottom" id="m6C-Ab-5Zj"/>
+                            <constraint firstItem="4Vb-1U-kAW" firstAttribute="centerY" secondItem="Gds-Y8-CIS" secondAttribute="centerY" id="mmp-ki-75G"/>
+                            <constraint firstItem="NXj-DG-zr5" firstAttribute="top" secondItem="xcl-AF-nsb" secondAttribute="bottom" constant="17" id="oNy-dr-CYz"/>
+                            <constraint firstItem="4Wo-sL-P71" firstAttribute="top" secondItem="9gQ-KI-gse" secondAttribute="top" id="pOc-9E-Id1"/>
+                            <constraint firstItem="9gQ-KI-gse" firstAttribute="leading" secondItem="NXj-DG-zr5" secondAttribute="trailing" constant="10" id="pRg-jE-0H5">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="1Fl-nJ-A9M" firstAttribute="trailing" secondItem="4Wo-sL-P71" secondAttribute="trailing" id="rc6-E1-PuS"/>
+                            <constraint firstItem="Gds-Y8-CIS" firstAttribute="leading" secondItem="smM-uL-XBQ" secondAttribute="leading" constant="15" id="s3z-4P-Abe"/>
+                            <constraint firstItem="BhH-B4-MS9" firstAttribute="top" secondItem="smM-uL-XBQ" secondAttribute="top" constant="12" id="wOE-ve-6Gh"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="smM-uL-XBQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="IZU-eU-3uq">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
+                    <constraint firstItem="smM-uL-XBQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="LyH-Dg-Vd7">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
+                    <constraint firstAttribute="bottom" secondItem="smM-uL-XBQ" secondAttribute="bottom" id="f1C-Lf-VpD"/>
+                    <constraint firstAttribute="trailing" secondItem="smM-uL-XBQ" secondAttribute="trailing" constant="15" id="qNQ-AS-jKF">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bLineV" destination="GoR-2d-ZPX" id="E8g-8N-IYg"/>
+                <outlet property="bgView" destination="smM-uL-XBQ" id="GGv-4F-pS1"/>
+                <outlet property="goodsDescLb" destination="9gQ-KI-gse" id="uwE-VK-8cO"/>
+                <outlet property="goodsImgV" destination="NXj-DG-zr5" id="TaG-kd-f5e"/>
+                <outlet property="moneyLb" destination="4Wo-sL-P71" id="UCV-45-Qpj"/>
+                <outlet property="moreBt" destination="4Vb-1U-kAW" id="4nC-SU-TFx"/>
+                <outlet property="numLb" destination="1Fl-nJ-A9M" id="Th8-Wd-xEd"/>
+                <outlet property="statusLb" destination="BhH-B4-MS9" id="dcZ-sM-I8V"/>
+                <outlet property="tLineV" destination="xcl-AF-nsb" id="gBq-iq-j5H"/>
+                <outlet property="totalLb" destination="Gds-Y8-CIS" id="Ngm-Aq-Kui"/>
+            </connections>
+            <point key="canvasLocation" x="-109" y="38"/>
+        </tableViewCell>
+    </objects>
+</document>

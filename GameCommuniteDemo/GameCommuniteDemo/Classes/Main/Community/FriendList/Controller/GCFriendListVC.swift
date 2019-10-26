@@ -82,7 +82,7 @@ extension GCFriendListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerLb = UILabel(frame: CGRect(x: 0, y: 0, width: kScreenW, height: adaptW(50.0)))
         footerLb.font = kFont(adaptW(14.0))
-        footerLb.textColor = kRGB(r: 209, g: 208, b: 231)
+        footerLb.textColor = MetricGlobal.mainGray
         footerLb.text = "共x个好友"
         footerLb.textAlignment = .center
         return footerLb

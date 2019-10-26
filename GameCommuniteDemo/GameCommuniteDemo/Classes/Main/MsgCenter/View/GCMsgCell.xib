@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="183" id="KGk-i7-Jjw" customClass="GCMsgCell" customModule="GameCommuniteDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="451" height="183"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="451" height="183"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2X-HL-IDT">
+                        <rect key="frame" x="15" y="0.0" width="421" height="67"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VRb-I3-rb5">
+                                <rect key="frame" x="15" y="12" width="43" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="73b-1H-24D">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstAttribute="width" secondItem="VRb-I3-rb5" secondAttribute="height" id="zRP-Hn-6KS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="旁若无人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JQ-Bu-ymv">
+                                <rect key="frame" x="68" y="14" width="57.5" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="T1c-3c-fzP">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不会吧 我看看" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K76-xU-5wG">
+                                <rect key="frame" x="68" y="38" width="83.5" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="205" id="H4l-yw-ocE">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="15" id="R5G-dd-gEE">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.81960784313725488" green="0.81568627450980391" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
+                                        <real key="value" value="13"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17:50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmT-Ev-IQO">
+                                <rect key="frame" x="374.5" y="14" width="31.5" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="CUB-tA-S9x">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.81960784310000001" green="0.81568627449999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1058823529" green="0.1019607843" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="K76-xU-5wG" firstAttribute="bottom" secondItem="VRb-I3-rb5" secondAttribute="bottom" constant="-2" id="5ZU-HE-YgB"/>
+                            <constraint firstItem="VRb-I3-rb5" firstAttribute="centerY" secondItem="X2X-HL-IDT" secondAttribute="centerY" id="76q-ne-RTP"/>
+                            <constraint firstItem="7JQ-Bu-ymv" firstAttribute="top" secondItem="VRb-I3-rb5" secondAttribute="top" constant="2" id="D5z-us-xnd"/>
+                            <constraint firstItem="CmT-Ev-IQO" firstAttribute="centerY" secondItem="7JQ-Bu-ymv" secondAttribute="centerY" id="Kdt-rK-wFb"/>
+                            <constraint firstItem="VRb-I3-rb5" firstAttribute="leading" secondItem="X2X-HL-IDT" secondAttribute="leading" constant="15" id="Yw8-5C-QLg">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstAttribute="height" constant="67" id="b7w-R9-GFX">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="7JQ-Bu-ymv" firstAttribute="leading" secondItem="VRb-I3-rb5" secondAttribute="trailing" constant="10" id="hqv-6S-ibd"/>
+                            <constraint firstAttribute="trailing" secondItem="CmT-Ev-IQO" secondAttribute="trailing" constant="15" id="iwO-5W-iCU">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="K76-xU-5wG" firstAttribute="leading" secondItem="7JQ-Bu-ymv" secondAttribute="leading" id="yq5-cc-Pwh"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="X2X-HL-IDT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="1we-1G-1Om"/>
+                    <constraint firstItem="X2X-HL-IDT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="D2Y-B3-6J1"/>
+                    <constraint firstAttribute="bottom" secondItem="X2X-HL-IDT" secondAttribute="bottom" id="Pw6-gm-yYq"/>
+                    <constraint firstAttribute="trailing" secondItem="X2X-HL-IDT" secondAttribute="trailing" constant="15" id="qak-8v-5ky"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bgView" destination="X2X-HL-IDT" id="sRA-sx-n8F"/>
+                <outlet property="contentLb" destination="K76-xU-5wG" id="gQO-55-9Q1"/>
+                <outlet property="iconImgV" destination="VRb-I3-rb5" id="ebt-n4-7bW"/>
+                <outlet property="nameLb" destination="7JQ-Bu-ymv" id="csq-f7-d58"/>
+                <outlet property="timeLb" destination="CmT-Ev-IQO" id="T0R-m0-KBI"/>
+            </connections>
+            <point key="canvasLocation" x="18" y="186"/>
+        </tableViewCell>
+    </objects>
+</document>
