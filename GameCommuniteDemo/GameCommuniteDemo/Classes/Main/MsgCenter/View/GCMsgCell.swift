@@ -31,6 +31,11 @@ class GCMsgCell: UITableViewCell, NibReusable {
         
         layoutIfNeeded()
         iconImgV.kf.setImage(with: URL(string:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(55.0)/2, targetSize: self.iconImgV.bounds.size, roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
+        iconImgV.kfSetImage(
+            url: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg",
+            targetSize: CGSize(width: adaptW(55.0), height: adaptW(55.0)),
+            cornerRadius: adaptW(55.0)/2
+        )
     }
     
     

@@ -28,7 +28,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qb9-ED-ke7">
                     <rect key="frame" x="0.0" y="79" width="414" height="338"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="111" translatesAutoresizingMaskIntoConstraints="NO" id="v3b-Z1-7fN">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pay_result" translatesAutoresizingMaskIntoConstraints="NO" id="v3b-Z1-7fN">
                             <rect key="frame" x="161" y="0.0" width="92" height="92"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="v3b-Z1-7fN" secondAttribute="height" id="HSV-rP-WPh"/>
@@ -180,6 +180,6 @@
         </view>
     </objects>
     <resources>
-        <image name="111" width="500" height="834"/>
+        <image name="pay_result" width="119" height="89.5"/>
     </resources>
 </document>

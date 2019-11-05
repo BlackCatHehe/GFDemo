@@ -22,5 +22,21 @@ extension Int {
         }
         return countStr
     }
+    
+    func formatTimeStamp(with format: String) -> String{
+        
+        let dataFormatter = MXTDateFormatter.dateFormatter
+        dataFormatter.dateFormat = format
+        let dateInterval = TimeInterval(self)
+        
+        let date = Date(timeIntervalSince1970: dateInterval)
+        
+        //        let nowInterval = Date().timeIntervalSince1970
+        
+        //        let cha = nowInterval - dateInterval
+        
+        let timeStr = dataFormatter.string(from: date)
+        return timeStr
+    }
 }
 

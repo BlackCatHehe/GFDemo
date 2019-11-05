@@ -107,6 +107,12 @@ public extension JYTagView {
             }
             let item = self.itemBuilder!(i)
 
+            if item.isKind(of: UIButton.self) {
+                let bt = item as! UIButton
+                bt.setTitle(title, for: .normal)
+            }
+            
+            
             addSubview(item)
             tagViews.append(item)
             item.snp.makeConstraints { (make) in

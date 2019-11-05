@@ -26,21 +26,21 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vR-BO-KME">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vR-BO-KME">
                     <rect key="frame" x="15" y="54" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="ZBh-rw-ogm"/>
                         <constraint firstAttribute="height" constant="20" id="r9N-cb-Juj"/>
                     </constraints>
-                    <state key="normal" title="+"/>
+                    <state key="normal" image="chahao"/>
                     <connections>
                         <action selector="clickBack:" destination="-1" eventType="touchUpInside" id="Uvq-1E-W2U"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsa-3a-vkK">
-                    <rect key="frame" x="0.0" y="205" width="414" height="486"/>
+                    <rect key="frame" x="0.0" y="204.5" width="414" height="487"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="111" translatesAutoresizingMaskIntoConstraints="NO" id="bD2-hE-eJM">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pay_result" translatesAutoresizingMaskIntoConstraints="NO" id="bD2-hE-eJM">
                             <rect key="frame" x="161" y="0.0" width="92" height="92"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="92" id="ldu-n8-JKq">
@@ -160,18 +160,18 @@
                                 </constraint>
                             </constraints>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUJ-nh-bVX">
-                            <rect key="frame" x="184" y="377" width="46" height="46"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUJ-nh-bVX">
+                            <rect key="frame" x="183.5" y="377" width="47" height="47"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="eUJ-nh-bVX" secondAttribute="height" id="IQd-IE-jfx"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="share_weixin"/>
                             <connections>
                                 <action selector="clickWeixinLogin:" destination="-1" eventType="touchUpInside" id="OhO-Jd-Pg4"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kwh-ZO-CHm">
-                            <rect key="frame" x="59" y="471" width="296" height="15"/>
+                            <rect key="frame" x="59" y="472" width="296" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="fev-O2-ozA"/>
                             </constraints>
@@ -259,6 +259,8 @@
         </view>
     </objects>
     <resources>
-        <image name="111" width="500" height="834"/>
+        <image name="chahao" width="14" height="14"/>
+        <image name="pay_result" width="119" height="89.5"/>
+        <image name="share_weixin" width="47" height="47"/>
     </resources>
 </document>

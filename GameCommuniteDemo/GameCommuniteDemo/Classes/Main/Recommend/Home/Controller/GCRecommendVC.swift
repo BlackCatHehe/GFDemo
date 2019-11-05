@@ -20,7 +20,7 @@ fileprivate struct Metric {
 class GCRecommendVC: GCBaseVC {
     
     private let datas = [
-        ["title": "姜还是老的辣？如何看待doda2高龄化现象", "view_num": "12523", "time": "刚刚", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
+        ["title": "姜还是老的辣？", "view_num": "12523", "time": "刚刚", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
         ["title": "魔兽世界怀旧复：玩家吵了十五年，发誓开门到底该不该收钱", "view_num": "12523", "time": "5分钟前", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
         ["title": "姜还是老的辣？如何看待doda2高龄化现象", "view_num": "12523", "time": "刚刚", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
         ["title": "魔兽世界怀旧复：玩家吵了十五年，发誓开门到底该不该收钱", "view_num": "12523", "time": "10-09", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
@@ -34,6 +34,12 @@ class GCRecommendVC: GCBaseVC {
         self.navigationItem.leftBarButtonItem = nil
         
         initUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setBackgroundColor(bgColor: kRGB(r: 24, g: 23, b: 40), shadowColor: .clear)
     }
     
     //MARK: ------------lazyload------------
@@ -176,37 +182,29 @@ extension GCRecommendVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCHomeTopCell.self)
-        
-            let imgV = UIImageView(frame: cell.bounds)
-            imgV.kf.setImage(with: URL(string: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(5.0), targetSize: imgV.bounds.size, roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
-            imgV.contentMode = .scaleAspectFill
-            imgV.clipsToBounds = true
-            cell.addSubview(imgV)
+            let cell: GCHomeTopCell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCHomeTopCell.self)
+            cell.delegate = self
+            cell.setModel()
             return cell
         }else if indexPath.section == 1 {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCCateCell.self)
-            cell.iconImgV.kf.setImage(with: URL(string: "https://i.52112.com/icon/jpg/256/20190424/37588/1788145.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: cell.iconImgV.bounds.size.width/2, targetSize: cell.iconImgV.bounds.size, roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
-            cell.titleLb.text = "分类"
+            let imgs = ["recommend_game", "recommend_new", "recommend_shop"]
+            let titles = ["热门游戏", "最新上架", "游戏商城"]
+            cell.iconImgV.image = UIImage(named: imgs[indexPath.row])
+            cell.titleLb.text = titles[indexPath.row]
             return cell
         }else if indexPath.section == 2 {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCRecommendSanCell.self)
-            cell.layoutIfNeeded()
-            cell.leftImgV.kf.setImage(with: URL(string: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2334465942,3760491718&fm=115&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(5.0), targetSize: cell.leftImgV.bounds.size, roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
-            cell.rightTopImgV.kf.setImage(with: URL(string: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2120552043,3915997002&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(5.0), targetSize: cell.rightTopImgV.bounds.size, roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
-            cell.rightBottomImgV.kf.setImage(with: URL(string: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4140453287,1307687785&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(5.0), targetSize: cell.rightBottomImgV.bounds.size, roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
+            cell.setModel()
+            cell.delegate = self
             return cell
         }else {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCRecommendZixunCell.self)
-            cell.layoutIfNeeded()
             let dic = datas[indexPath.row]
-            cell.titleLb.text = dic["title"]
-            cell.viewNumLb.text = dic["view_num"]
-            cell.timeLb.text = dic["time"]
-            cell.imageV.kf.setImage(with: URL(string: dic["img"]!), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(5.0), targetSize: cell.imageV.bounds.size, roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
+            cell.setModel(dic)
+            
             return cell
         }
-
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -264,9 +262,22 @@ extension GCRecommendVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         default:
             return .zero
         }
-        
     }
-    
 }
 
+//MARK: ------------cycleViewDelegate------------
+extension GCRecommendVC: GCHomeTopCellDelegate {
+    
+    func cell(_ cell: GCHomeTopCell, didSelectItemAt index: Int) {
+        showToast("点击了第\(index)个广告")
+    }
 
+}
+
+//MARK: ------------sanDelegate------------
+extension GCRecommendVC: GCRecommendSanCellDelegate {
+    
+    func cell(_ cell: GCRecommendSanCell, didSelectItemAt index: Int) {
+        showToast("点击了第\(index)个图片")
+    }
+}

@@ -7,16 +7,24 @@
 //
 
 import UIKit
-
+import ObjectMapper
 class GCCommunityDetailVC: GCBaseVC {
-
+    var communiteId: String?
+    
+    //社区的信息
+    private var pageModel: GCCommuniteDetailModel?
+    
     //MARK: --------cycleLife-----------
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setBackgroundColor(bgColor: .clear, shadowColor: .clear)
-        initUI()
+        requestCommuniteDetail()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setBackgroundColor(bgColor: .clear, shadowColor: .clear)
+    }
+
     
     //MARK: --------lazyload-----------
     private lazy var headerV: GCCommunityHeaderView = {
@@ -27,7 +35,6 @@ class GCCommunityDetailVC: GCBaseVC {
     private lazy var postBt: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "community_choosePicOrVideo"), for: .normal)
-        button.backgroundColor = MetricGlobal.mainBlue
         return button
     }()
     
@@ -48,9 +55,10 @@ extension GCCommunityDetailVC {
     private func initContentView() {
 
         let vc = GCTieziVC()
+        vc.communiteId = String(self.pageModel!.id!)
         vc.tableHeaderV = headerV
         headerV.delegate = self
-        headerV.setModel()
+        headerV.setModel(self.pageModel!)
         addChild(vc)
         view.addSubview(vc.view)
         vc.view.snp.makeConstraints { (make) in
@@ -94,6 +102,7 @@ extension GCCommunityDetailVC: GCSelectPicOrVideoViewDelegate {
         view.removeFromSuperview()
         
         let vc = GCPostTieziVC()
+        vc.communiteId = String(self.pageModel!.id!)
         vc.title = index == 0 ? "发图文" : "发视频"
         push(vc)
     }
@@ -102,4 +111,27 @@ extension GCCommunityDetailVC: GCSelectPicOrVideoViewDelegate {
         view.removeFromSuperview()
     }
     
+}
+
+//MARK: ------------request------------
+extension GCCommunityDetailVC {
+    
+    private func requestCommuniteDetail() {
+        
+        /**
+
+        */
+        guard let communityId = communiteId else{return}
+        GCNetTool.requestData(target: GCNetApi.communiteDetail(prama: String(communityId)), success: { (result) in
+            
+            let model = Mapper<GCCommuniteDetailModel>().map(JSON: result)
+            self.pageModel = model
+            
+            self.initUI()
+        }) { (error) in
+            JYLog(error)
+            
+        }
+        
+    }
 }

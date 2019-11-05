@@ -85,7 +85,7 @@ extension GCGoodsManagerVC {
         //3.设置pagevc视图的约束
         pageVC.view.snp.makeConstraints { (make) in
             make.left.right.bottom.equalToSuperview()
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(kStatusBarheight + kNavBarHeight)
         }
         
         //4.记得设置过视图后先刷新数据
@@ -135,5 +135,17 @@ extension GCGoodsManagerVC: TYTabPagerControllerDelegate, TYTabPagerControllerDa
         let title = titles[index]
 
         return title
+    }
+}
+
+extension GCGoodsManagerVC {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+
+        if otherGestureRecognizer.view!.isKind(of: NSClassFromString("UIScrollView")!.self) {
+            if otherGestureRecognizer.state == UIGestureRecognizer.State.began && pageVC.pagerController.scrollView!.contentOffset == .zero {
+                return true
+            }
+        }
+        return false
     }
 }

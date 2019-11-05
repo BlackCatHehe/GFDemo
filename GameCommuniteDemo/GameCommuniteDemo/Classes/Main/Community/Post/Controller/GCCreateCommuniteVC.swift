@@ -10,8 +10,11 @@ import UIKit
 import GrowingTextView
 import Kingfisher
 import HXPhotoPicker
+import SwiftyJSON
 class GCCreateCommuniteVC: GCBaseVC {
 
+    private var imgPath: String?
+    
     private var selectedImg: UIImage?
     
     @IBOutlet weak var imageV: UIImageView!
@@ -54,6 +57,16 @@ class GCCreateCommuniteVC: GCBaseVC {
         return tool
     }()
     
+    private lazy var createBt: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: adaptW(70.0), height: adaptW(30.0)))
+        button.setTitle("创建", for: .normal)
+        button.titleLabel?.font = kFont(adaptW(14.0))
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = MetricGlobal.mainBlue
+        button.layer.cornerRadius = adaptW(15.0)
+        button.layer.masksToBounds = true
+        return button
+    }()
     
 }
 
@@ -80,8 +93,19 @@ extension GCCreateCommuniteVC {
         
         coyntNumLb.text = "0/300"
         
-        imageV.contentMode = .scaleAspectFill
-        imageV.kf.setImage(with: URL(string: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(14.0), targetSize: CGSize(width: adaptW(90.0), height: adaptW(90.0)), roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
+        imageV.kfSetImage(
+            url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg",
+            targetSize: CGSize(width: adaptW(90.0), height: adaptW(90.0)),
+            cornerRadius: adaptW(14.0)
+        )
+        
+        let customItem = UIBarButtonItem(customView: createBt)
+        self.navigationItem.rightBarButtonItem = customItem
+        createBt.rx.tap
+            .bind{[weak self] in
+                
+                self?.requestCreateCommunite()
+        }.disposed(by: rx.disposeBag)
     }
     
     private func chooseImg(){
@@ -126,6 +150,7 @@ extension GCCreateCommuniteVC {
                     if photo != nil {
                         self.toolManager.getSelectedImageList([photo!], success: { (images) in
                             self.selectedImg = images?.first
+                            self.requestUpdateImage(image: images?.first)
                             self.imageV.image = self.selectedImg
                             JYLog("获取到的图片为:\(images)")
                         }, failed: {
@@ -144,8 +169,8 @@ extension GCCreateCommuniteVC {
             self.toolManager.getSelectedImageList(models, success: { (images) in
                 JYLog("获取到的图片为:\(images)")
                 self.selectedImg = images?.first
+                self.requestUpdateImage(image: images?.first)
                 self.imageV.image = self.selectedImg
-
             }, failed: {
                 JYLog("得到图片失败了")
             })
@@ -160,5 +185,81 @@ extension GCCreateCommuniteVC: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         self.coyntNumLb.text = "\(textView.text.count)/300"
+    }
+}
+
+extension GCCreateCommuniteVC {
+    
+    private func requestUpdateImage(image: UIImage?){
+        guard let img = image else {return}
+        
+        let prama = ["type": "communities"]
+        /**
+         {
+         "id" : 3,
+         "user_id" : 2,
+         "type" : "communities",
+         "created_at" : "2019-10-30 05:39:30",
+         "updated_at" : "2019-10-30 05:39:30",
+         "path" : "http:\/\/res.uioj.com\/images\/apiUpload\/\/2019\/10\/e38UuOZ6oZMkD1LNc0ZeI1oXiBBHjBeL9dmGuZi8.jpeg"
+         }
+         */
+        GCNetTool.requestData(target: GCNetApi.updateImg(prama: prama, images: [img]), showAcvitity: true, success: { (result) in
+            
+            let resultJson = JSON(result)
+            if let path = resultJson["path"].string {
+                self.imgPath = path
+            }
+            
+            
+        }) { (error) in
+            JYLog(error)
+        }
+        
+    }
+    
+    private func requestCreateCommunite(){
+        
+        guard let imgPath = self.imgPath else{
+            showToast("请选择社区图标")
+            return
+        }
+        guard let name = nameTF.text else{
+            showToast("请输入社区名称")
+            return
+        }
+        guard let introduce = contentTV.text else{
+            showToast("请输入社区介绍")
+            return
+        }
+        
+        /**
+        {
+            "isJoin" : false,
+            "id" : 1,
+            "created_at" : "2019-10-30 05:40:13",
+            "updated_at" : "2019-10-30 05:40:13",
+            "name" : "老年活动中心",
+            "member_count" : null,
+            "topic_count" : null,
+            "cover" : "http:\/\/res.uioj.com\/images\/apiUpload\/\/2019\/10\/e38UuOZ6oZMkD1LNc0ZeI1oXiBBHjBeL9dmGuZi8.jpeg",
+            "introduce" : "欢迎年轻人来照顾老年程序员们"
+        }
+        */
+        let prama = ["name": name,
+                     "cover": imgPath,
+                     "introduce": introduce
+                    ]
+        GCNetTool.requestData(target: GCNetApi.createCommunite(prama: prama), showAcvitity: true, success: { (result) in
+            
+            self.showToast("创建成功!")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.dismissOrPop()
+            }
+    
+        }) { (error) in
+            JYLog(error)
+        }
     }
 }

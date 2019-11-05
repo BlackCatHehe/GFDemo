@@ -8,7 +8,8 @@
 
 import UIKit
 import Toast_Swift
-
+import IQKeyboardManagerSwift
+import Bugly
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -19,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         initRootViewController()
         configSwiftToast()
+        configIQKeyboard()
+        configBugly()
         
         return true
     }
@@ -71,5 +74,18 @@ extension AppDelegate {
         style.messageFont = kFont(14)
         ToastManager.shared.style = style
         ToastManager.shared.duration = 1.0
+
+    }
+    
+    private func configIQKeyboard(){
+        //设置弹窗style
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+//        IQKeyboardManager.shared.disabledToolbarClasses = [ViewController.self]
+    }
+    
+     private func configBugly(){
+        
+        Bugly.start(withAppId: MetricSDK.Bugly_appid)
     }
 }

@@ -9,7 +9,14 @@
 import UIKit
 import GrowingTextView
 import HXPhotoPicker
+import SwiftyJSON
+
 class GCPostTieziVC: GCBaseVC {
+    
+    var communiteId: String!
+    
+    private var selectedImgs: [UIImage]?
+    private var selectedVideo: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +64,7 @@ class GCPostTieziVC: GCBaseVC {
         let tool = HXDatePhotoToolManager()
         return tool
     }()
+
     
     private lazy var photoView: HXPhotoView? = {[weak self] in
         let pV = HXPhotoView(manager: self?.photoManager)
@@ -121,7 +129,7 @@ extension GCPostTieziVC {
         
         postBt.rx.tap
             .bind{[weak self] in
-                
+                self?.requestPost()
         }.disposed(by: rx.disposeBag)
     }
     
@@ -163,5 +171,89 @@ extension GCPostTieziVC: HXPhotoViewDelegate {
         picHeight.constant = frame.size.height + adaptW(5.0)
     }
     
+    func photoListViewControllerDidDone(_ photoView: HXPhotoView!, allList: [HXPhotoModel]!, photos: [HXPhotoModel]!, videos: [HXPhotoModel]!, original isOriginal: Bool) {
+        
+        self.toolManager.getSelectedImageList(photos, success: { (imgs) in
+            self.selectedImgs = imgs
+        }) {
+            JYLog("得到图片失败了")
+        }
+        
+    }
+}
+
+//MARK: ------------request------------
+
+extension GCPostTieziVC {
     
+    private func requestPost() {
+        
+        guard let title = titleTF.text, !title.isEmpty() else {
+            showToast("请输入标题")
+            return
+        }
+        guard let content = contentTV.text, !content.isEmpty() else {
+            showToast("请输入内容")
+            return
+        }
+        
+        requestUpdateImage { (str) in
+            
+            guard let imgPath = str else {return}
+            
+            
+            /**
+             {
+             "id" : 3,
+             "user_id" : 2,
+             "type" : "communities",
+             "created_at" : "2019-10-30 05:39:30",
+             "updated_at" : "2019-10-30 05:39:30",
+             "path" : "http:\/\/res.uioj.com\/images\/apiUpload\/\/2019\/10\/e38UuOZ6oZMkD1LNc0ZeI1oXiBBHjBeL9dmGuZi8.jpeg"
+             }
+             */
+            let prama = ["title": title,
+                         "community_id": self.communiteId!,
+                         "cover": imgPath,
+                         "body": content,
+                         "images": imgPath
+            ]
+            GCNetTool.requestData(target: GCNetApi.postTopic(prama: prama), showAcvitity: true, success: { (result) in
+                
+                let resultJson = JSON(result)
+
+            }) { (error) in
+                JYLog(error)
+            }
+        }
+    }
+    
+    private func requestUpdateImage( complete: @escaping ((String?)->())){
+        guard let imgs = self.selectedImgs else {
+            complete(nil)
+            return
+        }
+        
+        let prama = ["type": "topics"]
+        /**
+         {
+         "id" : 3,
+         "user_id" : 2,
+         "type" : "communities",
+         "created_at" : "2019-10-30 05:39:30",
+         "updated_at" : "2019-10-30 05:39:30",
+         "path" : "http:\/\/res.uioj.com\/images\/apiUpload\/\/2019\/10\/e38UuOZ6oZMkD1LNc0ZeI1oXiBBHjBeL9dmGuZi8.jpeg"
+         }
+         */
+        GCNetTool.requestData(target: GCNetApi.updateImg(prama: prama, images: imgs), showAcvitity: true, success: { (result) in
+            
+            let resultJson = JSON(result)
+            if let path = resultJson["path"].string {
+                complete(path)
+            }
+        }) { (error) in
+            JYLog(error)
+        }
+        
+    }
 }

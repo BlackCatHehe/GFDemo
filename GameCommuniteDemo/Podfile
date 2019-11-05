@@ -42,7 +42,7 @@ target 'GameCommuniteDemo' do
   pod 'Reusable'
   pod 'Then'
   pod 'KeychainAccess' #keychain
-  
-
+  pod 'IQKeyboardManagerSwift'
+  pod 'Bugly'
 
 end

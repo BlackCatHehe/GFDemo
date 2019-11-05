@@ -69,7 +69,7 @@ extension GCMyEstateHeaderView {
             make.top.equalToSuperview().offset(adaptW(12.0))
             make.left.equalToSuperview().offset(adaptW(15.0))
             make.right.equalToSuperview().offset(-adaptW(15.0))
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-adaptW(15.0))
         }
         topLb.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(adaptW(20.0))

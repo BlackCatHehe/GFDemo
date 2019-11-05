@@ -63,7 +63,7 @@ extension GCGoodsManagerListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: GCGoodsManagerCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCGoodsManagerCell.self)
         cell.setModel(isXia: isXia)
-        
+        cell.delegate = self
         return cell
     }
     
@@ -75,4 +75,30 @@ extension GCGoodsManagerListVC: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+}
+
+//MARK: ------------cell点击下架和删除------------
+extension GCGoodsManagerListVC: GCGoodsManagerCellDelegate {
+    
+    func managerCell(_ cell: GCGoodsManagerCell, didClickDelete button: UIButton) {
+        
+    }
+    
+    func managerCell(_ cell: GCGoodsManagerCell, didClickXiaJia button: UIButton) {
+        
+    }
+}
+//MARK: ------------request------------
+extension GCGoodsManagerListVC {
+    
+    private func requestXiaJia() {
+        
+        GCNetTool.requestData(target: GCNetApi.goodsDown(prama: ""), showAcvitity: true, success: { (result) in
+            
+            
+        }) { (error) in
+            JYLog(error)
+        }
+        
+    }
 }

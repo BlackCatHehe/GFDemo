@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import KeychainAccess
 fileprivate struct Metric {
     static let codeTimeDown = "codeTimeDown"
 }
@@ -96,11 +97,18 @@ extension GCValidateCodeVC {
         ]
         
         GCNetTool.requestData(target: GCNetApi.register(prama: prama), showAcvitity: true, success: { (result) in
+            let resultJson = JSON(result)
             
-            if let meta = result["meta"] as? [String:String], let token = meta["access_token"], let tokenType = meta["token_type"] {
-                UserDefaults.standard.setValue(tokenType + "." + token, forKey: "access_token")
+            if let token = resultJson["meta"]["access_token"].string{
+                if let tokenType = resultJson["meta"]["token_type"].string {
+                    
+                    UserDefaults.standard.setValue(tokenType + "." + token, forKey: "access_token")
+                    let keychain = Keychain(service: "access_token")
+                    let header = tokenType + token
+                    keychain["header"] = header
+                    JYLog(header)
+                }
             }
-            
             let vc = GCBindPhoneVC()
             vc.phoneNum = self.phoneNum
             self.push(vc)

@@ -10,6 +10,8 @@ import UIKit
 
 class GCSearchVC: GCBaseVC {
 
+    private var searchView: GCRecommendSearchHeaderBar?
+    
     private let tagView: JYTagView = {
         let tagV = JYTagView()
         tagV.itemHeight = adaptW(28.0)
@@ -33,6 +35,11 @@ class GCSearchVC: GCBaseVC {
         initUI()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        searchView?.beFirstResponder()
+    }
 }
 
 //MARK: ------------createUI------------
@@ -44,7 +51,7 @@ extension GCSearchVC {
         view.backgroundColor = MetricGlobal.mainBgColor
         initNaviSearchBar()
         initSearchHistory()
-       // initCollectionView()
+
     }
     
     private func initNaviSearchBar() {
@@ -52,8 +59,8 @@ extension GCSearchVC {
         navigationItem.setHidesBackButton(true, animated: true)
         
         //1.搜索
-        let naviView = GCRecommendSearchHeaderBar(frame: CGRect(x: 0, y: kStatusBarheight, width: kScreenW - 2*15 - 44*2 - 10, height: kNavBarHeight), delegate: self)
-        naviView.beFirstResponder()
+        let naviView = GCRecommendSearchHeaderBar(frame: CGRect(x: 0, y: kStatusBarheight, width: kScreenW - 2*adaptW(15.0) - adaptW(44.0)*2 - adaptW(10.0), height: kNavBarHeight), delegate: self)
+        self.searchView = naviView
         maskNavigationBar(with: naviView)
         
         //2.cancel
@@ -72,7 +79,7 @@ extension GCSearchVC {
         view.addSubview(titleSectionV)
         titleSectionV.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(15.0)
-            make.top.equalToSuperview().offset(20.0)
+            make.top.equalToSuperview().offset(kStatusBarheight + kNavBarHeight + 20.0)
             make.width.equalTo(adaptW(60.0))
             make.height.equalTo(adaptW(15.0))
         }

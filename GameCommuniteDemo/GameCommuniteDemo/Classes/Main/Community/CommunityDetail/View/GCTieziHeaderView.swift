@@ -23,6 +23,8 @@ protocol GCTieziHeaderViewDelegate {
 class GCTieziHeaderView: UITableViewHeaderFooterView, Reusable {
 
     var delegate: GCTieziHeaderViewDelegate?
+
+    var model: GCTopicModel?
     
     private var iconImgV: UIImageView!
     private var nameLb: UILabel!
@@ -37,6 +39,12 @@ class GCTieziHeaderView: UITableViewHeaderFooterView, Reusable {
     private var commentBt: UIButton!
     private var likeBt: UIButton!
     
+    private var subGoodsDetailV: GCTieziSubGoodsView = {
+        let goodsV = GCTieziSubGoodsView()
+        goodsV.setModel()
+        return goodsV
+    }()
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
@@ -48,22 +56,31 @@ class GCTieziHeaderView: UITableViewHeaderFooterView, Reusable {
         initUI()
     }
     
-    func setModel() {
+    func setModel(_ model: GCTopicModel) {
+        self.model = model
         
-        iconImgV.kf.setImage(with: URL(string: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(43.0/2), targetSize: CGSize(width: adaptW(43.0), height: adaptW(43.0)), roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
+        for v in centerContentBgView.subviews {
+            v.removeFromSuperview()
+        }
+ 
+        iconImgV.kfSetImage(
+            url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg",
+            targetSize: CGSize(width: adaptW(43.0), height: adaptW(43.0)),
+            cornerRadius: adaptW(43.0)/2
+        )
         
-        nameLb.text = "欧巴嘻嘻"
-        timeLb.text = "10分钟前"
-        titleLb.text = "有没有社会老哥出售装备的"
-        contentLb.text = "想买几套装备，有没有哪位老大哥带带我，卖点装备给我啊。"
+        nameLb.text = model.user?.name
+        timeLb.text = model.createdAt
+        titleLb.text = model.title
+        contentLb.text = model.body
         
-        shareBt.setTitle("2035", for: .normal)
+        shareBt.setTitle(String(model.viewCount!), for: .normal)
         shareBt.layoutButton(style: .Left, imageTitleSpace: 8.0)
         
-        commentBt.setTitle("1035", for: .normal)
+        commentBt.setTitle(String(model.commentCount!), for: .normal)
         commentBt.layoutButton(style: .Left, imageTitleSpace: 8.0)
         
-        likeBt.setTitle("990", for: .normal)
+        likeBt.setTitle(String(model.likeCount!), for: .normal)
         likeBt.layoutButton(style: .Left, imageTitleSpace: 8.0)
         
         for i in 0..<2 {
@@ -77,8 +94,18 @@ class GCTieziHeaderView: UITableViewHeaderFooterView, Reusable {
                 make.height.equalTo(Metric.imageW * 129.0/167.0)
             }
             
-            imageV.kf.setImage(with: URL(string:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(5.0), targetSize: CGSize(width: Metric.imageW, height: Metric.imageW * 129.0/167.0), roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
+            imageV.kfSetImage(
+                url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg",
+                targetSize: CGSize(width: Metric.imageW, height: Metric.imageW * 129.0/167.0),
+                cornerRadius: adaptW(5.0)
+            )
+
         }
+        
+//    centerContentBgView.addSubview(subGoodsDetailV)
+//    subGoodsDetailV.snp.makeConstraints { (make) in
+//    make.edges.equalToSuperview()
+//    }
     }
 
 }
@@ -187,7 +214,7 @@ extension GCTieziHeaderView {
         bottomButtomsBgV.backgroundColor = MetricGlobal.mainCellBgColor
         bgView.addSubview(bottomButtomsBgV)
         bottomButtomsBgV.snp.makeConstraints { (make) in
-            make.top.equalTo(cConView.snp.bottom).offset(adaptW(5.0))
+            make.top.equalTo(cConView.snp.bottom).offset(adaptW(15.0))
             make.left.right.equalTo(stLb)
             make.bottom.equalToSuperview()
         }

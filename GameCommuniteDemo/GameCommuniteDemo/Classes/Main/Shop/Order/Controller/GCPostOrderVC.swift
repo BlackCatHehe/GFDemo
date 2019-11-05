@@ -10,7 +10,11 @@ import UIKit
 
 class GCPostOrderVC: GCBaseVC {
     
-    private var selectIndex: Int = 0 //0微信 1支付宝
+    var gModel: GCGoodsModel!
+    
+    private var orderId: Int?
+    
+    private var selectIndex: Int = 0 //1微信 2支付宝
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +27,7 @@ class GCPostOrderVC: GCBaseVC {
     
     private lazy var orderV: GCMakeSureOrderView = {
         let view = GCMakeSureOrderView(frame: .zero)
-        view.setModel()
+        
         return view
     }()
     
@@ -39,6 +43,7 @@ extension GCPostOrderVC {
     
     private func initUI() {
         
+        orderV.setModel(self.gModel)
         view.addSubview(orderV)
         orderV.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -46,8 +51,9 @@ extension GCPostOrderVC {
         
         view.addSubview(bottomV)
         bottomV.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.height.equalTo(adaptW(49.0))
+            make.bottom.equalToSuperview().offset(-kBottomH)
         }
         bottomV.payClick = {[weak self] in
             self?.pay()
@@ -58,35 +64,101 @@ extension GCPostOrderVC {
 extension GCPostOrderVC {
     
     private func pay() {
-        let alertVC = GCAlertPayVC()
         
-        let preAniVC = JYWPrestentCustomVC(presentedViewController: alertVC, presenting: self)
-        preAniVC.toFrame = CGRect(x: 0, y: kScreenH - adaptW(348.0) - kBottomH, width: kScreenW, height: adaptW(348.0))
-        alertVC.modalPresentationStyle = .custom
-        alertVC.transitioningDelegate = preAniVC
+        self.requestCreateOrder {
+            let alertVC = GCAlertPayVC()
+            
+            let preAniVC = JYWPrestentCustomVC(presentedViewController: alertVC, presenting: self)
+            preAniVC.toFrame = CGRect(x: 0, y: kScreenH - adaptW(348.0) - kBottomH, width: kScreenW, height: adaptW(348.0))
+            alertVC.modalPresentationStyle = .custom
+            alertVC.transitioningDelegate = preAniVC
 
-        alertVC.paySelectClick = {[weak self] index in
-//            self?.selectIndex = index 
-        }
-        alertVC.clickPay = {[weak self] in
-            
-            
-            let vc = GCPayResultVC()
-            vc.title = "立即支付"
-            self?.push(vc)
-        }
-        
-        var rootVC = kWindow?.rootViewController
-        while rootVC?.presentedViewController != nil {
-            if let vc = rootVC?.presentedViewController {
-                if let nvc = vc as? UINavigationController{
-                    rootVC = nvc.visibleViewController
-                }else if let tvc = vc as? UITabBarController{
-                    rootVC = tvc.selectedViewController
+            alertVC.paySelectClick = {[weak self] index in
+                if index == 0 {
+                    alertVC.dismissOrPop()
+                }else {
+                    self?.requestPayOrder(index: index)
                 }
             }
+            alertVC.clickPay = {[weak self] in
+                
+                
+                let vc = GCPayResultVC()
+                vc.title = "立即支付"
+                self?.push(vc)
+            }
+            
+            var rootVC = kWindow?.rootViewController
+            while rootVC?.presentedViewController != nil {
+                if let vc = rootVC?.presentedViewController {
+                    if let nvc = vc as? UINavigationController{
+                        rootVC = nvc.visibleViewController
+                    }else if let tvc = vc as? UITabBarController{
+                        rootVC = tvc.selectedViewController
+                    }
+                }
+                
+            }
+            rootVC?.present(alertVC, animated: true, completion: nil)
+        }
+    }
+}
+//MARK: ------------request------------
+extension GCPostOrderVC {
+    
+    ///创建订单
+    private func requestCreateOrder(success: @escaping (()->())) {
+        
+        guard let numStr = orderV.numTF.text, let num = Int(numStr), num >= 1 else {
+            showToast("请输入正确的购买数量")
+            return
+        }
+        let prama = [
+            "ornament_id" : self.gModel.id!,
+            "amount" : num,
+            "is_safety_insurance" : orderV.selecteds[0],
+            "is_role_separation" : orderV.selecteds[1],
+            "is_camp_shift" : orderV.selecteds[2],
+            "is_deduct_eth" : orderV.selecteds[3]
+            ] as [String : Any]
+        
+        JYLog(prama)
+        GCNetTool.requestData(target: GCNetApi.createOrder(prama: prama), success: { (result) in
+            
+            if let orderId = result["id"] as? Int {
+                self.orderId = orderId
+                dispatch_async_safe {
+                    success()
+                }
+            }
+        }) { (error) in
+            JYLog(error)
             
         }
-        rootVC?.present(alertVC, animated: true, completion: nil)
     }
+    
+    
+    /// 支付订单
+    /// - Parameter index: 1为微信 2为支付宝
+    private func requestPayOrder(index: Int) {
+        
+        guard let oid = self.orderId else {
+            showToast("获取订单信息出错")
+            return
+        }
+        let prama: [String: Int] = [
+            "payment_method" : index,
+            "order_id" : oid
+            ] as [String : Any] as! [String : Int]
+        JYLog(prama)
+        GCNetTool.requestData(target: GCNetApi.orderPay(prama), success: { (result) in
+            
+            
+            
+        }) { (error) in
+            JYLog(error)
+            
+        }
+    }
+    
 }

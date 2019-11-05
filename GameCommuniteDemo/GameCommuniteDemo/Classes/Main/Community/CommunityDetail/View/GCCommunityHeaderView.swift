@@ -41,13 +41,22 @@ class GCCommunityHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setModel() {
-        bgImageView.kf.setImage(with: URL(string: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2164478293,4167951289&fm=26&gp=0.jpg")!)
-        iconImgView.kf.setImage(with: URL(string: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3916481728,2850933383&fm=26&gp=0.jpg")!)
+    func setModel(_ model: GCCommuniteDetailModel) {
+  
+        bgImageView.kfSetImage(
+            url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg",
+            targetSize: CGSize(width: kScreenW, height: adaptW(185.0)),
+            cornerRadius: adaptW(5.0)
+        )
+        iconImgView.kfSetImage(
+            url: model.cover!,
+            targetSize: CGSize(width: adaptW(43.0), height: adaptW(43.0)),
+            cornerRadius: adaptW(5.0)
+        )
         
-        titleLb.text = "魔兽世界"
+        titleLb.text = model.name
         
-        let contentStr = "这里是属于热衷魔兽世界的朋友们的专属讨论小组， 大家可以在这里发起话题，畅所欲言.这里是属于热衷魔兽世界的朋友们的专属讨论小组， 大家可以在这里发起话题，畅所欲言"
+        let contentStr = model.introduce!
         
         let pramaStyle = NSMutableParagraphStyle()
         pramaStyle.lineSpacing = adaptW(5.0)
@@ -58,13 +67,12 @@ class GCCommunityHeaderView: UIView {
         content.yy_color = .white
         self.contentLabelAddExpand(content)
         
-        let icons = ["https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3916481728,2850933383&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3916481728,2850933383&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3916481728,2850933383&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3916481728,2850933383&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3916481728,2850933383&fm=26&gp=0.jpg"]
-        
+        let icons = model.members ?? []
         
         let count = icons.count > 5 ? 5 : icons.count
         guard count != 0 else {return}
         for i in 0..<count {
-            let iconStr = icons[i]
+            let member = icons[i]
             
             let iconImgV = UIImageView()
             iconImgV.contentMode = .scaleAspectFill
@@ -75,11 +83,16 @@ class GCCommunityHeaderView: UIView {
                 make.top.equalToSuperview().offset(2.0)
                 make.bottom.equalToSuperview().offset(-2.0)
             }
-            iconImgV.kf.setImage(with: URL(string: iconStr), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(23.0/2), targetSize: CGSize(width: adaptW(23.0), height: adaptW(23.0)), roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
+    
+            iconImgV.kfSetImage(
+                url: model.cover!,
+                targetSize: CGSize(width: adaptW(23.0), height: adaptW(23.0)),
+                cornerRadius: adaptW(23.0/2)
+            )
         }
         
         let memberNumLb = UILabel()
-        memberNumLb.text = "\(count)已加入"
+        memberNumLb.text = "\(model.memberCount!)已加入"
         memberNumLb.textColor = .white
         memberNumLb.font = kFont(adaptW(12.0))
         self.memberBgView.addSubview(memberNumLb)
@@ -98,11 +111,12 @@ class GCCommunityHeaderView: UIView {
         let hiTap = YYTextHighlight()
         truncationToken.yy_setTextHighlight(hiTap, range: NSMakeRange(4, 2))
         hiTap.tapAction = {(_, _, _, _) in
+            self.contentLabelAddFolded(str)
+            
             self.isFold = false
             
             self.updateLayout?()
-            
-            self.contentLabelAddFolded(str)
+
         }
         let moreLb = YYLabel()
         moreLb.attributedText = truncationToken

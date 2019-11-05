@@ -10,7 +10,6 @@ import UIKit
 
 class GCLoginVC: GCBaseVC {
 
-    
     @IBOutlet weak var bgView: UIView!
     
     @IBOutlet weak var phoneBgV: UIView!
@@ -31,10 +30,8 @@ class GCLoginVC: GCBaseVC {
         didSet {
             if isHui {
                 sendCodeBt.backgroundColor = .gray
-                
             }else {
                 sendCodeBt.backgroundColor = MetricGlobal.mainBlue
-                
             }
             sendCodeBt.isEnabled = !isHui
         }
@@ -50,12 +47,12 @@ class GCLoginVC: GCBaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
     }
     
@@ -91,7 +88,7 @@ extension GCLoginVC {
     
     private func initUI() {
        
-       bgView.backgroundColor = MetricGlobal.mainBgColor
+        bgView.backgroundColor = MetricGlobal.mainBgColor
         phoneBgV.backgroundColor = MetricGlobal.mainBgColor
         
         prefixPhoneNumbt.setTitleColor(.white, for: .normal)

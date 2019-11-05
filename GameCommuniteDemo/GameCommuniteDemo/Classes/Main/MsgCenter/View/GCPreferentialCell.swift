@@ -41,7 +41,10 @@ class GCPreferentialCell: UITableViewCell, NibReusable {
         contentLb.text = "仅需3秒即可领取专属幸运大礼包，赶快来领取 您的礼包吧，更多惊喜等着你。"
         
         layoutIfNeeded()
-        imageV.kf.setImage(with: URL(string: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(10.0), targetSize: imageV.bounds.size, roundingCorners: [.topLeft, .topRight], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
-        
+        imageV.kfSetImage(
+            url: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg",
+            targetSize: imageV.bounds.size,
+            cornerRadius: adaptW(10.0)
+        )
     }
 }

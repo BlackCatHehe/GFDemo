@@ -20,4 +20,8 @@ class GCCateCell: UICollectionViewCell, NibReusable {
         // Initialization code
     }
 
+    func setModel() {
+
+       
+    }
 }

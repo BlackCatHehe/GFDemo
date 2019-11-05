@@ -16,6 +16,12 @@ class GCRecommendSearchHeaderBar: UIView {
         return searchTF?.text
     }
     
+    var attriPlaceholder: String? {
+        didSet {
+            self.searchTF?.attributedPlaceholder = attriPlaceholder?.jys.add(kRGB(r: 229, g: 229, b: 229)).add(kFont(13.0)).base
+        }
+    }
+    
     var delegate: GCRecommendSearchHeaderBarDelegate?
     
     private var searchTF: UITextField?

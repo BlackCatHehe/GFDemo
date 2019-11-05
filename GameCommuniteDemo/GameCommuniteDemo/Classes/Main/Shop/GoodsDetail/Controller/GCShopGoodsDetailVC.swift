@@ -7,19 +7,25 @@
 //
 
 import UIKit
+import ObjectMapper
 
 fileprivate struct Metric {
     static let tableHeaderH: CGFloat = adaptW(adaptW(328.0))
 }
 
 class GCShopGoodsDetailVC: GCBaseVC {
+    
+    var gid: Int! //商品id
+    
+    private var goodsModel: GCGoodsModel?
+    
     //MARK: - cyclelife
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "商品详情"
         initTableView()
-        
+        requestGoodsDetail()
     }
     
     //MARK: - lazyload
@@ -61,7 +67,7 @@ extension GCShopGoodsDetailVC {
     private func initTableView() {
 
         tableview.tableHeaderView = self.theaderV
-        self.theaderV.setModel()
+       
         
         tableview.register(cellType: GCChatListCell.self)
         tableview.register(cellType: GCGoodsPriceFloatCell.self)
@@ -70,7 +76,7 @@ extension GCShopGoodsDetailVC {
         tableview.register(cellType: GCChartView.self)
         view.addSubview(tableview)
         tableview.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(kStatusBarheight + kNavBarHeight)
             make.left.right.equalToSuperview()
             make.height.equalTo(kScreenH - kStatusBarheight - kNavBarHeight)
         }
@@ -84,7 +90,7 @@ extension GCShopGoodsDetailVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 2 ? 5 : 3
+        return section == 2 ? 5 : 1
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -115,6 +121,10 @@ extension GCShopGoodsDetailVC: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.section == 0 {
             let cell: GCGoodsDetailCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCGoodsDetailCell.self)
+            
+            if let model = self.goodsModel {
+                cell.setModel(model)
+            }
             return cell
         }else if indexPath.section == 1 {
             if indexPath.row == 0 {
@@ -170,7 +180,31 @@ extension GCShopGoodsDetailVC {
     
     @objc private func clickBuy() {
         let vc = GCPostOrderVC()
+        vc.gModel = self.goodsModel
         push(vc)
     }
     
+}
+
+//MARK: ------------request------------
+extension GCShopGoodsDetailVC {
+    
+    ///请求商品详情
+    private func requestGoodsDetail() {
+        /**
+
+        */
+        GCNetTool.requestData(target: GCNetApi.goodsDetail(prama: String(gid)), success: { (result) in
+ 
+            let model = Mapper<GCGoodsModel>().map(JSON: result)
+            self.goodsModel = model
+
+            self.theaderV.setModel(model!)
+            self.tableview.reloadData()
+           
+        }) { (error) in
+            JYLog(error)
+            
+        }
+    }
 }

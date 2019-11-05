@@ -53,8 +53,8 @@ extension GCChartView {
         chartView.leftAxis.gridLineDashLengths = [4.0, 2.0]
         chartView.leftAxis.gridLineWidth = 0.5
         chartView.leftAxis.drawAxisLineEnabled = false
-        chartView.leftAxis.axisMinimum = 0.5
-        chartView.leftAxis.axisMaximum = 0.20
+//        chartView.leftAxis.axisMinimum = 0.5
+//        chartView.leftAxis.axisMaximum = 0.20
         chartView.xAxis.labelCount = 5
         
         

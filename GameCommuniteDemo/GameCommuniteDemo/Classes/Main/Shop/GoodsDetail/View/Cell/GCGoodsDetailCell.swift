@@ -10,15 +10,25 @@ import UIKit
 import Reusable
 class GCGoodsDetailCell: UITableViewCell, NibReusable {
 
+    @IBOutlet weak var detailLb: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        contentView.backgroundColor = MetricGlobal.mainCellBgColor
+        detailLb.backgroundColor = MetricGlobal.mainCellBgColor
+        detailLb.textColor = .white
+        detailLb.font = kFont(adaptW(14.0))
     }
 
+    func setModel(_ model: GCGoodsModel) {
+        detailLb.text = model.content
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+      
     }
     
 }

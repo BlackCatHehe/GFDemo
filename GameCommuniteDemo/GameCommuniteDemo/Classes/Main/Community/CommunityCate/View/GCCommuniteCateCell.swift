@@ -32,20 +32,25 @@ class GCCommuniteCateCell: UICollectionViewCell, NibReusable {
         
         addButton.layer.cornerRadius = 11.0
         addButton.layer.masksToBounds = true
+
     }
 
     
-    func setModel(_ model: [String: String], isAdd: Bool = false) {
+    func setModel(_ model: GCCommuniteModel) {
         
         //设置是否含有添加按钮
-        addButton.isHidden = !isAdd
-        noButtonConstraint.priority =  isAdd ? .defaultLow : .defaultHigh
-        buttonConstraint.priority =  isAdd ? .defaultHigh : .defaultLow
+        addButton.isHidden = model.isJoin!
+        noButtonConstraint.priority =  model.isJoin! ? .defaultLow : .defaultHigh
+        buttonConstraint.priority =  model.isJoin! ? .defaultHigh : .defaultLow
         
-        layoutIfNeeded()
+        self.titleLb.text = model.name
         
-        self.titleLb.text = model["title"]
-        self.imageV.kf.setImage(with: URL(string: model["img"]!), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(14.0), targetSize: self.imageV.bounds.size, roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
+        self.imageV.kfSetImage(
+            url: model.cover!,
+            targetSize: CGSize(width: adaptW(70.0), height: adaptW(70.0)),
+            cornerRadius: adaptW(14.0)
+        )
+
     }
     
     

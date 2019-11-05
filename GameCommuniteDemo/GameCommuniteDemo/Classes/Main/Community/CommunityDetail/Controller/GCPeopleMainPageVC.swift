@@ -24,17 +24,22 @@ fileprivate struct Metric{
 class GCPeopleMainPageVC: GCBaseVC {
     
     private var titles: [String] = ["发帖", "评论", "回帖"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setBackgroundColor(bgColor: .clear, shadowColor: .clear)
-        
         self.componentInstall(with: JYNavigationComponents.more) {[weak self] (model) in
             self?.alertMore()
         }
-        
+    
         initUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setBackgroundColor(bgColor: .clear, shadowColor: .clear)
+    }
+
     
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
@@ -175,5 +180,17 @@ extension GCPeopleMainPageVC: JXSegmentedViewDelegate, JXPagingViewDelegate {
     func pagingView(_ pagingView: JXPagingView, initListAtIndex index: Int) -> JXPagingViewListViewDelegate {
         
         return GCTieziVC()
+    }
+}
+
+extension GCPeopleMainPageVC {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+
+        if otherGestureRecognizer.view!.isKind(of: NSClassFromString("UIScrollView")!.self) {
+            if otherGestureRecognizer.state == UIGestureRecognizer.State.began && pagingView.mainTableView.contentOffset == .zero {
+                return true
+            }
+        }
+        return false
     }
 }

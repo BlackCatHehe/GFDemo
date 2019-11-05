@@ -8,7 +8,13 @@
 
 import UIKit
 import JXPagingView
+import ObjectMapper
+import MJRefresh
 class GCTieziVC: GCBaseVC {
+    
+    var communiteId: String?
+    
+    private var dataList: [GCTopicModel] = []
     
     var tableHeaderV: UIView?
     
@@ -16,10 +22,15 @@ class GCTieziVC: GCBaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         initTableView()
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setBackgroundColor(bgColor: .clear, shadowColor: .clear)
+    }
+    
     
     //MARK: - lazyload
     private lazy var tableview: UITableView = {[weak self] in
@@ -32,6 +43,7 @@ class GCTieziVC: GCBaseVC {
         tableV.estimatedRowHeight = adaptW(30.0)
         tableV.estimatedSectionHeaderHeight = kScreenH
         self?.automaticallyAdjustsScrollViewInsets = false
+        self?.extendedLayoutIncludesOpaqueBars = true
         if #available(iOS 11.0, *) {
             tableV.contentInsetAdjustmentBehavior = .never
         }
@@ -55,8 +67,6 @@ extension GCTieziVC {
                 self?.tableview.tableHeaderView = headerV
             }
         }
-        
-        
         tableview.register(headerFooterViewType: GCTieziHeaderView.self)
         tableview.register(cellType: GCSwiftCommentCell.self)
         tableview.register(cellType: GCTagCell.self)
@@ -67,16 +77,18 @@ extension GCTieziVC {
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        
+        tableview.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            self.requestTopics()
+        })
 
     }
 }
 
-
-
 extension GCTieziVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return self.dataList.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,20 +100,20 @@ extension GCTieziVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            return UIView()
-        }else {
-            let headerV = tableView.dequeueReusableHeaderFooterView(GCTieziHeaderView.self)
-            headerV?.setModel()
-            headerV?.delegate = self
-            return headerV
-        }
+        
+        let model = self.dataList[section]
+        
+        let headerV = tableView.dequeueReusableHeaderFooterView(GCTieziHeaderView.self)
+        headerV?.setModel(model)
+        headerV?.delegate = self
+        return headerV
+        
         
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return section == 0 ? 10.0 : UITableView.automaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -131,38 +143,53 @@ extension GCTieziVC: UITableViewDelegate, UITableViewDataSource {
 extension GCTieziVC: GCTieziHeaderViewDelegate {
     
     func headerView(_ headerV: GCTieziHeaderView, didSelectItemAt index: Int) {
-        
-        let alertVC = GCAlertShareVC()
-        
-        let preAniVC = JYWPrestentCustomVC(presentedViewController: alertVC, presenting: self)
-        preAniVC.toFrame = CGRect(x: 0, y: kScreenH - adaptW(230.0) - kBottomH, width: kScreenW, height: adaptW(230.0))
-        alertVC.modalPresentationStyle = .custom
-        alertVC.transitioningDelegate = preAniVC
-
-        alertVC.clickChoosePlatForm = {[weak self] index in
-            switch index {
-            case 0:
-                JYLog("weixin")
-            case 1:
-                JYLog("pengyouquan")
-            case 2:
-                JYLog("xinlang")
-            default:
-                JYLog("qq")
+        if index == 0 {
+            guard let tId = headerV.model?.id else {
+                return
             }
-        }
-        var rootVC = kWindow?.rootViewController
-        while rootVC?.presentedViewController != nil {
-            if let vc = rootVC?.presentedViewController {
-                if let nvc = vc as? UINavigationController{
-                    rootVC = nvc.visibleViewController
-                }else if let tvc = vc as? UITabBarController{
-                    rootVC = tvc.selectedViewController
-                }
+            let vc = GCArticalDetailVC()
+            vc.topicId = String(tId)
+            push(vc)
+        }else if index == 2 {
+            
+            if let tId = headerV.model?.id {
+                requestTopicZan(isZaned: true, tid: String(tId))
             }
             
         }
-        rootVC?.present(alertVC, animated: true, completion: nil)
+        return
+        
+        let alertVC = GCAlertShareVC()
+               
+               let preAniVC = JYWPrestentCustomVC(presentedViewController: alertVC, presenting: self)
+               preAniVC.toFrame = CGRect(x: 0, y: kScreenH - adaptW(230.0) - kBottomH, width: kScreenW, height: adaptW(230.0))
+               alertVC.modalPresentationStyle = .custom
+               alertVC.transitioningDelegate = preAniVC
+
+               alertVC.clickChoosePlatForm = {[weak self] index in
+                   switch index {
+                   case 0:
+                       JYLog("weixin")
+                   case 1:
+                       JYLog("pengyouquan")
+                   case 2:
+                       JYLog("xinlang")
+                   default:
+                       JYLog("qq")
+                   }
+               }
+               var rootVC = kWindow?.rootViewController
+               while rootVC?.presentedViewController != nil {
+                   if let vc = rootVC?.presentedViewController {
+                       if let nvc = vc as? UINavigationController{
+                           rootVC = nvc.visibleViewController
+                       }else if let tvc = vc as? UITabBarController{
+                           rootVC = tvc.selectedViewController
+                       }
+                   }
+                   
+               }
+               rootVC?.present(alertVC, animated: true, completion: nil)
     }
 }
 
@@ -185,6 +212,40 @@ extension GCTieziVC: JXPagingViewListViewDelegate, UIScrollViewDelegate {
         if self.scrollBlock != nil {
             self.scrollBlock!(scrollView)
         }
-        
     }
 }
+
+extension GCTieziVC {
+    //话题列表
+    private func requestTopics() {
+        
+        guard let communityId = communiteId else{return}
+        let prama = ["community_id": communityId]
+        GCNetTool.requestData(target: GCNetApi.topicList(prama: prama), success: { (result) in
+            
+            self.tableview.mj_header.endRefreshing()
+            
+            let models = Mapper<GCTopicModel>().mapArray(JSONArray: result["data"] as! [[String: Any]])
+            self.dataList = models
+            
+            self.tableview.reloadData()
+        }) { (error) in
+            self.tableview.mj_header.endRefreshing()
+            JYLog(error)
+        }
+    }
+    
+    //话题(取消)点赞
+    private func requestTopicZan(isZaned: Bool, tid: String) {
+
+        let target = isZaned ? GCNetApi.topicCancelZan(prama: tid) : GCNetApi.topicTapZan(prama: tid)
+        
+        GCNetTool.requestData(target: target, success: { (result) in
+            
+        }) { (error) in
+            
+        }
+    }
+    
+}
+

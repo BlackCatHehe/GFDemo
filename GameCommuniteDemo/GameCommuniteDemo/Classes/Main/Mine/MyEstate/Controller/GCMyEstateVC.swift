@@ -48,7 +48,10 @@ extension GCMyEstateVC {
         let height = headerV.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         headerV.frame = CGRect(x: 0, y: 0, width: kScreenW, height: height)
         tableview.tableHeaderView = self.headerV
-
+        headerV.tapRecharge = {[weak self] in
+            let vc = GCReChargeVC()
+            self?.push(vc)
+        }
         
         tableview.register(cellType: GCTableViewCell.self)
         
@@ -82,6 +85,10 @@ extension GCMyEstateVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+         return UIView()
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return adaptW(10.0)
     }
@@ -91,3 +98,4 @@ extension GCMyEstateVC: UITableViewDataSource, UITableViewDelegate {
         push(vc)
     }
 }
+

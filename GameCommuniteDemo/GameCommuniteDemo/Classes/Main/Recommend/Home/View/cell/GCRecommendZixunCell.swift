@@ -8,6 +8,7 @@
 
 import UIKit
 import Reusable
+
 class GCRecommendZixunCell: UICollectionViewCell, NibReusable {
 
     @IBOutlet weak var titleLb: UILabel!
@@ -21,6 +22,20 @@ class GCRecommendZixunCell: UICollectionViewCell, NibReusable {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func setModel(_ dic:[String : String]) {
+        layoutIfNeeded()
+        
+        titleLb.text = dic["title"]
+        viewNumLb.text = dic["view_num"]
+        timeLb.text = dic["time"]
+        imageV.kfSetImage(
+            url: dic["img"]!,
+            targetSize: imageV.bounds.size,
+            cornerRadius: adaptW(5.0)
+        )
+
     }
 
 }

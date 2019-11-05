@@ -43,7 +43,7 @@ extension GCEstateDetailListVC {
         tableview.register(cellType: GCEstateDetailCell.self)
         view.addSubview(tableview)
         tableview.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(kStatusBarheight + kNavBarHeight)
             make.left.right.equalToSuperview()
             make.height.equalTo(kScreenH - kStatusBarheight - kNavBarHeight)
         }

@@ -74,7 +74,7 @@ extension GCReceiveMsgVC {
         //3.设置pagevc视图的约束
         pageVC.view.snp.makeConstraints { (make) in
             make.left.right.bottom.equalToSuperview()
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(kStatusBarheight + kNavBarHeight)
         }
         
         //4.记得设置过视图后先刷新数据

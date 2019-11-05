@@ -8,6 +8,7 @@
 
 import Foundation
 
+///项目常量
 struct MetricGlobal {
     ///主背景色
     static let mainBgColor = kRGB(r: 34, g: 33, b: 57)
@@ -22,5 +23,4 @@ struct MetricGlobal {
     ///主中粗字体
     static let mainMediumFamily = "HelveticaNeue-Medium"
     
-
 }

@@ -15,10 +15,13 @@ fileprivate struct Metric {
 
 class GCMakeSureOrderView: UIView {
 
+    var selecteds: [Bool] = [false, false, false, false]
+    
     private var goodsImageV: UIImageView!
     private var goodsNameLb: UILabel!
     private var goodsQuLb: UILabel!
     private var goodsMoneyBt: UIButton!
+    var numTF: UITextField!
     
     private var goodsNum: Int = 1
     
@@ -37,11 +40,11 @@ class GCMakeSureOrderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setModel() {
-        goodsImageV.kf.setImage(with: URL(string:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"))
-        goodsNameLb.text = "暗影战神129加噬魂12匕首36洞满碎片 加猛攻爪和耀眼项链"
+    func setModel(_ model: GCGoodsModel) {
+        goodsImageV.kf.setImage(with: URL(string:model.cover!))
+        goodsNameLb.text = model.name
         goodsQuLb.text = "所在区/服：魔兽世界(国服）/一区"
-        goodsMoneyBt.setTitle("500ETH", for: .normal)
+        goodsMoneyBt.setTitle("\(model.price!)ETH", for: .normal)
         
     }
 }
@@ -91,7 +94,7 @@ extension GCMakeSureOrderView {
         
         let moneyBt = UIButton()
         moneyBt.tintColor = .white
-        moneyBt.setImage(UIImage(named: "shop_jinbi"), for: .normal)
+        moneyBt.setImage(UIImage(named: "icon_silver"), for: .normal)
         moneyBt.setTitleColor(.white, for: .normal)
         moneyBt.titleLabel?.font = kFont(adaptW(14.0))
         topBgview.addSubview(moneyBt)
@@ -150,6 +153,7 @@ extension GCMakeSureOrderView {
         jianBt.setTitle("-", for: .normal)
         jianBt.setTitleColor(.white, for: .normal)
         jianBt.titleLabel?.font = kFont(adaptW(12.0))
+        jianBt.addTarget(self, action: #selector(clickJian), for: .touchUpInside)
         stepperBgView.addSubview(jianBt)
         
         let lineV1 = UIView()
@@ -163,6 +167,7 @@ extension GCMakeSureOrderView {
         textfield.textAlignment = .center
         textfield.keyboardType = .numberPad
         stepperBgView.addSubview(textfield)
+        self.numTF = textfield
         
         let lineV2 = UIView()
         lineV2.backgroundColor = MetricGlobal.mainBlue
@@ -172,6 +177,7 @@ extension GCMakeSureOrderView {
         plusBt.setTitle("+", for: .normal)
         plusBt.setTitleColor(.white, for: .normal)
         plusBt.titleLabel?.font = kFont(adaptW(12.0))
+        jianBt.addTarget(self, action: #selector(clickPlus), for: .touchUpInside)
         stepperBgView.addSubview(plusBt)
         
         cBgview.snp.makeConstraints { (make) in
@@ -248,7 +254,7 @@ extension GCMakeSureOrderView {
             //第四行单独处理
             if i == titles.count - 1 {
                 bMoneyBt.tintColor = .white
-                bMoneyBt.setImage(UIImage(named: "shop_jinbi"), for: .normal)
+                bMoneyBt.setImage(UIImage(named: "icon_silver"), for: .normal)
                 bMoneyBt.setTitleColor(.white, for: .normal)
                 bMoneyBt.titleLabel?.font = kFont(adaptW(14.0))
                 bMoneyBt.setTitle("ETH800", for: .normal)
@@ -284,9 +290,8 @@ extension GCMakeSureOrderView {
             }
             
             let bBt = UIButton()
-                            bBt.setImage(UIImage(named: "shop_jiantou_shang"), for: .normal)
-                            bBt.setImage(UIImage(named: "shop_jiantou_xia"), for: .selected)
-            bBt.isSelected = i == 0 ? true : false
+                            bBt.setImage(UIImage(named: "check_noSel"), for: .normal)
+                            bBt.setImage(UIImage(named: "check_sel"), for: .selected)
             bBt.tag = 100+i
             bBt.addTarget(self, action: #selector(clickSelected(_:)), for: .touchUpInside)
             subBgView.addSubview(bBt)
@@ -298,7 +303,18 @@ extension GCMakeSureOrderView {
             bBts.append(bBt)
             
         }
-        
+    }
+    
+    @objc private func clickJian() {
+        if let text = numTF.text, let num = Int(text), num > 1 {
+            numTF.text = String(format: "%i", num - 1)
+        }
+    }
+    
+    @objc private func clickPlus() {
+        if let text = numTF.text, let num = Int(text) {
+            numTF.text = String(format: "%i", num + 1)
+        }
     }
 }
 
@@ -308,17 +324,20 @@ extension GCMakeSureOrderView {
         
         sender.isSelected = !sender.isSelected
         
-        if sender.isSelected == true, !selectedBts.contains(sender) {
-            selectedBts.append(sender)
-        }
-        if sender.isSelected == false, selectedBts.contains(sender) {
-            selectedBts.remove(at: selectedBts.firstIndex(of: sender)!)
-        }
+//        if sender.isSelected == true, !selectedBts.contains(sender) {
+//            selectedBts.append(sender)
+//        }
+//        if sender.isSelected == false, selectedBts.contains(sender) {
+//            selectedBts.remove(at: selectedBts.firstIndex(of: sender)!)
+//        }
+//
+//        print("------")
+//        for bt in selectedBts {
+//            print("选择的bt为:\(bt.tag-100)")
+//        }
+//        print("------")
         
-        print("------")
-        for bt in selectedBts {
-            print("选择的bt为:\(bt.tag-100)")
-        }
-        print("------")
+        let selecteds = bBts.map{$0.isSelected}
+        self.selecteds = selecteds
     }
 }

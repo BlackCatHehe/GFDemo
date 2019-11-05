@@ -58,8 +58,8 @@ extension GCAlertPayView {
                 selectedButton = button
             }
             button.isSelected = i == 0 ? true : false
-            button.setImage(UIImage(named: i == 0 ? "chahao" : "shop_jiantou_shang"), for: .normal)
-            button.setImage(UIImage(named: i == 0 ? "chahao" : "shop_jiantou_xia"), for: .selected)
+            button.setImage(UIImage(named: i == 0 ? "chahao" : "check_noSel"), for: .normal)
+            button.setImage(UIImage(named: i == 0 ? "chahao" : "check_sel"), for: .selected)
             button.addTarget(self, action: #selector(clickChoose(_:)), for: .touchUpInside)
             button.tag = i + 100
             bgView.addSubview(button)
@@ -114,7 +114,7 @@ extension GCAlertPayView {
             make.left.equalToSuperview().offset(adaptW(15.0))
             make.right.equalToSuperview().offset(-adaptW(15.0))
             make.height.equalTo(adaptW(44.0))
-            make.bottom.equalTo(-adaptW(44.0)-kBottomH)
+            make.bottom.equalTo(-kBottomH)
         }
     }
     

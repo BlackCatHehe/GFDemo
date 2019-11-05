@@ -223,7 +223,7 @@ func JYLog<T>(_ message : T, file : String = #file, funcName : String = #functio
     
     let fileName = (file as NSString).lastPathComponent
     
-    print("------------------\n[file]: \(fileName)\n[line]: \(lineNum)\n[message]:\(message)]\n------------------")
+    print("------------------\n[file]: \(fileName)\n[line]: \(lineNum)\n[message]:\(message)\n------------------")
     
     #endif
 }

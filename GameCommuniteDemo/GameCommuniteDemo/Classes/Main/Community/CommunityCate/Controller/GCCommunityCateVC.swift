@@ -7,24 +7,18 @@
 //
 
 import UIKit
+import MJRefresh
+import ObjectMapper
 
 fileprivate struct Metric {
-
     static let cateSize = CGSize(width: adaptW(90.0), height: adaptW(90.0 + 20))
     static let addCateSize = CGSize(width: adaptW(90.0), height: adaptW(90.0 + 20.0 + 22.0 + 10.0))
-
 }
 
 class GCCommunityCateVC: GCBaseVC {
 
-    private let datas = [
-           ["title": "姜还是", "view_num": "12523", "time": "刚刚", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
-           ["title": "魔兽世界", "view_num": "12523", "time": "5分钟前", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
-           ["title": "姜还是老的辣", "view_num": "12523", "time": "刚刚", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
-           ["title": "魔兽", "view_num": "12523", "time": "10-09", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
-           ["title": "姜还是老", "view_num": "12523", "time": "03-12", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"]
-       ]
-    
+    private var listDatas: [[GCCommuniteModel]] = []
+           
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -83,10 +77,10 @@ extension GCCommunityCateVC {
             make.bottom.equalToSuperview().offset(-kTabBarHeight)
         }
         
-//        collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
-//            self.currentPage = 1
-//            self.requestListData()
-//        })
+        collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            //self.currentPage = 1
+            self.requestListData()
+        })
 //
 //
 //        collectionView.mj_footer =  MJRefreshBackNormalFooter(refreshingBlock: {
@@ -95,7 +89,7 @@ extension GCCommunityCateVC {
 //        })
 //
 //
-//        collectionView.mj_header.beginRefreshing()
+        collectionView.mj_header.beginRefreshing()
     }
 }
 
@@ -104,11 +98,11 @@ extension GCCommunityCateVC {
 extension GCCommunityCateVC: UICollectionViewDelegate, UICollectionViewDataSource, JYCollectionDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return listDatas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return section == 0 ? 5 : 3
+        return self.listDatas[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -138,17 +132,19 @@ extension GCCommunityCateVC: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let dic = datas[indexPath.row]
+        let model = listDatas[indexPath.section][indexPath.row]
         
         let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCCommuniteCateCell.self) as GCCommuniteCateCell
         cell.delegate = self
-        cell.setModel(dic, isAdd: indexPath.section == 0 ? false : true)
-        
+        cell.setModel(model)
+    
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = self.listDatas[indexPath.section][indexPath.row]
         let vc = GCCommunityDetailVC()
+        vc.communiteId = String(model.id!)
         push(vc)
     }
     
@@ -184,7 +180,10 @@ extension GCCommunityCateVC: UICollectionViewDelegate, UICollectionViewDataSourc
 extension GCCommunityCateVC: GCCommuniteCateCellDelegate {
     
     func cateCell(_ cell: GCCommuniteCateCell, didClickAdd button: UIButton) {
-        
+        if let index = collectionView.indexPath(for: cell) {
+            let model = self.listDatas[index.section][index.row]
+            requestAddCommunite(model: model)
+        }
     }
 }
 
@@ -194,5 +193,63 @@ extension GCCommunityCateVC {
     @objc private func clickCreate() {
         let vc = GCCreateCommuniteVC()
         push(vc)
+    }
+}
+
+//MARK: ------------reuqest------------
+extension GCCommunityCateVC {
+    
+    ///请求列表数据
+    private func requestListData() {
+        /**
+        {
+          "data" : [
+            {
+              "cover" : "http:\/\/res.uioj.com\/images\/apiUpload\/\/2019\/10\/e38UuOZ6oZMkD1LNc0ZeI1oXiBBHjBeL9dmGuZi8.jpeg",
+              "isJoin" : false,
+              "introduce" : "欢迎年轻人来照顾老年程序员们",
+              "member_count" : 0,
+              "updated_at" : "2019-10-30 05:40:13",
+              "id" : 1,
+              "created_at" : "2019-10-30 05:40:13",
+              "name" : "老年活动中心",
+              "topic_count" : 0
+            }
+          ]
+        }
+        */
+
+        GCNetTool.requestData(target: GCNetApi.communiteList, success: { (result) in
+            
+            if let data = result["data"] as? [[String: Any]] {
+                
+                let models = Mapper<GCCommuniteModel>().mapArray(JSONArray: data)
+                let joins = models.filter{$0.isJoin == true}
+                let noJoins = models.filter{$0.isJoin == false}
+                self.listDatas = [joins, noJoins]
+                self.collectionView.reloadData()
+            }
+            
+            
+            self.collectionView.mj_header.endRefreshing()
+        }) { (error) in
+            JYLog(error)
+            self.collectionView.mj_header.endRefreshing()
+        }
+    }
+    
+    ///请求加入社团
+    private func requestAddCommunite(model: GCCommuniteModel) {
+        /**
+
+        */
+        guard let communityId = model.id else{return}
+        GCNetTool.requestData(target: GCNetApi.joinCommunite(prama: String(communityId)), success: { (result) in
+            
+           
+        }) { (error) in
+            JYLog(error)
+            
+        }
     }
 }

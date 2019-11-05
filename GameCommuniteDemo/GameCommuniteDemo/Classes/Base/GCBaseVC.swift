@@ -12,8 +12,16 @@ import Toast_Swift
 
 class GCBaseVC: UIViewController {
     
+    private lazy var noDataV: GCNoDataView = {
+        let cView = GCNoDataView()
+        return cView
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.extendedLayoutIncludesOpaqueBars = true
         
         setBackItem()
         setBackgroundColor(bgColor: kRGB(r: 24, g: 23, b: 40), shadowColor: .clear)
@@ -21,10 +29,12 @@ class GCBaseVC: UIViewController {
         view.backgroundColor = MetricGlobal.mainBgColor
     }
     
+    
     func showToast(_ msg: String, position: ToastPosition = .center) {
         //        let bgView = UIView(frame: view.bounds)
         //        bgView.isUserInteractionEnabled = tapEnabled
         //        view.addSubview(bgView)
+        view.hideToast()
         view.makeToast(msg, duration: ToastManager.shared.duration, position: position, title: nil, image: nil, style: ToastManager.shared.style)
     }
     

@@ -19,8 +19,8 @@ struct JYNavigationComponents {
     static let tipMessage = JYNavigationComponentModel(title: nil, img: UIImage(named: "recommend_tip")?.withRenderingMode(.alwaysOriginal), selectedImg: nil, postiton: .right)
     
     static let more = JYNavigationComponentModel(title: nil, img: UIImage(named: "navigation_more")?.withRenderingMode(.alwaysOriginal), selectedImg: nil, postiton: .right)
-    
-    
+    static let share = JYNavigationComponentModel(title: nil, img: UIImage(named: "communite_share")?.withRenderingMode(.alwaysOriginal), selectedImg: nil, postiton: .right)
+    static let setting = JYNavigationComponentModel(title: nil, img: UIImage(named: "mine_setting")?.withRenderingMode(.alwaysOriginal), selectedImg: nil, postiton: .right)
 }
 
 enum JYNavigationComponentss {
@@ -34,7 +34,8 @@ extension JYNavigationComponentss {
         switch self {
         case .title(let title):
             return JYNavigationComponentModel(title: title, img: nil, selectedImg: nil, postiton: .right)
-        
+
+            
         }
         
     }

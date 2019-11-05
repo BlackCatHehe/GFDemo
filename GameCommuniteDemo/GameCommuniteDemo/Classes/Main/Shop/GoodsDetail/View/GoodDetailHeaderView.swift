@@ -147,15 +147,15 @@ extension GoodDetailHeaderView {
         }
     }
     
-    func setModel() {
+    func setModel(_ model: GCGoodsModel) {
         layoutIfNeeded()
         
-//        iconImgV.kf.setImage(with: URL(string:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(49.0)/2, targetSize: iconImgV.bounds.size, roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
+        iconImgV.kfSetImage(url: model.cover!, targetSize: .zero, cornerRadius: adaptW(24.0))
         nameLb.text = "欧巴嘻嘻"
         timeLb.text = "上架时间:2019/08/04"
         cycleView.imageURLStringsGroup = ["https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"]
-        goodsNameLb.text = "莲花台爆香"
-        moneyLb.text = "10.21ETC"
+        goodsNameLb.text = model.name
+        moneyLb.text = model.price
     }
 }
 

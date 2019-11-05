@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.8.2)
+  - Bugly (2.5.0)
   - Charts (3.3.0):
     - Charts/Core (= 3.3.0)
   - Charts/Core (3.3.0)
@@ -7,6 +8,7 @@ PODS:
   - ESTabBarController-swift (2.7)
   - GrowingTextView (0.7.0)
   - HXPhotoPicker (2.3.1)
+  - IQKeyboardManagerSwift (6.4.1)
   - JXPagingView/Paging (1.1.17)
   - JXSegmentedView (0.0.19)
   - KeychainAccess (3.2.0)
@@ -50,11 +52,13 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Bugly
   - Charts
   - DYFoldLabel
   - ESTabBarController-swift
   - GrowingTextView (= 0.7.0)
   - HXPhotoPicker
+  - IQKeyboardManagerSwift
   - JXPagingView/Paging (~> 1.1.15)
   - JXSegmentedView (~> 0.0.19)
   - KeychainAccess
@@ -80,10 +84,12 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Bugly
     - Charts
     - DYFoldLabel
     - GrowingTextView
     - HXPhotoPicker
+    - IQKeyboardManagerSwift
     - JXPagingView
     - JXSegmentedView
     - Kingfisher
@@ -113,11 +119,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
   DYFoldLabel: 3611fe7d2c44e24aebfb2d33b38b491493ea0ab3
   ESTabBarController-swift: 4fb52ad03d94d0717ef97bc9eb09a5abfdded0a2
   GrowingTextView: b946b0d1c33e0953725b9695d14f144cc35b2031
   HXPhotoPicker: 3845637c6a6e98ebf5bfad5ed67bcab8ce3786c2
+  IQKeyboardManagerSwift: d2df660d0b8d64a15cb2537c9ff303213fa515b2
   JXPagingView: 039e0ad51f5b7f51660493ccc963035f1ea30a97
   JXSegmentedView: 6e22381bd1e6f0767fc078bef1947b13b2d337a1
   KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
@@ -143,6 +151,6 @@ SPEC CHECKSUMS:
   TYPagerController: 262556ecef99986d26ed77fb1288a198ed42f4af
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 73ecf1b90ac6a0ca75f0184b6660d65376e2578b
+PODFILE CHECKSUM: 474182cdf3a5ff65305f93694272ac75dd850c7f
 
 COCOAPODS: 1.7.4

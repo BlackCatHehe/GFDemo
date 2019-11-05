@@ -35,15 +35,21 @@ class GCReceiveMsgCell: UITableViewCell, NibReusable {
 
     func setModel() {
 
-        
-        iconImageV.kf.setImage(with: URL(string: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(43.0)/2, targetSize: CGSize(width: adaptW(43.0), height: adaptW(43.0)), roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
-        
+        iconImageV.kfSetImage(
+            url: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg",
+            targetSize: CGSize(width: adaptW(43.0), height: adaptW(43.0)),
+            cornerRadius: adaptW(43.0)/2
+        )
         nameLb.text = "欧巴嘻嘻"
         contentLb.text = "这个游戏道具看起来很棒呀！"
         timeLb.text = "今天 23:59"
         
         goodsImgV.kf.setImage(with: URL(string: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(5.0), targetSize: CGSize(width: adaptW(70.0), height: adaptW(70.0)), roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
-        
+        goodsImgV.kfSetImage(
+            url: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg",
+            targetSize: CGSize(width: adaptW(70.0), height: adaptW(70.0)),
+            cornerRadius: adaptW(5.0)
+        )
         
     }
     

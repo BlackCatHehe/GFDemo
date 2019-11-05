@@ -9,6 +9,9 @@
 import UIKit
 import Kingfisher
 import SnapKit
+import ObjectMapper
+import MJRefresh
+import SwiftyJSON
 fileprivate struct Metric {
     static let goodsItemSize = CGSize(width: (kScreenW - 15 * 2 - 10)/2, height: (kScreenW - 15 * 2 - 10)/2 * 103.0/167.0 + adaptW(47.0 + 10.0))
     
@@ -22,6 +25,14 @@ fileprivate struct Metric {
 
 class GCShopVC: GCBaseVC {
 
+    private var cateModels: [GCCateModel] = []
+    
+    ///存放各个分类下的数据
+    private var goodsList: [[GCGoodsModel]] = []
+    
+    ///存放各个分类下的数据当前页数
+    private var currentPages: [Int] = []
+    
     private var selectIndex: Int = 0
     
     //MARK: ------------cyclelife------------
@@ -70,10 +81,8 @@ class GCShopVC: GCBaseVC {
         }()
         tagV.buttonMargin = adaptW(10.0)
         
-        let titles = ["全部", "嗷嗷", "播报", "等等", "间隔下降"]
         tagV.itemBuilder = {index -> UIView in
             let bt = UIButton()
-            bt.setTitle(titles[index], for: .normal)
             bt.backgroundColor = index == 0 ? Metric.selTagBgColor : Metric.normalTagBgColor
             bt.titleLabel?.font = index == 0 ? Metric.selTagFont : Metric.normalTagFont
             bt.isSelected = index == 0 ? true : false
@@ -94,7 +103,9 @@ extension GCShopVC {
         
         initCateTopView()
         initCollectionView()
-
+        requestCatesList()
+        
+        
     }
     
     private func initCateTopView() {
@@ -105,13 +116,7 @@ extension GCShopVC {
             make.right.equalToSuperview().offset(-adaptW(15.0))
             make.height.equalTo(tagView.itemHeight)
         }
-        
-        tagView.titles = ["全部", "嗷嗷", "播报", "等等", "间隔下降"]
-        
-        if tagView.titles.count < 5 {
-            tagView.moreButton?.isHidden = true
-        }
-        tagView.reloadData()
+
     }
     
     private func initCollectionView() {
@@ -123,19 +128,21 @@ extension GCShopVC {
             make.bottom.equalToSuperview().offset(-kTabBarHeight)
         }
         
-        //        collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
-        //            self.currentPage = 1
-        //            self.requestListData()
-        //        })
-        //
-        //
-        //        collectionView.mj_footer =  MJRefreshBackNormalFooter(refreshingBlock: {
-        //            self.currentPage += 1
-        //            self.requestListData()
-        //        })
-        //
-        //
-        //        collectionView.mj_header.beginRefreshing()
+        collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            
+            self.requestCatesList()
+        })
+        
+        
+        collectionView.mj_footer =  MJRefreshBackNormalFooter(refreshingBlock: {
+            
+            guard self.cateModels.count > 0 else {return}
+            if let cid = self.cateModels[self.selectIndex].id{
+                let cidStr = String(cid)
+                self.requestGoodsList(with: cidStr, page: self.currentPages[self.selectIndex] + 1)
+            }
+        })
+        
     }
 }
 
@@ -147,18 +154,27 @@ extension GCShopVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return self.goodsList.count == 0 ? 0 : self.goodsList[selectIndex].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let model = self.goodsList[selectIndex][indexPath.row]
         
         let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCShopGoodsListCell.self) as GCShopGoodsListCell
-        cell.setModel()
+        cell.setModel(model: model)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let model = self.goodsList[selectIndex][indexPath.row]
+        guard let gid = model.id else {
+            showToast("获取商品id出错")
+            return
+        }
+        
         let detailVC = GCShopGoodsDetailVC()
+        detailVC.gid = gid
         push(detailVC)
     }
     
@@ -212,7 +228,14 @@ extension GCShopVC {
         
         //将点击的按钮赋值给selectindex
         selectIndex = tag
-        
+        if self.goodsList[selectIndex].count != 0 {
+            self.collectionView.reloadData()
+            return
+        }
+        if let cid = self.cateModels[selectIndex].id{
+            let cidStr = String(cid)
+            self.requestGoodsList(with: cidStr, page: self.currentPages[self.selectIndex])
+        }
     }
     
     @objc private func moreTag(_ sender: UIButton) {
@@ -226,6 +249,84 @@ extension GCShopVC {
             if !sender.isSelected {
                 make.height.equalTo(tagView.itemHeight)
             }
+        }
+    }
+}
+
+extension GCShopVC {
+    
+    ///请求商品分类列表
+    private func requestCatesList() {
+        /**
+
+        */
+        GCNetTool.requestData(target: GCNetApi.goodsCate, success: { (result) in
+            if let data = result["data"] as? [[String: Any]] {
+                let models = Mapper<GCCateModel>().mapArray(JSONArray: data)
+                self.cateModels = models
+                
+                let cates = models.map{$0.name!}
+                self.tagView.titles = cates
+                self.tagView.reloadData()
+                if self.tagView.titles.count < 5 {
+                    self.tagView.moreButton?.isHidden = true
+                }
+                
+                for _ in 0..<cates.count {
+                    self.currentPages.append(1)
+                    self.goodsList.append([])
+                }
+                
+                if let cid = self.cateModels.first?.id{
+                    let cidStr = String(cid)
+                    self.requestGoodsList(with: cidStr, page: 1)
+                }
+                self.collectionView.mj_header.endRefreshing()
+            }
+           
+        }) { (error) in
+            JYLog(error)
+            self.collectionView.mj_header.endRefreshing()
+        }
+    }
+    
+    private func requestGoodsList(with cid: String, page: Int) {
+        
+        guard page >= 1 else {
+            JYLog("页数不能小于1")
+            return
+        }
+        
+        GCNetTool.requestData(target: GCNetApi.goodsList(prama: cid), controller: self, showAcvitity: true, isTapAble: false, success: { (result) in
+            
+            self.currentPages[self.selectIndex] = page
+            
+            if page == 1 {
+                if let datas = result["data"] as? [[String: Any]] {
+                    let models = Mapper<GCGoodsModel>().mapArray(JSONArray: datas)
+                    self.goodsList[self.selectIndex] = models
+                    self.collectionView.reloadData()
+                    return
+                }
+            }else {
+                let data = JSON(result)
+                if let totalPage = data["meta"]["pagination"]["total_pages"].int {
+                    if self.currentPages[self.selectIndex] >= totalPage{
+                        self.currentPages[self.selectIndex] = totalPage
+                        self.collectionView.mj_footer.endRefreshingWithNoMoreData()
+                        return
+                    }
+                }
+                self.collectionView.mj_footer.endRefreshing()
+                if let datas = result["data"] as? [[String: Any]] {
+                    
+                    let models = Mapper<GCGoodsModel>().mapArray(JSONArray: datas)
+                    self.goodsList[self.selectIndex].append(contentsOf: models)
+                    self.collectionView.reloadData()
+                }
+            }
+
+        }) { (error) in
             
         }
         

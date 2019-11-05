@@ -14,10 +14,13 @@ class GCMessageCenterVC: GCBaseVC {
         super.viewDidLoad()
         
         title = "消息中心"
-        setBackgroundColor(bgColor: .clear, shadowColor: .clear)
-        
         initTableView()
-        
+  
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setBackgroundColor(bgColor: .clear, shadowColor: .clear)
     }
     
     //MARK: - lazyload

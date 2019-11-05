@@ -9,8 +9,16 @@
 import UIKit
 import Kingfisher
 import Reusable
+
+protocol GCGoodsManagerCellDelegate {
+    func managerCell(_ cell: GCGoodsManagerCell, didClickDelete button: UIButton)
+    func managerCell(_ cell: GCGoodsManagerCell, didClickXiaJia button: UIButton)
+}
+
 class GCGoodsManagerCell: UITableViewCell, NibReusable {
 
+    var delegate: GCGoodsManagerCellDelegate?
+    
     @IBOutlet var bgView: UIView!
     
     @IBOutlet var goodsImgV: UIImageView!
@@ -91,11 +99,11 @@ class GCGoodsManagerCell: UITableViewCell, NibReusable {
     }
     
     @IBAction func clickDel(_ sender: UIButton) {
-        
+        delegate?.managerCell(self, didClickDelete: sender)
     }
     
     @IBAction func clickMore(_ sender: UIButton) {
-        
+        delegate?.managerCell(self, didClickXiaJia: sender)
     }
     
 }

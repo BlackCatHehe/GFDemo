@@ -32,7 +32,7 @@ extension GCAlertPayVC {
         view.addSubview(alertV)
         alertV.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
-            make.height.equalTo(adaptW(348.0))
+            make.height.equalTo(adaptW(348.0) + kBottomH)
         }
         alertV.paySelectClick = paySelectClick
         
