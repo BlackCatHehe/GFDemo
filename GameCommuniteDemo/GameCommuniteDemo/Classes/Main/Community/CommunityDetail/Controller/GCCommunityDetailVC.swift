@@ -25,6 +25,11 @@ class GCCommunityDetailVC: GCBaseVC {
         setBackgroundColor(bgColor: .clear, shadowColor: .clear)
     }
 
+    deinit {
+        if JYGCDTimer.share.isExistTimer(withName: "scrollBanner") {
+            JYGCDTimer.share.destoryTimer(withName: "scrollBanner")
+        }
+    }
     
     //MARK: --------lazyload-----------
     private lazy var headerV: GCCommunityHeaderView = {
@@ -67,6 +72,10 @@ extension GCCommunityDetailVC {
     }
     
     private func initPostBt() {
+        if let isJoin = self.pageModel?.isJoin {
+            postBt.isHidden = !isJoin
+        }
+        
         view.addSubview(postBt)
         postBt.snp.makeConstraints { (make) in
             make.bottom.equalToSuperview().offset(-kBottomH - adaptW(50.0))
@@ -87,8 +96,9 @@ extension GCCommunityDetailVC {
 extension GCCommunityDetailVC: GCCommunityHeaderViewDelegate {
     
     func headerView(_ headerV: GCCommunityHeaderView, didClickJoin button: UIButton) {
-        let vc = GCCommuniteMemberListVC()
-        push(vc)
+        
+        requestAddCommunite()
+        
     }
     
     func headerView(_ headerV: GCCommunityHeaderView, didClickBack button: UIButton) {
@@ -116,11 +126,9 @@ extension GCCommunityDetailVC: GCSelectPicOrVideoViewDelegate {
 //MARK: ------------request------------
 extension GCCommunityDetailVC {
     
+    ///请求社区详情和置顶信息
     private func requestCommuniteDetail() {
         
-        /**
-
-        */
         guard let communityId = communiteId else{return}
         GCNetTool.requestData(target: GCNetApi.communiteDetail(prama: String(communityId)), success: { (result) in
             
@@ -132,6 +140,39 @@ extension GCCommunityDetailVC {
             JYLog(error)
             
         }
-        
     }
+    
+    
+    ///请求加入社团
+    private func requestAddCommunite() {
+
+        guard let cId = self.communiteId else{return}
+        GCNetTool.requestData(target: GCNetApi.joinCommunite(prama: cId), success: { (result) in
+            
+            if let msg = result["message"] as? String {
+                self.showToast(msg)
+   
+            }
+
+        }) { (error) in
+            JYLog(error)
+            
+        }
+    }
+    ///请求退出社团
+     private func requestExitCommunite() {
+
+         guard let cId = self.communiteId else{return}
+         GCNetTool.requestData(target: GCNetApi.exitCommunite(prama: cId), success: { (result) in
+             
+             if let msg = result["message"] as? String {
+                 self.showToast(msg)
+    
+             }
+
+         }) { (error) in
+             JYLog(error)
+             
+         }
+     }
 }

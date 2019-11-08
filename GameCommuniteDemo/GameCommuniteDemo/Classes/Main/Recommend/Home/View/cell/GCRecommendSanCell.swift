@@ -38,12 +38,14 @@ class GCRecommendSanCell: UICollectionViewCell, NibReusable {
         rightBottomImgV.isUserInteractionEnabled = true
     }
 
-    func setModel() {
-        
+    func setModel(_ models: [GCNewActivityModel]) {
+        guard models.count == 3 else {
+            return
+        }
         layoutIfNeeded()
-        leftImgV.kfSetImage(url: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2334465942,3760491718&fm=115&gp=0.jpg", targetSize: leftImgV.bounds.size, cornerRadius: adaptW(5.0))
-        rightTopImgV.kfSetImage(url: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2334465942,3760491718&fm=115&gp=0.jpg", targetSize: rightTopImgV.bounds.size, cornerRadius: adaptW(5.0))
-        rightBottomImgV.kfSetImage(url: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2334465942,3760491718&fm=115&gp=0.jpg", targetSize: rightBottomImgV.bounds.size, cornerRadius: adaptW(5.0))
+        leftImgV.kfSetImage(url: models[0].cover!, targetSize: leftImgV.bounds.size, cornerRadius: adaptW(5.0))
+        rightTopImgV.kfSetImage(url: models[1].cover!, targetSize: rightTopImgV.bounds.size, cornerRadius: adaptW(5.0))
+        rightBottomImgV.kfSetImage(url: models[2].cover!, targetSize: rightBottomImgV.bounds.size, cornerRadius: adaptW(5.0))
     }
     
     @objc private func tapImgV(_ sender: UITapGestureRecognizer) {

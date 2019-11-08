@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class GCUsualSettingVC: GCBaseVC {
 
     
@@ -20,9 +20,18 @@ class GCUsualSettingVC: GCBaseVC {
 
         title = "通用设置"
         
+        let cache = KingfisherManager.shared.cache
+        //计算图片缓存
+        cache.calculateDiskCacheSize { (size) in
+            let imgMb = Double(size)/1024.00/1024.00
+            self.catcheLb.text = String(format: "%.2fM", imgMb)
+        }
+        
     }
 
     @IBAction func clickClearCache(_ sender: UITapGestureRecognizer) {
+        
+        
         
     }
 }

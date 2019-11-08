@@ -44,8 +44,10 @@ class GCHomeTopCell: UICollectionViewCell, NibReusable {
         return imagesV
     }()
     
-    func setModel() {
-        cycleImgV.imageURLStringsGroup = ["https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"]
+    func setModel(_ models: [GCBannerModel]) {
+        let imgs = models.map{$0.cover!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)}
+        JYLog(imgs)
+        cycleImgV.imageURLStringsGroup = imgs
         
     }
 }

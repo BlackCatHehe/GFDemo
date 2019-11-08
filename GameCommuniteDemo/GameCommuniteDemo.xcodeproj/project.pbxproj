@@ -76,6 +76,10 @@
 		DD56A5D1235EFF4B00EC3630 /* GCUsualGameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD56A5CF235EFF4B00EC3630 /* GCUsualGameCell.xib */; };
 		DD573133234ED6D000CF273D /* GCRecommendSearchHeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD573132234ED6D000CF273D /* GCRecommendSearchHeaderBar.swift */; };
 		DD573136234EDDFF00CF273D /* MetricGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD573135234EDDFF00CF273D /* MetricGlobal.swift */; };
+		DD5D13A32373B99A005ECEC1 /* GCBannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5D13A22373B99A005ECEC1 /* GCBannerModel.swift */; };
+		DD5D13A62373BB6B005ECEC1 /* GCNewActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5D13A52373BB6B005ECEC1 /* GCNewActivityModel.swift */; };
+		DD5D13A8237409E8005ECEC1 /* GCScrollBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5D13A7237409E8005ECEC1 /* GCScrollBannerView.swift */; };
+		DD5D13AA23740BCF005ECEC1 /* GCScrollBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5D13A923740BCF005ECEC1 /* GCScrollBannerCell.swift */; };
 		DD5E56C723594FBA004126FC /* GCLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E56C523594FBA004126FC /* GCLoginVC.swift */; };
 		DD5E56C823594FBA004126FC /* GCLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5E56C623594FBA004126FC /* GCLoginVC.xib */; };
 		DD5E56CB23595203004126FC /* GCCommunityDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E56CA23595203004126FC /* GCCommunityDetailVC.swift */; };
@@ -92,6 +96,8 @@
 		DD689FA8236FD2D500BEC7C2 /* GCMineCateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD689FA6236FD2D500BEC7C2 /* GCMineCateCell.swift */; };
 		DD689FA9236FD2D500BEC7C2 /* GCMineCateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD689FA7236FD2D500BEC7C2 /* GCMineCateCell.xib */; };
 		DD689FAB237012AD00BEC7C2 /* GCUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD689FAA237012AC00BEC7C2 /* GCUserDefault.swift */; };
+		DD69FB5723726A2E003996D1 /* JYToastAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD69FB5623726A2E003996D1 /* JYToastAble.swift */; };
+		DD69FB592372A2A5003996D1 /* GCNoNetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD69FB582372A2A5003996D1 /* GCNoNetView.swift */; };
 		DD6ADB37234EF8FC003993B2 /* GCHomeTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6ADB35234EF8FC003993B2 /* GCHomeTopCell.swift */; };
 		DD6ADB38234EF8FC003993B2 /* GCHomeTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6ADB36234EF8FC003993B2 /* GCHomeTopCell.xib */; };
 		DD6ADB3B234EFA28003993B2 /* GCCateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6ADB39234EFA28003993B2 /* GCCateCell.swift */; };
@@ -144,7 +150,6 @@
 		DD716013235022FB00EE3A45 /* GCNormalReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD716011235022FB00EE3A45 /* GCNormalReusableHeaderView.swift */; };
 		DD716014235022FB00EE3A45 /* GCNormalReusableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD716012235022FB00EE3A45 /* GCNormalReusableHeaderView.xib */; };
 		DD71EE3923504DC20044C62F /* UIBarButtonItem+Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD71EE3823504DC20044C62F /* UIBarButtonItem+Badge.swift */; };
-		DD72406D235802120043008B /* GCShopConfirmOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD72406C235802120043008B /* GCShopConfirmOrderVC.swift */; };
 		DD72406F235803450043008B /* GCShopGoodsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD72406E235803450043008B /* GCShopGoodsDetailVC.swift */; };
 		DD724073235803970043008B /* GoodDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD724072235803970043008B /* GoodDetailHeaderView.swift */; };
 		DD7B7545235ECDC9004D94F5 /* GCSettingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7B7544235ECDC9004D94F5 /* GCSettingListVC.swift */; };
@@ -297,6 +302,10 @@
 		DD56A5CF235EFF4B00EC3630 /* GCUsualGameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCUsualGameCell.xib; sourceTree = "<group>"; };
 		DD573132234ED6D000CF273D /* GCRecommendSearchHeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCRecommendSearchHeaderBar.swift; sourceTree = "<group>"; };
 		DD573135234EDDFF00CF273D /* MetricGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricGlobal.swift; sourceTree = "<group>"; };
+		DD5D13A22373B99A005ECEC1 /* GCBannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCBannerModel.swift; sourceTree = "<group>"; };
+		DD5D13A52373BB6B005ECEC1 /* GCNewActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCNewActivityModel.swift; sourceTree = "<group>"; };
+		DD5D13A7237409E8005ECEC1 /* GCScrollBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCScrollBannerView.swift; sourceTree = "<group>"; };
+		DD5D13A923740BCF005ECEC1 /* GCScrollBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCScrollBannerCell.swift; sourceTree = "<group>"; };
 		DD5E56C523594FBA004126FC /* GCLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCLoginVC.swift; sourceTree = "<group>"; };
 		DD5E56C623594FBA004126FC /* GCLoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCLoginVC.xib; sourceTree = "<group>"; };
 		DD5E56CA23595203004126FC /* GCCommunityDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCommunityDetailVC.swift; sourceTree = "<group>"; };
@@ -313,6 +322,8 @@
 		DD689FA6236FD2D500BEC7C2 /* GCMineCateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCMineCateCell.swift; sourceTree = "<group>"; };
 		DD689FA7236FD2D500BEC7C2 /* GCMineCateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCMineCateCell.xib; sourceTree = "<group>"; };
 		DD689FAA237012AC00BEC7C2 /* GCUserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCUserDefault.swift; sourceTree = "<group>"; };
+		DD69FB5623726A2E003996D1 /* JYToastAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYToastAble.swift; sourceTree = "<group>"; };
+		DD69FB582372A2A5003996D1 /* GCNoNetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCNoNetView.swift; sourceTree = "<group>"; };
 		DD6ADB35234EF8FC003993B2 /* GCHomeTopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCHomeTopCell.swift; sourceTree = "<group>"; };
 		DD6ADB36234EF8FC003993B2 /* GCHomeTopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCHomeTopCell.xib; sourceTree = "<group>"; };
 		DD6ADB39234EFA28003993B2 /* GCCateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCateCell.swift; sourceTree = "<group>"; };
@@ -367,7 +378,6 @@
 		DD716011235022FB00EE3A45 /* GCNormalReusableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCNormalReusableHeaderView.swift; sourceTree = "<group>"; };
 		DD716012235022FB00EE3A45 /* GCNormalReusableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCNormalReusableHeaderView.xib; sourceTree = "<group>"; };
 		DD71EE3823504DC20044C62F /* UIBarButtonItem+Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Badge.swift"; sourceTree = "<group>"; };
-		DD72406C235802120043008B /* GCShopConfirmOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCShopConfirmOrderVC.swift; sourceTree = "<group>"; };
 		DD72406E235803450043008B /* GCShopGoodsDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCShopGoodsDetailVC.swift; sourceTree = "<group>"; };
 		DD724072235803970043008B /* GoodDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodDetailHeaderView.swift; sourceTree = "<group>"; };
 		DD7B7544235ECDC9004D94F5 /* GCSettingListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCSettingListVC.swift; sourceTree = "<group>"; };
@@ -798,6 +808,7 @@
 			children = (
 				DD57312E234ED30700CF273D /* Controller */,
 				DD573134234ED6D300CF273D /* View */,
+				DD5D13A42373B9B7005ECEC1 /* Model */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -879,7 +890,6 @@
 		DD573131234ED32400CF273D /* Shop */ = {
 			isa = PBXGroup;
 			children = (
-				DD72406C235802120043008B /* GCShopConfirmOrderVC.swift */,
 				DD72406B235801AE0043008B /* GoodsList */,
 				DD724071235803790043008B /* GoodsDetail */,
 				DD3F247A235DAE80002666EC /* Order */,
@@ -897,6 +907,15 @@
 				DD716012235022FB00EE3A45 /* GCNormalReusableHeaderView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DD5D13A42373B9B7005ECEC1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD5D13A22373B99A005ECEC1 /* GCBannerModel.swift */,
+				DD5D13A52373BB6B005ECEC1 /* GCNewActivityModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DD5E56C923594FC1004126FC /* Login */ = {
@@ -944,6 +963,8 @@
 				DD2E5A162361936E0091215C /* GCMemberCell.swift */,
 				DD2E5A172361936E0091215C /* GCMemberCell.xib */,
 				DD9F33FA23666CC000152FEB /* GCTieziSubGoodsView.swift */,
+				DD5D13A7237409E8005ECEC1 /* GCScrollBannerView.swift */,
+				DD5D13A923740BCF005ECEC1 /* GCScrollBannerCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -952,6 +973,7 @@
 			isa = PBXGroup;
 			children = (
 				DD689F9B236FB62D00BEC7C2 /* GCNoDataView.swift */,
+				DD69FB582372A2A5003996D1 /* GCNoNetView.swift */,
 			);
 			path = NoData;
 			sourceTree = "<group>";
@@ -1434,6 +1456,7 @@
 				DD21DD56231CA20300F74A31 /* DateFormatterable.swift */,
 				E10BFC46235ACB6B00F43ACE /* JYNaviControllerPushProtocol.swift */,
 				DD99BE562362CF1D00113C1A /* JYBadgeAble.swift */,
+				DD69FB5623726A2E003996D1 /* JYToastAble.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1802,6 +1825,7 @@
 				DD689F9C236FB62D00BEC7C2 /* GCNoDataView.swift in Sources */,
 				DD7064F7235FE77700C8ED8D /* GCGoodsManagerCell.swift in Sources */,
 				DD2169832358562300D3E53C /* GCChartView.swift in Sources */,
+				DD69FB592372A2A5003996D1 /* GCNoNetView.swift in Sources */,
 				DD56A5C0235EF37200EC3630 /* GCEstateDetailListVC.swift in Sources */,
 				DD12B8242356F178003BAA87 /* GCFriendListVC.swift in Sources */,
 				DD0A6DA423612F7900FE6450 /* GCNotiMsgListVC.swift in Sources */,
@@ -1843,6 +1867,7 @@
 				DDA308C423613AD500C6CE35 /* GCPreferentialCell.swift in Sources */,
 				DD6C6B7D236AB82C00D52BEE /* MetricSDK.swift in Sources */,
 				DD135D062366D70B00E6BA98 /* GCRechargeTopView.swift in Sources */,
+				DD5D13A32373B99A005ECEC1 /* GCBannerModel.swift in Sources */,
 				DD135D042366D2FE00E6BA98 /* GCChoosePayWayView.swift in Sources */,
 				DD06FB4F22FEB5F900FC07E7 /* JYRegularExpression.swift in Sources */,
 				DDE15E3D2366878A0087540B /* GCCommentCell.swift in Sources */,
@@ -1852,7 +1877,6 @@
 				DD12B83423571703003BAA87 /* GCShopGoodsListCell.swift in Sources */,
 				DDA25103235D94AF00385E31 /* GCMessageCenterVC.swift in Sources */,
 				DD6DD3F8234EBBDF008C4FA7 /* Int+CountString.swift in Sources */,
-				DD72406D235802120043008B /* GCShopConfirmOrderVC.swift in Sources */,
 				DD706506236036D100C8ED8D /* GCPersonalMsgVC.swift in Sources */,
 				DD21DD57231CA20300F74A31 /* DateFormatterable.swift in Sources */,
 				DD6DD3ED234EB797008C4FA7 /* GCBaseVC.swift in Sources */,
@@ -1882,7 +1906,9 @@
 				E10A2AD422D5882700ADEFC9 /* JYWDownloadTool.swift in Sources */,
 				DD6DD3FB234EBBDF008C4FA7 /* UIButton+Layout.swift in Sources */,
 				DD21697F23584D5700D3E53C /* GCShopRecommendCell.swift in Sources */,
+				DD69FB5723726A2E003996D1 /* JYToastAble.swift in Sources */,
 				DD706511236047FC00C8ED8D /* GCNewUpVC.swift in Sources */,
+				DD5D13A8237409E8005ECEC1 /* GCScrollBannerView.swift in Sources */,
 				DDA308CF2361462100C6CE35 /* GCSelectPicOrVideoView.swift in Sources */,
 				DD56A5B5235EE0EC00EC3630 /* JYTagView.swift in Sources */,
 				DDA2D9E02363ED24007E965E /* GCPostCommentVC.swift in Sources */,
@@ -1900,6 +1926,7 @@
 				DD06FB4622FEB5C500FC07E7 /* JYCollectionDelegateFlowLayout.swift in Sources */,
 				DD21697B23584AD000D3E53C /* GCGoodsPriceFloatCell.swift in Sources */,
 				DD56A5BB235EEA1700EC3630 /* GCMyEstateHeaderView.swift in Sources */,
+				DD5D13AA23740BCF005ECEC1 /* GCScrollBannerCell.swift in Sources */,
 				DD6EAF1D235E97C10074A9D4 /* GCPostOrderBottomView.swift in Sources */,
 				DDA2D9DA2363D658007E965E /* GCAlertPayVC.swift in Sources */,
 				DD5E56CF2359523E004126FC /* GCTieziVC.swift in Sources */,
@@ -1928,6 +1955,7 @@
 				DDA25101235D812300385E31 /* GCPeopleHeaderView.swift in Sources */,
 				DD1484DC2356EC3800DFD6BD /* GCChatListCell.swift in Sources */,
 				DD5E56D3235953A1004126FC /* GCTieziHeaderView.swift in Sources */,
+				DD5D13A62373BB6B005ECEC1 /* GCNewActivityModel.swift in Sources */,
 				DD6DD3F9234EBBDF008C4FA7 /* UILabel+AutoFont.swift in Sources */,
 				DD724073235803970043008B /* GoodDetailHeaderView.swift in Sources */,
 				DD2E5A182361936E0091215C /* GCMemberCell.swift in Sources */,

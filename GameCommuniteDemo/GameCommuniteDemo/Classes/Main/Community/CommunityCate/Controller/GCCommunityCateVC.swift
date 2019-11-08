@@ -136,7 +136,7 @@ extension GCCommunityCateVC: UICollectionViewDelegate, UICollectionViewDataSourc
         
         let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCCommuniteCateCell.self) as GCCommuniteCateCell
         cell.delegate = self
-        cell.setModel(model)
+        cell.setModel(model, isJoin: indexPath.section == 0 ? true : false)
     
         return cell
     }
@@ -221,16 +221,19 @@ extension GCCommunityCateVC {
 
         GCNetTool.requestData(target: GCNetApi.communiteList, success: { (result) in
             
-            if let data = result["data"] as? [[String: Any]] {
-                
-                let models = Mapper<GCCommuniteModel>().mapArray(JSONArray: data)
-                let joins = models.filter{$0.isJoin == true}
-                let noJoins = models.filter{$0.isJoin == false}
-                self.listDatas = [joins, noJoins]
-                self.collectionView.reloadData()
+            var joins = [GCCommuniteModel]()
+            var noJoins = [GCCommuniteModel]()
+            
+            if let data = result["public_list"] as? [[String: Any]] {
+                noJoins = Mapper<GCCommuniteModel>().mapArray(JSONArray: data)
+            }
+            if let data = result["join_list"] as? [[String: Any]] {
+                joins = Mapper<GCCommuniteModel>().mapArray(JSONArray: data)
             }
             
+            self.listDatas = [joins, noJoins]
             
+            self.collectionView.reloadData()
             self.collectionView.mj_header.endRefreshing()
         }) { (error) in
             JYLog(error)
@@ -246,7 +249,11 @@ extension GCCommunityCateVC {
         guard let communityId = model.id else{return}
         GCNetTool.requestData(target: GCNetApi.joinCommunite(prama: String(communityId)), success: { (result) in
             
-           
+            if let msg = result["message"] as? String {
+                self.showToast(msg)
+                self.requestListData()
+            }
+
         }) { (error) in
             JYLog(error)
             

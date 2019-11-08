@@ -24,7 +24,8 @@ fileprivate struct Metric {
 }
 
 class GCShopVC: GCBaseVC {
-
+    var test: Int = 1
+    
     private var cateModels: [GCCateModel] = []
     
     ///存放各个分类下的数据
@@ -128,8 +129,12 @@ extension GCShopVC {
             make.bottom.equalToSuperview().offset(-kTabBarHeight)
         }
         
+
+        
         collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
-            
+            self.requestCatesList()
+        })
+        self.noDataView.refreshHeader = MJRefreshNormalHeader(refreshingBlock: {
             self.requestCatesList()
         })
         
@@ -260,8 +265,9 @@ extension GCShopVC {
         /**
 
         */
-        GCNetTool.requestData(target: GCNetApi.goodsCate, success: { (result) in
+        GCNetTool.requestData(target: GCNetApi.goodsCate, controller: self, showAcvitity: true, success: { (result) in
             if let data = result["data"] as? [[String: Any]] {
+                
                 let models = Mapper<GCCateModel>().mapArray(JSONArray: data)
                 self.cateModels = models
                 
@@ -297,7 +303,7 @@ extension GCShopVC {
             return
         }
         
-        GCNetTool.requestData(target: GCNetApi.goodsList(prama: cid), controller: self, showAcvitity: true, isTapAble: false, success: { (result) in
+        GCNetTool.requestData(target: GCNetApi.goodsList(prama: cid), controller: self, showAcvitity: false, isTapAble: false, success: { (result) in
             
             self.currentPages[self.selectIndex] = page
             
@@ -311,7 +317,7 @@ extension GCShopVC {
             }else {
                 let data = JSON(result)
                 if let totalPage = data["meta"]["pagination"]["total_pages"].int {
-                    if self.currentPages[self.selectIndex] >= totalPage{
+                    if self.currentPages[self.selectIndex] >= totalPage, self.currentPages[self.selectIndex] != 1{
                         self.currentPages[self.selectIndex] = totalPage
                         self.collectionView.mj_footer.endRefreshingWithNoMoreData()
                         return

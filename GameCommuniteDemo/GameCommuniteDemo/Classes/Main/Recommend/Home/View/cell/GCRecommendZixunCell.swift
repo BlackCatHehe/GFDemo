@@ -24,14 +24,14 @@ class GCRecommendZixunCell: UICollectionViewCell, NibReusable {
         // Initialization code
     }
     
-    func setModel(_ dic:[String : String]) {
+    func setModel(_ model: GCTopicModel) {
         layoutIfNeeded()
         
-        titleLb.text = dic["title"]
-        viewNumLb.text = dic["view_num"]
-        timeLb.text = dic["time"]
+        titleLb.text = model.title
+        viewNumLb.text = String(model.viewCount!)
+        timeLb.text = model.createdAt
         imageV.kfSetImage(
-            url: dic["img"]!,
+            url: model.cover!,
             targetSize: imageV.bounds.size,
             cornerRadius: adaptW(5.0)
         )

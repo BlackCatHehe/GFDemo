@@ -10,6 +10,8 @@ import UIKit
 import Reusable
 import MJRefresh
 import Kingfisher
+import ObjectMapper
+
 fileprivate struct Metric {
     static let topCellSize = CGSize(width: kScreenW - 15 * 2, height: (kScreenW - 15 * 2) * 162.0/345.0)
     static let cateSize = CGSize(width: adaptW(70.0), height: adaptW(90.0))
@@ -19,13 +21,9 @@ fileprivate struct Metric {
 
 class GCRecommendVC: GCBaseVC {
     
-    private let datas = [
-        ["title": "姜还是老的辣？", "view_num": "12523", "time": "刚刚", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
-        ["title": "魔兽世界怀旧复：玩家吵了十五年，发誓开门到底该不该收钱", "view_num": "12523", "time": "5分钟前", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
-        ["title": "姜还是老的辣？如何看待doda2高龄化现象", "view_num": "12523", "time": "刚刚", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
-        ["title": "魔兽世界怀旧复：玩家吵了十五年，发誓开门到底该不该收钱", "view_num": "12523", "time": "10-09", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"],
-        ["title": "姜还是老的辣？如何看待doda2高龄化现象", "view_num": "12523", "time": "03-12", "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"]
-    ]
+    private var bannerModels: [GCBannerModel] = []
+    private var sanModels: [GCNewActivityModel] = []
+    private var newZixunModels: [GCTopicModel] = []
     
     //MARK: ------------cyclelife------------
     override func viewDidLoad() {
@@ -83,6 +81,7 @@ extension GCRecommendVC {
 
         initNaviSearchBar()
         initCollectionView()
+        requestHomeData()
     }
     
     private func initNaviSearchBar() {
@@ -112,10 +111,10 @@ extension GCRecommendVC {
             make.bottom.equalToSuperview().offset(-kTabBarHeight)
         }
         
-//        collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
-//            self.currentPage = 1
-//            self.requestListData()
-//        })
+        collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            
+            self.requestHomeData(isFirst: false)
+        })
 //
 //
 //        collectionView.mj_footer =  MJRefreshBackNormalFooter(refreshingBlock: {
@@ -151,12 +150,14 @@ extension GCRecommendVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 3 {
-            return datas.count
+        if section == 0 {
+            return 1
         }else if section == 1{
             return 3
-        }else {
+        }else if section == 2{
             return 1
+        }else{
+            return self.newZixunModels.count
         }
     }
     
@@ -184,7 +185,7 @@ extension GCRecommendVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         if indexPath.section == 0 {
             let cell: GCHomeTopCell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCHomeTopCell.self)
             cell.delegate = self
-            cell.setModel()
+            cell.setModel(self.bannerModels)
             return cell
         }else if indexPath.section == 1 {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCCateCell.self)
@@ -195,14 +196,14 @@ extension GCRecommendVC: UICollectionViewDelegate, UICollectionViewDataSource, U
             return cell
         }else if indexPath.section == 2 {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCRecommendSanCell.self)
-            cell.setModel()
+            cell.setModel(self.sanModels)
             cell.delegate = self
             return cell
         }else {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCRecommendZixunCell.self)
-            let dic = datas[indexPath.row]
-            cell.setModel(dic)
-            
+            let model = self.newZixunModels[indexPath.row]
+            cell.setModel(model)
+
             return cell
         }
     }
@@ -281,3 +282,100 @@ extension GCRecommendVC: GCRecommendSanCellDelegate {
         showToast("点击了第\(index)个图片")
     }
 }
+
+//MARK: ------------request------------
+extension GCRecommendVC {
+    ///同步并发请求
+    private func requestHomeData(isFirst: Bool = true) {
+        
+        JYLog("home: 准备开始")
+        //如果是第一次进来显示gif刷新，否则为下拉刷新
+        if isFirst {
+            self.view.showGifLoad()
+        }
+
+        let group = DispatchGroup()
+        
+        JYLog("home: 1开始")
+        group.enter()
+        requestBanner {
+            group.leave()
+            JYLog("home: 1结束")
+        }
+        
+        JYLog("home: 2开始")
+        group.enter()
+        requestNewActivity {
+            group.leave()
+            JYLog("home: 2结束")
+        }
+        
+        JYLog("home: 3开始")
+        group.enter()
+        requestNewsZiXun {
+            group.leave()
+            JYLog("home: 3结束")
+        }
+        
+        group.notify(queue: .main) {
+            JYLog("home: 请求完成")
+            if isFirst {
+               self.view.hiddenGifLoad()
+            }else {
+                self.collectionView.mj_header.endRefreshing()
+            }
+            
+            self.collectionView.reloadData()
+        }
+    }
+    
+    
+    ///请求头部轮播图
+    private func requestBanner(success: @escaping (()->())) {
+        
+        GCNetTool.requestData(target: GCNetApi.banner(prama: ["position_id" : 1]), showAcvitity: false, success: { (result) in
+                
+            if let datas = result["data"] as? [[String: Any]] {
+                let models = Mapper<GCBannerModel>().mapArray(JSONArray: datas)
+                self.bannerModels = models
+            }
+            
+                success()
+            }) { (error) in
+                success()
+                JYLog(error)
+            }
+    }
+    ///请求中间推荐
+    private func requestNewActivity(success: @escaping (()->())) {
+        
+        GCNetTool.requestData(target: GCNetApi.centerNews, showAcvitity: false, success: { (result) in
+            if let datas = result["data"] as? [[String: Any]] {
+                let models = Mapper<GCNewActivityModel>().mapArray(JSONArray: datas)
+                self.sanModels = models
+            }
+            
+            success()
+            }) { (error) in
+                success()
+                JYLog(error)
+            }
+    }
+    ///请求推荐咨询
+    private func requestNewsZiXun(success: @escaping ()->()) {
+        
+        GCNetTool.requestData(target: GCNetApi.newsZiXun, showAcvitity: false, success: { (result) in
+            
+                if let datas = result["data"] as? [[String: Any]] {
+                    let models = Mapper<GCTopicModel>().mapArray(JSONArray: datas)
+                    self.newZixunModels = models
+                }
+            
+                success()
+            }) { (error) in
+                success()
+                JYLog(error)
+            }
+    }
+}
+

@@ -210,11 +210,11 @@
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Gsr-DY-Wvg" secondAttribute="bottom" id="AQ6-7g-OBE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Gsr-DY-Wvg" secondAttribute="trailing" id="XWA-u7-IJb"/>
+                <constraint firstItem="Gsr-DY-Wvg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="f1k-0P-abt"/>
                 <constraint firstItem="Gsr-DY-Wvg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tmU-39-8aE"/>
-                <constraint firstItem="Gsr-DY-Wvg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xzH-01-Zde"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-17" y="129"/>
+            <point key="canvasLocation" x="-170.40000000000001" y="93.103448275862078"/>
         </view>
         <tapGestureRecognizer id="id5-6N-EeO">
             <connections>

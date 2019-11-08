@@ -17,7 +17,6 @@ final class JyString<Base> {
     }
 }
 
-
 protocol JYStringAttributeable {
     associatedtype T
     
@@ -33,7 +32,7 @@ extension JYStringAttributeable {
 }
 
 extension String: JYStringAttributeable {}
-extension NSMutableAttributedString: JYStringAttributeable {}
+extension NSAttributedString: JYStringAttributeable {}
 
 extension JyString where Base == String {
     
@@ -48,6 +47,34 @@ extension JyString where Base == String {
             mAttrStr.addAttribute(NSAttributedString.Key.font, value: prama, range: range ?? resultRange)
         case is UIColor:
             mAttrStr.addAttribute(NSAttributedString.Key.foregroundColor, value: prama, range: range ?? resultRange)
+        case is CGFloat:
+            let attriPraStyle = NSMutableParagraphStyle()
+            attriPraStyle.lineSpacing = prama as! CGFloat
+            mAttrStr.addAttribute(NSAttributedString.Key.paragraphStyle, value: attriPraStyle, range: range ?? resultRange)
+        default:
+            fatalError("prama can only be UIFont or UIColor")
+        }
+        return mAttrStr.jys
+    }
+}
+
+extension JyString where Base == NSAttributedString {
+    
+    func add<T>(_ prama: T, at range: NSRange? = nil) ->JyString<NSMutableAttributedString> {
+        
+        let mAttrStr = NSMutableAttributedString(attributedString: base)
+
+        let resultRange = NSRange(location: 0, length: base.length)
+
+        switch prama.self {
+        case is UIFont:
+            mAttrStr.addAttribute(NSAttributedString.Key.font, value: prama, range: range ?? resultRange)
+        case is UIColor:
+            mAttrStr.addAttribute(NSAttributedString.Key.foregroundColor, value: prama, range: range ?? resultRange)
+        case is CGFloat:
+            let attriPraStyle = NSMutableParagraphStyle()
+            attriPraStyle.lineSpacing = prama as! CGFloat
+            mAttrStr.addAttribute(NSAttributedString.Key.paragraphStyle, value: attriPraStyle, range: range ?? resultRange)
         default:
             fatalError("prama can only be UIFont or UIColor")
         }
@@ -60,7 +87,7 @@ extension JyString where Base == NSMutableAttributedString {
     func add<T>(_ prama: T, at range: NSRange? = nil) ->JyString<NSMutableAttributedString> {
         
         let mAttrStr = base
-        
+
         let resultRange = NSRange(location: 0, length: base.length)
 
         switch prama.self {
@@ -68,9 +95,17 @@ extension JyString where Base == NSMutableAttributedString {
             mAttrStr.addAttribute(NSAttributedString.Key.font, value: prama, range: range ?? resultRange)
         case is UIColor:
             mAttrStr.addAttribute(NSAttributedString.Key.foregroundColor, value: prama, range: range ?? resultRange)
+        case is CGFloat:
+            let attriPraStyle = NSMutableParagraphStyle()
+            attriPraStyle.lineSpacing = prama as! CGFloat
+            mAttrStr.addAttribute(NSAttributedString.Key.paragraphStyle, value: attriPraStyle, range: range ?? resultRange)
         default:
             fatalError("prama can only be UIFont or UIColor")
         }
         return mAttrStr.jys
     }
 }
+//public enum ParagraphStyle {
+//    case lineSpacing(spacing: CGFloat)
+//    case lineSpacing(spacing: CGFloat)
+//}

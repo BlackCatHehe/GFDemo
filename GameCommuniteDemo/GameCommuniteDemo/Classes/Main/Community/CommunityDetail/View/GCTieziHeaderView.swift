@@ -64,7 +64,7 @@ class GCTieziHeaderView: UITableViewHeaderFooterView, Reusable {
         }
  
         iconImgV.kfSetImage(
-            url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg",
+            url: model.cover!,
             targetSize: CGSize(width: adaptW(43.0), height: adaptW(43.0)),
             cornerRadius: adaptW(43.0)/2
         )
@@ -83,7 +83,8 @@ class GCTieziHeaderView: UITableViewHeaderFooterView, Reusable {
         likeBt.setTitle(String(model.likeCount!), for: .normal)
         likeBt.layoutButton(style: .Left, imageTitleSpace: 8.0)
         
-        for i in 0..<2 {
+        guard let imgs = model.images, imgs.count > 0 else {return}
+        for i in 0..<imgs.count {
             let imageV = UIImageView()
             imageV.contentMode = .scaleAspectFill
             imageV.clipsToBounds = true
@@ -91,11 +92,12 @@ class GCTieziHeaderView: UITableViewHeaderFooterView, Reusable {
             imageV.snp.makeConstraints { (make) in
                 make.left.equalToSuperview().offset((Metric.imageW + adaptW(10.0))*CGFloat(i))
                 make.top.bottom.equalToSuperview()
+                make.width.equalTo(Metric.imageW)
                 make.height.equalTo(Metric.imageW * 129.0/167.0)
             }
             
             imageV.kfSetImage(
-                url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg",
+                url: imgs[i],
                 targetSize: CGSize(width: Metric.imageW, height: Metric.imageW * 129.0/167.0),
                 cornerRadius: adaptW(5.0)
             )

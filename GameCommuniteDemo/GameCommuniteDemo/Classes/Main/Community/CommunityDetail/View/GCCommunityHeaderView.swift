@@ -9,6 +9,7 @@
 import UIKit
 import YYText
 import Kingfisher
+import SnapKit
 protocol GCCommunityHeaderViewDelegate {
      func headerView(_ headerV: GCCommunityHeaderView, didClickJoin button: UIButton)
 }
@@ -24,6 +25,12 @@ class GCCommunityHeaderView: UIView {
     private var titleLb: UILabel!
     private var contentLb: YYLabel!
     private var memberBgView: UIView!
+    private var addBt: UIButton!
+    private var scroBannerView: GCScrollBannerView!
+    
+    private var bgImgVVBottomCon: Constraint!
+    private var bannerVBottomCon: Constraint!
+    
     /// 是否折叠contentLb
     private var isFold: Bool = true {
         didSet {
@@ -42,9 +49,22 @@ class GCCommunityHeaderView: UIView {
     }
     
     func setModel(_ model: GCCommuniteDetailModel) {
-  
+        //是否加入，如已加入则无法点击
+        addBt.setTitle(model.isJoin! ? "已加入" : "加入", for: .normal)
+        addBt.isUserInteractionEnabled = model.isJoin! ? false : true
+        
+        //是否有置顶
+        if let topTopic =  model.topTopics, topTopic.count > 0 {
+            bannerVBottomCon.update(priority: .high)
+            bgImgVVBottomCon.update(priority: .low)
+            scroBannerView.dataSource = topTopic
+        }else {
+            bannerVBottomCon.update(priority: .low)
+            bgImgVVBottomCon.update(priority: .high)
+        }
+        
         bgImageView.kfSetImage(
-            url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg",
+            url: model.cover!,
             targetSize: CGSize(width: kScreenW, height: adaptW(185.0)),
             cornerRadius: adaptW(5.0)
         )
@@ -56,8 +76,8 @@ class GCCommunityHeaderView: UIView {
         
         titleLb.text = model.name
         
+        //处理contentlb的折叠和展开
         let contentStr = model.introduce!
-        
         let pramaStyle = NSMutableParagraphStyle()
         pramaStyle.lineSpacing = adaptW(5.0)
         let content = NSMutableAttributedString(string: contentStr)
@@ -67,8 +87,8 @@ class GCCommunityHeaderView: UIView {
         content.yy_color = .white
         self.contentLabelAddExpand(content)
         
+        //处理加入成员
         let icons = model.members ?? []
-        
         let count = icons.count > 5 ? 5 : icons.count
         guard count != 0 else {return}
         for i in 0..<count {
@@ -85,7 +105,7 @@ class GCCommunityHeaderView: UIView {
             }
     
             iconImgV.kfSetImage(
-                url: model.cover!,
+                url: member.avatar!,
                 targetSize: CGSize(width: adaptW(23.0), height: adaptW(23.0)),
                 cornerRadius: adaptW(23.0/2)
             )
@@ -154,7 +174,8 @@ extension GCCommunityHeaderView {
         self.bgImageView = bgImgV
         bgImgV.snp.makeConstraints { (make) in
             make.left.right.top.equalToSuperview()
-            make.height.equalTo(adaptW(185.0))
+            make.height.equalTo(adaptW(185.0) + kStatusBarheight - 22.0)
+            bgImgVVBottomCon = make.bottom.equalToSuperview().priority(.low).constraint
         }
         
         //底部视图
@@ -194,10 +215,11 @@ extension GCCommunityHeaderView {
         addButton.layer.masksToBounds = true
         addButton.addTarget(self, action: #selector(clickJoin(_:)), for: .touchUpInside)
         bBgView.addSubview(addButton)
+        self.addBt = addButton
         
         bBgView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
-            make.top.equalTo(adaptW(90.0))
+            make.height.equalTo(adaptW(72.0))
         }
         
         addButton.snp.makeConstraints { (make) in
@@ -222,7 +244,7 @@ extension GCCommunityHeaderView {
             make.left.equalTo(iconImgV)
             make.right.equalTo(addButton.snp.left).offset(-adaptW(25.0))
             make.top.equalTo(iconImgV.snp.bottom).offset(adaptW(10.0))
-            make.bottom.equalToSuperview().offset(-adaptW(5.0))
+            make.bottom.greaterThanOrEqualToSuperview().offset(-adaptW(5.0))
         }
         
         //MARK: ------------成员------------
@@ -232,9 +254,20 @@ extension GCCommunityHeaderView {
         memberV.snp.makeConstraints { (make) in
             make.left.right.equalTo(bBgView)
             make.top.equalTo(bBgView.snp.bottom)
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(bgImgV)
         }
         self.memberBgView = memberV
+        
+        let bannerV = GCScrollBannerView()
+        bannerV.backgroundColor = MetricGlobal.mainCellBgColor
+        self.addSubview(bannerV)
+        bannerV.snp.makeConstraints { (make) in
+            make.left.right.equalTo(bBgView)
+            make.top.equalTo(bgImgV.snp.bottom).offset(adaptW(12.0))
+            make.height.equalTo(adaptW(44.0))
+            bannerVBottomCon = make.bottom.equalToSuperview().offset(-adaptW(12.0)).priority(.high).constraint
+        }
+        self.scroBannerView = bannerV
     }
 
     @objc private func clickJoin(_ sender: UIButton) {

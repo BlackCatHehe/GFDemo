@@ -27,8 +27,6 @@ public let kOSGreaterOrEqualToiOS9 = ((Double(UIDevice.current.systemVersion) ??
 public let kOSGreaterOrEqualToiOS10 = ((Double(UIDevice.current.systemVersion) ?? kiOSBase) >= 10.0 ) ? true : false;
 public let kOSGreaterOrEqualToiOS11 = ((Double(UIDevice.current.systemVersion) ?? kiOSBase) >= 11.0 ) ? true : false;
 
-
-
 // 设备宽高、机型
 public let kWindow = UIApplication.shared.keyWindow
 public let kScreenW : CGFloat = UIScreen.main.bounds.width

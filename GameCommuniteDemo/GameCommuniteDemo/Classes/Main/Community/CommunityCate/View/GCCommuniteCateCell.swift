@@ -36,12 +36,12 @@ class GCCommuniteCateCell: UICollectionViewCell, NibReusable {
     }
 
     
-    func setModel(_ model: GCCommuniteModel) {
+    func setModel(_ model: GCCommuniteModel, isJoin: Bool) {
         
         //设置是否含有添加按钮
-        addButton.isHidden = model.isJoin!
-        noButtonConstraint.priority =  model.isJoin! ? .defaultLow : .defaultHigh
-        buttonConstraint.priority =  model.isJoin! ? .defaultHigh : .defaultLow
+        addButton.isHidden = isJoin
+        noButtonConstraint.priority =  isJoin ? .defaultLow : .defaultHigh
+        buttonConstraint.priority =  isJoin ? .defaultHigh : .defaultLow
         
         self.titleLb.text = model.name
         

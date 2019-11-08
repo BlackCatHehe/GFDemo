@@ -18,7 +18,6 @@ target 'GameCommuniteDemo' do
   #UI
   pod 'MJRefresh'
   pod 'SnapKit'
-  pod 'Toast-Swift' #弹出信息
   pod 'TYCyclePagerView'
   pod 'TYPagerController'
   pod 'SDCycleScrollView'
@@ -32,6 +31,10 @@ target 'GameCommuniteDemo' do
   pod 'GrowingTextView', '0.7.0'
   pod 'YYText'
   pod 'DYFoldLabel'
+  
+  #Toast
+  pod 'Toast-Swift' #弹出信息
+  pod 'MBProgressHUD' #弹出信息
   
   #rx
   pod 'RxSwift'

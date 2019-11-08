@@ -9,17 +9,21 @@
 import UIKit
 import SnapKit
 import Toast_Swift
-
+import Kingfisher
 class GCBaseVC: UIViewController {
     
-    private lazy var noDataV: GCNoDataView = {
+    //没有数据view
+    lazy var noDataView: GCNoDataView = {
         let cView = GCNoDataView()
+        cView.imageStr = "noData"
+        cView.title = "暂无数据"
         return cView
     }()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.automaticallyAdjustsScrollViewInsets = false
         self.extendedLayoutIncludesOpaqueBars = true
         
@@ -29,22 +33,36 @@ class GCBaseVC: UIViewController {
         view.backgroundColor = MetricGlobal.mainBgColor
     }
     
-    
-    func showToast(_ msg: String, position: ToastPosition = .center) {
-        //        let bgView = UIView(frame: view.bounds)
-        //        bgView.isUserInteractionEnabled = tapEnabled
-        //        view.addSubview(bgView)
-        view.hideToast()
-        view.makeToast(msg, duration: ToastManager.shared.duration, position: position, title: nil, image: nil, style: ToastManager.shared.style)
+    //展示无数据view
+    func showNoData() {
+        view.addSubview(noDataView)
+        noDataView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+    }
+    //隐藏无数据view
+    func hiddenNoData() {
+        if view.subviews.contains(noDataView) {
+            noDataView.removeFromSuperview()
+        }
     }
     
+    ///弹出信息
+    func showToast(_ msg: String, position: ToastPosition = .center) {
+
+        view.showToast(msg, position)
+    }
+    
+    ///快速push
     func push(_ vc: UIViewController, animated: Bool = true) {
         
-        vc.hidesBottomBarWhenPushed = true
+        vc.hidesBottomBarWhenPushed = true//push时隐藏tabbar
         
         navigationController?.pushViewController(vc, animated: animated)
         
     }
+    
+    ///快速返回，无论是push进来的还是present进来的
     func dismissOrPop(_ animated: Bool = true) {
         
         if self.presentingViewController != nil {
@@ -53,9 +71,6 @@ class GCBaseVC: UIViewController {
 
             navigationController?.popViewController(animated: animated)
         }
-        
-        
-        
     }
     
     ///设置返回按钮

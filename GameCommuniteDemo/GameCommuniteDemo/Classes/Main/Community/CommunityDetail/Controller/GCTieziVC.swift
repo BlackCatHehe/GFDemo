@@ -10,6 +10,7 @@ import UIKit
 import JXPagingView
 import ObjectMapper
 import MJRefresh
+import SwiftyJSON
 class GCTieziVC: GCBaseVC {
     
     var communiteId: String?
@@ -18,13 +19,15 @@ class GCTieziVC: GCBaseVC {
     
     var tableHeaderV: UIView?
     
+    private var currentPage: Int = 1
+    
     private var scrollBlock: ((UIScrollView)->())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initTableView()
-        
+        requestTopics()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -79,9 +82,13 @@ extension GCTieziVC {
         }
         
         tableview.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            self.currentPage = 1
             self.requestTopics()
         })
-
+        tableview.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: {
+            self.currentPage += 1
+            self.requestTopics()
+        })
     }
 }
 
@@ -92,11 +99,8 @@ extension GCTieziVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        }else {
-            return section == 2 ? 2 : 0
-        }
+        let model = self.dataList[section]
+        return model.comments?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -107,7 +111,6 @@ extension GCTieziVC: UITableViewDelegate, UITableViewDataSource {
         headerV?.setModel(model)
         headerV?.delegate = self
         return headerV
-        
         
     }
     
@@ -220,15 +223,31 @@ extension GCTieziVC {
     private func requestTopics() {
         
         guard let communityId = communiteId else{return}
-        let prama = ["community_id": communityId]
-        GCNetTool.requestData(target: GCNetApi.topicList(prama: prama), success: { (result) in
-            
+        
+        let prama = ["page" : currentPage]
+        
+        GCNetTool.requestData(target: GCNetApi.topicList(tid: communityId, prama: prama), success: { (result) in
             self.tableview.mj_header.endRefreshing()
             
+            let data = JSON(result)
+            if let totalPage = data["meta"]["pagination"]["total_pages"].int {
+                if self.currentPage >= totalPage, self.currentPage != 1{
+                    self.currentPage = totalPage
+                    self.tableview.mj_footer.endRefreshingWithNoMoreData()
+                    return
+                }
+            }
+            
             let models = Mapper<GCTopicModel>().mapArray(JSONArray: result["data"] as! [[String: Any]])
-            self.dataList = models
+            if self.currentPage == 1 {
+                self.dataList = models
+            }else {
+                self.dataList.append(contentsOf: models)
+            }
+            
             
             self.tableview.reloadData()
+            self.tableview.mj_footer.endRefreshing()
         }) { (error) in
             self.tableview.mj_header.endRefreshing()
             JYLog(error)

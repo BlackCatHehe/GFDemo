@@ -22,13 +22,14 @@ enum GCNetApi {
     case register(prama: [String: String]) //注册
     case sendCode(prama: [String: String]) //发送验证码
     case getUserInfo(prama: [String: String]) //获取用户信息
+    
     //TODO: communite
     case communiteList//社区列表
     case createCommunite(prama: [String: String])//创建社区
     case joinCommunite(prama: String)//加入社区
-    case exitCommunite(prama: [String: String])//退出社区
+    case exitCommunite(prama: String)//退出社区
     case communiteDetail(prama: String)//社区详情
-    case topicList(prama: [String : String])//话题列表
+    case topicList(tid: String, prama: [String: Int])//话题列表
     case postTopic(prama: [String: String])//发布话题
     case topicDetail(prama: String)//话题详情
     case topicTapZan(prama: String)//话题点赞
@@ -48,6 +49,11 @@ enum GCNetApi {
     case createOrder(prama: [String: Any])//创建订单
     case orderList([String : String])//订单列表
     case orderPay([String : Int])//支付订单
+    
+     //TODO: recommend
+    case banner(prama: [String : Int])//推荐页轮播图
+    case centerNews//推荐页中间三项
+    case newsZiXun//推荐页最新资讯
 }
 
 extension GCNetApi: TargetType{
@@ -74,12 +80,12 @@ extension GCNetApi: TargetType{
             return "communities"
         case let .joinCommunite(communiteId):
             return "community/members/\(communiteId)"
-        case .exitCommunite:
-            return "communities"
+        case let .exitCommunite(communiteId):
+            return "community/members/\(communiteId)"
         case let .communiteDetail(communiteId):
             return "communities/\(communiteId)"
-        case .topicList:
-            return "topics"
+        case let .topicList(tid, _):
+            return "community/\(tid)/topics"
         case .postTopic:
             return "topics"
         case let .topicDetail(topicId):
@@ -114,6 +120,14 @@ extension GCNetApi: TargetType{
             return "orders"
         case .orderPay://支付订单
             return "payments"
+            
+        //TODO: recommend
+        case .banner://推荐页轮播图
+            return "ads"
+        case .centerNews://推荐页中间三项
+            return "activities/newest"
+        case .newsZiXun://推荐页最新资讯
+            return "topics/recommends"
         }
     }
     
@@ -121,7 +135,7 @@ extension GCNetApi: TargetType{
         
         switch self{
             
-        case .communiteList, .topicList, .getUserInfo, .communiteDetail, .topicDetail, .goodsCate, .goodsList, .goodsDetail, .orderList:
+        case .communiteList, .topicList, .getUserInfo, .communiteDetail, .topicDetail, .goodsCate, .goodsList, .goodsDetail, .orderList, .newsZiXun, .banner, .centerNews:
             return .get
         case .topicCancelZan:
             return .delete
@@ -153,11 +167,11 @@ extension GCNetApi: TargetType{
             return .requestParameters(parameters: prama, encoding: URLEncoding.default)
         case  .joinCommunite:
             return .requestParameters(parameters: [:], encoding: URLEncoding.default)
-        case let .exitCommunite(prama):
-            return .requestParameters(parameters: prama, encoding: URLEncoding.default)
+        case  .exitCommunite:
+            return .requestParameters(parameters: [:], encoding: URLEncoding.default)
         case let .postTopic(prama):
             return .requestParameters(parameters: prama, encoding: URLEncoding.default)
-        case let .topicList(prama):
+        case let .topicList(_, prama):
             return .requestParameters(parameters: prama, encoding: URLEncoding.default)
         case .topicDetail:
             return .requestParameters(parameters: [:], encoding: URLEncoding.default)
@@ -198,6 +212,14 @@ extension GCNetApi: TargetType{
             return .requestParameters(parameters: prama, encoding: URLEncoding.default)
         case let .orderPay(prama)://支付订单
             return .requestParameters(parameters: prama, encoding: URLEncoding.default)
+            
+        //TODO: recommend
+        case let .banner(prama)://推荐页轮播图
+            return .requestParameters(parameters: prama, encoding: URLEncoding.default)
+        case .centerNews://推荐页中间三项
+            return .requestPlain
+        case .newsZiXun://推荐页最新资讯
+            return .requestPlain
         }
     }
     
@@ -219,11 +241,13 @@ extension GCNetApi: TargetType{
 
 
 class GCNetTool {
+    static private var noNetView: GCNoNetView?
     
     static func requestData<T: TargetType>(target: T, controller: UIViewController? = nil, showAcvitity: Bool = false, isTapAble: Bool = false, success: @escaping (_ responseData: [String : Any]) ->(), fail: @escaping (_ error: MoyaError?)->()){
         
         JYLog("请求接口为: \(target.path)")
         
+        //视图的处理
         var acvitityView: UIView!
         if controller != nil {
             acvitityView = controller?.view
@@ -231,12 +255,47 @@ class GCNetTool {
             acvitityView = kWindow
         }
         
+        //无网络时显示无网络页面
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            if let net = appDelegate.netMoniter {
+                if !net.isReachable {
+                    if self.noNetView == nil {
+                        let noNetV = GCNoNetView(frame: acvitityView.bounds)
+                        noNetV.refreshClourse = {
+                            self.requestData(target: target, controller: controller, showAcvitity: showAcvitity, isTapAble: isTapAble, success: success, fail: fail)
+                        }
+                        
+                        noNetV.netMoniterClourse = {
+                            switch net.networkReachabilityStatus {
+                            case .notReachable:
+                                acvitityView.showToast("未连接到网络")
+                            case .unknown:
+                                acvitityView.showToast("未知网络")
+                            case .reachable(.ethernetOrWiFi):
+                                acvitityView.showToast("当前为wifi网络")
+                            case .reachable(.wwan):
+                                acvitityView.showToast("当前为移动网络")
+                            }
+                        }
+                        acvitityView.addSubview(noNetV)
+                        self.noNetView = noNetV
+                    }
+                    return
+                }else {
+                    self.noNetView?.removeFromSuperview()
+                    self.noNetView = nil
+                }
+                
+            }
+        }
+        
+        
         //设置请求发起者
         let provider = MoyaProvider<T>()
         
         //是否隐藏菊花
         if showAcvitity {
-            acvitityView.makeToastActivity(.center)
+            acvitityView.showGifLoad()
             acvitityView.isUserInteractionEnabled = isTapAble
         }
         
@@ -249,12 +308,10 @@ class GCNetTool {
  
                 print("===========请求成功===========")
                 if showAcvitity {
-                    acvitityView.hideToastActivity()
+                    acvitityView.hiddenGifLoad()
                     acvitityView.isUserInteractionEnabled = true
                 }
-                
-               
-                
+    
 //                if response.statusCode != 200 {
 //                    if let data = try? response.mapJSON() as? [String : Any]{
 //                        let error = data["message"] as! String
@@ -276,7 +333,7 @@ class GCNetTool {
                 print("===========请求失败==============")
                 
                 if showAcvitity {
-                    acvitityView.hideToastActivity()
+                    acvitityView.hiddenGifLoad()
                     acvitityView.isUserInteractionEnabled = true
                 }
                 

@@ -17,3 +17,12 @@ public extension String {
         return size
     }
 }
+
+public extension NSAttributedString {
+    
+    public func jy_getSizeWith(font: UIFont, maxSize: CGSize) ->CGSize{
+
+        let size = self.boundingRect(with: maxSize, options: [.usesLineFragmentOrigin], context: nil).size
+        return size
+    }
+}

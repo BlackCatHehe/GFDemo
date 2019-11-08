@@ -10,19 +10,22 @@ import UIKit
 import Toast_Swift
 import IQKeyboardManagerSwift
 import Bugly
+import Alamofire
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var isLandscape = false//是否横屏
-
+    var netMoniter: NetworkReachabilityManager?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         initRootViewController()
         configSwiftToast()
         configIQKeyboard()
         configBugly()
-        
+        configNetMoniter()
         return true
     }
     //即将进入后台
@@ -87,5 +90,23 @@ extension AppDelegate {
      private func configBugly(){
         
         Bugly.start(withAppId: MetricSDK.Bugly_appid)
+    }
+    
+    private func configNetMoniter(){
+        let net = NetworkReachabilityManager()
+        self.netMoniter = net
+        net?.startListening()
+        net?.listener = {status in
+            switch status {
+            case .notReachable:
+                JYLog("网络不可用")
+            case .unknown:
+                JYLog("未知网络")
+            case .reachable(.ethernetOrWiFi):
+                JYLog("wifi")
+            case .reachable(.wwan):
+                JYLog("移动网络")
+            }
+        }
     }
 }

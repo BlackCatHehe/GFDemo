@@ -209,7 +209,7 @@
                 <constraint firstItem="vfa-1i-lQV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dh9-Wr-kpF"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="171" y="93"/>
+            <point key="canvasLocation" x="-194" y="72"/>
         </view>
     </objects>
 </document>
