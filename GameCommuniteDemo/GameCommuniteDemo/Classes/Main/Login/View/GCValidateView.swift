@@ -98,26 +98,36 @@ extension GCValidateView: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if let counts = textField.text?.count, counts >= count {
-
-            return false
-        }
-        guard let _ = Int(string) else {return false}
+        //长度大于验证码长度，则无效输入
+        guard range.location < count else {return false}
         
+        //string == "" 表示退格,有效
+        if string == "" {return true}
+        
+        //输入非数字，则无效输入
+        guard let _ = Int(string) else {return false}
+
         return true
     }
     
     private func reloadData() {
-        for i in 0..<nums.count {
+        
+        for i in 0..<4 {
             guard  i <= count else {
                 return
             }
             
-            let num = nums[i]
-
             let lb = numLbs[i]
             
-            lb.text = num
+            if i > nums.count - 1 {
+                lb.text = nil
+            }else {
+                let num = nums[i]
+                lb.text = num
+            }
+            
+            
+            
             
         }
     }

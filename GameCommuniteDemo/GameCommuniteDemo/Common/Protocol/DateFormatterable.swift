@@ -15,7 +15,7 @@ protocol DateFormatterable {
 extension DateFormatterable where Self == String {
     func format(use format: String) -> String? {
         if let time = Int(self) {
-            let dataFormatter = MXTDateFormatter.dateFormatter
+            let dataFormatter = JYDateFormatter.dateFormatter
             dataFormatter.dateFormat = format
             let dateInterval = TimeInterval(time)
             let date = Date(timeIntervalSince1970: dateInterval)
@@ -31,7 +31,7 @@ extension DateFormatterable where Self == String {
 extension DateFormatterable where Self == Int {
     
     func format(use format: String) -> String {
-        let dataFormatter = MXTDateFormatter.dateFormatter
+        let dataFormatter = JYDateFormatter.dateFormatter
         dataFormatter.dateFormat = format
         let dateInterval = TimeInterval(self)
         let date = Date(timeIntervalSince1970: dateInterval)

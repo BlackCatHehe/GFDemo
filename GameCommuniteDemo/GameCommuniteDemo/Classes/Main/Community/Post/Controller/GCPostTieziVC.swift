@@ -15,8 +15,11 @@ class GCPostTieziVC: GCBaseVC {
     
     var communiteId: String!
     
+    private var selectedGoods: GCGoodsModel?
     private var selectedImgs: [UIImage]?
     private var selectedVideo: String?
+    
+    private var associaGoodsListVC: GCAssociationGoodsList?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,17 @@ class GCPostTieziVC: GCBaseVC {
     
     @IBAction func addAssoGoods(_ sender: UIButton) {
         let vc = GCAssociationGoodsList()
+        
+        associaGoodsListVC = vc
+        
+        vc.clickChoose = {[weak self]goods in
+            self?.selectedGoods = goods
+            
+            self?.assGoodsView.isHidden = goods == nil
+            self?.assGoodsBt.isHidden = goods != nil
+            self?.assGoodsView.goodsTitle = goods?.name
+        }
+        
         push(vc)
     }
     
@@ -75,7 +89,7 @@ class GCPostTieziVC: GCBaseVC {
         pV?.backgroundColor = MetricGlobal.mainCellBgColor
         pV?.delegate = self
         return pV
-        }()
+    }()
     
     private lazy var postBt: UIButton = {
            let button = UIButton(frame: CGRect(x: 0, y: 0, width: adaptW(70.0), height: adaptW(30.0)))
@@ -87,6 +101,14 @@ class GCPostTieziVC: GCBaseVC {
            button.layer.masksToBounds = true
            return button
        }()
+    
+    private lazy var assGoodsView: GCAssociaGoodsView = {
+       let v = GCAssociaGoodsView()
+        v.layer.cornerRadius = adaptW(15.0)
+        v.layer.masksToBounds = true
+        v.isHidden = true
+        return v
+    }()
 }
 
 extension GCPostTieziVC {
@@ -107,7 +129,8 @@ extension GCPostTieziVC {
         contentTV.placeholderColor = kRGB(r: 128, g: 126, b: 184)
         contentTV.textColor = .white
         contentTV.font = kFont(adaptW(14.0))
-        
+        contentTV.minHeight = adaptW(150.0)
+        contentTV.maxHeight = adaptW(300.0)
         
         //选择图片视频
         guard let photoV = self.photoView else {return}
@@ -120,6 +143,18 @@ extension GCPostTieziVC {
             make.bottom.equalToSuperview()
         }
         photoV.collectionView.reloadData()
+        
+        //关联商品视图
+        view.addSubview(assGoodsView)
+        assGoodsView.clickTag = {[unowned self] in
+            self.push(self.associaGoodsListVC!)
+        }
+        assGoodsView.snp.makeConstraints { (make) in
+            make.left.equalTo(assGoodsBt)
+            make.height.equalTo(adaptW(30.0))
+            make.width.lessThanOrEqualTo(adaptW(150.0))
+            make.centerY.equalTo(assGoodsBt)
+        }
     }
     
     private func initPostBt(){
@@ -135,6 +170,7 @@ extension GCPostTieziVC {
     
     private func initNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(chooseItemNoti(_:)), name: NSNotification.Name(rawValue: "ChooseItemNoti"), object: nil)
+        
     }
     
     @objc private func chooseItemNoti(_ noti: Notification) {
@@ -149,19 +185,9 @@ extension GCPostTieziVC {
         alertVC.clickChoose = {[weak self] index in
             index == 0 ? self?.photoView?.goCameraViewController() : self?.photoView?.directGoController()
         }
-        var rootVC = kWindow?.rootViewController
-        while rootVC?.presentedViewController != nil {
-            if let vc = rootVC?.presentedViewController {
-                if let nvc = vc as? UINavigationController{
-                    rootVC = nvc.visibleViewController
-                }else if let tvc = vc as? UITabBarController{
-                    rootVC = tvc.selectedViewController
-                }
-            }
-            
-        }
-        rootVC?.present(alertVC, animated: true, completion: nil)
+        present(alertVC, animated: true, completion: nil)
     }
+    
 }
 
 extension GCPostTieziVC: HXPhotoViewDelegate {
@@ -199,9 +225,6 @@ extension GCPostTieziVC {
         
         requestUpdateImage { (str) in
             
-            guard let imgPath = str else {return}
-            
-            
             /**
              {
              "id" : 3,
@@ -212,16 +235,23 @@ extension GCPostTieziVC {
              "path" : "http:\/\/res.uioj.com\/images\/apiUpload\/\/2019\/10\/e38UuOZ6oZMkD1LNc0ZeI1oXiBBHjBeL9dmGuZi8.jpeg"
              }
              */
-            let prama = ["title": title,
+            var prama: [String: Any] = ["title": title,
                          "community_id": self.communiteId!,
-                         "cover": imgPath,
-                         "body": content,
-                         "images": imgPath
+                         "body": content
             ]
+            if let imgPath = str {
+                prama["cover"] = imgPath
+                prama["images"] = imgPath
+            }
+            if let assGoodId = self.selectedGoods?.id {
+                prama["ornament_id"] = assGoodId
+            }
+            
             GCNetTool.requestData(target: GCNetApi.postTopic(prama: prama), showAcvitity: true, success: { (result) in
-                
-                let resultJson = JSON(result)
-
+                self.showToast("发布成功")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.dismissOrPop()
+                }
             }) { (error) in
                 JYLog(error)
             }

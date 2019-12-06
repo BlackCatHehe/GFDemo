@@ -25,8 +25,8 @@ class GCMyEstateHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setModel() {
-        moneyLb.text = "85645.00ETH"
+    func setModel(_ model: UserModel) {
+        moneyLb.text = "\(model.eth ?? "0.00")ETH"
         
     }
 }

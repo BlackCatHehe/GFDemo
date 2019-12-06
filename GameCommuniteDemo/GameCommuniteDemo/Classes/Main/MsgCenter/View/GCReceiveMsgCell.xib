@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,11 +28,15 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </constraint>
-                                    <constraint firstAttribute="height" constant="43" id="pH3-J0-DMF"/>
+                                    <constraint firstAttribute="height" constant="43" id="pH3-J0-DMF">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Cs-5g-lH6">
-                                <rect key="frame" x="65" y="15" width="38.5" height="15"/>
+                                <rect key="frame" x="65" y="15" width="275" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="Og1-ub-mt9">
                                         <userDefinedRuntimeAttributes>
@@ -46,24 +50,6 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
                                         <real key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BT3-71-UId">
-                                <rect key="frame" x="65" y="40" width="42" height="14"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="MqX-tp-TjR">
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </constraint>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.55686274509803924" green="0.53725490196078429" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
-                                        <real key="value" value="14"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
@@ -96,9 +82,32 @@
                                     </constraint>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BT3-71-UId">
+                                <rect key="frame" x="65" y="40" width="275" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="MqX-tp-TjR">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.55686274509803924" green="0.53725490196078429" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="YPY-NS-JrV" firstAttribute="leading" secondItem="6Cs-5g-lH6" secondAttribute="trailing" constant="20" id="5ae-zt-aJt">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
                             <constraint firstItem="YPY-NS-JrV" firstAttribute="top" secondItem="m0K-9l-dAM" secondAttribute="top" constant="12" id="Gvw-07-Sya">
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
@@ -138,6 +147,11 @@
                             </constraint>
                             <constraint firstItem="BT3-71-UId" firstAttribute="leading" secondItem="6Cs-5g-lH6" secondAttribute="leading" id="oTz-If-5G7"/>
                             <constraint firstItem="BT3-71-UId" firstAttribute="top" secondItem="6Cs-5g-lH6" secondAttribute="bottom" constant="10" id="qr0-ba-tYi">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="YPY-NS-JrV" firstAttribute="leading" secondItem="BT3-71-UId" secondAttribute="trailing" constant="20" id="tkK-Kd-iky">
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                 </userDefinedRuntimeAttributes>

@@ -22,7 +22,7 @@ fileprivate struct Metric{
 
 class GCCommunityVC: GCBaseVC {
 
-    private let titles = ["社区", "聊天", "好友"]
+    private let titles = ["社区", "聊天"]
     
 
     private let statusV: UIView = {
@@ -61,12 +61,12 @@ class GCCommunityVC: GCBaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
 
     }
 }

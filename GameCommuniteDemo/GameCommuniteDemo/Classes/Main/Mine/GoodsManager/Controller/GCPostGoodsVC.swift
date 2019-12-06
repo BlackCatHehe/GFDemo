@@ -11,6 +11,13 @@ import HXPhotoPicker
 import GrowingTextView
 import SwiftyJSON
 
+
+//*************** 根据设计图 该页面已弃用   使用GCPostNewGoodsVC代替**********
+ 
+
+
+
+
 fileprivate struct Metric {
     static let imgMargin: CGFloat = (kScreenW - adaptW(80.0)*3)/3
     static let placeholderColor: UIColor = kRGB(r: 164, g: 164, b: 192)

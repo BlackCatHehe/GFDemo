@@ -8,13 +8,24 @@
 
 import UIKit
 import SDCycleScrollView
+import ObjectMapper
+import MJRefresh
+import SwiftyJSON
+
 class GCGameUsualListVC: GCBaseVC {
+    
+    ///数据源
+    private var dataList: [GCGameModel] = []
+
+    ///轮播图数据
+    private var bannerModels: [GCBannerModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "游戏精选"
         initUI()
+        requestBanner()
     }
     
     //MARK: ------------lazyload------------
@@ -71,7 +82,7 @@ extension GCGameUsualListVC {
 //            make.right.equalToSuperview().offset(-adaptW(15.0))
 //            make.height.equalTo(adaptW(165.0))
 //        }
-        cycleImgV.imageURLStringsGroup = ["https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"]
+        
     }
     
     private func initCollectionView() {
@@ -80,22 +91,18 @@ extension GCGameUsualListVC {
         collectionView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(kStatusBarheight + kNavBarHeight)
             make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-kTabBarHeight)
+            make.bottom.equalToSuperview()
         }
         
-        //        collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
-        //            self.currentPage = 1
-        //            self.requestListData()
-        //        })
-        //
-        //
-        //        collectionView.mj_footer =  MJRefreshBackNormalFooter(refreshingBlock: {
-        //            self.currentPage += 1
-        //            self.requestListData()
-        //        })
-        //
-        //
-        //        collectionView.mj_header.beginRefreshing()
+        let header = MJRefreshNormalHeader(refreshingBlock: {
+        
+                 self.requestListData()
+             })
+        header?.ignoredScrollViewContentInsetTop = adaptW(192.0)
+        
+        collectionView.mj_header = header
+   
+        collectionView.mj_header.beginRefreshing()
     }
 }
 
@@ -107,18 +114,21 @@ extension GCGameUsualListVC: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return dataList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+        let model = dataList[indexPath.row]
         let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: GCUsualGameCell.self) as GCUsualGameCell
-        cell.setModel()
+        cell.setModel(model)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let model = dataList[indexPath.row]
+        let vc = GCGameDetailVC()
+        vc.pageModel = model
+        push(vc)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -152,4 +162,46 @@ extension GCGameUsualListVC: SDCycleScrollViewDelegate {
     func cycleScrollView(_ cycleScrollView: SDCycleScrollView!, didSelectItemAt index: Int) {
         
     }
+}
+
+//MARK: ------------request------------
+extension GCGameUsualListVC {
+    
+    ///请求数据
+    private func requestListData() {
+        GCNetTool.requestData(target: GCNetApi.hotGameList(prama: ["include" : "images,labels,characteristics"]), showAcvitity: true, success: { (result) in
+            self.collectionView.mj_header.endRefreshing()
+            
+            if let datas = result["data"] as? [[String : Any]] {
+                let models = Mapper<GCGameModel>().mapArray(JSONArray: datas)
+                self.dataList = models
+                self.collectionView.reloadData()
+            }
+            
+        }) { (error) in
+            self.collectionView.mj_header.endRefreshing()
+            JYLog(error)
+        }
+        
+    }
+    
+    ///请求头部轮播图
+    private func requestBanner() {
+        
+        GCNetTool.requestData(target: GCNetApi.banner(prama: ["position_id" : 2]), showAcvitity: false, success: { (result) in
+            
+            if let datas = result["data"] as? [[String: Any]] {
+                let models = Mapper<GCBannerModel>().mapArray(JSONArray: datas)
+ 
+                self.cycleImgV.imageURLStringsGroup = models.map{$0.cover!}
+            }
+            
+         
+        }) { (error) in
+         
+            JYLog(error)
+        }
+    }
+    
+    
 }

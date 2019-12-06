@@ -28,13 +28,13 @@ class GCUsualGameCell: UICollectionViewCell, NibReusable {
         imageV.backgroundColor = MetricGlobal.mainCellBgColor
     }
     
-    func setModel() {
-        layoutIfNeeded()
-        
-        imageV.kf.setImage(with: URL(string: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg"))
-        
-        titleLb.text = "天天天天"
-        hotBt.setTitle("1852", for: .normal)
+    func setModel(_ model: GCGameModel) {
+        if let img = model.cover {
+            imageV.kf.setImage(with: URL(string: img))
+        }
+
+        titleLb.text = model.name
+        hotBt.setTitle("\(model.score ?? 0)", for: .normal)
         hotBt.layoutButton(style: .Left, imageTitleSpace: adaptW(3.0))
     }
 

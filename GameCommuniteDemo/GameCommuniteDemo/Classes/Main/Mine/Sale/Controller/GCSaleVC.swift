@@ -21,9 +21,10 @@ fileprivate struct Metric{
 
 class GCSaleVC: GCBaseVC {
 
+    var isSale: Bool = true
+    
     private let titles = ["全部", "代付款", "代发货", "代收货", "已完成"]
     
-
     private let statusV: UIView = {
         let view = UIView(frame: .zero)
         view.backgroundColor = MetricGlobal.mainBarColor
@@ -100,15 +101,12 @@ extension GCSaleVC: TYTabPagerControllerDelegate, TYTabPagerControllerDataSource
     }
     
     func tabPagerController(_ tabPagerController: TYTabPagerController, controllerFor index: Int, prefetching: Bool) -> UIViewController {
-        switch index {
-        case 0:
-            return GCSaleListVC()
-        case 1:
-            return GCSaleListVC()
-            
-        default:
-            return GCSaleListVC()
-        }
+        
+        let vc = GCSaleListVC()
+        vc.isSale = isSale
+        vc.orderStatus = index == 0 ? nil : String(index)
+        return vc
+        
     }
     
     func tabPagerController(_ tabPagerController: TYTabPagerController, titleFor index: Int) -> String {

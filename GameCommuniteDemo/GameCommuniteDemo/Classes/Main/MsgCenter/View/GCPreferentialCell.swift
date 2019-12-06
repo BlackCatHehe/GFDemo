@@ -23,6 +23,7 @@ class GCPreferentialCell: UITableViewCell, NibReusable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         contentView.backgroundColor = MetricGlobal.mainBgColor
         
         timeBt.layer.cornerRadius = adaptW(10.0)
@@ -35,16 +36,19 @@ class GCPreferentialCell: UITableViewCell, NibReusable {
         
     }
     
-    func setModel() {
-        timeBt.setTitle("2019.09.10 11:37", for: .normal)
-        titleLb.text = "推荐成功，新人大礼包最高送7000元ddddd"
-        contentLb.text = "仅需3秒即可领取专属幸运大礼包，赶快来领取 您的礼包吧，更多惊喜等着你。"
+    func setModel(_ model: GCCheapActivityModel) {
+        timeBt.setTitle(model.target?.updatedAt, for: .normal)
+        titleLb.text = model.target?.title
+        contentLb.text = model.target?.content
         
         layoutIfNeeded()
-        imageV.kfSetImage(
-            url: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg",
-            targetSize: imageV.bounds.size,
-            cornerRadius: adaptW(10.0)
-        )
+        if let img = model.target?.cover {
+            imageV.kfSetImage(
+                url: img,
+                targetSize: imageV.bounds.size,
+                cornerRadius: adaptW(10.0)
+            )
+        }
+   
     }
 }

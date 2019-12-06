@@ -47,7 +47,7 @@ class GCBindPhoneVC: GCBaseVC {
     }
     
     @IBAction func clickOk(_ sender: UIButton) {
-        requestInfo()
+        //requestInfo()
     }
 
 }
@@ -89,15 +89,15 @@ extension GCBindPhoneVC {
 
 //MARK: ------------request------------
 extension GCBindPhoneVC {
-    
-    private func requestInfo() {
-        let prama = ["phone": self.phoneNum!]
-        GCNetTool.requestData(target: GCNetApi.getUserInfo(prama: prama), showAcvitity: true, success: { (result) in
-                   
-                   
-                   
-               }) { (error) in
-                   JYLog(error)
-               }
-    }
+//    
+//    private func requestInfo() {
+//        let prama = ["phone": self.phoneNum!]
+//        GCNetTool.requestData(target: GCNetApi.getUserInfo(prama: prama), showAcvitity: true, success: { (result) in
+//                   
+//                   
+//                   
+//               }) { (error) in
+//                   JYLog(error)
+//               }
+//    }
 }

@@ -117,7 +117,7 @@ extension GCMsgHeaderView {
     @objc private func tapCate(_ ges: UITapGestureRecognizer){
         
         if let tag = ges.view?.tag {
-            clickCateButton?(tag)
+            clickCateButton?(tag - 100)
         }
     }
 }

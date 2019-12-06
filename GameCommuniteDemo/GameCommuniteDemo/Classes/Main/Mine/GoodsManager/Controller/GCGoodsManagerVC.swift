@@ -8,7 +8,7 @@
 
 import UIKit
 import TYPagerController
-
+import ObjectMapper
 fileprivate struct Metric{
     
     static let pagerBarNormalFontSize = kFont(15.0)
@@ -21,6 +21,7 @@ fileprivate struct Metric{
 
 class GCGoodsManagerVC: GCBaseVC {
 
+    
     private let titles = ["在售中", "已下架"]
 
     private let statusV: UIView = {
@@ -110,12 +111,11 @@ extension GCGoodsManagerVC {
         
         postBt.rx.tap
             .bind{[weak self] in
-                let vc = GCPostGoodsVC()
+                let vc = GCPostNewGoodsVC()
                 self?.push(vc)
         }.disposed(by: rx.disposeBag)
     }
 }
-
 
 extension GCGoodsManagerVC: TYTabPagerControllerDelegate, TYTabPagerControllerDataSource {
     
@@ -149,3 +149,5 @@ extension GCGoodsManagerVC {
         return false
     }
 }
+
+

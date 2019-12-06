@@ -9,13 +9,23 @@
 import UIKit
 import Reusable
 import Kingfisher
+
+protocol GCCommentHeaderViewDelegate: class {
+    func headerView(_ headerView: GCCommentHeaderView, didClickLike button: UIButton)
+    func headerViewDidBeTaped(_ headerView: GCCommentHeaderView)
+}
+
 class GCCommentHeaderView: UITableViewHeaderFooterView, Reusable {
+    
+    var model: GCCommentModel?
+    
+    weak var delegate: GCCommentHeaderViewDelegate?
     
     private var iconImgView: UIImageView!
     private var titleLb: UILabel!
     private var timeLb: UILabel!
     private var contentLb: UILabel!
-    private var likeNumBt: UIButton!
+    var likeNumBt: UIButton!
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -26,17 +36,21 @@ class GCCommentHeaderView: UITableViewHeaderFooterView, Reusable {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setModel() {
-        iconImgView.kfSetImage(
-            url: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg",
-            targetSize: CGSize(width: adaptW(43.0), height: adaptW(43.0)),
-            cornerRadius: adaptW(43.0/2)
-        )
-        timeLb.text = "10分钟前"
-        titleLb.text = "有没有社会老哥出售装备的"
-        contentLb.text = "想买几套装备，有没有哪位老大哥带带我，卖点装备给我啊。"
-        likeNumBt.setTitle("990", for: .normal)
-        likeNumBt.layoutButton(style: .Left, imageTitleSpace: 2.0)
+    func setModel(_ model: GCCommentModel) {
+        self.model = model
+        if let img = model.user?.avatar {
+            iconImgView.kfSetImage(
+                url: img,
+                targetSize: CGSize(width: adaptW(43.0), height: adaptW(43.0)),
+                cornerRadius: adaptW(43.0/2)
+            )
+        }
+        timeLb.text = model.createdAt
+        titleLb.text = model.user?.name
+        contentLb.text = model.content
+        likeNumBt.setTitle("\(model.likeCount ?? 0)", for: .normal)
+        likeNumBt.layoutButton(style: .Left, imageTitleSpace: 5.0)
+        likeNumBt.isSelected = model.isLike ?? false
     }
     
 }
@@ -45,6 +59,12 @@ extension GCCommentHeaderView {
     
     private func initUI(){
 
+        backgroundColor = MetricGlobal.mainCellBgColor
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapComment))
+        addGestureRecognizer(tap)
+        
+        
         let iconImgV = UIImageView()
         iconImgV.contentMode = .scaleAspectFill
         addSubview(iconImgV)
@@ -65,7 +85,7 @@ extension GCCommentHeaderView {
         let contentLb = UILabel()
         contentLb.textColor = kRGB(r: 209, g: 208, b: 231)
         contentLb.font = kFont(adaptW(13.0))
-        contentLb.numberOfLines = 2
+        contentLb.numberOfLines = 0
         addSubview(contentLb)
         self.contentLb = contentLb
 
@@ -96,7 +116,7 @@ extension GCCommentHeaderView {
         likeBt.snp.makeConstraints { (make) in
             make.right.equalToSuperview().offset(-adaptW(15.0))
             make.centerY.equalTo(titleLb)
-            make.size.equalTo(adaptW(22.0))
+            make.height.equalTo(adaptW(22.0))
         }
         contentLb.snp.makeConstraints { (make) in
             make.left.equalTo(timeLb)
@@ -107,6 +127,11 @@ extension GCCommentHeaderView {
     }
     
     @objc func clickLike(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+        delegate?.headerView(self, didClickLike: sender)
+    
+    }
+    
+    @objc func tapComment() {
+        delegate?.headerViewDidBeTaped(self)
     }
 }

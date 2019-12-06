@@ -17,6 +17,10 @@ class JYWPrestentCustomVC: UIPresentationController {
      * 弹出controller的frame
      */
     var toFrame = CGRect.zero
+    /**
+     * dismiss是否带动画
+     */
+    var isDismissAnimateable = true
     
     /**
      * 遮罩view
@@ -56,7 +60,7 @@ extension JYWPrestentCustomVC {
         
         tap.rx.event
             .subscribe{[weak self]tap in
-               self?.presentingViewController.dismiss(animated: true, completion: nil)
+                self?.presentingViewController.dismiss(animated: self?.isDismissAnimateable ?? true, completion: nil)
         }.disposed(by: rx.disposeBag)
         
         // 获取presentingViewController 的转换协调器，负责动画的一个东西
@@ -109,7 +113,7 @@ extension JYWPrestentCustomVC {
         super.containerViewWillLayoutSubviews()
         
         if let frame = containerView?.frame {
-            maskView?.frame = CGRect(x: 0, y: kStatusBarheight + kNavBarHeight, width: frame.width, height: frame.height - kStatusBarheight - kNavBarHeight)
+            maskView?.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         }
 
     }

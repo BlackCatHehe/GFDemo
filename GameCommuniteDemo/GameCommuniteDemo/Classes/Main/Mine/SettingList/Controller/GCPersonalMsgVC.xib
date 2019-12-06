@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,15 +52,8 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="base_more" translatesAutoresizingMaskIntoConstraints="NO" id="x0z-w4-fsp">
-                                            <rect key="frame" x="340" y="18.5" width="20" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="DoZ-bx-Ycl"/>
-                                                <constraint firstAttribute="height" constant="20" id="OlB-ob-vLp"/>
-                                            </constraints>
-                                        </imageView>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8is-CH-b1d">
-                                            <rect key="frame" x="135" y="20" width="200" height="17"/>
+                                            <rect key="frame" x="160" y="20" width="200" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="HpP-nP-d5j">
                                                     <userDefinedRuntimeAttributes>
@@ -77,18 +70,16 @@
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="o5A-9X-w51" secondAttribute="bottom" id="00B-A3-j84"/>
                                         <constraint firstItem="deb-WN-66E" firstAttribute="centerY" secondItem="gev-ns-XOL" secondAttribute="centerY" id="1XR-DN-S1e"/>
-                                        <constraint firstAttribute="trailing" secondItem="x0z-w4-fsp" secondAttribute="trailing" constant="15" id="BUG-sG-Tyz">
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </constraint>
-                                        <constraint firstItem="x0z-w4-fsp" firstAttribute="leading" secondItem="8is-CH-b1d" secondAttribute="trailing" constant="5" id="F6m-eH-3vR"/>
                                         <constraint firstItem="deb-WN-66E" firstAttribute="leading" secondItem="gev-ns-XOL" secondAttribute="leading" constant="15" id="QJi-x9-Y3Y">
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </constraint>
-                                        <constraint firstItem="x0z-w4-fsp" firstAttribute="centerY" secondItem="gev-ns-XOL" secondAttribute="centerY" id="TFx-rG-0cv"/>
+                                        <constraint firstAttribute="trailing" secondItem="8is-CH-b1d" secondAttribute="trailing" constant="15" id="WMp-bH-t6W">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </constraint>
                                         <constraint firstItem="deb-WN-66E" firstAttribute="centerY" secondItem="gev-ns-XOL" secondAttribute="centerY" id="ZpJ-np-O2B"/>
                                         <constraint firstAttribute="trailing" secondItem="o5A-9X-w51" secondAttribute="trailing" id="b5g-up-b8C"/>
                                         <constraint firstAttribute="height" constant="57" id="fLx-6Z-t4K">
@@ -128,7 +119,7 @@
                                                 <constraint firstAttribute="height" constant="20" id="ebA-Ig-2MA"/>
                                             </constraints>
                                         </imageView>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zqn-ve-hra">
+                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zqn-ve-hra">
                                             <rect key="frame" x="135" y="20" width="200" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="KQv-5R-I86">
@@ -143,6 +134,7 @@
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" red="0.1058823529" green="0.1019607843" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstItem="GkQ-dS-yUo" firstAttribute="leading" secondItem="zqn-ve-hra" secondAttribute="trailing" constant="5" id="51i-ER-ENP"/>
                                         <constraint firstItem="qeq-sG-3gd" firstAttribute="centerY" secondItem="Cbg-HX-yrn" secondAttribute="centerY" id="7Kw-NR-6CU"/>
@@ -168,6 +160,9 @@
                                             </userDefinedRuntimeAttributes>
                                         </constraint>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="eQd-x5-JEv" appends="YES" id="XYx-Fn-mdZ"/>
+                                    </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPU-3V-1dA">
                                     <rect key="frame" x="0.0" y="184" width="375" height="57"/>
@@ -190,7 +185,7 @@
                                                 <constraint firstAttribute="height" constant="20" id="w3g-cd-F0S"/>
                                             </constraints>
                                         </imageView>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tBR-lj-7Sd">
+                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tBR-lj-7Sd">
                                             <rect key="frame" x="135" y="20" width="200" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="15Z-YC-JwU">
@@ -205,6 +200,7 @@
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" red="0.1058823529" green="0.1019607843" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstItem="dca-Ep-9qD" firstAttribute="centerY" secondItem="HPU-3V-1dA" secondAttribute="centerY" id="0yz-Vs-5jJ"/>
                                         <constraint firstItem="dca-Ep-9qD" firstAttribute="leading" secondItem="HPU-3V-1dA" secondAttribute="leading" constant="15" id="1dI-gE-veG">
@@ -227,6 +223,9 @@
                                         <constraint firstItem="8BV-JP-jxL" firstAttribute="leading" secondItem="tBR-lj-7Sd" secondAttribute="trailing" constant="5" id="wBn-SB-7Bi"/>
                                         <constraint firstItem="tBR-lj-7Sd" firstAttribute="centerY" secondItem="HPU-3V-1dA" secondAttribute="centerY" id="xYg-xR-AqP"/>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="gJP-SE-rJM" appends="YES" id="bmD-8J-AbN"/>
+                                    </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sP8-Na-5f3">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
@@ -269,6 +268,7 @@
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.1058823529" green="0.1019607843" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstItem="jbj-eE-KDm" firstAttribute="leading" secondItem="sP8-Na-5f3" secondAttribute="leading" constant="15" id="1DW-CD-nMX"/>
                                         <constraint firstItem="5zA-Yg-FhJ" firstAttribute="leading" secondItem="sP8-Na-5f3" secondAttribute="leading" constant="15" id="3W2-uu-ubS">
@@ -298,6 +298,9 @@
                                             </userDefinedRuntimeAttributes>
                                         </constraint>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="QSA-Xt-Ong" appends="YES" id="UF8-AK-kNo"/>
+                                    </connections>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -348,15 +351,8 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="base_more" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-v6-qxM">
-                                            <rect key="frame" x="340" y="18.5" width="20" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="KDq-F3-gKJ"/>
-                                                <constraint firstAttribute="height" constant="20" id="Y4U-h6-baa"/>
-                                            </constraints>
-                                        </imageView>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dTR-ms-Ltu">
-                                            <rect key="frame" x="135" y="20" width="200" height="17"/>
+                                            <rect key="frame" x="160" y="20" width="200" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="5eH-Nd-aKE">
                                                     <userDefinedRuntimeAttributes>
@@ -371,20 +367,18 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.1058823529" green="0.1019607843" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="UD5-v6-qxM" firstAttribute="centerY" secondItem="KEv-bb-gHh" secondAttribute="centerY" id="64D-9R-TeU"/>
                                         <constraint firstItem="l4m-cM-rjd" firstAttribute="leading" secondItem="KEv-bb-gHh" secondAttribute="leading" constant="15" id="8HT-3g-SXc">
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </constraint>
                                         <constraint firstItem="l4m-cM-rjd" firstAttribute="centerY" secondItem="KEv-bb-gHh" secondAttribute="centerY" id="Eir-2J-UtT"/>
-                                        <constraint firstItem="dTR-ms-Ltu" firstAttribute="centerY" secondItem="KEv-bb-gHh" secondAttribute="centerY" id="JbF-9R-BuG"/>
-                                        <constraint firstAttribute="trailing" secondItem="UD5-v6-qxM" secondAttribute="trailing" constant="15" id="MaI-zG-i0b">
+                                        <constraint firstAttribute="trailing" secondItem="dTR-ms-Ltu" secondAttribute="trailing" constant="15" id="Epu-IY-MiM">
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </constraint>
-                                        <constraint firstItem="UD5-v6-qxM" firstAttribute="leading" secondItem="dTR-ms-Ltu" secondAttribute="trailing" constant="5" id="TmU-ly-FQM"/>
+                                        <constraint firstItem="dTR-ms-Ltu" firstAttribute="centerY" secondItem="KEv-bb-gHh" secondAttribute="centerY" id="JbF-9R-BuG"/>
                                         <constraint firstAttribute="bottom" secondItem="IXF-h2-9Nw" secondAttribute="bottom" id="Utu-Vb-ECb"/>
                                         <constraint firstAttribute="height" constant="57" id="fVE-n4-kLk">
                                             <userDefinedRuntimeAttributes>
@@ -417,15 +411,8 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="base_more" translatesAutoresizingMaskIntoConstraints="NO" id="RM2-bm-FOk">
-                                            <rect key="frame" x="340" y="18.5" width="20" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="iOD-4n-wPA"/>
-                                                <constraint firstAttribute="width" constant="20" id="piD-nO-QAP"/>
-                                            </constraints>
-                                        </imageView>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="okb-kY-TSX">
-                                            <rect key="frame" x="135" y="20" width="200" height="17"/>
+                                            <rect key="frame" x="160" y="20" width="200" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="z49-Wa-NPo">
                                                     <userDefinedRuntimeAttributes>
@@ -441,13 +428,7 @@
                                     <color key="backgroundColor" red="0.1058823529" green="0.1019607843" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="NB7-nb-DUG" secondAttribute="bottom" id="18a-b4-hC5"/>
-                                        <constraint firstAttribute="trailing" secondItem="RM2-bm-FOk" secondAttribute="trailing" constant="15" id="51y-Kk-sqD">
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </constraint>
                                         <constraint firstAttribute="trailing" secondItem="NB7-nb-DUG" secondAttribute="trailing" id="9rp-cW-mpY"/>
-                                        <constraint firstItem="RM2-bm-FOk" firstAttribute="centerY" secondItem="4Dw-xA-ZNK" secondAttribute="centerY" id="D4P-yr-h0f"/>
                                         <constraint firstItem="okb-kY-TSX" firstAttribute="centerY" secondItem="4Dw-xA-ZNK" secondAttribute="centerY" id="MLW-yr-GRF"/>
                                         <constraint firstItem="C1Y-Ae-ltf" firstAttribute="leading" secondItem="4Dw-xA-ZNK" secondAttribute="leading" constant="15" id="RB1-J5-4xA">
                                             <userDefinedRuntimeAttributes>
@@ -462,7 +443,11 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </constraint>
-                                        <constraint firstItem="RM2-bm-FOk" firstAttribute="leading" secondItem="okb-kY-TSX" secondAttribute="trailing" constant="5" id="mZE-nm-OG4"/>
+                                        <constraint firstAttribute="trailing" secondItem="okb-kY-TSX" secondAttribute="trailing" constant="15" id="tUS-1S-Lv2">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </constraint>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkV-X2-lac">
@@ -479,15 +464,8 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="base_more" translatesAutoresizingMaskIntoConstraints="NO" id="GkA-HL-zDd">
-                                            <rect key="frame" x="340" y="18.5" width="20" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="71w-aK-nWc"/>
-                                                <constraint firstAttribute="height" constant="20" id="NrF-Uv-LaD"/>
-                                            </constraints>
-                                        </imageView>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h2z-xb-lem">
-                                            <rect key="frame" x="135" y="20" width="200" height="17"/>
+                                            <rect key="frame" x="160" y="20" width="200" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="ALO-LX-9hp">
                                                     <userDefinedRuntimeAttributes>
@@ -504,14 +482,8 @@
                                     <constraints>
                                         <constraint firstItem="O3h-2G-IQP" firstAttribute="centerY" secondItem="jkV-X2-lac" secondAttribute="centerY" id="1YO-7i-ufc"/>
                                         <constraint firstItem="h2z-xb-lem" firstAttribute="centerY" secondItem="jkV-X2-lac" secondAttribute="centerY" id="3gC-bY-jnd"/>
-                                        <constraint firstItem="GkA-HL-zDd" firstAttribute="centerY" secondItem="jkV-X2-lac" secondAttribute="centerY" id="Aje-Up-Bgo"/>
                                         <constraint firstItem="O3h-2G-IQP" firstAttribute="centerY" secondItem="jkV-X2-lac" secondAttribute="centerY" id="ApM-3v-i0N"/>
                                         <constraint firstItem="O3h-2G-IQP" firstAttribute="leading" secondItem="jkV-X2-lac" secondAttribute="leading" constant="15" id="Qjt-O9-Oox">
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </constraint>
-                                        <constraint firstAttribute="trailing" secondItem="GkA-HL-zDd" secondAttribute="trailing" constant="15" id="RwQ-fh-wfE">
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                             </userDefinedRuntimeAttributes>
@@ -521,7 +493,11 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </constraint>
-                                        <constraint firstItem="GkA-HL-zDd" firstAttribute="leading" secondItem="h2z-xb-lem" secondAttribute="trailing" constant="5" id="hd1-Hy-8KM"/>
+                                        <constraint firstAttribute="trailing" secondItem="h2z-xb-lem" secondAttribute="trailing" constant="15" id="ngX-5s-Tn1">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </constraint>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -577,6 +553,21 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="112.8" y="106.59670164917542"/>
         </view>
+        <tapGestureRecognizer id="eQd-x5-JEv">
+            <connections>
+                <action selector="tapChooseSex:" destination="-1" id="cbw-OV-9Fg"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="gJP-SE-rJM">
+            <connections>
+                <action selector="tapChooseBir:" destination="-1" id="1s8-87-vxZ"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="QSA-Xt-Ong">
+            <connections>
+                <action selector="tapChooseImg:" destination="-1" id="7M6-QN-uo4"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="base_more" width="20" height="20"/>

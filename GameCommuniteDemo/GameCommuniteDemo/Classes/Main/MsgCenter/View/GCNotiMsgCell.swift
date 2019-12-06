@@ -22,17 +22,18 @@ class GCNotiMsgCell: UITableViewCell, NibReusable {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        selectionStyle = .none
         contentView.backgroundColor = MetricGlobal.mainBgColor
         bgView.backgroundColor = MetricGlobal.mainCellBgColor
         bgView.layer.cornerRadius = adaptW(5.0)
         bgView.layer.masksToBounds = true
     }
 
-    func setModel() {
+    func setModel(_ model: GCNotiModel) {
         
-        titleLb.text = "新人大礼包"
-        timeLb.text = "2019-9-11"
-        contentLb.text = "首次下载软件即享受会员优惠价格首次下载软件即享 受会员优惠价格首次下载软件即享受会员优惠价格首 次下载软件即享受会员优惠价格"
+        titleLb.text = model.title
+        timeLb.text = model.updatedAt
+        contentLb.text = model.content
         
         
     }

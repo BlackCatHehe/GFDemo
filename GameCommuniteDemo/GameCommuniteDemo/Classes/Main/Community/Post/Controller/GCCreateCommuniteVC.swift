@@ -88,7 +88,7 @@ extension GCCreateCommuniteVC {
         contentTV.placeholderColor = kRGB(r: 128, g: 126, b: 184)
         contentTV.font = kFont(adaptW(14.0))
         contentTV.textColor = kRGB(r: 128, g: 126, b: 184)
-        contentTV.maxLength = 300
+        contentTV.maxLength = 60
         contentTV.delegate = self
         
         coyntNumLb.text = "0/300"
@@ -184,7 +184,7 @@ extension GCCreateCommuniteVC {
 extension GCCreateCommuniteVC: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
-        self.coyntNumLb.text = "\(textView.text.count)/300"
+        self.coyntNumLb.text = "\(textView.text.count)/60"
     }
 }
 

@@ -10,22 +10,21 @@
 extension Int {
     
     // MARK:- 数字转字符串大法
-    func countString(count: Int64) -> String{
-        
+    func countString() -> String{
         var countStr = ""
-        if count < 10000{
-            countStr = String(format: "%i", count)
-        }else if count >= 10000 && count < 100000000{
-            countStr = String(format: "%.1f万", Double(count) / 10000.0)
+        if self < 10000{
+            countStr = String(format: "%i", self)
+        }else if self >= 10000 && self < 100000000{
+            countStr = String(format: "%.1f万", Double(self) / 10000.0)
         }else{
-            countStr = String(format: "%.1f亿", Double(count) / 100000000.0)
+            countStr = String(format: "%.1f亿", Double(self) / 100000000.0)
         }
         return countStr
     }
     
     func formatTimeStamp(with format: String) -> String{
         
-        let dataFormatter = MXTDateFormatter.dateFormatter
+        let dataFormatter = JYDateFormatter.dateFormatter
         dataFormatter.dateFormat = format
         let dateInterval = TimeInterval(self)
         

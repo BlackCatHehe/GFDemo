@@ -9,3 +9,8 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "JYVerityCodeView.h"
 #import "Demo2ViewController.h"
+
+#import <UMCommon/UMCommon.h>
+#import <UMCommonLog/UMCommonLogManager.h>
+#import <UMShare/UMShare.h>
+

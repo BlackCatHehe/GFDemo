@@ -125,7 +125,10 @@ extension GCLoginVC {
         
         GCNetTool.requestData(target: GCNetApi.sendCode(prama: prama), showAcvitity: true, success: { (result) in
             
-            let veriKey = result["key"] as! String
+            guard let veriKey = result["key"] as? String else {
+                self.showToast("登录出错")
+                return
+            }
             
             let vc = GCValidateCodeVC()
             vc.verikey = veriKey

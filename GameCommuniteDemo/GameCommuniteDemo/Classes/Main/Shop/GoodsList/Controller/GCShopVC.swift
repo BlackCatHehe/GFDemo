@@ -12,6 +12,7 @@ import SnapKit
 import ObjectMapper
 import MJRefresh
 import SwiftyJSON
+
 fileprivate struct Metric {
     static let goodsItemSize = CGSize(width: (kScreenW - 15 * 2 - 10)/2, height: (kScreenW - 15 * 2 - 10)/2 * 103.0/167.0 + adaptW(47.0 + 10.0))
     
@@ -126,18 +127,17 @@ extension GCShopVC {
         collectionView.snp.makeConstraints { (make) in
             make.top.equalTo(tagView.snp.bottom).offset(adaptW(10.0))
             make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-kTabBarHeight)
+            make.bottom.equalToSuperview().offset(-kTabBarHeight - kBottomH)
         }
         
 
-        
         collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.requestCatesList()
         })
-        self.noDataView.refreshHeader = MJRefreshNormalHeader(refreshingBlock: {
+        
+        noDataView.refreshHeader = MJRefreshNormalHeader(refreshingBlock: {
             self.requestCatesList()
         })
-        
         
         collectionView.mj_footer =  MJRefreshBackNormalFooter(refreshingBlock: {
             
@@ -147,7 +147,6 @@ extension GCShopVC {
                 self.requestGoodsList(with: cidStr, page: self.currentPages[self.selectIndex] + 1)
             }
         })
-        
     }
 }
 
@@ -180,6 +179,7 @@ extension GCShopVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         
         let detailVC = GCShopGoodsDetailVC()
         detailVC.gid = gid
+        detailVC.isMyItems = false
         push(detailVC)
     }
     
@@ -234,12 +234,13 @@ extension GCShopVC {
         //将点击的按钮赋值给selectindex
         selectIndex = tag
         if self.goodsList[selectIndex].count != 0 {
+            JYLog("点击了  \(selectIndex)")
             self.collectionView.reloadData()
             return
         }
-        if let cid = self.cateModels[selectIndex].id{
+        if let cid = cateModels[selectIndex].id{
             let cidStr = String(cid)
-            self.requestGoodsList(with: cidStr, page: self.currentPages[self.selectIndex])
+            self.requestGoodsList(with: cidStr, page: currentPages[selectIndex])
         }
     }
     
@@ -266,6 +267,8 @@ extension GCShopVC {
 
         */
         GCNetTool.requestData(target: GCNetApi.goodsCate, controller: self, showAcvitity: true, success: { (result) in
+            self.collectionView.mj_header.endRefreshing()
+            
             if let data = result["data"] as? [[String: Any]] {
                 
                 let models = Mapper<GCCateModel>().mapArray(JSONArray: data)
@@ -287,7 +290,7 @@ extension GCShopVC {
                     let cidStr = String(cid)
                     self.requestGoodsList(with: cidStr, page: 1)
                 }
-                self.collectionView.mj_header.endRefreshing()
+                
             }
            
         }) { (error) in
@@ -303,7 +306,10 @@ extension GCShopVC {
             return
         }
         
-        GCNetTool.requestData(target: GCNetApi.goodsList(prama: cid), controller: self, showAcvitity: false, isTapAble: false, success: { (result) in
+        let prama: [String: Any] = ["category_id" : cid,
+                                    "page" : page]
+        GCNetTool.requestData(target: GCNetApi.goodsList(prama: prama), controller: self, showAcvitity: false, isTapAble: false, success: { (result) in
+            self.collectionView.mj_footer.endRefreshing()
             
             self.currentPages[self.selectIndex] = page
             
@@ -323,7 +329,7 @@ extension GCShopVC {
                         return
                     }
                 }
-                self.collectionView.mj_footer.endRefreshing()
+                
                 if let datas = result["data"] as? [[String: Any]] {
                     
                     let models = Mapper<GCGoodsModel>().mapArray(JSONArray: datas)
@@ -333,7 +339,7 @@ extension GCShopVC {
             }
 
         }) { (error) in
-            
+            self.collectionView.mj_footer.endRefreshing()
         }
         
     }

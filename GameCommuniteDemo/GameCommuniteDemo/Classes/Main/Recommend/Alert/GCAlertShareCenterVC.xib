@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -156,6 +156,11 @@
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </constraint>
+                                <constraint firstAttribute="height" constant="115.5" id="UrH-rI-DBK">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
                                 <constraint firstAttribute="trailing" secondItem="PZx-TG-A66" secondAttribute="trailing" constant="22" id="ZJP-RT-z0F">
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
@@ -219,7 +224,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ivq-uv-IRL" secondAttribute="trailing" id="yDe-6Y-ai2"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="131.8840579710145" y="153.34821428571428"/>
+            <point key="canvasLocation" x="-143" y="169"/>
         </view>
         <tapGestureRecognizer id="c2A-Eq-Tcg">
             <connections>

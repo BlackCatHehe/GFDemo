@@ -18,7 +18,7 @@ class GCMineHeaderView: UIView {
     private var idLabel: UILabel!
     private var moneyLb: UILabel!
     
-    private var chartView: GCChartView!
+   // private var chartView: GCChartView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,14 +30,16 @@ class GCMineHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setModel() {
+    func setModel(_ model: UserModel) {
         
         topBgImgV.image = UIImage(named: "mine_top_bg")
         
-        iconView.kfSetImage(url: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2157737149,3401931137&fm=26&gp=0.jpg", targetSize: CGSize(width: adaptW(55.0), height: adaptW(55.0)), cornerRadius: adaptW(55.0)/2)
-        nameLb.text = "美嘟嘟"
-        idLabel.text = "ID:5155956"
-        moneyLb.text = "85645.00ETH"
+        if let avatar = model.avatar{
+            iconView.kfSetImage(url: avatar, targetSize: CGSize(width: adaptW(55.0), height: adaptW(55.0)), cornerRadius: adaptW(55.0)/2)
+        }
+        nameLb.text = model.name
+        idLabel.text = "ID:\(model.id!)"
+        moneyLb.text = "\(model.eth ?? "0.00")ETH"
     }
 }
 
@@ -142,36 +144,36 @@ extension GCMineHeaderView {
             make.size.equalTo(CGSize(width: adaptW(20.0), height: adaptW(20.0)))
         }
         
-        //MARK: ------------lineChart------------
-        let chartBgView = UIView()
-        chartBgView.backgroundColor = MetricGlobal.mainCellBgColor
-        self.addSubview(chartBgView)
+//        //MARK: ------------lineChart------------
+//        let chartBgView = UIView()
+//        chartBgView.backgroundColor = MetricGlobal.mainCellBgColor
+//        self.addSubview(chartBgView)
+//
+//        let chartLb = UILabel()
+//        chartLb.font = kFont(adaptW(15.0), MetricGlobal.mainMediumFamily)
+//        chartLb.textColor = .white
+//        chartLb.text = "最近7天ETH走势"
+//        chartBgView.addSubview(chartLb)
         
-        let chartLb = UILabel()
-        chartLb.font = kFont(adaptW(15.0), MetricGlobal.mainMediumFamily)
-        chartLb.textColor = .white
-        chartLb.text = "最近7天ETH走势"
-        chartBgView.addSubview(chartLb)
-        
-        let chartV = GCChartView()
-        chartBgView.addSubview(chartV)
-        
-        chartBgView.snp.makeConstraints { (make) in
-            make.top.equalTo(estateBgV.snp.bottom).offset(adaptW(12.0))
-            make.left.right.equalToSuperview()
-            make.height.equalTo(adaptW(246.0))
-        }
-        chartLb.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(adaptW(15.0))
-            make.top.equalToSuperview().offset(adaptW(10.0))
-            make.height.equalTo(adaptW(14.0))
-        }
-        chartV.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(adaptW(15.0))
-            make.right.equalToSuperview().offset(-adaptW(15.0))
-            make.top.equalTo(chartLb.snp.bottom).offset(adaptW(12.0))
-            make.bottom.equalToSuperview().offset(-adaptW(15.0))
-        }
+//        let chartV = GCChartView()
+//        chartBgView.addSubview(chartV)
+//
+//        chartBgView.snp.makeConstraints { (make) in
+//            make.top.equalTo(estateBgV.snp.bottom).offset(adaptW(12.0))
+//            make.left.right.equalToSuperview()
+//            make.height.equalTo(adaptW(246.0))
+//        }
+//        chartLb.snp.makeConstraints { (make) in
+//            make.left.equalToSuperview().offset(adaptW(15.0))
+//            make.top.equalToSuperview().offset(adaptW(10.0))
+//            make.height.equalTo(adaptW(14.0))
+//        }
+//        chartV.snp.makeConstraints { (make) in
+//            make.left.equalToSuperview().offset(adaptW(15.0))
+//            make.right.equalToSuperview().offset(-adaptW(15.0))
+//            make.top.equalTo(chartLb.snp.bottom).offset(adaptW(12.0))
+//            make.bottom.equalToSuperview().offset(-adaptW(15.0))
+//        }
     }
     
     @objc private func tapEnterMyEState() {

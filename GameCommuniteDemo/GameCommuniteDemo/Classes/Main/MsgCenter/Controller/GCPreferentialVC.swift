@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import ObjectMapper
+import SwiftyJSON
+import MJRefresh
 
 class GCPreferentialVC: GCBaseVC {
+    
+    private var dataList: [GCCheapActivityModel] = []
+    private var currentPage: Int = 1
     
     //MARK: - lazyload
     private lazy var tableview: UITableView = {[weak self] in
@@ -56,10 +62,20 @@ extension GCPreferentialVC {
         tableview.register(cellType: GCPreferentialCell.self)
         view.addSubview(tableview)
         tableview.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(kStatusBarheight + kNavBarHeight)
             make.left.right.equalToSuperview()
             make.height.equalTo(kScreenH - kStatusBarheight - kNavBarHeight)
         }
+        
+        tableview.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            self.currentPage = 1
+            self.requestMsgListData()
+        })
+        tableview.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: {
+            self.currentPage += 1
+            self.requestMsgListData()
+        })
+        tableview.mj_header.beginRefreshing()
     }
 }
 
@@ -70,12 +86,13 @@ extension GCPreferentialVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dataList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = dataList[indexPath.row]
         let cell: GCPreferentialCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCPreferentialCell.self)
-        cell.setModel()
+        cell.setModel(model)
         return cell
     }
     
@@ -84,7 +101,51 @@ extension GCPreferentialVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = dataList[indexPath.row]
+        
+        guard let jumpUrl = model.target?.url else {return}
+        
+        let pageVc = JYWWKWebViewController()
+        pageVc.title = model.target?.title
+        pageVc.openUrl = URL(string: jumpUrl)
+        push(pageVc)
         
     }
     
+}
+
+extension GCPreferentialVC {
+    
+    private func requestMsgListData() {
+        
+        let prama = ["page": currentPage]
+        
+        GCNetTool.requestData(target: GCNetApi.cheaperActivities(prama: prama), success: { (result) in
+            
+            self.tableview.mj_header.endRefreshing()
+            
+            let data = JSON(result)
+            if let totalPage = data["meta"]["pagination"]["total_pages"].int {
+                if self.currentPage >= totalPage, self.currentPage != 1{
+                    self.currentPage = totalPage
+                    self.tableview.mj_footer.endRefreshingWithNoMoreData()
+                    return
+                }
+            }
+            
+            let models = Mapper<GCCheapActivityModel>().mapArray(JSONArray: result["data"] as! [[String: Any]])
+            if self.currentPage == 1 {
+                self.dataList = models
+            }else {
+                self.dataList.append(contentsOf: models)
+            }
+            
+            self.tableview.reloadData()
+            self.tableview.mj_footer.endRefreshing()
+        }) { (error) in
+            self.tableview.mj_header.endRefreshing()
+            JYLog(error)
+            
+        }
+    }
 }

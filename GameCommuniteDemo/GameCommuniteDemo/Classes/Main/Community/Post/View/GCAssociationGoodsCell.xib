@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -171,13 +171,13 @@
                             </constraint>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbo-ic-6MD">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbo-ic-6MD">
                         <rect key="frame" x="15" y="52" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="VdO-uO-2bC"/>
                             <constraint firstAttribute="width" constant="20" id="dRf-Id-7Lz"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
+                        <state key="normal" image="check_noSel"/>
                     </button>
                 </subviews>
                 <constraints>
@@ -218,10 +218,11 @@
                 <outlet property="selectedBt" destination="vbo-ic-6MD" id="1L9-nV-Ww1"/>
                 <outlet property="subTitleLb" destination="Pvs-Hn-I5G" id="gZ3-Na-jOC"/>
             </connections>
-            <point key="canvasLocation" x="17" y="166"/>
+            <point key="canvasLocation" x="-78" y="154"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="check_noSel" width="20" height="20"/>
         <image name="shop_jinbi" width="17" height="16"/>
     </resources>
 </document>

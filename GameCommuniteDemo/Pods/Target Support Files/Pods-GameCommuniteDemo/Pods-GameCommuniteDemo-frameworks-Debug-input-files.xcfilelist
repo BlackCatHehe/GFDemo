@@ -14,6 +14,7 @@ ${BUILT_PRODUCTS_DIR}/LZImageBrowser/LZImageBrowser.framework
 ${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework
 ${BUILT_PRODUCTS_DIR}/Moya/Moya.framework
+${PODS_ROOT}/NIMSDK_LITE/NIMSDK/NIMSDK.framework
 ${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework
 ${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework
 ${BUILT_PRODUCTS_DIR}/PlaceholderTextView/PlaceholderTextView.framework
@@ -26,6 +27,7 @@ ${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
+${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework
 ${BUILT_PRODUCTS_DIR}/TYCyclePagerView/TYCyclePagerView.framework
 ${BUILT_PRODUCTS_DIR}/TYPagerController/TYPagerController.framework
 ${BUILT_PRODUCTS_DIR}/Then/Then.framework

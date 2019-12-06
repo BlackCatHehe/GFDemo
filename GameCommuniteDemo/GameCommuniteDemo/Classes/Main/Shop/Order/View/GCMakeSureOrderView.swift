@@ -41,11 +41,13 @@ class GCMakeSureOrderView: UIView {
     }
     
     func setModel(_ model: GCGoodsModel) {
-        goodsImageV.kf.setImage(with: URL(string:model.cover!))
+        if let img = model.cover {
+            goodsImageV.kf.setImage(with: URL(string:img))
+        }
         goodsNameLb.text = model.name
-        goodsQuLb.text = "所在区/服：魔兽世界(国服）/一区"
+        goodsQuLb.text = model.content
         goodsMoneyBt.setTitle("\(model.price!)ETH", for: .normal)
-        
+        goodsMoneyBt.layoutButton(style: .Left, imageTitleSpace: 5.0)
     }
 }
 
@@ -177,7 +179,7 @@ extension GCMakeSureOrderView {
         plusBt.setTitle("+", for: .normal)
         plusBt.setTitleColor(.white, for: .normal)
         plusBt.titleLabel?.font = kFont(adaptW(12.0))
-        jianBt.addTarget(self, action: #selector(clickPlus), for: .touchUpInside)
+        plusBt.addTarget(self, action: #selector(clickPlus), for: .touchUpInside)
         stepperBgView.addSubview(plusBt)
         
         cBgview.snp.makeConstraints { (make) in
@@ -219,90 +221,89 @@ extension GCMakeSureOrderView {
             make.width.equalTo(adaptW(30.0))
         }
         
-        
-        //MARK: ------------bottom 4项------------
-        let bBgview = UIView()
-        bBgview.backgroundColor = MetricGlobal.mainCellBgColor
-        bBgview.layer.cornerRadius = adaptW(5.0)
-        bBgview.layer.masksToBounds = true
-        scrollview.addSubview(bBgview)
-        bBgview.snp.makeConstraints { (make) in
-            make.top.equalTo(cBgview.snp.bottom).offset(adaptW(12.0))
-            make.left.right.equalTo(cBgview)
-            make.bottom.equalToSuperview()
-        }
-        
-        let titles = Metric.bTitles
-        for i in 0..<titles.count {
-            
-            let title = titles[i]
-            let subBgView = UIView()
-            bBgview.addSubview(subBgView)
-            subBgView.snp.makeConstraints { (make) in
-                make.left.right.equalToSuperview()
-                make.height.equalTo(i == titles.count-1 ? adaptW(65.0) : adaptW(54.0))
-                make.top.equalToSuperview().offset(adaptW(55.0*CGFloat(i)))
-                if i == titles.count-1 {
-                    make.bottom.equalToSuperview()
-                }
-            }
-            
-            
-            let btitleLb  = UILabel()
-            let bMoneyBt = UIButton()
-            let moneyRateLb = UILabel()
-            //第四行单独处理
-            if i == titles.count - 1 {
-                bMoneyBt.tintColor = .white
-                bMoneyBt.setImage(UIImage(named: "icon_silver"), for: .normal)
-                bMoneyBt.setTitleColor(.white, for: .normal)
-                bMoneyBt.titleLabel?.font = kFont(adaptW(14.0))
-                bMoneyBt.setTitle("ETH800", for: .normal)
-                bMoneyBt.layoutButton(style: .Left, imageTitleSpace: adaptW(5.0))
-                subBgView.addSubview(bMoneyBt)
-                
-                moneyRateLb.textColor = MetricGlobal.mainGray
-                moneyRateLb.font = kFont(adaptW(11.0))
-                moneyRateLb.text = "50ETH=$1元"
-                subBgView.addSubview(moneyRateLb)
-                
-                
-                bMoneyBt.snp.makeConstraints { (make) in
-                    make.top.equalToSuperview().offset(adaptW(15.0))
-                    make.left.equalToSuperview().offset(adaptW(10.0))
-                    make.height.equalTo(adaptW(18.0))
-                }
-                moneyRateLb.snp.makeConstraints { (make) in
-                    make.top.equalTo(bMoneyBt.snp.bottom).offset(adaptW(2.0))
-                    make.left.equalTo(bMoneyBt)
-                    make.height.equalTo(adaptW(11.0))
-                }
-            }else {
-
-                btitleLb.textColor = .white
-                btitleLb.font = kFont(adaptW(15.0))
-                btitleLb.text = title
-                subBgView.addSubview(btitleLb)
-                btitleLb.snp.makeConstraints { (make) in
-                    make.left.equalToSuperview().offset(adaptW(10.0))
-                    make.centerY.equalToSuperview()
-                }
-            }
-            
-            let bBt = UIButton()
-                            bBt.setImage(UIImage(named: "check_noSel"), for: .normal)
-                            bBt.setImage(UIImage(named: "check_sel"), for: .selected)
-            bBt.tag = 100+i
-            bBt.addTarget(self, action: #selector(clickSelected(_:)), for: .touchUpInside)
-            subBgView.addSubview(bBt)
-            bBt.snp.makeConstraints { (make) in
-                make.right.equalToSuperview().offset(-adaptW(12.0))
-                make.centerY.equalToSuperview()
-                make.size.equalTo(CGSize(width: adaptW(20.0), height: adaptW(20.0)))
-            }
-            bBts.append(bBt)
-            
-        }
+        //MARK: ------------bottom 4项（设计图中已经砍掉）------------
+//        let bBgview = UIView()
+//        bBgview.backgroundColor = MetricGlobal.mainCellBgColor
+//        bBgview.layer.cornerRadius = adaptW(5.0)
+//        bBgview.layer.masksToBounds = true
+//        scrollview.addSubview(bBgview)
+//        bBgview.snp.makeConstraints { (make) in
+//            make.top.equalTo(cBgview.snp.bottom).offset(adaptW(12.0))
+//            make.left.right.equalTo(cBgview)
+//            make.bottom.equalToSuperview()
+//        }
+//
+//        let titles = Metric.bTitles
+//        for i in 0..<titles.count {
+//
+//            let title = titles[i]
+//            let subBgView = UIView()
+//            bBgview.addSubview(subBgView)
+//            subBgView.snp.makeConstraints { (make) in
+//                make.left.right.equalToSuperview()
+//                make.height.equalTo(i == titles.count-1 ? adaptW(65.0) : adaptW(54.0))
+//                make.top.equalToSuperview().offset(adaptW(55.0*CGFloat(i)))
+//                if i == titles.count-1 {
+//                    make.bottom.equalToSuperview()
+//                }
+//            }
+//
+//
+//            let btitleLb  = UILabel()
+//            let bMoneyBt = UIButton()
+//            let moneyRateLb = UILabel()
+//            //第四行单独处理
+//            if i == titles.count - 1 {
+//                bMoneyBt.tintColor = .white
+//                bMoneyBt.setImage(UIImage(named: "icon_silver"), for: .normal)
+//                bMoneyBt.setTitleColor(.white, for: .normal)
+//                bMoneyBt.titleLabel?.font = kFont(adaptW(14.0))
+//                bMoneyBt.setTitle("ETH800", for: .normal)
+//                bMoneyBt.layoutButton(style: .Left, imageTitleSpace: adaptW(5.0))
+//                subBgView.addSubview(bMoneyBt)
+//
+//                moneyRateLb.textColor = MetricGlobal.mainGray
+//                moneyRateLb.font = kFont(adaptW(11.0))
+//                moneyRateLb.text = "50ETH=$1元"
+//                subBgView.addSubview(moneyRateLb)
+//
+//
+//                bMoneyBt.snp.makeConstraints { (make) in
+//                    make.top.equalToSuperview().offset(adaptW(15.0))
+//                    make.left.equalToSuperview().offset(adaptW(10.0))
+//                    make.height.equalTo(adaptW(18.0))
+//                }
+//                moneyRateLb.snp.makeConstraints { (make) in
+//                    make.top.equalTo(bMoneyBt.snp.bottom).offset(adaptW(2.0))
+//                    make.left.equalTo(bMoneyBt)
+//                    make.height.equalTo(adaptW(11.0))
+//                }
+//            }else {
+//
+//                btitleLb.textColor = .white
+//                btitleLb.font = kFont(adaptW(15.0))
+//                btitleLb.text = title
+//                subBgView.addSubview(btitleLb)
+//                btitleLb.snp.makeConstraints { (make) in
+//                    make.left.equalToSuperview().offset(adaptW(10.0))
+//                    make.centerY.equalToSuperview()
+//                }
+//            }
+//
+//            let bBt = UIButton()
+//                            bBt.setImage(UIImage(named: "check_noSel"), for: .normal)
+//                            bBt.setImage(UIImage(named: "check_sel"), for: .selected)
+//            bBt.tag = 100+i
+//            bBt.addTarget(self, action: #selector(clickSelected(_:)), for: .touchUpInside)
+//            subBgView.addSubview(bBt)
+//            bBt.snp.makeConstraints { (make) in
+//                make.right.equalToSuperview().offset(-adaptW(12.0))
+//                make.centerY.equalToSuperview()
+//                make.size.equalTo(CGSize(width: adaptW(20.0), height: adaptW(20.0)))
+//            }
+//            bBts.append(bBt)
+//
+//        }
     }
     
     @objc private func clickJian() {
@@ -310,34 +311,34 @@ extension GCMakeSureOrderView {
             numTF.text = String(format: "%i", num - 1)
         }
     }
-    
+
     @objc private func clickPlus() {
         if let text = numTF.text, let num = Int(text) {
             numTF.text = String(format: "%i", num + 1)
         }
     }
 }
-
-extension GCMakeSureOrderView {
-    
-    @objc private func clickSelected(_ sender: UIButton) {
-        
-        sender.isSelected = !sender.isSelected
-        
-//        if sender.isSelected == true, !selectedBts.contains(sender) {
-//            selectedBts.append(sender)
-//        }
-//        if sender.isSelected == false, selectedBts.contains(sender) {
-//            selectedBts.remove(at: selectedBts.firstIndex(of: sender)!)
-//        }
 //
-//        print("------")
-//        for bt in selectedBts {
-//            print("选择的bt为:\(bt.tag-100)")
-//        }
-//        print("------")
-        
-        let selecteds = bBts.map{$0.isSelected}
-        self.selecteds = selecteds
-    }
-}
+//extension GCMakeSureOrderView {
+//
+//    @objc private func clickSelected(_ sender: UIButton) {
+//
+//        sender.isSelected = !sender.isSelected
+//
+////        if sender.isSelected == true, !selectedBts.contains(sender) {
+////            selectedBts.append(sender)
+////        }
+////        if sender.isSelected == false, selectedBts.contains(sender) {
+////            selectedBts.remove(at: selectedBts.firstIndex(of: sender)!)
+////        }
+////
+////        print("------")
+////        for bt in selectedBts {
+////            print("选择的bt为:\(bt.tag-100)")
+////        }
+////        print("------")
+//
+//        let selecteds = bBts.map{$0.isSelected}
+//        self.selecteds = selecteds
+//    }
+//}

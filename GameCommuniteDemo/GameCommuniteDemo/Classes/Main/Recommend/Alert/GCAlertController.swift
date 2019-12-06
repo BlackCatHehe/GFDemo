@@ -18,6 +18,9 @@ class GCAlertController: GCBaseVC {
     @IBOutlet weak var thirdItemBt: UIButton!
     @IBOutlet weak var bgView: UIView!
     
+    var isSingle: Bool = false
+ 
+    
     var firstTitle: String = "拍照"
     var secondTitle: String = "从相册选择"
     
@@ -29,6 +32,10 @@ class GCAlertController: GCBaseVC {
         
         fistItemBt.setTitle(firstTitle, for: .normal)
         secondItemBt.setTitle(secondTitle, for: .normal)
+        
+        if isSingle == true {
+            fistItemBt.removeFromSuperview()
+        }
         
     }
 

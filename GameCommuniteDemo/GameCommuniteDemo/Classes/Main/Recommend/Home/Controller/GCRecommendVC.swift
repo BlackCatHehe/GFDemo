@@ -31,6 +31,7 @@ class GCRecommendVC: GCBaseVC {
 
         self.navigationItem.leftBarButtonItem = nil
         
+        
         initUI()
     }
     
@@ -38,6 +39,15 @@ class GCRecommendVC: GCBaseVC {
         super.viewWillAppear(animated)
         
         setBackgroundColor(bgColor: kRGB(r: 24, g: 23, b: 40), shadowColor: .clear)
+        
+//        GCUserDefault.shareInstance.userInfo = nil
+        //用户未登录
+        if GCUserDefault.shareInstance.userInfo == nil {
+            let vc = GCLoginVC()
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            navigationController?.present(nav, animated: true, completion: nil)
+        }
     }
     
     //MARK: ------------lazyload------------

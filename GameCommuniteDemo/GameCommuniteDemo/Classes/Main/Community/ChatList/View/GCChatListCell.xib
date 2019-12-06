@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -90,36 +90,30 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SZ-a2-jka">
-                                <rect key="frame" x="407" y="45" width="15" height="15"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAb-kD-NA0">
+                                <rect key="frame" x="392" y="43.5" width="30" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="3Jf-Dj-Fh8">
+                                    <constraint firstAttribute="height" constant="18" id="S1b-DY-SVm">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </constraint>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="9ai-QW-abB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="autoFont">
-                                        <real key="value" value="16"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.10588235294117647" green="0.10196078431372549" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="AAb-kD-NA0" secondAttribute="trailing" constant="15" id="0cq-vp-Xno">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
                             <constraint firstItem="agq-pD-vDv" firstAttribute="top" secondItem="Bgq-ib-Xbe" secondAttribute="top" constant="10" id="4y5-we-yKt">
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </constraint>
                             <constraint firstItem="ihM-7G-4G4" firstAttribute="bottom" secondItem="agq-pD-vDv" secondAttribute="bottom" constant="-5" id="5qy-dn-rm9"/>
-                            <constraint firstItem="9SZ-a2-jka" firstAttribute="trailing" secondItem="1IB-zG-UJ2" secondAttribute="trailing" id="Evb-Au-PF0"/>
                             <constraint firstItem="1tw-bd-rlh" firstAttribute="leading" secondItem="agq-pD-vDv" secondAttribute="trailing" constant="20" id="FjP-Yp-XOY"/>
                             <constraint firstItem="agq-pD-vDv" firstAttribute="leading" secondItem="Bgq-ib-Xbe" secondAttribute="leading" constant="15" id="Q1Q-53-yzz">
                                 <userDefinedRuntimeAttributes>
@@ -131,8 +125,8 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </constraint>
-                            <constraint firstItem="9SZ-a2-jka" firstAttribute="centerY" secondItem="ihM-7G-4G4" secondAttribute="centerY" id="dm4-OP-9ug"/>
                             <constraint firstItem="1tw-bd-rlh" firstAttribute="top" secondItem="agq-pD-vDv" secondAttribute="top" constant="5" id="gQD-gb-vBz"/>
+                            <constraint firstItem="AAb-kD-NA0" firstAttribute="centerY" secondItem="ihM-7G-4G4" secondAttribute="centerY" id="jp3-N9-Cr3"/>
                             <constraint firstAttribute="trailing" secondItem="1IB-zG-UJ2" secondAttribute="trailing" constant="15" id="mwY-5Q-Mq4">
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
@@ -156,10 +150,10 @@
                 <outlet property="contentLb" destination="ihM-7G-4G4" id="piV-Ri-gu9"/>
                 <outlet property="iconImgV" destination="agq-pD-vDv" id="Vxb-nq-wMI"/>
                 <outlet property="nameLb" destination="1tw-bd-rlh" id="GQ1-Hf-xXY"/>
-                <outlet property="newMsgLb" destination="9SZ-a2-jka" id="Xwn-IA-YVE"/>
+                <outlet property="newMsgBt" destination="AAb-kD-NA0" id="IlA-Gr-Tdi"/>
                 <outlet property="timeLb" destination="1IB-zG-UJ2" id="Gzr-q1-HDe"/>
             </connections>
-            <point key="canvasLocation" x="-202.17391304347828" y="-26.450892857142858"/>
+            <point key="canvasLocation" x="-383" y="-28"/>
         </tableViewCell>
     </objects>
 </document>

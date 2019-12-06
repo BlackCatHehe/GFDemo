@@ -7,8 +7,25 @@
 //
 
 import UIKit
+import ObjectMapper
+import MJRefresh
+import SwiftyJSON
 
 class GCEstateDetailListVC: GCBaseVC {
+    
+    ///数据源
+    private var dataList: [GCEstateModel] = []
+    
+    private var currentPage: Int = 1
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        title = "资产明细"
+        initTableView()
+        
+        reqestEstateDetailList()
+    }
     
     //MARK: - lazyload
     private lazy var tableview: UITableView = {[weak self] in
@@ -25,14 +42,6 @@ class GCEstateDetailListVC: GCBaseVC {
         }
         return tableV
         }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        title = "资产明细"
-        initTableView()
-        
-    }
 }
 
 extension GCEstateDetailListVC {
@@ -47,6 +56,16 @@ extension GCEstateDetailListVC {
             make.left.right.equalToSuperview()
             make.height.equalTo(kScreenH - kStatusBarheight - kNavBarHeight)
         }
+        
+        tableview.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            self.currentPage = 1
+            self.reqestEstateDetailList()
+        })
+        tableview.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: {
+            self.currentPage += 1
+            self.reqestEstateDetailList()
+        })
+        tableview.mj_header.beginRefreshing()
     }
 }
 
@@ -57,7 +76,7 @@ extension GCEstateDetailListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dataList.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -69,8 +88,9 @@ extension GCEstateDetailListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = dataList[indexPath.row]
         let cell: GCEstateDetailCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCEstateDetailCell.self)
-        cell.setModel()
+        cell.setModel(model)
         return cell
     }
     
@@ -84,3 +104,38 @@ extension GCEstateDetailListVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+extension GCEstateDetailListVC {
+    
+    private func reqestEstateDetailList() {
+        
+        GCNetTool.requestData(target: GCNetApi.eState, showAcvitity: true, success: { (result) in
+            
+            self.tableview.mj_header.endRefreshing()
+            self.tableview.mj_footer.endRefreshing()
+            
+            let data = JSON(result)
+            if let totalPage = data["meta"]["pagination"]["total_pages"].int {
+                if self.currentPage >= totalPage, self.currentPage != 1{
+                    self.currentPage = totalPage
+                    self.tableview.mj_footer.endRefreshingWithNoMoreData()
+                    return
+                }
+            }
+            
+            let models = Mapper<GCEstateModel>().mapArray(JSONArray: result["data"] as! [[String: Any]])
+            if self.currentPage == 1 {
+                self.dataList = models
+            }else {
+                self.dataList.append(contentsOf: models)
+            }
+            
+            
+            self.tableview.reloadData()
+            
+        }) { (error) in
+            self.tableview.mj_header.endRefreshing()
+            self.tableview.mj_footer.endRefreshing()
+            JYLog(error)
+        }
+    }
+}

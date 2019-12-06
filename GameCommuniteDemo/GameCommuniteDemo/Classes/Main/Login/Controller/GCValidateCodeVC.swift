@@ -9,8 +9,12 @@
 import UIKit
 import SwiftyJSON
 import KeychainAccess
+import ObjectMapper
+import NIMSDK
+
 fileprivate struct Metric {
     static let codeTimeDown = "codeTimeDown"
+    static let totalCount: Int = 10
 }
 
 class GCValidateCodeVC: GCBaseVC {
@@ -19,7 +23,7 @@ class GCValidateCodeVC: GCBaseVC {
     
     var verikey: String?
     
-    private var timeCount: Int = 10
+    private var timeCount: Int = Metric.totalCount
     
     @IBOutlet weak var bgView: UIView!
     
@@ -36,7 +40,19 @@ class GCValidateCodeVC: GCBaseVC {
 
         initUI()
         
+        self.tipLb.text = nil
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         startTimer()
+    }
+    
+    deinit {
+        JYLog("GCValidateCodeVC.deinit")
+        JYGCDTimer.share.destoryTimer(withName: Metric.codeTimeDown)
     }
     
     //TODO: click
@@ -65,17 +81,33 @@ extension GCValidateCodeVC {
         
         tipLb.textColor = kRGB(r: 253, g: 228, b: 63)
         tipLb.font = kFont(13.0)
-        tipLb.text = "验证码错误，请重新输入！"
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapRePostCode))
+        countDownLb.addGestureRecognizer(tap)
+    }
+    
+    @objc func tapRePostCode() {
+        self.requestSendCode()
     }
     
     private func startTimer() {
-        JYGCDTimer.share.scheduledDispatchTimer(withName: Metric.codeTimeDown, timeInterval: 10, queue: .main, repeats: true) {
+        self.countDownLb.isUserInteractionEnabled = false
+        
+        JYGCDTimer.share.scheduledDispatchTimer(withName: Metric.codeTimeDown, timeInterval: 1, queue: .global(), repeats: true) {
             self.timeCount -= 1
             if self.timeCount <= 0 {
-                self.timeCount = 10
+                self.timeCount = Metric.totalCount
                 JYGCDTimer.share.destoryTimer(withName: Metric.codeTimeDown)
+                DispatchQueue.main.async {
+                    self.countDownLb.isUserInteractionEnabled = true
+                    self.countDownLb.text = "重新获取"
+                }
+                return
             }
-            self.countDownLb.text = "重新获取(\(self.timeCount)s)"
+            DispatchQueue.main.async {
+                self.countDownLb.text = "重新获取(\(self.timeCount)s)"
+            }
+
         }
     }
 }
@@ -85,37 +117,55 @@ extension GCValidateCodeVC {
     private func requestValidateCode() {
         
         guard let _ = Int(validateCodeView.validateCode), validateCodeView.validateCode.count == 4 else {
-            showToast("请输入正确的验证码")
+            showToast("请输入格式正确的验证码")
             return
         }
         
         let prama = [
             "verification_key": self.verikey!,
-            "verification_code": validateCodeView.validateCode,
-            "name": "test_2",
-            "password": "123456"
+            "verification_code": validateCodeView.validateCode
         ]
         
         GCNetTool.requestData(target: GCNetApi.register(prama: prama), showAcvitity: true, success: { (result) in
-            let resultJson = JSON(result)
             
-            if let token = resultJson["meta"]["access_token"].string{
-                if let tokenType = resultJson["meta"]["token_type"].string {
-                    
-                    UserDefaults.standard.setValue(tokenType + "." + token, forKey: "access_token")
-                    let keychain = Keychain(service: "access_token")
-                    let header = tokenType + token
-                    keychain["header"] = header
-                    JYLog(header)
-                }
+        
+            let userModel = Mapper<UserModel>().map(JSON: result)
+            GCUserDefault.shareInstance.userInfo = userModel
+        
+            
+            //云信自动登录
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.yunXinAutoLogin()
             }
-            let vc = GCBindPhoneVC()
-            vc.phoneNum = self.phoneNum
-            self.push(vc)
+            
+            self.navigationController?.dismiss(animated: true, completion: nil)
             
         }) { (error) in
             JYLog(error)
         }
     }
     
+    //重新发送验证码
+    private func requestSendCode() {
+        guard let phoneNum = phoneNum else {
+            showToast("请输入正确的手机号")
+            return
+        }
+        let prama = ["phone": phoneNum]
+        
+        GCNetTool.requestData(target: GCNetApi.sendCode(prama: prama), showAcvitity: true, success: { (result) in
+            
+            guard let veriKey = result["key"] as? String else {
+                self.showToast("登录出错")
+                return
+            }
+            
+            self.verikey = veriKey
+            self.startTimer()
+            
+        }) { (error) in
+            JYLog(error)
+        }
+    }
 }
+

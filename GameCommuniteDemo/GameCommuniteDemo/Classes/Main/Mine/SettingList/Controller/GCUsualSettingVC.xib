@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,13 +24,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QA1-5y-NKx">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rR7-Mq-LQT">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rR7-Mq-LQT">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fWO-Qj-Ggc">
-                                            <rect key="frame" x="15" y="57" width="360" height="1"/>
+                                            <rect key="frame" x="15" y="-1" width="360" height="1"/>
                                             <color key="backgroundColor" red="0.21960784310000001" green="0.21176470589999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="Bc9-jv-nm7"/>
@@ -55,10 +55,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iOT-ZO-VnE">
-                                            <rect key="frame" x="311" y="13.5" width="51" height="31"/>
+                                            <rect key="frame" x="311" y="-15.5" width="51" height="31"/>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优化图片加载方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jID-Gx-Rhf">
-                                            <rect key="frame" x="15" y="36" width="98.5" height="11"/>
+                                            <rect key="frame" x="15" y="-22" width="98.5" height="11"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="11" id="2mH-9b-rhh">
                                                     <userDefinedRuntimeAttributes>
@@ -100,7 +100,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </constraint>
                                         <constraint firstAttribute="bottom" secondItem="fWO-Qj-Ggc" secondAttribute="bottom" id="VVo-Wn-xsb"/>
-                                        <constraint firstAttribute="height" constant="58" id="bfe-aB-108">
+                                        <constraint firstAttribute="height" priority="750" constant="58" id="bfe-aB-108">
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                             </userDefinedRuntimeAttributes>
@@ -111,7 +111,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5y-gm-PeN">
-                                    <rect key="frame" x="0.0" y="58" width="375" height="57"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="清除缓存" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQF-im-859">
                                             <rect key="frame" x="15" y="19.5" width="61.5" height="18"/>
@@ -191,6 +191,7 @@
                                 <constraint firstItem="C5y-gm-PeN" firstAttribute="leading" secondItem="QA1-5y-NKx" secondAttribute="leading" id="Vfx-6G-aI3"/>
                                 <constraint firstAttribute="bottom" secondItem="C5y-gm-PeN" secondAttribute="bottom" id="Zbn-DQ-hBj"/>
                                 <constraint firstAttribute="trailing" secondItem="rR7-Mq-LQT" secondAttribute="trailing" id="c7V-dT-n4w"/>
+                                <constraint firstItem="C5y-gm-PeN" firstAttribute="top" secondItem="QA1-5y-NKx" secondAttribute="top" id="h4n-xG-653"/>
                                 <constraint firstItem="rR7-Mq-LQT" firstAttribute="leading" secondItem="QA1-5y-NKx" secondAttribute="leading" id="wVy-zQ-cVg"/>
                             </constraints>
                         </view>

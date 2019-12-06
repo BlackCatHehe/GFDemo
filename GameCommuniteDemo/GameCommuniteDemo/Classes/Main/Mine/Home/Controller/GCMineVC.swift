@@ -29,18 +29,31 @@ fileprivate struct Metric {
 class GCMineVC: GCBaseVC {
     private var listDatas: [[[String: String]]] = Metric.cates
     
+    private var userModel: UserModel? {
+        get {
+            return GCUserDefault.shareInstance.userInfo
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.setHidesBackButton(true, animated: true)
-        self.navigationItem.leftBarButtonItem = nil
+
         initUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        setBackgroundColor(bgColor: .clear, shadowColor: .clear)
+        //刷新用户数据
+        if let user = userModel {
+            headerV.setModel(user)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     //MARK: ------------lazyload------------
@@ -65,9 +78,16 @@ class GCMineVC: GCBaseVC {
         
         return collectionV
         }()
+    
     private lazy var headerV: GCMineHeaderView = {
         let hV = GCMineHeaderView()
         return hV
+    }()
+    
+    private lazy var settingBt: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "mine_setting"), for: .normal)
+        return button
     }()
 }
 
@@ -75,17 +95,13 @@ class GCMineVC: GCBaseVC {
 extension GCMineVC {
     
     private func initUI() {
-        
-        self.componentInstall(with: JYNavigationComponents.setting) { (model) in
-            let vc = GCSettingListVC()
-            self.push(vc)
-        }
-        
+
         initCollectionView()
+        
     }
     
     private func initCollectionView() {
-        collectionView.contentInset = UIEdgeInsets(top: kStatusBarheight + kNavBarHeight + adaptW(424.0), left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: kStatusBarheight + kNavBarHeight + adaptW(166.0), left: 0, bottom: 0, right: 0)
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
@@ -93,14 +109,26 @@ extension GCMineVC {
             make.bottom.equalToSuperview().offset(-kTabBarHeight)
         }
         
-        headerV.setModel()
+        //头部试图，设置好偏移
         headerV.clickMyEstate = {[weak self] in
             let vc = GCMyEstateVC()
             self?.push(vc)
         }
-        headerV.frame = CGRect(x: 0, y: -kStatusBarheight - kNavBarHeight - adaptW(424.0), width: kScreenW, height: kStatusBarheight + kNavBarHeight + adaptW(424.0))
+        headerV.frame = CGRect(x: 0, y: -kStatusBarheight - kNavBarHeight - adaptW(166.0), width: kScreenW, height: kStatusBarheight + kNavBarHeight + adaptW(166.0))
         collectionView.addSubview(headerV)
         
+        //设置按钮
+        headerV.addSubview(settingBt)
+        settingBt.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(kStatusBarheight + 10.0)
+            make.right.equalToSuperview().offset(-adaptW(15.0))
+            make.size.equalTo(CGSize(width: 25.0, height: 25.0))
+        }
+        settingBt.rx.tap
+            .bind {[weak self] in
+                let vc = GCSettingListVC()
+                self?.push(vc)
+        }.disposed(by: rx.disposeBag)
         
 //        collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
 //            //self.currentPage = 1
@@ -169,14 +197,18 @@ extension GCMineVC: UICollectionViewDelegate, UICollectionViewDataSource, JYColl
         if indexPath.section == 0 {
             switch indexPath.row {
             case 0:
-                showToast("暂未开放")
-                let vc = GCLoginVC()
+                let vc = GCMyItemsVC()
                 push(vc)
             case 1:
                 let vc = GCGoodsManagerVC()
                 push(vc)
             case 2:
+                guard let user = GCUserDefault.shareInstance.userInfo else {
+                    showToast("信息获取失败了")
+                    return
+                }
                 let vc = GCPeopleMainPageVC()
+                vc.userModel = user
                 push(vc)
             case 3:
                 showToast("暂未开放")
@@ -186,12 +218,10 @@ extension GCMineVC: UICollectionViewDelegate, UICollectionViewDataSource, JYColl
         }else  {
             let vc = GCSaleVC()
             vc.title = indexPath.row == 0 ? "我卖出的" : "我购买的"
+            vc.isSale = indexPath.row == 0
             push(vc)
         }
         
-//        let vc = GCCommunityDetailVC()
-//        vc.communiteId = String(model.id!)
-//        push(vc)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -224,14 +254,14 @@ extension GCMineVC: UICollectionViewDelegate, UICollectionViewDataSource, JYColl
 
 
 extension GCMineVC {
-    private func requestInfo() {
-        let prama = ["phone": "15333831665"]
-        GCNetTool.requestData(target: GCNetApi.getUserInfo(prama: prama), showAcvitity: true, success: { (result) in
-            
-            
-            
-        }) { (error) in
-            JYLog(error)
-        }
-    }
+//    private func requestInfo() {
+//    
+//        GCNetTool.requestData(target: GCNetApi.getUserInfo, showAcvitity: true, success: { (result) in
+//            
+//            
+//            
+//        }) { (error) in
+//            JYLog(error)
+//        }
+//    }
 }

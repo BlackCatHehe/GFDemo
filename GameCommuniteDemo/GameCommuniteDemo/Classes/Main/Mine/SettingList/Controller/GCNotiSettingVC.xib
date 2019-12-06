@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,10 +25,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXs-QC-qYy">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="213"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="br9-Os-kgz">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="br9-Os-kgz">
+                                    <rect key="frame" x="0.0" y="-142" width="375" height="71"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDR-3M-xsA">
                                             <rect key="frame" x="15" y="70" width="360" height="1"/>
@@ -77,8 +77,8 @@
                                         <constraint firstAttribute="bottom" secondItem="cDR-3M-xsA" secondAttribute="bottom" id="zRE-1U-UTV"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zd6-3l-Lni">
-                                    <rect key="frame" x="0.0" y="71" width="375" height="71"/>
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zd6-3l-Lni">
+                                    <rect key="frame" x="0.0" y="-71" width="375" height="71"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dY-jd-ALP">
                                             <rect key="frame" x="15" y="70" width="360" height="1"/>
@@ -128,7 +128,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cbc-Td-fRy">
-                                    <rect key="frame" x="0.0" y="142" width="375" height="71"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="回复消息通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cb-xq-rav">
                                             <rect key="frame" x="15" y="26.5" width="92" height="18"/>
@@ -171,7 +171,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="br9-Os-kgz" secondAttribute="trailing" id="0GM-2g-kH7"/>
-                                <constraint firstItem="br9-Os-kgz" firstAttribute="top" secondItem="hXs-QC-qYy" secondAttribute="top" id="AHT-Cl-f6w"/>
+                                <constraint firstItem="br9-Os-kgz" firstAttribute="top" secondItem="hXs-QC-qYy" secondAttribute="top" priority="750" id="AHT-Cl-f6w"/>
                                 <constraint firstItem="Zd6-3l-Lni" firstAttribute="top" secondItem="br9-Os-kgz" secondAttribute="bottom" id="EEn-c4-kYt"/>
                                 <constraint firstItem="Cbc-Td-fRy" firstAttribute="trailing" secondItem="Zd6-3l-Lni" secondAttribute="trailing" id="JJq-Xt-VZ3"/>
                                 <constraint firstAttribute="width" constant="375" id="L37-r8-CWe">
@@ -186,6 +186,7 @@
                                 <constraint firstAttribute="trailing" secondItem="br9-Os-kgz" secondAttribute="trailing" id="gTZ-Of-nG3"/>
                                 <constraint firstItem="Zd6-3l-Lni" firstAttribute="trailing" secondItem="br9-Os-kgz" secondAttribute="trailing" id="inq-tN-A2R"/>
                                 <constraint firstItem="br9-Os-kgz" firstAttribute="leading" secondItem="hXs-QC-qYy" secondAttribute="leading" id="k3Z-1I-IWE"/>
+                                <constraint firstItem="Cbc-Td-fRy" firstAttribute="top" secondItem="hXs-QC-qYy" secondAttribute="top" id="qb2-6o-Be8"/>
                                 <constraint firstItem="br9-Os-kgz" firstAttribute="leading" secondItem="hXs-QC-qYy" secondAttribute="leading" id="wPu-s0-JrD"/>
                             </constraints>
                         </view>

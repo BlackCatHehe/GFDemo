@@ -25,15 +25,16 @@ class GCSettingUserCell: UITableViewCell, NibReusable {
         bgView.backgroundColor = MetricGlobal.mainCellBgColor
     }
     
-    func setModel() {
-        
-        iconImgV.kfSetImage(
-            url: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg",
-            targetSize: CGSize(width: adaptW(55.0), height: adaptW(55.0)),
-            cornerRadius: adaptW(55.0)/2
-        )
-        nameLb.text = "欧巴嘻嘻"
-        contentLb.text = "ID 1284884"
+    func setModel(_ model: UserModel) {
+        if let img = model.avatar {
+            iconImgV.kfSetImage(
+                url: img,
+                targetSize: CGSize(width: adaptW(55.0), height: adaptW(55.0)),
+                cornerRadius: adaptW(55.0)/2
+            )
+        }
+        nameLb.text = model.name
+        contentLb.text = "ID \(model.id!)"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

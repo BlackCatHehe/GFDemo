@@ -23,21 +23,35 @@ class GCEstateDetailCell: UITableViewCell, NibReusable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        selectionStyle = .none
         contentView.backgroundColor = MetricGlobal.mainCellBgColor
         bgView.backgroundColor = MetricGlobal.mainCellBgColor
     }
 
-    func setModel() {
+    func setModel(_ model: GCEstateModel) {
+        //model.type  1 签到，2: 奖励，3：充值， 4:交易
+        switch model.type ?? 0 {
+        case 1:
+            titleLb.text = "签到"
+        case 2:
+            titleLb.text = "奖励"
+        case 3:
+            titleLb.text = "充值"
+        case 4:
+            titleLb.text = "交易"
+        default:
+            titleLb.text = nil
+        }
         
-        titleLb.text = "签到"
-        contentLb.text = "完成签到任务"
-        let str = arc4random()%2 == 1 ? "+100.00ETH" : "-50.00ETH"
-        if str.hasPrefix("+") {
-            moneyLb.textColor = kRGB(r: 244, g: 234, b: 34)
-        }else {
+        contentLb.text = model.descriptionField
+        let str = "\(model.eth ?? "0.00")ETH"
+        if str.hasPrefix("-") {
             moneyLb.textColor = MetricGlobal.mainBlue
+        }else {
+            moneyLb.textColor = kRGB(r: 244, g: 234, b: 34)
         }
         moneyLb.text = str
-        timeLb.text = "2019-03-29 23:12:35"
+        timeLb.text = model.updatedAt
     }
 }

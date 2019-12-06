@@ -48,13 +48,15 @@ class JYGCDTimer: NSObject {
     /// 销毁名字为name的计时器
     ///
     /// - Parameter name: 计时器的名字
-    func destoryTimer(withName name:String?) {
-        let timer = timerContainer[name!]
-        if timer == nil {
+    func destoryTimer(withName name:String) {
+        guard let timer = timerContainer[name] else {
+            print("timer does not exist!")
             return
         }
-        timerContainer.removeValue(forKey: name!)
-        timer?.cancel()
+        
+        timerContainer.removeValue(forKey: name)
+        timer.cancel()
+        print("timer destory success!")
     }
     
     

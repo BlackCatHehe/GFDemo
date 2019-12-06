@@ -12,44 +12,56 @@ import Reusable
 class GCAssociationGoodsCell: UITableViewCell, NibReusable {
 
     @IBOutlet weak var bgView: UIView!
-     
-     @IBOutlet weak var goodsImgV: UIImageView!
-     
-     @IBOutlet weak var goodsNameLb: UILabel!
-     
-     @IBOutlet weak var subTitleLb: UILabel!
-     
-     @IBOutlet weak var moneyLb: UILabel!
+    
+    @IBOutlet weak var goodsImgV: UIImageView!
+    
+    @IBOutlet weak var goodsNameLb: UILabel!
+    
+    @IBOutlet weak var subTitleLb: UILabel!
+    
+    @IBOutlet weak var moneyLb: UILabel!
     
     @IBOutlet weak var selectedBt: UIButton!
-     
-     override func awakeFromNib() {
-         super.awakeFromNib()
-         
-         backgroundColor = MetricGlobal.mainBgColor
-         bgView.backgroundColor = MetricGlobal.mainCellBgColor
-         
-     }
-     
-     func setModel() {
-         
-         layoutIfNeeded()
+    
+    var isSel : Bool = false {
+        didSet{
+            selectedBt.isSelected = isSel
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
-        goodsImgV.kfSetImage(
-            url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg",
-            targetSize: goodsImgV.bounds.size,
-            cornerRadius: adaptW(4.0)
-        )
+        selectionStyle = .none
         
-         goodsNameLb.text = "发誓无敌套"
-         subTitleLb.text = "【赠送强15法杖】+【赠送5颗噬魂珠】"
-         moneyLb.text = "0.50ETC"
-         
-     }
-
+        backgroundColor = MetricGlobal.mainBgColor
+        bgView.backgroundColor = MetricGlobal.mainCellBgColor
+        
+        selectedBt.setImage(UIImage(named: "check_noSel"), for: .normal)
+        selectedBt.setImage(UIImage(named: "check_sel"), for: .selected)
+        
+    }
+    
+    func setModel(_ model: GCGoodsModel) {
+        
+        layoutIfNeeded()
+        
+        if let img = model.cover {
+            goodsImgV.kfSetImage(
+                url: img,
+                targetSize: goodsImgV.bounds.size,
+                cornerRadius: adaptW(4.0)
+            )
+        }
+        
+        goodsNameLb.text = model.name
+        subTitleLb.text = model.content
+        moneyLb.text = "\(model.price ?? "0.00")ETC"
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     

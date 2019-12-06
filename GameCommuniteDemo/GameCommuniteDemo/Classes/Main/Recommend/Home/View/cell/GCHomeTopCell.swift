@@ -15,7 +15,7 @@ protocol GCHomeTopCellDelegate {
 }
 
 class GCHomeTopCell: UICollectionViewCell, NibReusable {
-
+    
     var delegate: GCHomeTopCellDelegate?
     
     @IBOutlet private weak var bgView: UIView!
@@ -50,6 +50,7 @@ class GCHomeTopCell: UICollectionViewCell, NibReusable {
         cycleImgV.imageURLStringsGroup = imgs
         
     }
+
 }
 
 extension GCHomeTopCell: SDCycleScrollViewDelegate {

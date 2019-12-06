@@ -25,6 +25,7 @@ class GCMsgCell: UITableViewCell, NibReusable {
         super.awakeFromNib()
         backgroundColor = MetricGlobal.mainBgColor
         bgView.backgroundColor = MetricGlobal.mainCellBgColor
+        selectionStyle = .none
     }
     
     func setModel() {
@@ -38,11 +39,5 @@ class GCMsgCell: UITableViewCell, NibReusable {
         )
     }
     
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
     
 }

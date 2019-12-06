@@ -17,6 +17,12 @@ class GCShopGoodsDetailVC: GCBaseVC {
     
     var gid: Int! //商品id
     
+    ///是否是我的道具进来的。如果是，隐藏立即购买
+    var isMyItems: Bool = false
+    
+    ///是否折叠评论
+    var isCommentFolded: Bool = true
+    
     private var goodsModel: GCGoodsModel?
     
     //MARK: - cyclelife
@@ -60,6 +66,17 @@ class GCShopGoodsDetailVC: GCBaseVC {
         button.addTarget(self, action: #selector(clickBuy), for: .touchUpInside)
         return button
     }()
+    
+    private lazy var moreCommentsBt: UIButton = {
+        let button = UIButton()
+        button.setTitle("查看全部评论", for: .normal)
+        button.setImage(UIImage(named: "jiantou_xia_blue"), for: .normal)
+        button.setTitleColor(MetricGlobal.mainBlue, for: .normal)
+        button.titleLabel?.font = kFont(adaptW(12.0))
+        button.backgroundColor = MetricGlobal.mainCellBgColor
+        button.addTarget(self, action: #selector(clickMoreCommend), for: .touchUpInside)
+        return button
+    }()
 }
 
 extension GCShopGoodsDetailVC {
@@ -67,13 +84,12 @@ extension GCShopGoodsDetailVC {
     private func initTableView() {
 
         tableview.tableHeaderView = self.theaderV
-       
         
-        tableview.register(cellType: GCChatListCell.self)
-        tableview.register(cellType: GCGoodsPriceFloatCell.self)
+        tableview.register(cellType: GCGoodsCommentCell.self)
+       // tableview.register(cellType: GCGoodsPriceFloatCell.self)
         tableview.register(cellType: GCGoodsDetailCell.self)
         tableview.register(cellType: GCShopRecommendCell.self)
-        tableview.register(cellType: GCChartView.self)
+        //tableview.register(cellType: GCChartView.self)
         view.addSubview(tableview)
         tableview.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(kStatusBarheight + kNavBarHeight)
@@ -86,26 +102,33 @@ extension GCShopGoodsDetailVC {
 extension GCShopGoodsDetailVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 2 ? 5 : 1
+        if section == 1 {
+            if let comments =  goodsModel?.comments, comments.count > 2 {
+                if isCommentFolded {
+                    return 2
+                }
+            }
+            return goodsModel?.comments?.count ?? 0
+        }else {
+           return goodsModel?.relations?.count ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let models = goodsModel?.comments
         let headerV = GCNormalHeaderView.loadFromNib()
         switch section {
         case 0:
             headerV.titleLb.text = "属性"
+            
         case 1:
-            headerV.titleLb.text = "价格趋势"
+            headerV.titleLb.text = "评论(\(models?.count ?? 0)条)"
+
         case 2:
-            headerV.titleLb.text = "评论(999条)"
-            headerV.moreBt.isHidden = false
-            headerV.moreBt.setTitle("查看全部评论    >", for: .normal)
-            headerV.moreBt.addTarget(self, action: #selector(clickMoreCommend), for: .touchUpInside)
-        case 3:
             headerV.titleLb.text = "相关推荐"
             
         default: break
@@ -126,24 +149,26 @@ extension GCShopGoodsDetailVC: UITableViewDelegate, UITableViewDataSource {
                 cell.setModel(model)
             }
             return cell
+//        }
+//        else if indexPath.section == 1 {
+//            if indexPath.row == 0 {
+//                let cell: GCChartView = tableView.dequeueReusableCell(for: indexPath, cellType: GCChartView.self)
+//
+//                return cell
+//            }else {
+//                let cell: GCGoodsPriceFloatCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCGoodsPriceFloatCell.self)
+//                cell.setModel()
+//                return cell
+//            }
         }else if indexPath.section == 1 {
-            if indexPath.row == 0 {
-                let cell: GCChartView = tableView.dequeueReusableCell(for: indexPath, cellType: GCChartView.self)
-               
-                return cell
-            }else {
-                let cell: GCGoodsPriceFloatCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCGoodsPriceFloatCell.self)
-                cell.setModel()
-                return cell
-            }
-        }else if indexPath.section == 2 {
-            let cell: GCChatListCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCChatListCell.self)
-            cell.setModel()
-            cell.newMsgLb.isHidden = true
+            let model = goodsModel?.comments?[indexPath.row]
+            let cell: GCGoodsCommentCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCGoodsCommentCell.self)
+            cell.setModel(model!)
             return cell
         }else {
+            let model = goodsModel?.relations?[indexPath.row]
             let cell: GCShopRecommendCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCShopRecommendCell.self)
-            cell.setModel()
+            cell.setModel(model!)
             return cell
         }
     }
@@ -154,19 +179,50 @@ extension GCShopGoodsDetailVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
-        let cView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: adaptW(120.0)))
-        cView.addSubview(self.buyBt)
-        buyBt.frame = CGRect(x: adaptW(15.0), y: adaptW(120.0) - adaptW(44.0) - adaptW(20.0), width: kScreenW - adaptW(15.0)*2, height: adaptW(44.0))
-        return section == 3 ? cView : UIView()
-        
+        //如果是评论，添加查看全部评论和收起
+        if section == 1 {
+            if let comments =  goodsModel?.comments, comments.count > 2 {
+                let cView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: adaptW(54.0)))
+                cView.backgroundColor = MetricGlobal.mainCellBgColor
+                cView.addSubview(moreCommentsBt)
+                moreCommentsBt.frame = CGRect(x: adaptW(15.0), y: adaptW(5.0), width: kScreenW - adaptW(15.0)*2, height: adaptW(44.0))
+                return cView
+            }
+        }else if section == 2 {
+            if isMyItems == true {
+                buyBt.isHidden = true
+            }
+            
+            let cView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: adaptW(120.0)))
+            cView.addSubview(buyBt)
+            buyBt.frame = CGRect(x: adaptW(15.0), y: adaptW(120.0) - adaptW(44.0) - adaptW(20.0), width: kScreenW - adaptW(15.0)*2, height: adaptW(44.0))
+            return cView
+        }
+        return UIView()
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return section == 3 ? adaptW(120.0) : 0
+        if section == 0 {
+            return 0
+        }else if section == 1 {
+            if let comments =  goodsModel?.comments, comments.count > 2 {
+                return adaptW(64.0)
+            }
+        }else if section == 2 {
+            return adaptW(120.0)
+        }
+        return 0
+
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.section == 2 {
+            if let gid = goodsModel?.relations?[indexPath.row].id {
+                let vc = GCShopGoodsDetailVC()
+                vc.gid = gid
+                push(vc)
+            }
+        }
     }
     
 }
@@ -175,6 +231,17 @@ extension GCShopGoodsDetailVC: UITableViewDelegate, UITableViewDataSource {
 extension GCShopGoodsDetailVC {
     
     @objc private func clickMoreCommend() {
+        
+        isCommentFolded = !isCommentFolded
+        
+        moreCommentsBt.setTitle(isCommentFolded ? "查看全部评论" : "收起评论", for: .normal)
+        moreCommentsBt.setImage(UIImage(named: isCommentFolded ? "jiantou_xia_blue" : "jiantou_shang_blue"), for: .normal)
+        
+        moreCommentsBt.layoutButton(style: .Right, imageTitleSpace: 10.0)
+        
+        tableview.beginUpdates()
+        tableview.reloadSections([1], with: .automatic)
+        tableview.endUpdates()
         
     }
     
@@ -191,20 +258,24 @@ extension GCShopGoodsDetailVC {
     
     ///请求商品详情
     private func requestGoodsDetail() {
-        /**
 
-        */
-        GCNetTool.requestData(target: GCNetApi.goodsDetail(prama: String(gid)), success: { (result) in
+        guard let gid = self.gid else{return}
+        let prama = [
+            "include" : "attributes,comments,relations,user"
+        ]
+        GCNetTool.requestData(target: GCNetApi.goodsDetail(gid: String(gid), prama: prama), success: { (result) in
  
-            let model = Mapper<GCGoodsModel>().map(JSON: result)
-            self.goodsModel = model
+            if let model = Mapper<GCGoodsModel>().map(JSON: result) {
+                self.goodsModel = model
 
-            self.theaderV.setModel(model!)
-            self.tableview.reloadData()
-           
+                self.theaderV.setModel(model)
+                self.tableview.reloadData()
+            }
+
         }) { (error) in
             JYLog(error)
             
         }
     }
+    
 }

@@ -82,16 +82,19 @@ class GCGoodsManagerCell: UITableViewCell, NibReusable {
         moreBt.contentEdgeInsets = UIEdgeInsets(top: 0, left: adaptW(15.0), bottom: 0, right: adaptW(15.0))
     }
     
-    func setModel(isXia: Bool = false) {
-        
-        goodsImgV.kf.setImage(with: URL(string: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg"))
-        
-        goodsDescLb.text = "暗影战神129加噬魂12匕首 36洞满碎片加猛攻爪和耀眼 项链"
+    func setModel(isXia: Bool = false, model: GCGoodsModel) {
+        if let img = model.cover {
+            goodsImgV.kf.setImage(with: URL(string: img))
+        }
+
+        goodsDescLb.text = model.content
         resNumLb.text = "库存: 2370"
         saledLb.text = "已售: 32"
-        totalLb.text = "¥230.00"
-        moreBt.setTitle("下架", for: .normal)
+        totalLb.text = "¥\(model.price ?? "0.00")"
+        
         deleteBt.setTitle("删除", for: .normal)
+       
+        moreBt.setTitle(isXia ? "下架" : "重新编辑", for: .normal)
         
         deleteBt.isHidden = !isXia
         withdrawImgV.isHidden = !isXia

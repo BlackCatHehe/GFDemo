@@ -7,8 +7,35 @@
 //
 
 import UIKit
-
+import NIMSDK
 class GCChatListVC: GCBaseVC {
+    
+    ///数据源
+    private var allChats: [NIMRecentSession] = []
+    
+    ///必须在主线程获取（只有每次刷新页面时才赋值给数据源）
+    private var chatList: [NIMRecentSession] {
+        get {
+            let chats = NIMSDK.shared().conversationManager.allRecentSessions() ?? []
+             
+            return chats
+        }
+    }
+
+    deinit{
+        print("GCChatListVC.deinit")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        allChats = chatList
+        
+        initTableView()
+        
+        NIMSDK.shared().conversationManager.add(self)
+        NIMSDK.shared().loginManager.add(self)
+    }
     
     //MARK: - lazyload
     private lazy var tableview: UITableView = {[weak self] in
@@ -25,14 +52,6 @@ class GCChatListVC: GCBaseVC {
         }
         return tableV
         }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        initTableView()
-        
-    }
 }
 
 extension GCChatListVC {
@@ -55,7 +74,7 @@ extension GCChatListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return allChats.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -67,8 +86,21 @@ extension GCChatListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let session = allChats[indexPath.row]
+        
+//        if let friendId = session.session?.sessionId {
+//            if let user = NIMSDK.shared().userManager.userInfo(friendId) {
+//                print(user.userInfo?.nickName)
+//                print(user.userInfo?.avatarUrl)
+//                print(session.lastMessage?.text)
+//                print(session.unreadCount)
+//            }
+//        }
+//
         let cell: GCChatListCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCChatListCell.self)
-        cell.setModel()
+        cell.setModel(session)
+
         return cell
     }
     
@@ -78,7 +110,58 @@ extension GCChatListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let cSession = allChats[indexPath.row]
+        guard let session = cSession.session else {
+            return
+        }
+        
+        let vc = GCChatVC(chat: session)
+        push(vc)
     }
-    
 }
 
+extension GCChatListVC: NIMLoginManagerDelegate {
+    
+    func onLogin(_ step: NIMLoginStep) {
+        if step == .syncOK {
+            allChats = chatList
+            tableview.reloadData()
+        }
+    }
+}
+
+extension GCChatListVC: NIMConversationManagerDelegate {
+    
+    func didAdd(_ recentSession: NIMRecentSession, totalUnreadCount: Int) {
+        
+        allChats.append(recentSession)
+        guard allChats.count < 2 else {return}
+        allChats.sort {$0.lastMessage!.timestamp > $1.lastMessage!.timestamp}
+        
+        tableview.reloadData()
+    }
+    
+    func didUpdate(_ recentSession: NIMRecentSession, totalUnreadCount: Int) {
+        JYLog("移除旧元素")
+        for (idx, item) in allChats.enumerated() {
+            if item.session?.sessionId == recentSession.session?.sessionId {
+                allChats.remove(at: idx)
+                break
+            }
+        }
+        JYLog("添加到新位置")
+        var newIndex = allChats.count
+        for (idx, item) in allChats.enumerated() {
+            if recentSession.lastMessage!.timestamp >= item.lastMessage!.timestamp {
+                newIndex = idx
+                break
+            }
+        }
+        allChats.insert(recentSession, at: newIndex)
+        tableview.reloadData()
+    }
+    
+    func didRemove(_ recentSession: NIMRecentSession, totalUnreadCount: Int) {
+        
+    }
+}

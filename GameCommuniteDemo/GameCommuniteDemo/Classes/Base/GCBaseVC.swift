@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Toast_Swift
 import Kingfisher
+import NIMSDK
+
 class GCBaseVC: UIViewController {
     
     //没有数据view
@@ -50,7 +52,7 @@ class GCBaseVC: UIViewController {
     ///弹出信息
     func showToast(_ msg: String, position: ToastPosition = .center) {
 
-        view.showToast(msg, position)
+        view.showCustomToast(msg, position)
     }
     
     ///快速push
@@ -94,3 +96,5 @@ class GCBaseVC: UIViewController {
 
 extension GCBaseVC: UIGestureRecognizerDelegate {}
 extension GCBaseVC: JYNavigationComponentProtocol {}
+
+

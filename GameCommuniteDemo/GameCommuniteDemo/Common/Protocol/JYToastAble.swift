@@ -10,6 +10,7 @@ import Foundation
 import MBProgressHUD
 import Kingfisher
 import Toast_Swift
+
 protocol JYToastAble {
     
 }
@@ -17,17 +18,13 @@ protocol JYToastAble {
 extension JYToastAble where Self: UIView {
     
     ///弹出
-    func showToast(_ msg: String, _ position: ToastPosition = .center) {
+    func showCustomToast(_ msg: String, title: String? = nil, _ position: ToastPosition = .center) {
         self.hideToast()
-        self.makeToast(msg, duration: ToastManager.shared.duration, position: position, title: nil, image: nil, style: ToastManager.shared.style)
+        self.makeToast(msg, duration: ToastManager.shared.duration, position: position, title: title, image: nil, style: ToastManager.shared.style)
     }
-    
-    
     ///显示动态加载图
     func showGifLoad() {
-        
-        
-        
+
         let hud = MBProgressHUD(view: self)
         hud.bezelView.style = .solidColor//自己定义背景颜色
         hud.bezelView.backgroundColor = .clear//背景颜色

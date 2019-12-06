@@ -12,15 +12,29 @@ class GCMyEstateVC: GCBaseVC {
     
     let settings = [ ["资产明细"]]
     
+    private var userModel: UserModel? {
+        get {
+            return GCUserDefault.shareInstance.userInfo
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let user = userModel {
+            headerV.setModel(user)
+        }
+        
+    }
+    
     private lazy var headerV: GCMyEstateHeaderView = {
         let headerView = GCMyEstateHeaderView(frame: .zero)
-        headerView.setModel()
         return headerView
     }()
     

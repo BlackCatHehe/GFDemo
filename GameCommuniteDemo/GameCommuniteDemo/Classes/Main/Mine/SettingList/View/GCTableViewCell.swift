@@ -20,6 +20,8 @@ class GCTableViewCell: UITableViewCell, NibReusable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.selectionStyle = .none
         bgView.backgroundColor = MetricGlobal.mainCellBgColor
         lineView.backgroundColor = MetricGlobal.mainBgColor
     }

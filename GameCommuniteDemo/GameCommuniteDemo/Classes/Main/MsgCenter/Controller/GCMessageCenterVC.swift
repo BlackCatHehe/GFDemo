@@ -66,7 +66,6 @@ extension GCMessageCenterVC {
             }else {
                 let vc = GCReceiveMsgVC()
                 self?.push(vc)
-                
             }
         }
         JYLog(self.headerV)
@@ -130,5 +129,5 @@ extension GCMessageCenterVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
-    
 }
+

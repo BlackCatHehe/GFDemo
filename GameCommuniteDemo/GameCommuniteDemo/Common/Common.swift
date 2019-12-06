@@ -186,6 +186,21 @@ func kFont( _ size: CGFloat, _ fontName: String? = nil) -> UIFont{
     
 }
 
+//MARK: ------------ 当前控制器------------
+func currentViewController() -> UIViewController? {
+    var rootVC = kWindow?.rootViewController
+    while rootVC?.presentedViewController != nil {
+        if let vc = rootVC?.presentedViewController {
+            if let nvc = vc as? UINavigationController{
+                rootVC = nvc.visibleViewController
+            }else if let tvc = vc as? UITabBarController{
+                rootVC = tvc.selectedViewController
+            }
+        }
+    }
+    return rootVC
+}
+
 // MARK:- ---快速获取沙盒路径---
 func getCachesPath() -> String{
     let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .allDomainsMask, true)

@@ -41,8 +41,8 @@ class GCReceiveMsgVC: GCBaseVC {
         $0.tabBar.layout.progressHeight = 3.0
         $0.tabBar.layout.progressWidth = adaptW(15.0)
         $0.tabBar.layout.progressRadius = 2.0
-        $0.tabBar.layout.cellSpacing = adaptW(20.0)
-       // $0.tabBar.layout.cellEdging = adaptW(15.5)
+        
+        $0.tabBar.layout.cellEdging = adaptW(20.5)
         $0.tabBar.layout.normalTextFont = Metric.pagerBarNormalFontSize
         $0.tabBar.layout.selectedTextFont = Metric.pagerBarSelectedFontSize
         $0.tabBar.layout.adjustContentCellsCenter = true

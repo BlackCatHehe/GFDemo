@@ -24,6 +24,11 @@ class GCCommunityCateVC: GCBaseVC {
 
         initUI()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        requestListData()
+    }
 
     //MARK: ------------lazyload------------
     private lazy var collectionView: UICollectionView = {[weak self] in
@@ -89,7 +94,6 @@ extension GCCommunityCateVC {
 //        })
 //
 //
-        collectionView.mj_header.beginRefreshing()
     }
 }
 
@@ -201,23 +205,6 @@ extension GCCommunityCateVC {
     
     ///请求列表数据
     private func requestListData() {
-        /**
-        {
-          "data" : [
-            {
-              "cover" : "http:\/\/res.uioj.com\/images\/apiUpload\/\/2019\/10\/e38UuOZ6oZMkD1LNc0ZeI1oXiBBHjBeL9dmGuZi8.jpeg",
-              "isJoin" : false,
-              "introduce" : "欢迎年轻人来照顾老年程序员们",
-              "member_count" : 0,
-              "updated_at" : "2019-10-30 05:40:13",
-              "id" : 1,
-              "created_at" : "2019-10-30 05:40:13",
-              "name" : "老年活动中心",
-              "topic_count" : 0
-            }
-          ]
-        }
-        */
 
         GCNetTool.requestData(target: GCNetApi.communiteList, success: { (result) in
             

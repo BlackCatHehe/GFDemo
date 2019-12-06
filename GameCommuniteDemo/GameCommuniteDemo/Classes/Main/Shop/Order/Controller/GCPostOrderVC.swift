@@ -65,7 +65,7 @@ extension GCPostOrderVC {
     
     private func pay() {
         
-        self.requestCreateOrder {
+        self.requestCreateOrder {[weak self] in
             let alertVC = GCAlertPayVC()
             
             let preAniVC = JYWPrestentCustomVC(presentedViewController: alertVC, presenting: self)
@@ -73,7 +73,7 @@ extension GCPostOrderVC {
             alertVC.modalPresentationStyle = .custom
             alertVC.transitioningDelegate = preAniVC
 
-            alertVC.paySelectClick = {[weak self] index in
+            alertVC.paySelectClick = { index in
                 if index == 0 {
                     alertVC.dismissOrPop()
                 }else {
@@ -82,24 +82,12 @@ extension GCPostOrderVC {
             }
             alertVC.clickPay = {[weak self] in
                 
-                
                 let vc = GCPayResultVC()
                 vc.title = "立即支付"
                 self?.push(vc)
             }
             
-            var rootVC = kWindow?.rootViewController
-            while rootVC?.presentedViewController != nil {
-                if let vc = rootVC?.presentedViewController {
-                    if let nvc = vc as? UINavigationController{
-                        rootVC = nvc.visibleViewController
-                    }else if let tvc = vc as? UITabBarController{
-                        rootVC = tvc.selectedViewController
-                    }
-                }
-                
-            }
-            rootVC?.present(alertVC, animated: true, completion: nil)
+            self?.present(alertVC, animated: true, completion: nil)
         }
     }
 }
@@ -115,11 +103,7 @@ extension GCPostOrderVC {
         }
         let prama = [
             "ornament_id" : self.gModel.id!,
-            "amount" : num,
-            "is_safety_insurance" : orderV.selecteds[0],
-            "is_role_separation" : orderV.selecteds[1],
-            "is_camp_shift" : orderV.selecteds[2],
-            "is_deduct_eth" : orderV.selecteds[3]
+            "amount" : num
             ] as [String : Any]
         
         JYLog(prama)
@@ -133,7 +117,7 @@ extension GCPostOrderVC {
             }
         }) { (error) in
             JYLog(error)
-            
+
         }
     }
     

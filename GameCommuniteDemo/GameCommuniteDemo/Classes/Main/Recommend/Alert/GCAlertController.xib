@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -100,6 +100,7 @@
                         <constraint firstAttribute="trailing" secondItem="G7k-vk-clf" secondAttribute="trailing" id="HTW-Ec-plZ"/>
                         <constraint firstItem="2EW-aU-3vu" firstAttribute="leading" secondItem="AL6-Ex-1Wj" secondAttribute="leading" id="IuJ-SP-b8a"/>
                         <constraint firstItem="2EW-aU-3vu" firstAttribute="top" secondItem="kcC-4H-JCO" secondAttribute="bottom" constant="7" id="L7L-Nd-01a"/>
+                        <constraint firstItem="kcC-4H-JCO" firstAttribute="top" secondItem="AL6-Ex-1Wj" secondAttribute="top" priority="750" id="Lze-sw-zgd"/>
                         <constraint firstItem="G7k-vk-clf" firstAttribute="leading" secondItem="AL6-Ex-1Wj" secondAttribute="leading" id="ihs-fF-8fc"/>
                         <constraint firstItem="kcC-4H-JCO" firstAttribute="top" secondItem="G7k-vk-clf" secondAttribute="bottom" constant="1" id="mH7-Oz-Kf9"/>
                         <constraint firstItem="G7k-vk-clf" firstAttribute="top" secondItem="AL6-Ex-1Wj" secondAttribute="top" id="uRm-V8-bsW"/>
@@ -115,7 +116,7 @@
                 <constraint firstItem="AL6-Ex-1Wj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gfR-iW-nI0"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-236" y="153"/>
+            <point key="canvasLocation" x="-172.46376811594203" y="83.705357142857139"/>
         </view>
     </objects>
 </document>

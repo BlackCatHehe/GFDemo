@@ -7,19 +7,31 @@
 //
 
 import UIKit
-
+import NIMSDK
 class GCSettingListVC: GCBaseVC {
 
-    let settings = [ ["用户"],
-    ["安全与绑定", "游戏账号管理", "推送设置","通用设置"],
+    private let settings = [ ["用户"],
+    ["推送设置","通用设置","意见反馈"],
     ["关于我们", "邀请好友", "隐私政策"],
     ["退出登录"]]
+    
+    private var userModel: UserModel? {
+        get {
+            return GCUserDefault.shareInstance.userInfo
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "设置"
         initUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableview.reloadData()
     }
     
     private lazy var tableview: UITableView = {[weak self] in
@@ -66,14 +78,16 @@ extension GCSettingListVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? UITableView.automaticDimension : adaptW(58.0)
+        return indexPath.section == 0 ? UITableView.automaticDimension : adaptW(57.0)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell: GCSettingUserCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCSettingUserCell.self)
             cell.accessoryView?.backgroundColor = MetricGlobal.mainCellBgColor
-            cell.setModel()
+            if let model = userModel {
+                cell.setModel(model)
+            }
             return cell
         }else {
             let cell: GCTableViewCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCTableViewCell.self)
@@ -94,16 +108,69 @@ extension GCSettingListVC: UITableViewDataSource, UITableViewDelegate {
             push(vc)
         }else if indexPath.section == 1 {
             switch indexPath.row {
-            case 2:
+            case 0:
                 let vc = GCNotiSettingVC()
                 push(vc)
-            default:
+            case 1:
                 let vc = GCUsualSettingVC()
                 push(vc)
+            case 2:
+                let vc = GCFeedBackVC()
+                push(vc)
+            default:
+                break
+            }
+        }else if indexPath.section == 2 {
+            switch indexPath.row {
+            case 0:
+                let vc = GCAboutUsVC()
+                push(vc)
+            case 1:
+                showToast("邀请好友")
+            case 2:
+                showToast("隐私政策")
+            default:
+                break
             }
         }else {
             
+            self.requestResignLogin()
+            
         }
+    }
+}
+
+
+extension GCSettingListVC {
+    
+    private func requestResignLogin() {
         
+        GCNetTool.requestData(target: GCNetApi.resignLogin, controller: self, showAcvitity: true, success: { (result) in
+            
+            self.showToast("退出登录成功")
+            GCUserDefault.shareInstance.resignLogin()
+            
+            NIMSDK.shared().loginManager.logout { (err) in
+                if err == nil {
+                    JYLog("云信--登出成功！")
+                }else{
+                    JYLog("云信--登出err:\(err!)")
+                }
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                
+                //跳转登录页面
+                let vc = GCLoginVC()
+                let nav = UINavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                self.navigationController?.present(nav, animated: true, completion: nil)
+                
+            }
+            
+        }) { (error) in
+            JYLog(error)
+            
+        }
     }
 }

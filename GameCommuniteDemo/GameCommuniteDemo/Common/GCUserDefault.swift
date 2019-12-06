@@ -78,12 +78,21 @@ class GCUserDefault {
     }
     
     func resignLogin() {
-           let keychain = Keychain(service: "com.qiqi.gamecommunite")
-           do {
-               try keychain.remove("GCUserInfo")
-           } catch let error {
-               JYLog("error: \(error)")
-           }
+        //清除用户信息
+        let keychainUser = Keychain(service: "com.qiqi.gamecommunite")
+        do {
+            try keychainUser.remove("GCUserInfo")
+        } catch let error {
+            JYLog("UsrError: \(error)")
+        }
+        
+        //清除token
+        let keychainToken = Keychain(service: "access_token")
+        do {
+            try keychainToken.remove("header")
+        } catch let error {
+            JYLog("TokenError: \(error)")
+        }
        }
     
 }

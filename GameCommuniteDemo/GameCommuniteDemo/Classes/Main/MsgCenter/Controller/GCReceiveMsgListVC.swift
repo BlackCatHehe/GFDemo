@@ -7,8 +7,27 @@
 //
 
 import UIKit
+import ObjectMapper
+import SwiftyJSON
+import MJRefresh
 
 class GCReceiveMsgListVC: GCBaseVC {
+    
+    enum GCReceiveMsgListVCType{
+        case zan
+        case comment
+    }
+    
+    private var dataList: [GCMsgZanModel] = []
+    private var currentPage: Int = 1
+    private var type: GCReceiveMsgListVCType = .zan
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        initTableView()
+        
+    }
     
     //MARK: - lazyload
     private lazy var tableview: UITableView = {[weak self] in
@@ -25,13 +44,6 @@ class GCReceiveMsgListVC: GCBaseVC {
         }
         return tableV
         }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        initTableView()
-        
-    }
 }
 
 extension GCReceiveMsgListVC {
@@ -44,6 +56,16 @@ extension GCReceiveMsgListVC {
             make.left.right.equalToSuperview()
             make.height.equalTo(kScreenH - kStatusBarheight - kNavBarHeight)
         }
+        
+        tableview.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            self.currentPage = 1
+            self.requestMsgListData()
+        })
+        tableview.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: {
+            self.currentPage += 1
+            self.requestMsgListData()
+        })
+        tableview.mj_header.beginRefreshing()
     }
 }
 
@@ -54,12 +76,13 @@ extension GCReceiveMsgListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dataList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = dataList[indexPath.row]
         let cell: GCReceiveMsgCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCReceiveMsgCell.self)
-        cell.setModel()
+        cell.setModel(model)
         return cell
     }
     
@@ -70,5 +93,44 @@ extension GCReceiveMsgListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+}
+
+
+extension GCReceiveMsgListVC {
     
+    private func requestMsgListData() {
+        
+        let prama = ["page": currentPage]
+        
+        let targetType = type == .zan ? GCNetApi.msgZanList(prama: prama) : GCNetApi.msgCommentList(prama: prama)
+        GCNetTool.requestData(target: targetType, success: { (result) in
+            
+            self.tableview.mj_header.endRefreshing()
+            
+            let data = JSON(result)
+            if let totalPage = data["meta"]["pagination"]["total_pages"].int {
+                if self.currentPage >= totalPage, self.currentPage != 1{
+                    self.currentPage = totalPage
+                    self.tableview.mj_footer.endRefreshingWithNoMoreData()
+                    return
+                }
+            }
+            
+            let models = Mapper<GCMsgZanModel>().mapArray(JSONArray: result["data"] as! [[String: Any]])
+            if self.currentPage == 1 {
+                self.dataList = models
+            }else {
+                self.dataList.append(contentsOf: models)
+            }
+            
+            self.tableview.reloadData()
+            self.tableview.mj_footer.endRefreshing()
+        }) { (error) in
+    
+            self.tableview.mj_header.endRefreshing()
+            self.tableview.mj_footer.endRefreshing()
+            JYLog(error)
+            
+        }
+    }
 }

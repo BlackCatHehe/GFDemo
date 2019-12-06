@@ -31,6 +31,17 @@ class GoodDetailHeaderView: UIView {
         initUI()
     }
     
+    func setModel(_ model: GCGoodsModel) {
+        if let img = model.user?.avatar {
+            iconImgV.kfSetImage(url: img, targetSize: CGSize(width: adaptW(48.0), height: adaptW(48.0)), cornerRadius: adaptW(24.0))
+        }
+        nameLb.text = model.user?.name
+        timeLb.text = "上架时间:\(model.createdAt ?? "00")"
+        cycleView.imageURLStringsGroup = model.images
+        goodsNameLb.text = model.name
+        moneyLb.text = "\(model.price ?? "0.00")ETH"
+    }
+    
 }
 
 extension GoodDetailHeaderView {
@@ -133,7 +144,6 @@ extension GoodDetailHeaderView {
             make.left.equalToSuperview().offset(adaptW(15.0))
             make.centerY.equalToSuperview()
             make.height.equalTo(adaptW(14.0))
-            make.right.greaterThanOrEqualTo(coinsImgV.snp.left).offset(-20)
         }
         moneyLb.snp.makeConstraints { (make) in
             make.centerY.equalTo(goodsNameLb)
@@ -147,16 +157,6 @@ extension GoodDetailHeaderView {
         }
     }
     
-    func setModel(_ model: GCGoodsModel) {
-        layoutIfNeeded()
-        
-        iconImgV.kfSetImage(url: model.cover!, targetSize: .zero, cornerRadius: adaptW(24.0))
-        nameLb.text = "欧巴嘻嘻"
-        timeLb.text = "上架时间:2019/08/04"
-        cycleView.imageURLStringsGroup = ["https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg", "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"]
-        goodsNameLb.text = model.name
-        moneyLb.text = model.price
-    }
 }
 
 extension GoodDetailHeaderView: SDCycleScrollViewDelegate {

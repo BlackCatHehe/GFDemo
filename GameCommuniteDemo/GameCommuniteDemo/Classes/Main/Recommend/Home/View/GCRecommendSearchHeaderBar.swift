@@ -13,7 +13,12 @@ protocol GCRecommendSearchHeaderBarDelegate: UITextFieldDelegate {
 class GCRecommendSearchHeaderBar: UIView {
     
     var text: String? {
-        return searchTF?.text
+        get {
+            return searchTF?.text
+        }
+        set {
+            searchTF?.text = newValue
+        }
     }
     
     var attriPlaceholder: String? {
@@ -75,6 +80,8 @@ extension GCRecommendSearchHeaderBar: JYNavigationComponentProtocol{
         searchTF.textColor = kRGB(r: 229, g: 229, b: 229)
         searchTF.font = kFont(13.0)
         searchTF.backgroundColor = MetricGlobal.mainBgColor
+        searchTF.customClearButton(imageNamed: "clearBt")
+        searchTF.returnKeyType = .done
         searchView.backgroundColor = MetricGlobal.mainBgColor
         self.searchTF = searchTF
         

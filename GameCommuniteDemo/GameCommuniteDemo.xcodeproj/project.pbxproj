@@ -62,6 +62,8 @@
 		DD2E5A192361936E0091215C /* GCMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2E5A172361936E0091215C /* GCMemberCell.xib */; };
 		DD3F2478235DAE6F002666EC /* GCPostOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F2477235DAE6F002666EC /* GCPostOrderVC.swift */; };
 		DD3F247C235DAF2D002666EC /* GCMakeSureOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F247B235DAF2D002666EC /* GCMakeSureOrderView.swift */; };
+		DD4712C82398C96D00B317D6 /* GCGoodsSortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4712C72398C96D00B317D6 /* GCGoodsSortModel.swift */; };
+		DD4FF1032387C41A000E907F /* GCTieziDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4FF1022387C41A000E907F /* GCTieziDetailView.swift */; };
 		DD564B3023695D3F00CFD4E0 /* GCCommuniteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD564B2F23695D3F00CFD4E0 /* GCCommuniteModel.swift */; };
 		DD564B33236989A300CFD4E0 /* GCCommuniteDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD564B32236989A300CFD4E0 /* GCCommuniteDetailModel.swift */; };
 		DD56A5B5235EE0EC00EC3630 /* JYTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56A5B3235EE0EC00EC3630 /* JYTagView.swift */; };
@@ -74,6 +76,8 @@
 		DD56A5CB235EFEAF00EC3630 /* GCGameUsualListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56A5CA235EFEAF00EC3630 /* GCGameUsualListVC.swift */; };
 		DD56A5D0235EFF4B00EC3630 /* GCUsualGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56A5CE235EFF4B00EC3630 /* GCUsualGameCell.swift */; };
 		DD56A5D1235EFF4B00EC3630 /* GCUsualGameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD56A5CF235EFF4B00EC3630 /* GCUsualGameCell.xib */; };
+		DD56B759238F991000F0FD88 /* GCCheapActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56B758238F991000F0FD88 /* GCCheapActivityModel.swift */; };
+		DD572EDB2390ACDC00274155 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD572EDA2390ACDC00274155 /* UserModel.swift */; };
 		DD573133234ED6D000CF273D /* GCRecommendSearchHeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD573132234ED6D000CF273D /* GCRecommendSearchHeaderBar.swift */; };
 		DD573136234EDDFF00CF273D /* MetricGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD573135234EDDFF00CF273D /* MetricGlobal.swift */; };
 		DD5D13A32373B99A005ECEC1 /* GCBannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5D13A22373B99A005ECEC1 /* GCBannerModel.swift */; };
@@ -90,6 +94,11 @@
 		DD5E56DC235997E1004126FC /* GCCommunityHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E56DB235997E1004126FC /* GCCommunityHeaderView.swift */; };
 		DD5E56E12359A804004126FC /* GCTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E56DF2359A804004126FC /* GCTagCell.swift */; };
 		DD5E56E22359A804004126FC /* GCTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5E56E02359A804004126FC /* GCTagCell.xib */; };
+		DD5FD5D8238F63A200CD9EA4 /* GCNotiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5FD5D7238F63A200CD9EA4 /* GCNotiModel.swift */; };
+		DD5FD5DB238F762000CD9EA4 /* GCMsgZanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5FD5DA238F762000CD9EA4 /* GCMsgZanModel.swift */; };
+		DD604BD22397A4E3005538E2 /* GCMyItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD604BD12397A4E3005538E2 /* GCMyItemsVC.swift */; };
+		DD60DA0A238E02B10014AC68 /* JYTextfieldCustomProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60DA09238E02B10014AC68 /* JYTextfieldCustomProtocol.swift */; };
+		DD63638D239623D8000C236C /* GCGoodsCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD63638C239623D8000C236C /* GCGoodsCommentCell.swift */; };
 		DD689F9C236FB62D00BEC7C2 /* GCNoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD689F9B236FB62D00BEC7C2 /* GCNoDataView.swift */; };
 		DD689F9F236FBD0900BEC7C2 /* GCMineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD689F9E236FBD0900BEC7C2 /* GCMineHeaderView.swift */; };
 		DD689FA1236FC66E00BEC7C2 /* load.gif in Resources */ = {isa = PBXBuildFile; fileRef = DD689FA0236FC66E00BEC7C2 /* load.gif */; };
@@ -124,6 +133,7 @@
 		DD6DD400234EBEBE008C4FA7 /* GCMineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DD3FF234EBEBE008C4FA7 /* GCMineVC.swift */; };
 		DD6DD402234EBECD008C4FA7 /* GCRecommendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DD401234EBECD008C4FA7 /* GCRecommendVC.swift */; };
 		DD6DD404234EBEDE008C4FA7 /* GCShopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DD403234EBEDE008C4FA7 /* GCShopVC.swift */; };
+		DD6E405F2398A73A006DA88F /* GCAssociaGoodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6E405E2398A73A006DA88F /* GCAssociaGoodsView.swift */; };
 		DD6E406B2356A190002A9F73 /* GCSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6E406A2356A190002A9F73 /* GCSearchVC.swift */; };
 		DD6EAF1D235E97C10074A9D4 /* GCPostOrderBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6EAF1C235E97C10074A9D4 /* GCPostOrderBottomView.swift */; };
 		DD6EAF20235EADD60074A9D4 /* GCPayResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6EAF1E235EADD60074A9D4 /* GCPayResultVC.swift */; };
@@ -150,13 +160,37 @@
 		DD716013235022FB00EE3A45 /* GCNormalReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD716011235022FB00EE3A45 /* GCNormalReusableHeaderView.swift */; };
 		DD716014235022FB00EE3A45 /* GCNormalReusableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD716012235022FB00EE3A45 /* GCNormalReusableHeaderView.xib */; };
 		DD71EE3923504DC20044C62F /* UIBarButtonItem+Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD71EE3823504DC20044C62F /* UIBarButtonItem+Badge.swift */; };
+		DD722E552382439A00D05E86 /* GCAboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD722E542382439A00D05E86 /* GCAboutUsVC.swift */; };
+		DD722E572382441C00D05E86 /* GCAboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD722E562382441C00D05E86 /* GCAboutUsView.swift */; };
+		DD722E592382684700D05E86 /* GCFeedBackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD722E582382684700D05E86 /* GCFeedBackVC.swift */; };
+		DD722E5B2382690600D05E86 /* GCFeedBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD722E5A2382690600D05E86 /* GCFeedBackView.swift */; };
+		DD722E602382741000D05E86 /* GCPostNewGoodsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD722E5E2382741000D05E86 /* GCPostNewGoodsVC.swift */; };
+		DD722E612382741000D05E86 /* GCPostNewGoodsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD722E5F2382741000D05E86 /* GCPostNewGoodsVC.xib */; };
+		DD722E6323827EB700D05E86 /* GCPostNoSteamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD722E6223827EB700D05E86 /* GCPostNoSteamView.swift */; };
+		DD722E6523828A3F00D05E86 /* GCAssGoodsSortVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD722E6423828A3F00D05E86 /* GCAssGoodsSortVC.swift */; };
+		DD722E6723828F0900D05E86 /* GCSortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD722E6623828F0900D05E86 /* GCSortCell.swift */; };
 		DD72406F235803450043008B /* GCShopGoodsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD72406E235803450043008B /* GCShopGoodsDetailVC.swift */; };
 		DD724073235803970043008B /* GoodDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD724072235803970043008B /* GoodDetailHeaderView.swift */; };
+		DD737A262384CCD4005A6142 /* GCCommentTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD737A252384CCD4005A6142 /* GCCommentTitleView.swift */; };
+		DD737A282384D493005A6142 /* GCCommentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD737A272384D493005A6142 /* GCCommentInputView.swift */; };
+		DD78F05B2397593B0051E279 /* JYYouMengShareAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD78F05A2397593B0051E279 /* JYYouMengShareAble.swift */; };
 		DD7B7545235ECDC9004D94F5 /* GCSettingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7B7544235ECDC9004D94F5 /* GCSettingListVC.swift */; };
 		DD7B754A235ECE3A004D94F5 /* GCSettingUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7B7548235ECE3A004D94F5 /* GCSettingUserCell.swift */; };
 		DD7B754B235ECE3A004D94F5 /* GCSettingUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7B7549235ECE3A004D94F5 /* GCSettingUserCell.xib */; };
 		DD7B754F235ED7E3004D94F5 /* GCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7B754D235ED7E3004D94F5 /* GCTableViewCell.swift */; };
 		DD7B7550235ED7E3004D94F5 /* GCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7B754E235ED7E3004D94F5 /* GCTableViewCell.xib */; };
+		DD7D0EBA23836DFA002474B0 /* GCTitleReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D0EB923836DFA002474B0 /* GCTitleReusableView.swift */; };
+		DD7D0EBC23837076002474B0 /* GCSortBottomButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D0EBB23837076002474B0 /* GCSortBottomButtonsView.swift */; };
+		DD7D0EBE2383830D002474B0 /* GCOrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D0EBD2383830D002474B0 /* GCOrderDetailVC.swift */; };
+		DD7D0EC023838394002474B0 /* GCOrderDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D0EBF23838394002474B0 /* GCOrderDetailHeaderView.swift */; };
+		DD7D0EC2238396B3002474B0 /* GCGoodsDetailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D0EC1238396B3002474B0 /* GCGoodsDetailCellView.swift */; };
+		DD7D0EC42383B236002474B0 /* GCGameDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D0EC32383B236002474B0 /* GCGameDetailVC.swift */; };
+		DD7D0EC62383B2AC002474B0 /* GCGameDetailHeaderScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D0EC52383B2AC002474B0 /* GCGameDetailHeaderScrollView.swift */; };
+		DD7D0EC82383B931002474B0 /* GCGameDetailCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D0EC72383B931002474B0 /* GCGameDetailCenterView.swift */; };
+		DD7D0ECA2383D005002474B0 /* GCGameDetailDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D0EC92383D005002474B0 /* GCGameDetailDescView.swift */; };
+		DD7EA9402399E4460070B29A /* GCEstateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7EA93F2399E4460070B29A /* GCEstateModel.swift */; };
+		DD7EA9452399F8890070B29A /* GCGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7EA9442399F8890070B29A /* GCGameModel.swift */; };
+		DD7F6B622387704D006FA453 /* JYDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7F6B612387704D006FA453 /* JYDatePicker.swift */; };
 		DD84E7B72367C5C400CDAF8A /* Data+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD84E7B62367C5C300CDAF8A /* Data+String.swift */; };
 		DD88F0512370FF0B0027F4EF /* GCGoodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88F0502370FF0B0027F4EF /* GCGoodsModel.swift */; };
 		DD99BE572362CF1E00113C1A /* JYBadgeAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD99BE562362CF1D00113C1A /* JYBadgeAble.swift */; };
@@ -189,13 +223,18 @@
 		DDA308CD23613AD500C6CE35 /* GCMsgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA308C223613AD500C6CE35 /* GCMsgCell.xib */; };
 		DDA308CF2361462100C6CE35 /* GCSelectPicOrVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA308CE2361462100C6CE35 /* GCSelectPicOrVideoView.swift */; };
 		DDA308D12361466200C6CE35 /* GCSelectPicOrVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA308D02361466200C6CE35 /* GCSelectPicOrVideoView.xib */; };
+		DDB87BC1239A1E41007D71A2 /* apple-app-site-association.json in Resources */ = {isa = PBXBuildFile; fileRef = DDB87BC0239A1E41007D71A2 /* apple-app-site-association.json */; };
 		DDE15E3523667F1F0087540B /* GCAlertCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE15E3423667F1F0087540B /* GCAlertCommentVC.swift */; };
 		DDE15E3923667F7E0087540B /* GCCommentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE15E3823667F7E0087540B /* GCCommentHeaderView.swift */; };
 		DDE15E3D2366878A0087540B /* GCCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE15E3B2366878A0087540B /* GCCommentCell.swift */; };
 		DDE15E3E2366878A0087540B /* GCCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDE15E3C2366878A0087540B /* GCCommentCell.xib */; };
 		DDE15E4023668C7C0087540B /* GCArticalDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE15E3F23668C7C0087540B /* GCArticalDetailVC.swift */; };
 		DDE15E4423668CD30087540B /* GCArticalBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE15E4323668CD30087540B /* GCArticalBottomView.swift */; };
-		E108983F22D5C2950062DEFB /* MXTDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E108983E22D5C2950062DEFB /* MXTDateFormatter.swift */; };
+		DDE4BB892386182200E039C0 /* GCChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE4BB882386182200E039C0 /* GCChatVC.swift */; };
+		DDE4BB8C238618B600E039C0 /* GCOtherMsgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE4BB8B238618B600E039C0 /* GCOtherMsgCell.swift */; };
+		DDE4BB8F2386190200E039C0 /* GCMyMsgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE4BB8E2386190200E039C0 /* GCMyMsgCell.swift */; };
+		DDE4BB9123863AA200E039C0 /* GCCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE4BB9023863AA200E039C0 /* GCCommentModel.swift */; };
+		E108983F22D5C2950062DEFB /* JYDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E108983E22D5C2950062DEFB /* JYDateFormatter.swift */; };
 		E108984322D5C2A20062DEFB /* MXTEmojiLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E108984122D5C2A20062DEFB /* MXTEmojiLabel.swift */; };
 		E108984422D5C2A20062DEFB /* MXTYYTextEmotionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E108984222D5C2A20062DEFB /* MXTYYTextEmotionParser.swift */; };
 		E10A2A8322D576AF00ADEFC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A2A8222D576AF00ADEFC9 /* AppDelegate.swift */; };
@@ -288,6 +327,9 @@
 		DD2E5A172361936E0091215C /* GCMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCMemberCell.xib; sourceTree = "<group>"; };
 		DD3F2477235DAE6F002666EC /* GCPostOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCPostOrderVC.swift; sourceTree = "<group>"; };
 		DD3F247B235DAF2D002666EC /* GCMakeSureOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCMakeSureOrderView.swift; sourceTree = "<group>"; };
+		DD4712C72398C96D00B317D6 /* GCGoodsSortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCGoodsSortModel.swift; sourceTree = "<group>"; };
+		DD4712CA2398ECCD00B317D6 /* GameCommuniteDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GameCommuniteDemo.entitlements; sourceTree = "<group>"; };
+		DD4FF1022387C41A000E907F /* GCTieziDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCTieziDetailView.swift; sourceTree = "<group>"; };
 		DD564B2F23695D3F00CFD4E0 /* GCCommuniteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCommuniteModel.swift; sourceTree = "<group>"; };
 		DD564B32236989A300CFD4E0 /* GCCommuniteDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCommuniteDetailModel.swift; sourceTree = "<group>"; };
 		DD56A5B3235EE0EC00EC3630 /* JYTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JYTagView.swift; sourceTree = "<group>"; };
@@ -300,6 +342,8 @@
 		DD56A5CA235EFEAF00EC3630 /* GCGameUsualListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCGameUsualListVC.swift; sourceTree = "<group>"; };
 		DD56A5CE235EFF4B00EC3630 /* GCUsualGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCUsualGameCell.swift; sourceTree = "<group>"; };
 		DD56A5CF235EFF4B00EC3630 /* GCUsualGameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCUsualGameCell.xib; sourceTree = "<group>"; };
+		DD56B758238F991000F0FD88 /* GCCheapActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCheapActivityModel.swift; sourceTree = "<group>"; };
+		DD572EDA2390ACDC00274155 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		DD573132234ED6D000CF273D /* GCRecommendSearchHeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCRecommendSearchHeaderBar.swift; sourceTree = "<group>"; };
 		DD573135234EDDFF00CF273D /* MetricGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricGlobal.swift; sourceTree = "<group>"; };
 		DD5D13A22373B99A005ECEC1 /* GCBannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCBannerModel.swift; sourceTree = "<group>"; };
@@ -316,6 +360,11 @@
 		DD5E56DB235997E1004126FC /* GCCommunityHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCommunityHeaderView.swift; sourceTree = "<group>"; };
 		DD5E56DF2359A804004126FC /* GCTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCTagCell.swift; sourceTree = "<group>"; };
 		DD5E56E02359A804004126FC /* GCTagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCTagCell.xib; sourceTree = "<group>"; };
+		DD5FD5D7238F63A200CD9EA4 /* GCNotiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCNotiModel.swift; sourceTree = "<group>"; };
+		DD5FD5DA238F762000CD9EA4 /* GCMsgZanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCMsgZanModel.swift; sourceTree = "<group>"; };
+		DD604BD12397A4E3005538E2 /* GCMyItemsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCMyItemsVC.swift; sourceTree = "<group>"; };
+		DD60DA09238E02B10014AC68 /* JYTextfieldCustomProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYTextfieldCustomProtocol.swift; sourceTree = "<group>"; };
+		DD63638C239623D8000C236C /* GCGoodsCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCGoodsCommentCell.swift; sourceTree = "<group>"; };
 		DD689F9B236FB62D00BEC7C2 /* GCNoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCNoDataView.swift; sourceTree = "<group>"; };
 		DD689F9E236FBD0900BEC7C2 /* GCMineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCMineHeaderView.swift; sourceTree = "<group>"; };
 		DD689FA0236FC66E00BEC7C2 /* load.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = load.gif; sourceTree = "<group>"; };
@@ -351,6 +400,7 @@
 		DD6DD3FF234EBEBE008C4FA7 /* GCMineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCMineVC.swift; sourceTree = "<group>"; };
 		DD6DD401234EBECD008C4FA7 /* GCRecommendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCRecommendVC.swift; sourceTree = "<group>"; };
 		DD6DD403234EBEDE008C4FA7 /* GCShopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCShopVC.swift; sourceTree = "<group>"; };
+		DD6E405E2398A73A006DA88F /* GCAssociaGoodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCAssociaGoodsView.swift; sourceTree = "<group>"; };
 		DD6E406A2356A190002A9F73 /* GCSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCSearchVC.swift; sourceTree = "<group>"; };
 		DD6EAF1C235E97C10074A9D4 /* GCPostOrderBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCPostOrderBottomView.swift; sourceTree = "<group>"; };
 		DD6EAF1E235EADD60074A9D4 /* GCPayResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCPayResultVC.swift; sourceTree = "<group>"; };
@@ -378,13 +428,38 @@
 		DD716011235022FB00EE3A45 /* GCNormalReusableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCNormalReusableHeaderView.swift; sourceTree = "<group>"; };
 		DD716012235022FB00EE3A45 /* GCNormalReusableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCNormalReusableHeaderView.xib; sourceTree = "<group>"; };
 		DD71EE3823504DC20044C62F /* UIBarButtonItem+Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Badge.swift"; sourceTree = "<group>"; };
+		DD722E542382439A00D05E86 /* GCAboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCAboutUsVC.swift; sourceTree = "<group>"; };
+		DD722E562382441C00D05E86 /* GCAboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCAboutUsView.swift; sourceTree = "<group>"; };
+		DD722E582382684700D05E86 /* GCFeedBackVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCFeedBackVC.swift; sourceTree = "<group>"; };
+		DD722E5A2382690600D05E86 /* GCFeedBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCFeedBackView.swift; sourceTree = "<group>"; };
+		DD722E5E2382741000D05E86 /* GCPostNewGoodsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCPostNewGoodsVC.swift; sourceTree = "<group>"; };
+		DD722E5F2382741000D05E86 /* GCPostNewGoodsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCPostNewGoodsVC.xib; sourceTree = "<group>"; };
+		DD722E6223827EB700D05E86 /* GCPostNoSteamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCPostNoSteamView.swift; sourceTree = "<group>"; };
+		DD722E6423828A3F00D05E86 /* GCAssGoodsSortVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCAssGoodsSortVC.swift; sourceTree = "<group>"; };
+		DD722E6623828F0900D05E86 /* GCSortCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCSortCell.swift; sourceTree = "<group>"; };
 		DD72406E235803450043008B /* GCShopGoodsDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCShopGoodsDetailVC.swift; sourceTree = "<group>"; };
 		DD724072235803970043008B /* GoodDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodDetailHeaderView.swift; sourceTree = "<group>"; };
+		DD737A252384CCD4005A6142 /* GCCommentTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCommentTitleView.swift; sourceTree = "<group>"; };
+		DD737A272384D493005A6142 /* GCCommentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCommentInputView.swift; sourceTree = "<group>"; };
+		DD78F05A2397593B0051E279 /* JYYouMengShareAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYYouMengShareAble.swift; sourceTree = "<group>"; };
 		DD7B7544235ECDC9004D94F5 /* GCSettingListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCSettingListVC.swift; sourceTree = "<group>"; };
 		DD7B7548235ECE3A004D94F5 /* GCSettingUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCSettingUserCell.swift; sourceTree = "<group>"; };
 		DD7B7549235ECE3A004D94F5 /* GCSettingUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCSettingUserCell.xib; sourceTree = "<group>"; };
 		DD7B754D235ED7E3004D94F5 /* GCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCTableViewCell.swift; sourceTree = "<group>"; };
 		DD7B754E235ED7E3004D94F5 /* GCTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCTableViewCell.xib; sourceTree = "<group>"; };
+		DD7D0EB923836DFA002474B0 /* GCTitleReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCTitleReusableView.swift; sourceTree = "<group>"; };
+		DD7D0EBB23837076002474B0 /* GCSortBottomButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCSortBottomButtonsView.swift; sourceTree = "<group>"; };
+		DD7D0EBD2383830D002474B0 /* GCOrderDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCOrderDetailVC.swift; sourceTree = "<group>"; };
+		DD7D0EBF23838394002474B0 /* GCOrderDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCOrderDetailHeaderView.swift; sourceTree = "<group>"; };
+		DD7D0EC1238396B3002474B0 /* GCGoodsDetailCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCGoodsDetailCellView.swift; sourceTree = "<group>"; };
+		DD7D0EC32383B236002474B0 /* GCGameDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCGameDetailVC.swift; sourceTree = "<group>"; };
+		DD7D0EC52383B2AC002474B0 /* GCGameDetailHeaderScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCGameDetailHeaderScrollView.swift; sourceTree = "<group>"; };
+		DD7D0EC72383B931002474B0 /* GCGameDetailCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCGameDetailCenterView.swift; sourceTree = "<group>"; };
+		DD7D0EC92383D005002474B0 /* GCGameDetailDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCGameDetailDescView.swift; sourceTree = "<group>"; };
+		DD7EA93F2399E4460070B29A /* GCEstateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCEstateModel.swift; sourceTree = "<group>"; };
+		DD7EA9442399F8890070B29A /* GCGameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCGameModel.swift; sourceTree = "<group>"; };
+		DD7EA946239A03390070B29A /* GameCommuniteDemoDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GameCommuniteDemoDebug.entitlements; sourceTree = "<group>"; };
+		DD7F6B612387704D006FA453 /* JYDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYDatePicker.swift; sourceTree = "<group>"; };
 		DD84E7B62367C5C300CDAF8A /* Data+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+String.swift"; sourceTree = "<group>"; };
 		DD88F0502370FF0B0027F4EF /* GCGoodsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCGoodsModel.swift; sourceTree = "<group>"; };
 		DD99BE562362CF1D00113C1A /* JYBadgeAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYBadgeAble.swift; sourceTree = "<group>"; };
@@ -417,13 +492,18 @@
 		DDA308C223613AD500C6CE35 /* GCMsgCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCMsgCell.xib; sourceTree = "<group>"; };
 		DDA308CE2361462100C6CE35 /* GCSelectPicOrVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCSelectPicOrVideoView.swift; sourceTree = "<group>"; };
 		DDA308D02361466200C6CE35 /* GCSelectPicOrVideoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCSelectPicOrVideoView.xib; sourceTree = "<group>"; };
+		DDB87BC0239A1E41007D71A2 /* apple-app-site-association.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "apple-app-site-association.json"; sourceTree = "<group>"; };
 		DDE15E3423667F1F0087540B /* GCAlertCommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCAlertCommentVC.swift; sourceTree = "<group>"; };
 		DDE15E3823667F7E0087540B /* GCCommentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCommentHeaderView.swift; sourceTree = "<group>"; };
 		DDE15E3B2366878A0087540B /* GCCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCommentCell.swift; sourceTree = "<group>"; };
 		DDE15E3C2366878A0087540B /* GCCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCCommentCell.xib; sourceTree = "<group>"; };
 		DDE15E3F23668C7C0087540B /* GCArticalDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCArticalDetailVC.swift; sourceTree = "<group>"; };
 		DDE15E4323668CD30087540B /* GCArticalBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCArticalBottomView.swift; sourceTree = "<group>"; };
-		E108983E22D5C2950062DEFB /* MXTDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXTDateFormatter.swift; sourceTree = "<group>"; };
+		DDE4BB882386182200E039C0 /* GCChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCChatVC.swift; sourceTree = "<group>"; };
+		DDE4BB8B238618B600E039C0 /* GCOtherMsgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCOtherMsgCell.swift; sourceTree = "<group>"; };
+		DDE4BB8E2386190200E039C0 /* GCMyMsgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCMyMsgCell.swift; sourceTree = "<group>"; };
+		DDE4BB9023863AA200E039C0 /* GCCommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCommentModel.swift; sourceTree = "<group>"; };
+		E108983E22D5C2950062DEFB /* JYDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JYDateFormatter.swift; sourceTree = "<group>"; };
 		E108984122D5C2A20062DEFB /* MXTEmojiLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXTEmojiLabel.swift; sourceTree = "<group>"; };
 		E108984222D5C2A20062DEFB /* MXTYYTextEmotionParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXTYYTextEmotionParser.swift; sourceTree = "<group>"; };
 		E10A2A7F22D576AF00ADEFC9 /* GameCommuniteDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameCommuniteDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -582,6 +662,8 @@
 		DD12B8222356EC7E003BAA87 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DDE4BB8B238618B600E039C0 /* GCOtherMsgCell.swift */,
+				DDE4BB8E2386190200E039C0 /* GCMyMsgCell.swift */,
 				DD1484DA2356EC3800DFD6BD /* GCChatListCell.swift */,
 				DD1484DB2356EC3800DFD6BD /* GCChatListCell.xib */,
 			);
@@ -675,6 +757,7 @@
 			isa = PBXGroup;
 			children = (
 				DD1484D62356EBAD00DFD6BD /* GCChatListVC.swift */,
+				DDE4BB882386182200E039C0 /* GCChatVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -698,6 +781,7 @@
 				DD21697A23584AD000D3E53C /* GCGoodsPriceFloatCell.xib */,
 				DD21697D23584D5700D3E53C /* GCShopRecommendCell.swift */,
 				DD21697E23584D5700D3E53C /* GCShopRecommendCell.xib */,
+				DD63638C239623D8000C236C /* GCGoodsCommentCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -707,6 +791,7 @@
 			children = (
 				DD99BE5D2362F31A00113C1A /* Controller */,
 				DD2E5A0F23618E1F0091215C /* View */,
+				DD4712C92398CA4700B317D6 /* Model */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -716,6 +801,10 @@
 			children = (
 				DD2E5A0B23618E1B0091215C /* GCAssociationGoodsCell.swift */,
 				DD2E5A0C23618E1B0091215C /* GCAssociationGoodsCell.xib */,
+				DD722E6623828F0900D05E86 /* GCSortCell.swift */,
+				DD7D0EB923836DFA002474B0 /* GCTitleReusableView.swift */,
+				DD7D0EBB23837076002474B0 /* GCSortBottomButtonsView.swift */,
+				DD6E405E2398A73A006DA88F /* GCAssociaGoodsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -748,6 +837,14 @@
 				DDA2D9E22363ED81007E965E /* GCPostCommentView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DD4712C92398CA4700B317D6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD4712C72398C96D00B317D6 /* GCGoodsSortModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DD564B3123695D4400CFD4E0 /* Model */ = {
@@ -799,6 +896,7 @@
 			children = (
 				DD56A5BC235EEF5B00EC3630 /* Controller */,
 				DD56A5BD235EEF6400EC3630 /* View */,
+				DD7EA93E2399E16C0070B29A /* Model */,
 			);
 			path = MyEstate;
 			sourceTree = "<group>";
@@ -817,6 +915,7 @@
 			isa = PBXGroup;
 			children = (
 				DD56A5CA235EFEAF00EC3630 /* GCGameUsualListVC.swift */,
+				DD7D0EC32383B236002474B0 /* GCGameDetailVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -826,6 +925,7 @@
 			children = (
 				DD56A5CC235EFF2300EC3630 /* Controller */,
 				DD56A5D2235EFF5000EC3630 /* View */,
+				DD7EA9432399F7B80070B29A /* Model */,
 			);
 			path = GameUsual;
 			sourceTree = "<group>";
@@ -835,8 +935,19 @@
 			children = (
 				DD56A5CE235EFF4B00EC3630 /* GCUsualGameCell.swift */,
 				DD56A5CF235EFF4B00EC3630 /* GCUsualGameCell.xib */,
+				DD7D0EC52383B2AC002474B0 /* GCGameDetailHeaderScrollView.swift */,
+				DD7D0EC72383B931002474B0 /* GCGameDetailCenterView.swift */,
+				DD7D0EC92383D005002474B0 /* GCGameDetailDescView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DD572EDC2390ACF700274155 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD572EDA2390ACDC00274155 /* UserModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DD57312D234ED2FD00CF273D /* Recommend */ = {
@@ -867,9 +978,9 @@
 				DD1484D52356EB7600DFD6BD /* CommunityCate */,
 				DD1484D92356EC1100DFD6BD /* ChatList */,
 				DD12B8262356F19D003BAA87 /* FriendList */,
-				DD5E56CD2359520C004126FC /* CommunityDetail */,
+				DD5E56CD2359520C004126FC /* CommunityList */,
 				DDE15E3623667F340087540B /* CommentVC */,
-				DDE15E4123668C800087540B /* Artical */,
+				DDE15E4123668C800087540B /* CommunityDetail */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -923,6 +1034,7 @@
 			children = (
 				DD027D0C235D428600AC4AC8 /* Controller */,
 				DD027D0B235D428100AC4AC8 /* View */,
+				DD572EDC2390ACF700274155 /* Model */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -938,14 +1050,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		DD5E56CD2359520C004126FC /* CommunityDetail */ = {
+		DD5E56CD2359520C004126FC /* CommunityList */ = {
 			isa = PBXGroup;
 			children = (
 				DD5E56CC23595207004126FC /* Controller */,
 				DD5E56D4235966DD004126FC /* View */,
 				DD564B34236997E100CFD4E0 /* Model */,
 			);
-			path = CommunityDetail;
+			path = CommunityList;
 			sourceTree = "<group>";
 		};
 		DD5E56D4235966DD004126FC /* View */ = {
@@ -967,6 +1079,16 @@
 				DD5D13A923740BCF005ECEC1 /* GCScrollBannerCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DD5FD5D9238F63D500CD9EA4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD5FD5D7238F63A200CD9EA4 /* GCNotiModel.swift */,
+				DD5FD5DA238F762000CD9EA4 /* GCMsgZanModel.swift */,
+				DD56B758238F991000F0FD88 /* GCCheapActivityModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DD689F9D236FB9A000BEC7C2 /* NoData */ = {
@@ -1052,6 +1174,7 @@
 			children = (
 				DD7064E6235FD9B700C8ED8D /* GCSaleVC.swift */,
 				DD7064EF235FE0CA00C8ED8D /* GCSaleListVC.swift */,
+				DD7D0EBD2383830D002474B0 /* GCOrderDetailVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1070,6 +1193,8 @@
 			children = (
 				DD7064EA235FDAE000C8ED8D /* GCSaleListCell.swift */,
 				DD7064EB235FDAE000C8ED8D /* GCSaleListCell.xib */,
+				DD7D0EBF23838394002474B0 /* GCOrderDetailHeaderView.swift */,
+				DD7D0EC1238396B3002474B0 /* GCGoodsDetailCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1081,6 +1206,8 @@
 				DD7064F1235FE74200C8ED8D /* GCGoodsManagerListVC.swift */,
 				DD7064FC235FFC4700C8ED8D /* GCPostGoodsVC.swift */,
 				DD7064FD235FFC4700C8ED8D /* GCPostGoodsVC.xib */,
+				DD722E5E2382741000D05E86 /* GCPostNewGoodsVC.swift */,
+				DD722E5F2382741000D05E86 /* GCPostNewGoodsVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1099,6 +1226,7 @@
 			children = (
 				DD7064F5235FE77700C8ED8D /* GCGoodsManagerCell.swift */,
 				DD7064F6235FE77700C8ED8D /* GCGoodsManagerCell.xib */,
+				DD722E6223827EB700D05E86 /* GCPostNoSteamView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1185,6 +1313,8 @@
 				DD706509236040AC00C8ED8D /* GCNotiSettingVC.xib */,
 				DD70650C2360437000C8ED8D /* GCUsualSettingVC.swift */,
 				DD70650D2360437000C8ED8D /* GCUsualSettingVC.xib */,
+				DD722E542382439A00D05E86 /* GCAboutUsVC.swift */,
+				DD722E582382684700D05E86 /* GCFeedBackVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1196,6 +1326,8 @@
 				DD7B7549235ECE3A004D94F5 /* GCSettingUserCell.xib */,
 				DD7B754D235ED7E3004D94F5 /* GCTableViewCell.swift */,
 				DD7B754E235ED7E3004D94F5 /* GCTableViewCell.xib */,
+				DD722E562382441C00D05E86 /* GCAboutUsView.swift */,
+				DD722E5A2382690600D05E86 /* GCFeedBackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1203,6 +1335,7 @@
 		DD7B7553235EDE01004D94F5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DD604BD12397A4E3005538E2 /* GCMyItemsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1215,6 +1348,22 @@
 			path = Items;
 			sourceTree = "<group>";
 		};
+		DD7EA93E2399E16C0070B29A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD7EA93F2399E4460070B29A /* GCEstateModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD7EA9432399F7B80070B29A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD7EA9442399F8890070B29A /* GCGameModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DD99BE5D2362F31A00113C1A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1223,6 +1372,7 @@
 				DD99BE612362F31A00113C1A /* GCPostTieziVC.swift */,
 				DD99BE602362F31A00113C1A /* GCPostTieziVC.xib */,
 				DD99BE622362F31A00113C1A /* GCAssociationGoodsList.swift */,
+				DD722E6423828A3F00D05E86 /* GCAssGoodsSortVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1244,6 +1394,7 @@
 			children = (
 				DDA25104235D94B200385E31 /* Controller */,
 				DDA308B723613AD500C6CE35 /* View */,
+				DD5FD5D9238F63D500CD9EA4 /* Model */,
 			);
 			path = MsgCenter;
 			sourceTree = "<group>";
@@ -1283,6 +1434,7 @@
 			children = (
 				DDE15E3723667F3F0087540B /* Controller */,
 				DDE15E3A23667F880087540B /* View */,
+				DDE4BB9223863AA800E039C0 /* Model */,
 			);
 			path = CommentVC;
 			sourceTree = "<group>";
@@ -1301,17 +1453,19 @@
 				DDE15E3823667F7E0087540B /* GCCommentHeaderView.swift */,
 				DDE15E3B2366878A0087540B /* GCCommentCell.swift */,
 				DDE15E3C2366878A0087540B /* GCCommentCell.xib */,
+				DD737A252384CCD4005A6142 /* GCCommentTitleView.swift */,
+				DD737A272384D493005A6142 /* GCCommentInputView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		DDE15E4123668C800087540B /* Artical */ = {
+		DDE15E4123668C800087540B /* CommunityDetail */ = {
 			isa = PBXGroup;
 			children = (
 				DDE15E4223668C870087540B /* Controller */,
 				DDE15E45236690E00087540B /* View */,
 			);
-			path = Artical;
+			path = CommunityDetail;
 			sourceTree = "<group>";
 		};
 		DDE15E4223668C870087540B /* Controller */ = {
@@ -1326,14 +1480,23 @@
 			isa = PBXGroup;
 			children = (
 				DDE15E4323668CD30087540B /* GCArticalBottomView.swift */,
+				DD4FF1022387C41A000E907F /* GCTieziDetailView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DDE4BB9223863AA800E039C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DDE4BB9023863AA200E039C0 /* GCCommentModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E108983D22D5C2950062DEFB /* DateFomatter */ = {
 			isa = PBXGroup;
 			children = (
-				E108983E22D5C2950062DEFB /* MXTDateFormatter.swift */,
+				E108983E22D5C2950062DEFB /* JYDateFormatter.swift */,
 			);
 			path = DateFomatter;
 			sourceTree = "<group>";
@@ -1379,12 +1542,15 @@
 		E10A2A8122D576AF00ADEFC9 /* GameCommuniteDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DD7EA946239A03390070B29A /* GameCommuniteDemoDebug.entitlements */,
+				DD4712CA2398ECCD00B317D6 /* GameCommuniteDemo.entitlements */,
 				E10A2AB022D5778000ADEFC9 /* Classes */,
 				E10A2AB122D5789800ADEFC9 /* Common */,
 				E10A2AD222D5880E00ADEFC9 /* NetApi */,
 				E10A2ABD22D57C8200ADEFC9 /* Tools */,
 				E10A2AB322D5796300ADEFC9 /* Resources(项目资源) */,
 				E10A2AB422D5797700ADEFC9 /* SDKFile */,
+				DDB87BC0239A1E41007D71A2 /* apple-app-site-association.json */,
 			);
 			path = GameCommuniteDemo;
 			sourceTree = "<group>";
@@ -1457,6 +1623,8 @@
 				E10BFC46235ACB6B00F43ACE /* JYNaviControllerPushProtocol.swift */,
 				DD99BE562362CF1D00113C1A /* JYBadgeAble.swift */,
 				DD69FB5623726A2E003996D1 /* JYToastAble.swift */,
+				DD60DA09238E02B10014AC68 /* JYTextfieldCustomProtocol.swift */,
+				DD78F05A2397593B0051E279 /* JYYouMengShareAble.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1510,6 +1678,7 @@
 				E10A2AC422D57EA400ADEFC9 /* FaceID TouchID */,
 				E10A2ACD22D57ECA00ADEFC9 /* QiNiuUploadTool */,
 				E10A2AC022D57CDB00ADEFC9 /* AnimationPresent */,
+				DD7F6B612387704D006FA453 /* JYDatePicker.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1587,6 +1756,7 @@
 				E10A2A7D22D576AF00ADEFC9 /* Resources */,
 				EE3B62A060DEB4D3FDF027DA /* [CP] Embed Pods Frameworks */,
 				DD6C6B7E236ABA4E00D52BEE /* ShellScript */,
+				D58C84652FA887FDAE052CB5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1684,6 +1854,7 @@
 				DD2E5A0723617AD00091215C /* GCAlertController.xib in Resources */,
 				DD7064F8235FE77700C8ED8D /* GCGoodsManagerCell.xib in Resources */,
 				DDA308C623613AD500C6CE35 /* GCNotiMsgCell.xib in Resources */,
+				DD722E612382741000D05E86 /* GCPostNewGoodsVC.xib in Resources */,
 				DD689FA9236FD2D500BEC7C2 /* GCMineCateCell.xib in Resources */,
 				DD5E56E22359A804004126FC /* GCTagCell.xib in Resources */,
 				DD56A5C8235EF44700EC3630 /* GCEstateDetailCell.xib in Resources */,
@@ -1723,6 +1894,7 @@
 				DD027D0A235D3C4100AC4AC8 /* GCValidateCodeVC.xib in Resources */,
 				DD027D12235D674A00AC4AC8 /* GCBindPhoneVC.xib in Resources */,
 				DD7064ED235FDAE000C8ED8D /* GCSaleListCell.xib in Resources */,
+				DDB87BC1239A1E41007D71A2 /* apple-app-site-association.json in Resources */,
 				DD1484CE2356B8D300DFD6BD /* GCCommuniteCateCell.xib in Resources */,
 				DD2169742358479900D3E53C /* GCGoodsDetailCell.xib in Resources */,
 				DDA308CD23613AD500C6CE35 /* GCMsgCell.xib in Resources */,
@@ -1769,6 +1941,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D58C84652FA887FDAE052CB5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GameCommuniteDemo/Pods-GameCommuniteDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GameCommuniteDemo/Pods-GameCommuniteDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GameCommuniteDemo/Pods-GameCommuniteDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DD6C6B7E236ABA4E00D52BEE /* ShellScript */ = {
@@ -1818,6 +2007,7 @@
 				DD027D09235D3C4100AC4AC8 /* GCValidateCodeVC.swift in Sources */,
 				DD5E56D723596703004126FC /* GCSwiftCommentCell.swift in Sources */,
 				DD689FA8236FD2D500BEC7C2 /* GCMineCateCell.swift in Sources */,
+				DDE4BB8C238618B600E039C0 /* GCOtherMsgCell.swift in Sources */,
 				E10A2AC622D57EA400ADEFC9 /* JYWFaceIDAndTouchIDManager.swift in Sources */,
 				DD06FB4C22FEB5EA00FC07E7 /* JYWLocationManager.swift in Sources */,
 				DD7B754A235ECE3A004D94F5 /* GCSettingUserCell.swift in Sources */,
@@ -1826,29 +2016,39 @@
 				DD7064F7235FE77700C8ED8D /* GCGoodsManagerCell.swift in Sources */,
 				DD2169832358562300D3E53C /* GCChartView.swift in Sources */,
 				DD69FB592372A2A5003996D1 /* GCNoNetView.swift in Sources */,
+				DD7EA9402399E4460070B29A /* GCEstateModel.swift in Sources */,
 				DD56A5C0235EF37200EC3630 /* GCEstateDetailListVC.swift in Sources */,
 				DD12B8242356F178003BAA87 /* GCFriendListVC.swift in Sources */,
 				DD0A6DA423612F7900FE6450 /* GCNotiMsgListVC.swift in Sources */,
 				DD70650E2360437000C8ED8D /* GCUsualSettingVC.swift in Sources */,
-				E108983F22D5C2950062DEFB /* MXTDateFormatter.swift in Sources */,
+				E108983F22D5C2950062DEFB /* JYDateFormatter.swift in Sources */,
 				DD7064FE235FFC4700C8ED8D /* GCPostGoodsVC.swift in Sources */,
 				DD6EAF20235EADD60074A9D4 /* GCPayResultVC.swift in Sources */,
 				DD5E56C723594FBA004126FC /* GCLoginVC.swift in Sources */,
 				DD7064FB235FF3CF00C8ED8D /* GCGoodsManagerVC.swift in Sources */,
 				DD027D11235D674A00AC4AC8 /* GCBindPhoneVC.swift in Sources */,
+				DD7D0EC2238396B3002474B0 /* GCGoodsDetailCellView.swift in Sources */,
 				DD6DD3F6234EBBDF008C4FA7 /* String+MD5.swift in Sources */,
+				DD722E5B2382690600D05E86 /* GCFeedBackView.swift in Sources */,
+				DD737A262384CCD4005A6142 /* GCCommentTitleView.swift in Sources */,
+				DD7D0EBE2383830D002474B0 /* GCOrderDetailVC.swift in Sources */,
 				DDA308C723613AD500C6CE35 /* GCMsgSectionHeaderView.swift in Sources */,
+				DD6E405F2398A73A006DA88F /* GCAssociaGoodsView.swift in Sources */,
 				DD56A5C7235EF44700EC3630 /* GCEstateDetailCell.swift in Sources */,
 				DD564B33236989A300CFD4E0 /* GCCommuniteDetailModel.swift in Sources */,
 				DD99BE642362F31A00113C1A /* GCCreateCommuniteVC.swift in Sources */,
 				DD6ADB37234EF8FC003993B2 /* GCHomeTopCell.swift in Sources */,
 				DD6ADB3F234EFF72003993B2 /* GCRecommendSanCell.swift in Sources */,
+				DD722E552382439A00D05E86 /* GCAboutUsVC.swift in Sources */,
 				DD135CFD2366CD2C00E6BA98 /* GCReChargeVC.swift in Sources */,
 				DD06FB3D22FEB52100FC07E7 /* JYNinePicView.swift in Sources */,
 				DD027D06235D37DF00AC4AC8 /* GCValidateView.swift in Sources */,
 				DD99BE572362CF1E00113C1A /* JYBadgeAble.swift in Sources */,
+				DD737A282384D493005A6142 /* GCCommentInputView.swift in Sources */,
+				DD7D0EBA23836DFA002474B0 /* GCTitleReusableView.swift in Sources */,
 				DD6DD3F7234EBBDF008C4FA7 /* UIImage+AutoSize.swift in Sources */,
 				DD135D022366D05400E6BA98 /* GCChooseRechargeView.swift in Sources */,
+				DD7D0ECA2383D005002474B0 /* GCGameDetailDescView.swift in Sources */,
 				DDE15E3923667F7E0087540B /* GCCommentHeaderView.swift in Sources */,
 				DD7065032360273F00C8ED8D /* Demo2ViewController.m in Sources */,
 				DD5E56E12359A804004126FC /* GCTagCell.swift in Sources */,
@@ -1858,10 +2058,14 @@
 				DD2E5A11236192ED0091215C /* GCCommuniteMemberListVC.swift in Sources */,
 				DD9F33FB23666CC000152FEB /* GCTieziSubGoodsView.swift in Sources */,
 				DD7B7545235ECDC9004D94F5 /* GCSettingListVC.swift in Sources */,
+				DD722E602382741000D05E86 /* GCPostNewGoodsVC.swift in Sources */,
+				DD7F6B622387704D006FA453 /* JYDatePicker.swift in Sources */,
+				DD63638D239623D8000C236C /* GCGoodsCommentCell.swift in Sources */,
 				DD716013235022FB00EE3A45 /* GCNormalReusableHeaderView.swift in Sources */,
 				DD70650A236040AC00C8ED8D /* GCNotiSettingVC.swift in Sources */,
 				E10A2AD122D57F6A00ADEFC9 /* Common.swift in Sources */,
 				DD99BE672362F31A00113C1A /* GCAssociationGoodsList.swift in Sources */,
+				DD722E6723828F0900D05E86 /* GCSortCell.swift in Sources */,
 				DD2E5A0D23618E1C0091215C /* GCAssociationGoodsCell.swift in Sources */,
 				DD12B8292356F1C0003BAA87 /* GCFriendCell.swift in Sources */,
 				DDA308C423613AD500C6CE35 /* GCPreferentialCell.swift in Sources */,
@@ -1871,21 +2075,26 @@
 				DD135D042366D2FE00E6BA98 /* GCChoosePayWayView.swift in Sources */,
 				DD06FB4F22FEB5F900FC07E7 /* JYRegularExpression.swift in Sources */,
 				DDE15E3D2366878A0087540B /* GCCommentCell.swift in Sources */,
+				DDE4BB9123863AA200E039C0 /* GCCommentModel.swift in Sources */,
 				DDA2D9E32363ED81007E965E /* GCPostCommentView.swift in Sources */,
 				DD135CFF2366CE6300E6BA98 /* GCRechargeMoneyCell.swift in Sources */,
 				DD88F0512370FF0B0027F4EF /* GCGoodsModel.swift in Sources */,
+				DD7EA9452399F8890070B29A /* GCGameModel.swift in Sources */,
 				DD12B83423571703003BAA87 /* GCShopGoodsListCell.swift in Sources */,
+				DD7D0EC023838394002474B0 /* GCOrderDetailHeaderView.swift in Sources */,
 				DDA25103235D94AF00385E31 /* GCMessageCenterVC.swift in Sources */,
 				DD6DD3F8234EBBDF008C4FA7 /* Int+CountString.swift in Sources */,
 				DD706506236036D100C8ED8D /* GCPersonalMsgVC.swift in Sources */,
 				DD21DD57231CA20300F74A31 /* DateFormatterable.swift in Sources */,
 				DD6DD3ED234EB797008C4FA7 /* GCBaseVC.swift in Sources */,
+				DD572EDB2390ACDC00274155 /* UserModel.swift in Sources */,
 				DD0A6DA82361352B00FE6450 /* GCReceiveMsgListVC.swift in Sources */,
 				DD573133234ED6D000CF273D /* GCRecommendSearchHeaderBar.swift in Sources */,
 				DDE15E3523667F1F0087540B /* GCAlertCommentVC.swift in Sources */,
 				E10A2A8322D576AF00ADEFC9 /* AppDelegate.swift in Sources */,
 				DD56A5CB235EFEAF00EC3630 /* GCGameUsualListVC.swift in Sources */,
 				DD6DD400234EBEBE008C4FA7 /* GCMineVC.swift in Sources */,
+				DD56B759238F991000F0FD88 /* GCCheapActivityModel.swift in Sources */,
 				DD1484D22356BEB800DFD6BD /* GCCommuniteResuableView.swift in Sources */,
 				DD72406F235803450043008B /* GCShopGoodsDetailVC.swift in Sources */,
 				DDA308C923613AD500C6CE35 /* GCMsgHeaderView.swift in Sources */,
@@ -1895,26 +2104,33 @@
 				DD7064EC235FDAE000C8ED8D /* GCSaleListCell.swift in Sources */,
 				DD2E5A0623617AD00091215C /* GCAlertController.swift in Sources */,
 				DD06FB4922FEB5D100FC07E7 /* JYGCDTimer.swift in Sources */,
+				DD60DA0A238E02B10014AC68 /* JYTextfieldCustomProtocol.swift in Sources */,
 				DD573136234EDDFF00CF273D /* MetricGlobal.swift in Sources */,
 				DDE15E4023668C7C0087540B /* GCArticalDetailVC.swift in Sources */,
 				E10A2AD622D5883600ADEFC9 /* GCNetTool.swift in Sources */,
+				DD7D0EC82383B931002474B0 /* GCGameDetailCenterView.swift in Sources */,
 				DD7064E7235FD9B700C8ED8D /* GCSaleVC.swift in Sources */,
+				DD7D0EC42383B236002474B0 /* GCGameDetailVC.swift in Sources */,
 				DD564B3023695D3F00CFD4E0 /* GCCommuniteModel.swift in Sources */,
+				DD7D0EBC23837076002474B0 /* GCSortBottomButtonsView.swift in Sources */,
 				DD6E406B2356A190002A9F73 /* GCSearchVC.swift in Sources */,
 				DD6DD3E5234EB19D008C4FA7 /* JYNavigationComponents.swift in Sources */,
 				DD027D0E235D5A8C00AC4AC8 /* GCQuHaoVC.swift in Sources */,
+				DD722E6323827EB700D05E86 /* GCPostNoSteamView.swift in Sources */,
 				E10A2AD422D5882700ADEFC9 /* JYWDownloadTool.swift in Sources */,
 				DD6DD3FB234EBBDF008C4FA7 /* UIButton+Layout.swift in Sources */,
 				DD21697F23584D5700D3E53C /* GCShopRecommendCell.swift in Sources */,
 				DD69FB5723726A2E003996D1 /* JYToastAble.swift in Sources */,
 				DD706511236047FC00C8ED8D /* GCNewUpVC.swift in Sources */,
 				DD5D13A8237409E8005ECEC1 /* GCScrollBannerView.swift in Sources */,
+				DD5FD5D8238F63A200CD9EA4 /* GCNotiModel.swift in Sources */,
 				DDA308CF2361462100C6CE35 /* GCSelectPicOrVideoView.swift in Sources */,
 				DD56A5B5235EE0EC00EC3630 /* JYTagView.swift in Sources */,
 				DDA2D9E02363ED24007E965E /* GCPostCommentVC.swift in Sources */,
 				DD053CE1236C2223007B8A74 /* GCCateModel.swift in Sources */,
 				DD56A5D0235EFF4B00EC3630 /* GCUsualGameCell.swift in Sources */,
 				DD3F2478235DAE6F002666EC /* GCPostOrderVC.swift in Sources */,
+				DD722E572382441C00D05E86 /* GCAboutUsView.swift in Sources */,
 				DD1484CD2356B8D300DFD6BD /* GCCommuniteCateCell.swift in Sources */,
 				DD6DD3FC234EBBDF008C4FA7 /* Constraint+Xib.swift in Sources */,
 				E10A2ACF22D57ECA00ADEFC9 /* MXTQiNiuUpdateTool.swift in Sources */,
@@ -1922,6 +2138,7 @@
 				DD6DD404234EBEDE008C4FA7 /* GCShopVC.swift in Sources */,
 				E10A2AC922D57EAC00ADEFC9 /* JYWFpsLabel.swift in Sources */,
 				DD1484D72356EBAD00DFD6BD /* GCChatListVC.swift in Sources */,
+				DD4FF1032387C41A000E907F /* GCTieziDetailView.swift in Sources */,
 				DD6DD3FA234EBBDF008C4FA7 /* UIView+Frame.swift in Sources */,
 				DD06FB4622FEB5C500FC07E7 /* JYCollectionDelegateFlowLayout.swift in Sources */,
 				DD21697B23584AD000D3E53C /* GCGoodsPriceFloatCell.swift in Sources */,
@@ -1929,24 +2146,31 @@
 				DD5D13AA23740BCF005ECEC1 /* GCScrollBannerCell.swift in Sources */,
 				DD6EAF1D235E97C10074A9D4 /* GCPostOrderBottomView.swift in Sources */,
 				DDA2D9DA2363D658007E965E /* GCAlertPayVC.swift in Sources */,
+				DD722E592382684700D05E86 /* GCFeedBackVC.swift in Sources */,
 				DD5E56CF2359523E004126FC /* GCTieziVC.swift in Sources */,
 				DD5E56CB23595203004126FC /* GCCommunityDetailVC.swift in Sources */,
 				DD84E7B72367C5C400CDAF8A /* Data+String.swift in Sources */,
 				DD71EE3923504DC20044C62F /* UIBarButtonItem+Badge.swift in Sources */,
 				DDA2D9DD2363D7CA007E965E /* GCAlertPayView.swift in Sources */,
 				DD6DD3EA234EB781008C4FA7 /* JYNavigationComponentProtocol.swift in Sources */,
+				DDE4BB892386182200E039C0 /* GCChatVC.swift in Sources */,
 				DD56A5B6235EE0EC00EC3630 /* String+Width.swift in Sources */,
 				DDA2D9EB236423AE007E965E /* GCAlertShareCenterVC.swift in Sources */,
 				E10A2AC222D57D2200ADEFC9 /* JYWNavigationBackItemEditAble.swift in Sources */,
 				E108984322D5C2A20062DEFB /* MXTEmojiLabel.swift in Sources */,
 				DD7B754F235ED7E3004D94F5 /* GCTableViewCell.swift in Sources */,
+				DDE4BB8F2386190200E039C0 /* GCMyMsgCell.swift in Sources */,
+				DD78F05B2397593B0051E279 /* JYYouMengShareAble.swift in Sources */,
 				DD6ADB43234F006E003993B2 /* GCRecommendZixunCell.swift in Sources */,
 				DD99BE662362F31A00113C1A /* GCPostTieziVC.swift in Sources */,
 				DD0A6DA6236133EB00FE6450 /* GCReceiveMsgVC.swift in Sources */,
+				DD7D0EC62383B2AC002474B0 /* GCGameDetailHeaderScrollView.swift in Sources */,
 				DD706515236049D500C8ED8D /* GCPreferentialVC.swift in Sources */,
+				DD722E6523828A3F00D05E86 /* GCAssGoodsSortVC.swift in Sources */,
 				DD3F247C235DAF2D002666EC /* GCMakeSureOrderView.swift in Sources */,
 				DD6DD3FE234EBE74008C4FA7 /* GCCommunityVC.swift in Sources */,
 				E10A2ABF22D57CD200ADEFC9 /* JYWPrestentCustomVC.swift in Sources */,
+				DD4712C82398C96D00B317D6 /* GCGoodsSortModel.swift in Sources */,
 				DD5E56DC235997E1004126FC /* GCCommunityHeaderView.swift in Sources */,
 				DDA308C523613AD500C6CE35 /* GCReceiveMsgCell.swift in Sources */,
 				E10A2ACC22D57EB900ADEFC9 /* JYWWKWebViewController.swift in Sources */,
@@ -1957,11 +2181,13 @@
 				DD5E56D3235953A1004126FC /* GCTieziHeaderView.swift in Sources */,
 				DD5D13A62373BB6B005ECEC1 /* GCNewActivityModel.swift in Sources */,
 				DD6DD3F9234EBBDF008C4FA7 /* UILabel+AutoFont.swift in Sources */,
+				DD604BD22397A4E3005538E2 /* GCMyItemsVC.swift in Sources */,
 				DD724073235803970043008B /* GoodDetailHeaderView.swift in Sources */,
 				DD2E5A182361936E0091215C /* GCMemberCell.swift in Sources */,
 				DD6C6B80236AD14700D52BEE /* UIImageView+KingFisherCorner.swift in Sources */,
 				DD6DD3E3234EB18F008C4FA7 /* JYAttributeable.swift in Sources */,
 				DD2169732358479900D3E53C /* GCGoodsDetailCell.swift in Sources */,
+				DD5FD5DB238F762000CD9EA4 /* GCMsgZanModel.swift in Sources */,
 				DDA250FF235D80E600385E31 /* GCPeopleMainPageVC.swift in Sources */,
 				DD6DD402234EBECD008C4FA7 /* GCRecommendVC.swift in Sources */,
 				DD7064F2235FE74200C8ED8D /* GCGoodsManagerListVC.swift in Sources */,
@@ -2141,9 +2367,10 @@
 			baseConfigurationReference = F9EF01D6EEC45C773C63A3CF /* Pods-GameCommuniteDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N495UC66AV;
+				CODE_SIGN_ENTITLEMENTS = GameCommuniteDemo/GameCommuniteDemoDebug.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = ZLDG549PQK;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/GameCommuniteDemo/Resources(项目资源)/Plist/Info.plist";
@@ -2153,10 +2380,10 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.qiqi.gamecommunite;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiqi.carryCommunity;
 				PRODUCT_MODULE_NAME = GameCommuniteDemo;
 				PRODUCT_NAME = GameCommuniteDemo;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = CarryDevelopmentProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "GameCommuniteDemo/Resources(项目资源)/GameCommuniteDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2168,9 +2395,10 @@
 			baseConfigurationReference = 25C4AD5D8580761C56B86CDC /* Pods-GameCommuniteDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N495UC66AV;
+				CODE_SIGN_ENTITLEMENTS = GameCommuniteDemo/GameCommuniteDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yunnan Huanze Network Technology Co., Ltd. (ZLDG549PQK)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = ZLDG549PQK;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/GameCommuniteDemo/Resources(项目资源)/Plist/Info.plist";
@@ -2180,10 +2408,10 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.qiqi.gamecommunite;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiqi.carryCommunity;
 				PRODUCT_MODULE_NAME = GameCommuniteDemo;
 				PRODUCT_NAME = GameCommuniteDemo;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = CarryDistrictionProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "GameCommuniteDemo/Resources(项目资源)/GameCommuniteDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
