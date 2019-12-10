@@ -161,9 +161,10 @@ class RegularExpressionTool {
             return false
         }
     }
-
-    class func getStringByRangeIntValue(Str : NSString,location : Int, length : Int) -> Int{
-
+    
+    
+    class func getStringByRangeIntValue(Str : NSString, location : Int, length : Int) -> Int{
+        
         let a = Str.substring(with: NSRange(location: location, length: length))
 
         let intValue = (a as NSString).integerValue

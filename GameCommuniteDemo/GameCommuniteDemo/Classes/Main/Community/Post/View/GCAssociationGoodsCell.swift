@@ -37,6 +37,7 @@ class GCAssociationGoodsCell: UITableViewCell, NibReusable {
         backgroundColor = MetricGlobal.mainBgColor
         bgView.backgroundColor = MetricGlobal.mainCellBgColor
         
+        selectedBt.isUserInteractionEnabled = false
         selectedBt.setImage(UIImage(named: "check_noSel"), for: .normal)
         selectedBt.setImage(UIImage(named: "check_sel"), for: .selected)
         

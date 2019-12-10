@@ -199,6 +199,9 @@ extension GCSearchVC {
     @objc private func clickTags(_ sender: UIButton){
         if let hotWord = hotSearchs[sender.tag].word {
             searchView?.text = hotWord
+            if isFirstSearch {
+                initTableview()
+            }
             requestSearchData()
         }
     }
@@ -241,6 +244,7 @@ extension GCSearchVC {
         let prama: [String: Any] = ["page" : currentPage,
                                     "keywords" : keyword]
         GCNetTool.requestData(target: GCNetApi.search(prama: prama), showAcvitity: false, success: { (result) in
+            self.isFirstSearch = false
             self.tableview.mj_header.endRefreshing()
             self.tableview.mj_footer.endRefreshing()
             self.noDataView.refreshHeader?.endRefreshing()

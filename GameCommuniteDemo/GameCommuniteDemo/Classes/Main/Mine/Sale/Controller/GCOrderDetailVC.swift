@@ -7,9 +7,18 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class GCOrderDetailVC: GCBaseVC {
 
+    var pageModel: GCOrderListModel? {
+        didSet {
+            if let model = pageModel {
+                setModel(model)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -17,9 +26,17 @@ class GCOrderDetailVC: GCBaseVC {
         initUI()
     }
     
+    private func setModel(_ model: GCOrderListModel) {
+        
+        headerV.setModel(model)
+        orderV.setModel(model)
+        bDetailLb.attributedText = "订单编号：\(model.no ?? "")\n下单时间：\(model.createdAt ?? "")\n付款时间：\(model.updatedAt ?? "")\n订单备注: ".jys.add(kFont(adaptW(12.0))).add(CGFloat(10.0)).base
+        
+    }
+    
     private lazy var headerV: GCOrderDetailHeaderView = {
         let view = GCOrderDetailHeaderView(frame: .zero)
-        view.setModel()
+        
         return view
     }()
     
@@ -40,6 +57,11 @@ class GCOrderDetailVC: GCBaseVC {
         return label
     }()
     
+    private lazy var bottomV: GCOrderBottomView = {
+        let v = GCOrderBottomView()
+        return v
+    }()
+    
 }
 
 extension GCOrderDetailVC {
@@ -53,21 +75,77 @@ extension GCOrderDetailVC {
         }
         
         view.addSubview(orderV)
-        orderV.setModel()
         orderV.snp.makeConstraints { (make) in
-            make.top.equalTo(headerV.snp.bottom).offset(adaptW(28.0))
+            make.top.equalTo(headerV.snp.bottom).offset(adaptW(20.0))
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.height.equalTo(adaptW(117.0))
+            make.height.equalTo(adaptW(90.0))
         }
         
-        view.addSubview(bDetailLb)
-        bDetailLb.snp.makeConstraints { (make) in
+        let detailV = UIView()
+        detailV.backgroundColor = MetricGlobal.mainCellBgColor
+        view.addSubview(detailV)
+        detailV.snp.makeConstraints { (make) in
             make.top.equalTo(orderV.snp.bottom).offset(adaptW(14.0))
             make.left.equalToSuperview().offset(adaptW(15.0))
             make.right.equalToSuperview().offset(-adaptW(15.0))
         }
+        detailV.addSubview(bDetailLb)
+        bDetailLb.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(adaptW(14.0))
+            make.left.equalToSuperview().offset(adaptW(9.0))
+            make.right.equalToSuperview().offset(-adaptW(15.0))
+            make.bottom.equalToSuperview().offset(-adaptW(9.0))
+        }
         
-        bDetailLb.attributedText = "订单编号：1234567890002121\n下单时间：2019-04-15 12:30:25\n付款时间：2019-04-15\n订单备注: 帮我关下灯谢谢".jys.add(CGFloat(10.0)).base
+        view.addSubview(bottomV)
+        bottomV.delegate = self
+        bottomV.snp.makeConstraints { (make) in
+            make.bottom.left.right.equalToSuperview()
+            make.height.equalTo(adaptW(48.0) + kBottomH)   
+        }
     }
 }
+
+extension GCOrderDetailVC: GCOrderBottomViewDelegate {
+    
+    func bottomViewDidClickKefu(bottomView: GCOrderBottomView) {
+        
+        if let tel = GCUserDefault.shareInstance.kefuTel {
+            call(to: tel)
+        }else {
+            requestAboutUS()
+        }
+        
+        
+    }
+    
+    func bottomViewDidClickDelete(bottomView: GCOrderBottomView) {
+        
+    }
+}
+
+
+extension GCOrderDetailVC {
+    
+    private func requestAboutUS() {
+        GCNetTool.requestData(target: GCNetApi.aboutUs, controller: self, showAcvitity: true, isTapAble: false, success: { (result) in
+            
+            let json = JSON(result)
+            if let tel = json["service_phone"].string {
+                GCUserDefault.shareInstance.kefuTel = tel
+                
+                call(to: tel)
+            }else {
+                self.showToast("获取客服电话失败，请重试")
+            }
+
+            
+            
+        }) { (error) in
+            JYLog(error)
+        }
+    }
+}
+
+

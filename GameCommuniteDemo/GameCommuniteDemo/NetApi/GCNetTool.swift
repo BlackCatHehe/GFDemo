@@ -59,6 +59,7 @@ enum GCNetApi {
     case goodsDown(prama: String)//商品下架
     case goodsReEdit(id: String, prama: [String : String])//商品重新编辑
     case goodsSortPramas //关联商品筛选参数列表
+    case goodsDelete(gid: Int) //关联商品筛选参数列表
     
     //TODO: pay
     case createOrder(prama: [String: Any])//创建订单
@@ -77,6 +78,7 @@ enum GCNetApi {
     case myItems(prama: [String: Any])   //我的道具
     case goodsManager(prama: [String: Any])  //商品管理
     case feedback(prama: [String: Any]) //意见反馈
+    case aboutUs //关于我们
     
     //TODO: 消息中心
     case cheaperActivities(prama: [String : Int])//优惠活动
@@ -177,6 +179,8 @@ extension GCNetApi: TargetType{
             return "ornaments/\(id)"
         case .goodsSortPramas: //商品筛选参数
             return "searchParam"
+        case let .goodsDelete(gid): //关联商品筛选参数列表
+            return "ornaments/\(gid)"
             
         //TODO: pay
         case .createOrder://创建订单
@@ -207,6 +211,8 @@ extension GCNetApi: TargetType{
             return "user/ornaments"
         case .feedback:  //意见反馈
             return "suggests"
+        case .aboutUs: //关于我们
+            return "about"
             
         //TODO: 消息中心
         case .cheaperActivities://优惠活动
@@ -240,11 +246,11 @@ extension GCNetApi: TargetType{
         
         switch self{
             
-        case .communiteList, .topicList, .getUserInfo, .communiteDetail, .topicDetail, .goodsCate, .goodsList, .goodsDetail, .orderBuyList, .orderSaleList,.newsZiXun, .banner, .centerNews, .commentList, .myTopics, .eState, .cheaperActivities, .notiMsgs, .msgZanList, .msgCommentList, .commentReplyList, .communiteMemberList, .myItems, .goodsManager, .goodsSortPramas, .hotGameList, .hotGameDetail, .search:
+        case .communiteList, .topicList, .getUserInfo, .communiteDetail, .topicDetail, .goodsCate, .goodsList, .goodsDetail, .orderBuyList, .orderSaleList,.newsZiXun, .banner, .centerNews, .commentList, .myTopics, .eState, .cheaperActivities, .notiMsgs, .msgZanList, .msgCommentList, .commentReplyList, .communiteMemberList, .myItems, .goodsManager, .goodsSortPramas, .hotGameList, .hotGameDetail, .search, .aboutUs:
             return .get
-        case .topicCancelZan, .resignLogin, .commentCancelZan, .cancelFollow, .exitCommunite:
+        case .topicCancelZan, .resignLogin, .commentCancelZan, .cancelFollow, .exitCommunite, .goodsDelete:
             return .delete
-        case .goodsReEdit, .updateUserInfo:
+        case .goodsReEdit, .updateUserInfo, .goodsDown:
             return .patch
         default:
             return .post
@@ -334,7 +340,9 @@ extension GCNetApi: TargetType{
             return .requestParameters(parameters: prama, encoding: URLEncoding.default)
         case .goodsSortPramas://商品筛选参数
             return .requestPlain
-            
+         case .goodsDelete: //关联商品筛选参数列表
+             return .requestPlain
+        
         //TODO: pay
         case let .createOrder(prama)://创建订单
             return .requestParameters(parameters: prama, encoding: URLEncoding.default)
@@ -364,6 +372,8 @@ extension GCNetApi: TargetType{
             return .requestParameters(parameters: prama, encoding: URLEncoding.default)
         case let .feedback(prama):  //意见反馈
             return .requestParameters(parameters: prama, encoding: URLEncoding.default)
+        case .aboutUs: //关于我们
+            return .requestPlain
             
         //TODO: 消息中心
         case let .cheaperActivities(prama)://优惠活动

@@ -323,3 +323,13 @@ func dispatch_async_safe(_ clourse: @escaping ()->()) {
         clourse()
     }
 }
+
+// MARK:-拨叫电话
+
+///拨叫电话
+func call(to phoneNum: String) {
+    let phone = "telprompt://" + phoneNum
+    if let url = URL(string: phone), UIApplication.shared.canOpenURL(url) {
+        UIApplication.shared.openURL(url)
+    }
+}

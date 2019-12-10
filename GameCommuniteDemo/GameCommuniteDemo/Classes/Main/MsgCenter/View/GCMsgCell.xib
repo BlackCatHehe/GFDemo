@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -118,10 +118,18 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="X2X-HL-IDT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="1we-1G-1Om"/>
+                    <constraint firstItem="X2X-HL-IDT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="1we-1G-1Om">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
                     <constraint firstItem="X2X-HL-IDT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="D2Y-B3-6J1"/>
                     <constraint firstAttribute="bottom" secondItem="X2X-HL-IDT" secondAttribute="bottom" id="Pw6-gm-yYq"/>
-                    <constraint firstAttribute="trailing" secondItem="X2X-HL-IDT" secondAttribute="trailing" constant="15" id="qak-8v-5ky"/>
+                    <constraint firstAttribute="trailing" secondItem="X2X-HL-IDT" secondAttribute="trailing" constant="15" id="qak-8v-5ky">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

@@ -26,7 +26,7 @@ class GCQuHaoVC: GCBaseVC {
         }()
     private lazy var bButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .white
+        button.setImage(UIImage(named: "chahao"), for: .normal)
         return button
     }()
     
@@ -35,9 +35,8 @@ class GCQuHaoVC: GCBaseVC {
         
         initBackButton()
         initTableView()
- 
+        
     }
-
 }
 
 extension GCQuHaoVC {
@@ -95,11 +94,11 @@ extension GCQuHaoVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.selectionStyle = .none
         cell.backgroundColor = MetricGlobal.mainBgColor
-        cell.textLabel?.text = "北京"
+        cell.textLabel?.text = "中国" + "                 " + "+86"
         cell.textLabel?.textColor = .white
-        cell.detailTextLabel?.text = "+86"
-        cell.detailTextLabel?.textColor = .white
+
         return cell
     }
     

@@ -63,11 +63,7 @@ class GCCommunityHeaderView: UIView {
             bgImgVVBottomCon.update(priority: .high)
         }
         
-        bgImageView.kfSetImage(
-            url: model.cover!,
-            targetSize: CGSize(width: kScreenW, height: adaptW(185.0)),
-            cornerRadius: adaptW(5.0)
-        )
+
         iconImgView.kfSetImage(
             url: model.cover!,
             targetSize: CGSize(width: adaptW(43.0), height: adaptW(43.0)),
@@ -82,7 +78,7 @@ class GCCommunityHeaderView: UIView {
         pramaStyle.lineSpacing = adaptW(5.0)
         let content = NSMutableAttributedString(string: contentStr)
         content.addAttributes([NSAttributedString.Key.paragraphStyle: pramaStyle], range: NSMakeRange(0, contentStr.count))
-        content.yy_lineSpacing = adaptW(9.0)
+        content.yy_lineSpacing = adaptW(4.0)
         content.yy_font = kFont(adaptW(11.0))
         content.yy_color = .white
         self.contentLabelAddExpand(content)
@@ -170,6 +166,7 @@ extension GCCommunityHeaderView {
         let bgImgV = UIImageView()
         bgImgV.contentMode = .scaleAspectFill
         bgImgV.clipsToBounds = true
+        bgImgV.image = UIImage(named: "communite_bg")
         addSubview(bgImgV)
         self.bgImageView = bgImgV
         bgImgV.snp.makeConstraints { (make) in
@@ -219,7 +216,7 @@ extension GCCommunityHeaderView {
         
         bBgView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
-            make.height.equalTo(adaptW(72.0))
+            make.height.greaterThanOrEqualTo(adaptW(72.0))
         }
         
         addButton.snp.makeConstraints { (make) in
@@ -244,7 +241,7 @@ extension GCCommunityHeaderView {
             make.left.equalTo(iconImgV)
             make.right.equalTo(addButton.snp.left).offset(-adaptW(25.0))
             make.top.equalTo(iconImgV.snp.bottom).offset(adaptW(10.0))
-            make.bottom.greaterThanOrEqualToSuperview().offset(-adaptW(5.0))
+            make.bottom.equalToSuperview().offset(-adaptW(5.0))
         }
         
         //MARK: ------------成员------------

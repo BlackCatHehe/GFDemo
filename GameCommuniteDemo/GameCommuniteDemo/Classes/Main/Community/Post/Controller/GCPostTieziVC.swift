@@ -260,21 +260,13 @@ extension GCPostTieziVC {
     
     private func requestUpdateImage( complete: @escaping ((String?)->())){
         guard let imgs = self.selectedImgs else {
+            showToast("至少上传一张图片作为封面")
             complete(nil)
             return
         }
         
         let prama = ["type": "topics"]
-        /**
-         {
-         "id" : 3,
-         "user_id" : 2,
-         "type" : "communities",
-         "created_at" : "2019-10-30 05:39:30",
-         "updated_at" : "2019-10-30 05:39:30",
-         "path" : "http:\/\/res.uioj.com\/images\/apiUpload\/\/2019\/10\/e38UuOZ6oZMkD1LNc0ZeI1oXiBBHjBeL9dmGuZi8.jpeg"
-         }
-         */
+
         GCNetTool.requestData(target: GCNetApi.updateImg(prama: prama, images: imgs), showAcvitity: true, success: { (result) in
             
             let resultJson = JSON(result)

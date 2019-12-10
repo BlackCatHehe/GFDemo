@@ -25,6 +25,7 @@ class GCEstateDetailCell: UITableViewCell, NibReusable {
         super.awakeFromNib()
         
         selectionStyle = .none
+        backgroundColor = MetricGlobal.mainCellBgColor
         contentView.backgroundColor = MetricGlobal.mainCellBgColor
         bgView.backgroundColor = MetricGlobal.mainCellBgColor
     }

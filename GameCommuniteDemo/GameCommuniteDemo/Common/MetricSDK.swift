@@ -16,9 +16,12 @@ struct MetricSDK {
     //友盟
     static let YM_appkey = "5de89de6570df3b6b10002df"
     
+    //qq
+    static let QQ_appkey = "aebbb019dc61739c9153cd688f854d05"
+    static let QQ_appid = "101831505"
+    
     //云信
-    static let WYYX_appid = "20388728ad8e060ef73246df54bd6bab"
-    static let WYYX_secret = "810d44f91154"
+    static let WYYX_appkey = "20388728ad8e060ef73246df54bd6bab"
     
     static let WYYX_DataDir = "GameCommunity" //云信数据保存沙盒位置
     

@@ -131,10 +131,10 @@
                 <outlet property="timeLb" destination="0zq-Nk-9OY" id="cRV-4c-j0f"/>
                 <outlet property="titleLb" destination="5k1-5e-81e" id="6GW-vw-0OU"/>
             </connections>
-            <point key="canvasLocation" x="-146" y="118"/>
+            <point key="canvasLocation" x="-293" y="116"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="msg_tip" width="15" height="15"/>
+        <image name="msg_tip" width="25" height="25"/>
     </resources>
 </document>

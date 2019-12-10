@@ -45,15 +45,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //配置为读数前台和后台一致
         let count = NIMSDK.shared().conversationManager.allUnreadCount()
         UIApplication.shared.applicationIconBadgeNumber = count
+    
     }
     //即将进入前台
     func applicationWillEnterForeground(_ application: UIApplication) {
-        
+       
     }
-    //已经进入后台
+    //已经进入前台
     func applicationDidBecomeActive(_ application: UIApplication) {
         
     }
+
     //将要结束进程
     func applicationWillTerminate(_ application: UIApplication) {
         
@@ -73,6 +75,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("云信通知--error: \(error.localizedDescription)")
     }
     
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let result = UMSocialManager.default()?.handleOpen(url, options: options) {
+            if !result {
+                // 其他如支付等SDK的回调
+                
+            }
+            return result
+        }
+        return false
+    }
 }
 
 extension AppDelegate{
@@ -156,7 +169,12 @@ extension AppDelegate {
         
         //注册
         UMConfigure.initWithAppkey(MetricSDK.YM_appkey, channel: "")
+        
+        //注册qq
+        UMSocialManager.default()?.setPlaform(.QQ, appKey: MetricSDK.QQ_appid, appSecret: nil, redirectURL: nil)
+ 
     }
+    
 }
 
 //MARK: ------------云信配置------------
@@ -178,22 +196,23 @@ extension AppDelegate: NIMLoginManagerDelegate{
         
         //设置该值后 SDK 产生的数据(包括聊天记录，但不包括临时文件)都将放置在这个目录下
         NIMSDKConfig.shared().setupSDKDir(MetricSDK.WYYX_DataDir)
-        
-        let options = NIMSDKOption(appKey: MetricSDK.WYYX_appid)
-        
+
+        let options = NIMSDKOption(appKey: MetricSDK.WYYX_appkey)
         //云信推送配置
         options.apnsCername = MetricSDK.WYYX_apnsCername
-        
-        print("apns: \(MetricSDK.WYYX_apnsCername)")
+        print("云信--apns: \(MetricSDK.WYYX_apnsCername)")
         //注册
         NIMSDK.shared().register(with: options)
         
+        
+
         //云信自动登录。
         yunXinAutoLogin()
     }
     
     ///云信自动登录
     func yunXinAutoLogin() {
+        
         if let user = GCUserDefault.shareInstance.userInfo, let userAcc = user.neteasyAccid, let userToken = user.neteasyToken {
             
             JYLog("云信accountID：\(userAcc)")
@@ -256,7 +275,6 @@ extension AppDelegate: NIMLoginManagerDelegate{
         }else {
             let settings = UIUserNotificationSettings(types: [.sound, .badge, .alert], categories: nil)
             UIApplication.shared.registerUserNotificationSettings(settings)
-            
         }
         
         UIApplication.shared.registerForRemoteNotifications()

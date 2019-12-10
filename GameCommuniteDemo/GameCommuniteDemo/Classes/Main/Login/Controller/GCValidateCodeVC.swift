@@ -14,7 +14,7 @@ import NIMSDK
 
 fileprivate struct Metric {
     static let codeTimeDown = "codeTimeDown"
-    static let totalCount: Int = 10
+    static let totalCount: Int = 60
 }
 
 class GCValidateCodeVC: GCBaseVC {
@@ -86,9 +86,11 @@ extension GCValidateCodeVC {
         countDownLb.addGestureRecognizer(tap)
     }
     
+    ///重新发送验证码
     @objc func tapRePostCode() {
         self.requestSendCode()
     }
+    
     
     private func startTimer() {
         self.countDownLb.isUserInteractionEnabled = false

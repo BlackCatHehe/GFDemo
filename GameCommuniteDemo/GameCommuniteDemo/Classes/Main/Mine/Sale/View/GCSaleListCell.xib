@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -111,6 +111,28 @@
                                     </constraint>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="clickMore:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="igB-L6-Jds"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFH-Vz-x8e">
+                                <rect key="frame" x="12" y="55" width="477" height="57"/>
+                                <gestureRecognizers/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TwG-Vg-w1s">
+                                <rect key="frame" x="387" y="142.5" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="YWi-Ef-fpp">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="clickComment:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="coA-jo-6o6"/>
+                                    <action selector="clickMore:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="oVh-UF-oz8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -135,6 +157,10 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </constraint>
+                            <constraint firstItem="NXj-DG-zr5" firstAttribute="bottom" secondItem="QFH-Vz-x8e" secondAttribute="bottom" id="OnK-rp-RMR"/>
+                            <constraint firstItem="NXj-DG-zr5" firstAttribute="top" secondItem="QFH-Vz-x8e" secondAttribute="top" id="QJN-zO-uQ1"/>
+                            <constraint firstItem="1Fl-nJ-A9M" firstAttribute="trailing" secondItem="QFH-Vz-x8e" secondAttribute="trailing" id="SP7-lE-G7e"/>
+                            <constraint firstItem="4Vb-1U-kAW" firstAttribute="centerY" secondItem="TwG-Vg-w1s" secondAttribute="centerY" id="Snr-fL-EkV"/>
                             <constraint firstAttribute="trailing" secondItem="GoR-2d-ZPX" secondAttribute="trailing" id="TMy-w6-IIK"/>
                             <constraint firstItem="xcl-AF-nsb" firstAttribute="top" secondItem="BhH-B4-MS9" secondAttribute="bottom" constant="12" id="Wfc-jp-NbG"/>
                             <constraint firstItem="GoR-2d-ZPX" firstAttribute="leading" secondItem="smM-uL-XBQ" secondAttribute="leading" id="c6t-hF-892"/>
@@ -143,6 +169,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </constraint>
+                            <constraint firstItem="4Vb-1U-kAW" firstAttribute="leading" secondItem="TwG-Vg-w1s" secondAttribute="trailing" constant="10" id="g41-ig-XnT"/>
                             <constraint firstItem="1Fl-nJ-A9M" firstAttribute="top" secondItem="4Wo-sL-P71" secondAttribute="bottom" constant="10" id="hbv-Ql-wvW">
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adapter" value="YES"/>
@@ -151,6 +178,7 @@
                             <constraint firstItem="NXj-DG-zr5" firstAttribute="leading" secondItem="smM-uL-XBQ" secondAttribute="leading" constant="12" id="lhf-FR-9Ce"/>
                             <constraint firstItem="9gQ-KI-gse" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="NXj-DG-zr5" secondAttribute="bottom" id="m6C-Ab-5Zj"/>
                             <constraint firstItem="4Vb-1U-kAW" firstAttribute="centerY" secondItem="Gds-Y8-CIS" secondAttribute="centerY" id="mmp-ki-75G"/>
+                            <constraint firstItem="NXj-DG-zr5" firstAttribute="leading" secondItem="QFH-Vz-x8e" secondAttribute="leading" id="nve-rh-y3R"/>
                             <constraint firstItem="NXj-DG-zr5" firstAttribute="top" secondItem="xcl-AF-nsb" secondAttribute="bottom" constant="17" id="oNy-dr-CYz"/>
                             <constraint firstItem="4Wo-sL-P71" firstAttribute="top" secondItem="9gQ-KI-gse" secondAttribute="top" id="pOc-9E-Id1"/>
                             <constraint firstItem="9gQ-KI-gse" firstAttribute="leading" secondItem="NXj-DG-zr5" secondAttribute="trailing" constant="10" id="pRg-jE-0H5">
@@ -187,8 +215,10 @@
             <connections>
                 <outlet property="bLineV" destination="GoR-2d-ZPX" id="E8g-8N-IYg"/>
                 <outlet property="bgView" destination="smM-uL-XBQ" id="GGv-4F-pS1"/>
+                <outlet property="commentBt" destination="TwG-Vg-w1s" id="mr9-lP-DL9"/>
                 <outlet property="goodsDescLb" destination="9gQ-KI-gse" id="uwE-VK-8cO"/>
                 <outlet property="goodsImgV" destination="NXj-DG-zr5" id="TaG-kd-f5e"/>
+                <outlet property="goodsV" destination="QFH-Vz-x8e" id="cYw-rL-ZCc"/>
                 <outlet property="moneyLb" destination="4Wo-sL-P71" id="UCV-45-Qpj"/>
                 <outlet property="moreBt" destination="4Vb-1U-kAW" id="4nC-SU-TFx"/>
                 <outlet property="numLb" destination="1Fl-nJ-A9M" id="Th8-Wd-xEd"/>
@@ -196,7 +226,7 @@
                 <outlet property="tLineV" destination="xcl-AF-nsb" id="gBq-iq-j5H"/>
                 <outlet property="totalLb" destination="Gds-Y8-CIS" id="Ngm-Aq-Kui"/>
             </connections>
-            <point key="canvasLocation" x="-109" y="38"/>
+            <point key="canvasLocation" x="-373.1884057971015" y="-57.254464285714285"/>
         </tableViewCell>
     </objects>
 </document>

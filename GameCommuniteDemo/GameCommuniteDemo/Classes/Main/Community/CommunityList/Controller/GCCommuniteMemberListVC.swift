@@ -63,6 +63,8 @@ extension GCCommuniteMemberListVC {
             self.currentPage += 1
             self.requestMemberList()
         })
+        
+        tableview.mj_header.beginRefreshing()
     }
 }
 
@@ -88,6 +90,7 @@ extension GCCommuniteMemberListVC: UITableViewDelegate, UITableViewDataSource {
         let model = dataList[indexPath.row]
         let cell: GCMemberCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCMemberCell.self)
         cell.setModel(model)
+        cell.delegate = self
         return cell
     }
     
@@ -110,6 +113,26 @@ extension GCCommuniteMemberListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+    
+}
+
+extension GCCommuniteMemberListVC: GCMemberCellDelegate {
+    
+    func cellDidClickFollow(cell: GCMemberCell) {
+        
+        if let index = tableview.indexPath(for: cell) {
+            
+            requestFollow(isFollow: dataList[index.row].isFollower ?? false, uId: dataList[index.row].id!, success: {
+                
+                self.dataList[index.row].isFollower = !self.dataList[index.row].isFollower!
+                
+                self.tableview.beginUpdates()
+                self.tableview.reloadRows(at: [index], with: .automatic)
+                self.tableview.endUpdates()
+            })
+ 
+        }
     }
     
 }
@@ -150,4 +173,22 @@ extension GCCommuniteMemberListVC {
             JYLog(error)
         }
     }
+    
+    private func requestFollow(isFollow: Bool, uId: Int, success: @escaping ()->()) {
+         
+        let target = isFollow ? GCNetApi.cancelFollow(prama: uId) : GCNetApi.follow(userId: uId)
+         
+         GCNetTool.requestData(target: target, controller: self, showAcvitity: true, isTapAble: false, success: { (result) in
+             if let msg = result["message"] as? String {
+                 self.showToast(msg)
+                
+                success()
+                
+             }
+            
+         }) { (error) in
+             
+         }
+         
+     }
 }

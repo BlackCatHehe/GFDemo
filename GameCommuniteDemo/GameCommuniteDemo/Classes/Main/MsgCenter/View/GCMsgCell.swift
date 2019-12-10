@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import Reusable
+import NIMSDK
 class GCMsgCell: UITableViewCell, NibReusable {
 
     @IBOutlet weak var iconImgV: UIImageView!
@@ -28,16 +29,22 @@ class GCMsgCell: UITableViewCell, NibReusable {
         selectionStyle = .none
     }
     
-    func setModel() {
+    func setModel(_ session: NIMRecentSession) {
+        if let friendId = session.session?.sessionId {
+            if let user = NIMSDK.shared().userManager.userInfo(friendId) {
+                if let img = user.userInfo?.avatarUrl {
+                    iconImgV.kfSetImage(
+                        url: img,
+                        targetSize: CGSize(width: adaptW(43.0), height: adaptW(43.0)),
+                        cornerRadius: adaptW(43.0)/2
+                    )
+                }
+                nameLb.text = user.userInfo?.nickName
+                contentLb.text = session.lastMessage?.text
+                let time = Int(session.lastMessage!.timestamp).formatTimeStamp(with: "hh:mm")
+                timeLb.text = time
         
-        layoutIfNeeded()
-        iconImgV.kf.setImage(with: URL(string:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg"), placeholder: nil, options: [.processor(RoundCornerImageProcessor(cornerRadius: adaptW(55.0)/2, targetSize: self.iconImgV.bounds.size, roundingCorners: [.all], backgroundColor: nil))], progressBlock: nil, completionHandler: nil)
-        iconImgV.kfSetImage(
-            url: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3247749323,1379996244&fm=26&gp=0.jpg",
-            targetSize: CGSize(width: adaptW(55.0), height: adaptW(55.0)),
-            cornerRadius: adaptW(55.0)/2
-        )
+            }
+        }
     }
-    
-    
 }

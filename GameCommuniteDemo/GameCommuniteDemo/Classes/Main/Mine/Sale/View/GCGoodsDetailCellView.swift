@@ -25,18 +25,13 @@ class GCGoodsDetailCellView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    func setModel(_ model: GCGoodsModel) {
-//        goodsImageV.kf.setImage(with: URL(string:model.cover!))
-//        goodsNameLb.text = model.name
-//        goodsQuLb.text = "所在区/服：魔兽世界(国服）/一区"
-//        goodsMoneyBt.setTitle("\(model.price!)ETH", for: .normal)
-//
-//    }
-    func setModel() {
-       // goodsImageV.kf.setImage(with: URL(string:model.cover!))
-        goodsNameLb.text = "ddd"
-        goodsQuLb.text = "所在区/服：魔兽世界(国服）/一区"
-        goodsMoneyBt.setTitle("100.00ETH", for: .normal)
+    func setModel(_ model: GCOrderListModel) {
+        if let img = model.items?.first?.ornament?.cover {
+            goodsImageV.kf.setImage(with: URL(string: img))
+        }
+        goodsNameLb.text = model.items?.first?.ornament?.name
+        goodsQuLb.text = model.items?.first?.ornament?.content
+        goodsMoneyBt.setTitle("\(model.items?.first?.price ?? "0.00")ETH", for: .normal)
         
     }
 }
@@ -45,22 +40,12 @@ extension GCGoodsDetailCellView {
     
     private func initUI() {
         
-        let scrollview = UIScrollView()
-        if #available(iOS 11.0, *) {
-            scrollview.contentInsetAdjustmentBehavior = .never
-        }
-        addSubview(scrollview)
-        scrollview.snp.makeConstraints { (make) in
-            make.left.right.top.bottom.equalToSuperview()
-        }
-        
-        
         //MARK: ------------topGoodsMsg------------
         let topBgview = UIView()
         topBgview.backgroundColor = MetricGlobal.mainCellBgColor
         topBgview.layer.cornerRadius = adaptW(5.0)
         topBgview.layer.masksToBounds = true
-        scrollview.addSubview(topBgview)
+        addSubview(topBgview)
         
         let goodsImgV = UIImageView()
         goodsImgV.contentMode = .scaleAspectFill

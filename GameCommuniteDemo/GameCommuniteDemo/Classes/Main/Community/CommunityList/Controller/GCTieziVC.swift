@@ -181,13 +181,15 @@ extension GCTieziVC: GCTieziHeaderViewDelegate, JYYouMengShareAble {
             alertVC.clickChoosePlatForm = {[weak self] index in
                 switch index {
                 case 0:
-                    self?.share(title: "test", description: "testDescription", thrumb: "https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4014971929,2584146558&fm=26&gp=0.jpg", url: "https://www.jianshu.com/p/80939746e48c", to: .weixinFriend)
+                    self?.share(title: "test", description: "testDescription", thrumb: "https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4014971929,2584146558&fm=26&gp=0.jpg", url: "https://www.baidu.com", to: .weixinFriend)
                 case 1:
                     JYLog("pengyouquan")
                 case 2:
                     JYLog("xinlang")
+                case 3:
+                    self?.share(title: "test", description: "testDescription", thrumb: "https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4014971929,2584146558&fm=26&gp=0.jpg", url: "https://www.uioj.com", to: .QQ)
                 default:
-                    JYLog("qq")
+                    break
                 }
             }
             present(alertVC, animated: true, completion: nil)

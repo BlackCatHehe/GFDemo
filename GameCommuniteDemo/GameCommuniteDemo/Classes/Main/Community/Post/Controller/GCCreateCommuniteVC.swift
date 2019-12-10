@@ -11,6 +11,8 @@ import GrowingTextView
 import Kingfisher
 import HXPhotoPicker
 import SwiftyJSON
+
+
 class GCCreateCommuniteVC: GCBaseVC {
 
     private var imgPath: String?
@@ -91,7 +93,7 @@ extension GCCreateCommuniteVC {
         contentTV.maxLength = 60
         contentTV.delegate = self
         
-        coyntNumLb.text = "0/300"
+        coyntNumLb.text = "0/60"
         
         imageV.kfSetImage(
             url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350302849,3323337377&fm=26&gp=0.jpg",

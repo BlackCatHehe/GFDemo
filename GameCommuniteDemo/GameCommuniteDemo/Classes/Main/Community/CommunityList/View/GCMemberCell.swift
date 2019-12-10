@@ -10,7 +10,13 @@ import UIKit
 import Reusable
 import Kingfisher
 
+protocol GCMemberCellDelegate: class {
+    func cellDidClickFollow(cell: GCMemberCell)
+}
+
 class GCMemberCell: UITableViewCell, NibReusable {
+    
+    weak var delegate: GCMemberCellDelegate?
     
     @IBOutlet var iconImgV: UIImageView!
     
@@ -51,6 +57,10 @@ class GCMemberCell: UITableViewCell, NibReusable {
         nameLb.text = model.name
         isFollow = model.isFollower ?? false
 
+    }
+    
+    @IBAction func clickFollow(_ sender: UIButton) {
+        delegate?.cellDidClickFollow(cell: self)
     }
     
     

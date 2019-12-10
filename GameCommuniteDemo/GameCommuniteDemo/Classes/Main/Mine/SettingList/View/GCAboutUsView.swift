@@ -26,13 +26,14 @@ class GCAboutUsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setModel(){
+    func setModel(values: [String: String?]){
         
-        self.versionLb.text = "1.0.0"
+        self.versionLb.text = kAppBundleVersion
         
-        self.phoneLb.text = "101-0000000"
-        self.timeLb.text = "9：00-18：00"
-        self.emailLb.text = "XXXX@XXXX.com"
+        self.phoneLb.text = values["tel"]!
+        self.timeLb.text = values["workTime"]!
+        self.emailLb.text = values["email"]!
+        
     }
 }
 
@@ -44,7 +45,7 @@ extension GCAboutUsView {
         //TODO: ------------图标-------------
         let iconImgV = UIImageView()
         iconImgV.contentMode = .scaleAspectFit
-        iconImgV.image = UIImage(named: "pay_result")
+        iconImgV.image = UIImage(named: "logo")
         self.addSubview(iconImgV)
         
         let titleLb = UILabel()

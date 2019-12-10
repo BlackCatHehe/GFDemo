@@ -24,10 +24,30 @@ class GCOrderDetailHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setModel() {
-        titleLb.text = "交易关闭"
-        subTitleLb.text = "超时关闭"
-        statusImgV.image = UIImage(named: "share_friendcycle")
+    func setModel(_ model: GCOrderListModel) {
+        //1:待付款，2:待发货，3:待签收，4:已完成,
+        //图片是错的 需要对方切正确的图
+        var statusStr: String? = nil
+        var statusImgStr: String? = nil
+        switch model.status {
+        case 1:
+            statusStr = "待付款"
+            statusImgStr = "order_bagcar"
+        case 2:
+            statusStr = "待发货"
+            statusImgStr = "order_car"
+        case 3:
+            statusStr = "待签收"
+            statusImgStr = "order_chahao"
+        case 4:
+            statusStr = "已完成"
+            statusImgStr = "order_duihao"
+        default:
+            break
+        }
+        titleLb.text = statusStr
+        subTitleLb.text = statusStr
+        statusImgV.image = UIImage(named: statusImgStr!)
     }
     
 }

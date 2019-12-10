@@ -37,6 +37,8 @@ class GCShopGoodsListCell: UICollectionViewCell, NibReusable{
         goodsImgV.kf.setImage(with: URL(string:model.cover!))
         titleLb.text = model.name
         moneyLb.text = model.price
+        
+        tagImgV.isHidden = !(model.isBestSeller ?? false)
     }
     
     

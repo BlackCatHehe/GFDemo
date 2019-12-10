@@ -15,7 +15,6 @@ class JYGCDTimer: NSObject {
     
     lazy var timerContainer = [String : DispatchSourceTimer]()
     
-    
     /// 创建一个名字为name的定时
     ///
     /// - Parameters:
@@ -41,7 +40,6 @@ class JYGCDTimer: NSObject {
                 self?.destoryTimer(withName: name!)
             }
         })
-        
     }
     
     

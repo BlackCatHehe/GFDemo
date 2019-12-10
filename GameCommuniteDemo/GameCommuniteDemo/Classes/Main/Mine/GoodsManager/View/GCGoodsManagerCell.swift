@@ -42,6 +42,7 @@ class GCGoodsManagerCell: UITableViewCell, NibReusable {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        selectionStyle = .none
         contentView.backgroundColor = MetricGlobal.mainBgColor
         
         bgView.backgroundColor = MetricGlobal.mainCellBgColor
@@ -94,7 +95,7 @@ class GCGoodsManagerCell: UITableViewCell, NibReusable {
         
         deleteBt.setTitle("删除", for: .normal)
        
-        moreBt.setTitle(isXia ? "下架" : "重新编辑", for: .normal)
+        moreBt.setTitle(isXia ? "重新编辑" : " 下架", for: .normal)
         
         deleteBt.isHidden = !isXia
         withdrawImgV.isHidden = !isXia

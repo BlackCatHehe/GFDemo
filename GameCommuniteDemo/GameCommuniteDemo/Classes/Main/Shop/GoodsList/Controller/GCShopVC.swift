@@ -271,6 +271,8 @@ extension GCShopVC {
             
             if let data = result["data"] as? [[String: Any]] {
                 
+                self.selectIndex = 0
+                
                 let models = Mapper<GCCateModel>().mapArray(JSONArray: data)
                 self.cateModels = models
                 

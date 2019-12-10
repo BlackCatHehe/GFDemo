@@ -77,6 +77,15 @@ class GCUserDefault {
         }
     }
     
+    var kefuTel: String? {
+        get {
+            return UserDefaults.standard.value(forKey: "GCkefuTel") as? String
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "GCkefuTel")
+        }
+    }
+    
     func resignLogin() {
         //清除用户信息
         let keychainUser = Keychain(service: "com.qiqi.gamecommunite")

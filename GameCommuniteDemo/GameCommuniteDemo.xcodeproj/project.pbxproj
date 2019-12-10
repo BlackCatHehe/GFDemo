@@ -24,7 +24,6 @@
 		DD0A6DA423612F7900FE6450 /* GCNotiMsgListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0A6DA323612F7900FE6450 /* GCNotiMsgListVC.swift */; };
 		DD0A6DA6236133EB00FE6450 /* GCReceiveMsgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0A6DA5236133EB00FE6450 /* GCReceiveMsgVC.swift */; };
 		DD0A6DA82361352B00FE6450 /* GCReceiveMsgListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0A6DA72361352B00FE6450 /* GCReceiveMsgListVC.swift */; };
-		DD0BB5CE23287D29005889E1 /* JYHanabiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BB5CD23287D28005889E1 /* JYHanabiView.swift */; };
 		DD12B8242356F178003BAA87 /* GCFriendListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD12B8232356F178003BAA87 /* GCFriendListVC.swift */; };
 		DD12B8292356F1C0003BAA87 /* GCFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD12B8272356F1C0003BAA87 /* GCFriendCell.swift */; };
 		DD12B82A2356F1C0003BAA87 /* GCFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD12B8282356F1C0003BAA87 /* GCFriendCell.xib */; };
@@ -192,6 +191,7 @@
 		DD7EA9452399F8890070B29A /* GCGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7EA9442399F8890070B29A /* GCGameModel.swift */; };
 		DD7F6B622387704D006FA453 /* JYDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7F6B612387704D006FA453 /* JYDatePicker.swift */; };
 		DD84E7B72367C5C400CDAF8A /* Data+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD84E7B62367C5C300CDAF8A /* Data+String.swift */; };
+		DD8777E6239E115500A1072D /* GCOrderBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8777E5239E115500A1072D /* GCOrderBottomView.swift */; };
 		DD88F0512370FF0B0027F4EF /* GCGoodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88F0502370FF0B0027F4EF /* GCGoodsModel.swift */; };
 		DD99BE572362CF1E00113C1A /* JYBadgeAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD99BE562362CF1D00113C1A /* JYBadgeAble.swift */; };
 		DD99BE632362F31A00113C1A /* GCCreateCommuniteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD99BE5E2362F31A00113C1A /* GCCreateCommuniteVC.xib */; };
@@ -223,7 +223,8 @@
 		DDA308CD23613AD500C6CE35 /* GCMsgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA308C223613AD500C6CE35 /* GCMsgCell.xib */; };
 		DDA308CF2361462100C6CE35 /* GCSelectPicOrVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA308CE2361462100C6CE35 /* GCSelectPicOrVideoView.swift */; };
 		DDA308D12361466200C6CE35 /* GCSelectPicOrVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA308D02361466200C6CE35 /* GCSelectPicOrVideoView.xib */; };
-		DDB87BC1239A1E41007D71A2 /* apple-app-site-association.json in Resources */ = {isa = PBXBuildFile; fileRef = DDB87BC0239A1E41007D71A2 /* apple-app-site-association.json */; };
+		DDB87BC1239A1E41007D71A2 /* apple-app-site-association in Resources */ = {isa = PBXBuildFile; fileRef = DDB87BC0239A1E41007D71A2 /* apple-app-site-association */; };
+		DDC8EC5D239DEB6500BC165F /* GCOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC8EC5C239DEB6500BC165F /* GCOrderModel.swift */; };
 		DDE15E3523667F1F0087540B /* GCAlertCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE15E3423667F1F0087540B /* GCAlertCommentVC.swift */; };
 		DDE15E3923667F7E0087540B /* GCCommentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE15E3823667F7E0087540B /* GCCommentHeaderView.swift */; };
 		DDE15E3D2366878A0087540B /* GCCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE15E3B2366878A0087540B /* GCCommentCell.swift */; };
@@ -289,7 +290,6 @@
 		DD0A6DA323612F7900FE6450 /* GCNotiMsgListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCNotiMsgListVC.swift; sourceTree = "<group>"; };
 		DD0A6DA5236133EB00FE6450 /* GCReceiveMsgVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCReceiveMsgVC.swift; sourceTree = "<group>"; };
 		DD0A6DA72361352B00FE6450 /* GCReceiveMsgListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCReceiveMsgListVC.swift; sourceTree = "<group>"; };
-		DD0BB5CD23287D28005889E1 /* JYHanabiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JYHanabiView.swift; sourceTree = "<group>"; };
 		DD12B8232356F178003BAA87 /* GCFriendListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCFriendListVC.swift; sourceTree = "<group>"; };
 		DD12B8272356F1C0003BAA87 /* GCFriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCFriendCell.swift; sourceTree = "<group>"; };
 		DD12B8282356F1C0003BAA87 /* GCFriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCFriendCell.xib; sourceTree = "<group>"; };
@@ -461,6 +461,7 @@
 		DD7EA946239A03390070B29A /* GameCommuniteDemoDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GameCommuniteDemoDebug.entitlements; sourceTree = "<group>"; };
 		DD7F6B612387704D006FA453 /* JYDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYDatePicker.swift; sourceTree = "<group>"; };
 		DD84E7B62367C5C300CDAF8A /* Data+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+String.swift"; sourceTree = "<group>"; };
+		DD8777E5239E115500A1072D /* GCOrderBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCOrderBottomView.swift; sourceTree = "<group>"; };
 		DD88F0502370FF0B0027F4EF /* GCGoodsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCGoodsModel.swift; sourceTree = "<group>"; };
 		DD99BE562362CF1D00113C1A /* JYBadgeAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYBadgeAble.swift; sourceTree = "<group>"; };
 		DD99BE5E2362F31A00113C1A /* GCCreateCommuniteVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCCreateCommuniteVC.xib; sourceTree = "<group>"; };
@@ -492,7 +493,8 @@
 		DDA308C223613AD500C6CE35 /* GCMsgCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCMsgCell.xib; sourceTree = "<group>"; };
 		DDA308CE2361462100C6CE35 /* GCSelectPicOrVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCSelectPicOrVideoView.swift; sourceTree = "<group>"; };
 		DDA308D02361466200C6CE35 /* GCSelectPicOrVideoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCSelectPicOrVideoView.xib; sourceTree = "<group>"; };
-		DDB87BC0239A1E41007D71A2 /* apple-app-site-association.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "apple-app-site-association.json"; sourceTree = "<group>"; };
+		DDB87BC0239A1E41007D71A2 /* apple-app-site-association */ = {isa = PBXFileReference; lastKnownFileType = text; path = "apple-app-site-association"; sourceTree = "<group>"; };
+		DDC8EC5C239DEB6500BC165F /* GCOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCOrderModel.swift; sourceTree = "<group>"; };
 		DDE15E3423667F1F0087540B /* GCAlertCommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCAlertCommentVC.swift; sourceTree = "<group>"; };
 		DDE15E3823667F7E0087540B /* GCCommentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCommentHeaderView.swift; sourceTree = "<group>"; };
 		DDE15E3B2366878A0087540B /* GCCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCCommentCell.swift; sourceTree = "<group>"; };
@@ -649,14 +651,6 @@
 				DD06FB5222FEB60300FC07E7 /* JYVerityCodeView.m */,
 			);
 			path = VerityCode;
-			sourceTree = "<group>";
-		};
-		DD0BB5CF23287D2F005889E1 /* hanabiView */ = {
-			isa = PBXGroup;
-			children = (
-				DD0BB5CD23287D28005889E1 /* JYHanabiView.swift */,
-			);
-			name = hanabiView;
 			sourceTree = "<group>";
 		};
 		DD12B8222356EC7E003BAA87 /* View */ = {
@@ -1184,6 +1178,7 @@
 			children = (
 				DD7064E8235FDAAD00C8ED8D /* Controller */,
 				DD7064EE235FDAE700C8ED8D /* View */,
+				DDC8EC5E239DEC7F00BC165F /* Model */,
 			);
 			path = Sale;
 			sourceTree = "<group>";
@@ -1195,6 +1190,7 @@
 				DD7064EB235FDAE000C8ED8D /* GCSaleListCell.xib */,
 				DD7D0EBF23838394002474B0 /* GCOrderDetailHeaderView.swift */,
 				DD7D0EC1238396B3002474B0 /* GCGoodsDetailCellView.swift */,
+				DD8777E5239E115500A1072D /* GCOrderBottomView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1429,6 +1425,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		DDC8EC5E239DEC7F00BC165F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DDC8EC5C239DEB6500BC165F /* GCOrderModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DDE15E3623667F340087540B /* CommentVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1528,6 +1532,7 @@
 				12FCC2CE20886747859FCB13 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		E10A2A8022D576AF00ADEFC9 /* Products */ = {
 			isa = PBXGroup;
@@ -1550,7 +1555,7 @@
 				E10A2ABD22D57C8200ADEFC9 /* Tools */,
 				E10A2AB322D5796300ADEFC9 /* Resources(项目资源) */,
 				E10A2AB422D5797700ADEFC9 /* SDKFile */,
-				DDB87BC0239A1E41007D71A2 /* apple-app-site-association.json */,
+				DDB87BC0239A1E41007D71A2 /* apple-app-site-association */,
 			);
 			path = GameCommuniteDemo;
 			sourceTree = "<group>";
@@ -1694,7 +1699,6 @@
 		E10A2AC322D57E7C00ADEFC9 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				DD0BB5CF23287D2F005889E1 /* hanabiView */,
 				DD06FB3B22FEB52000FC07E7 /* NinePicView */,
 				E10A2ACA22D57EB900ADEFC9 /* JYWWkWebView */,
 				E10A2AC722D57EAC00ADEFC9 /* fpsLabel */,
@@ -1811,7 +1815,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = kuroneko;
+				ORGANIZATIONNAME = APP;
 				TargetAttributes = {
 					E10A2A7E22D576AF00ADEFC9 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -1894,7 +1898,7 @@
 				DD027D0A235D3C4100AC4AC8 /* GCValidateCodeVC.xib in Resources */,
 				DD027D12235D674A00AC4AC8 /* GCBindPhoneVC.xib in Resources */,
 				DD7064ED235FDAE000C8ED8D /* GCSaleListCell.xib in Resources */,
-				DDB87BC1239A1E41007D71A2 /* apple-app-site-association.json in Resources */,
+				DDB87BC1239A1E41007D71A2 /* apple-app-site-association in Resources */,
 				DD1484CE2356B8D300DFD6BD /* GCCommuniteCateCell.xib in Resources */,
 				DD2169742358479900D3E53C /* GCGoodsDetailCell.xib in Resources */,
 				DDA308CD23613AD500C6CE35 /* GCMsgCell.xib in Resources */,
@@ -2099,7 +2103,6 @@
 				DD72406F235803450043008B /* GCShopGoodsDetailVC.swift in Sources */,
 				DDA308C923613AD500C6CE35 /* GCMsgHeaderView.swift in Sources */,
 				DD56A5B9235EE9A800EC3630 /* GCMyEstateVC.swift in Sources */,
-				DD0BB5CE23287D29005889E1 /* JYHanabiView.swift in Sources */,
 				DD06FB5322FEB60400FC07E7 /* JYVerityCodeView.m in Sources */,
 				DD7064EC235FDAE000C8ED8D /* GCSaleListCell.swift in Sources */,
 				DD2E5A0623617AD00091215C /* GCAlertController.swift in Sources */,
@@ -2111,6 +2114,7 @@
 				DD7D0EC82383B931002474B0 /* GCGameDetailCenterView.swift in Sources */,
 				DD7064E7235FD9B700C8ED8D /* GCSaleVC.swift in Sources */,
 				DD7D0EC42383B236002474B0 /* GCGameDetailVC.swift in Sources */,
+				DDC8EC5D239DEB6500BC165F /* GCOrderModel.swift in Sources */,
 				DD564B3023695D3F00CFD4E0 /* GCCommuniteModel.swift in Sources */,
 				DD7D0EBC23837076002474B0 /* GCSortBottomButtonsView.swift in Sources */,
 				DD6E406B2356A190002A9F73 /* GCSearchVC.swift in Sources */,
@@ -2119,6 +2123,7 @@
 				DD722E6323827EB700D05E86 /* GCPostNoSteamView.swift in Sources */,
 				E10A2AD422D5882700ADEFC9 /* JYWDownloadTool.swift in Sources */,
 				DD6DD3FB234EBBDF008C4FA7 /* UIButton+Layout.swift in Sources */,
+				DD8777E6239E115500A1072D /* GCOrderBottomView.swift in Sources */,
 				DD21697F23584D5700D3E53C /* GCShopRecommendCell.swift in Sources */,
 				DD69FB5723726A2E003996D1 /* JYToastAble.swift in Sources */,
 				DD706511236047FC00C8ED8D /* GCNewUpVC.swift in Sources */,
@@ -2368,7 +2373,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GameCommuniteDemo/GameCommuniteDemoDebug.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: hongming jin (TNH2S4G587)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = ZLDG549PQK;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;

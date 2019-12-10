@@ -20,7 +20,7 @@ class GCSaleListVC: GCBaseVC {
     var orderStatus: String?
     
     ///数据源
-    private var dataList: [GCGoodsModel] = []
+    private var dataList: [GCOrderListModel] = []
     
     private var currentPage: Int = 1
     
@@ -86,8 +86,10 @@ extension GCSaleListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = dataList[indexPath.row]
         let cell: GCSaleListCell = tableView.dequeueReusableCell(for: indexPath, cellType: GCSaleListCell.self)
-        cell.setModel()
+        cell.setModel(model)
+        cell.delegate = self
         return cell
     }
     
@@ -95,12 +97,33 @@ extension GCSaleListVC: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+}
+
+extension GCSaleListVC: GCSaleListCellDelegate {
+    
+    func cellDidClickMore(cell: GCSaleListCell) {
         let vc = GCOrderDetailVC()
+        
+        vc.pageModel = cell.model
+        
         push(vc)
     }
     
+    func cellDidClickComment(cell: GCSaleListCell) {
+        let vc = GCPostCommentVC()
+        push(vc)
+    }
+    
+    func cellDidClickGoods(cell: GCSaleListCell, goodsId: Int) {
+        let gVC = GCShopGoodsDetailVC()
+        gVC.gid = goodsId
+        push(gVC)
+    }
+    
+
+    
 }
+
 
 extension GCSaleListVC {
     
@@ -129,18 +152,22 @@ extension GCSaleListVC {
                 }
             }
             
-            let models = Mapper<GCGoodsModel>().mapArray(JSONArray: result["data"] as! [[String: Any]])
-            if self.currentPage == 1 {
-                self.dataList = models
-            }else {
-                self.dataList.append(contentsOf: models)
+            if let datas = result["data"] as? [[String: Any]] {
+                
+                let models = Mapper<GCOrderListModel>().mapArray(JSONArray: datas)
+                if self.currentPage == 1 {
+                    self.dataList = models
+                }else {
+                    self.dataList.append(contentsOf: models)
+                }
+                
+                if self.dataList.count != 0 {
+                    self.tableview.reloadData()
+                }else {
+                    self.showNoData()
+                }
             }
             
-            if self.dataList.count != 0 {
-                self.tableview.reloadData()
-            }else {
-                self.showNoData()
-            }
             
             
         }) { (error) in

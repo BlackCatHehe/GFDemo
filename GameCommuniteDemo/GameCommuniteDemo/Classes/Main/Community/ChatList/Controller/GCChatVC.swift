@@ -140,8 +140,11 @@ extension GCChatVC {
         //推送样式
         
         msg.apnsContent = "发来了一条消息"
-        msg.apnsPayload = ["sessionId" : session.sessionId]
-        
+       // msg.apnsPayload = ["sessionId" : session.sessionId]
+        let setting = NIMMessageSetting()
+        setting.apnsEnabled = true
+        setting.scene = NIMNOSSceneTypeMessage
+        msg.setting = setting
         NIMSDK.shared().chatManager.send(msg, to: session) { (error) in
             if error == nil {
                 JYLog("云信 -- 发送成功")

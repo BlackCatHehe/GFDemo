@@ -100,18 +100,23 @@ extension GCGoodsManagerListVC: GCGoodsManagerCellDelegate {
     
     func managerCell(_ cell: GCGoodsManagerCell, didClickDelete button: UIButton) {
         
+        if let index = tableview.indexPath(for: cell) {
+            let model = dataList[index.row]
+            requestDelete(with: model.id!, index: index)
+        }
     }
     
     func managerCell(_ cell: GCGoodsManagerCell, didClickXiaJia button: UIButton) {
         
         if isXia {//下架
-            if let index = tableview.indexPath(for: cell) {
-                let model = dataList[index.row]
-                requestXiaJia(with: String(model.id!))
-            }
-        }else {//重新编辑
             let vc = GCPostGoodsVC()
             push(vc)
+            
+        }else {//重新编辑
+            if let index = tableview.indexPath(for: cell) {
+                let model = dataList[index.row]
+                requestXiaJia(with: String(model.id!), index: index)
+            }
         }
         
         
@@ -122,7 +127,8 @@ extension GCGoodsManagerListVC: GCGoodsManagerCellDelegate {
 extension GCGoodsManagerListVC {
     ///请求数据
     private func requestListData() {
-        let prama = ["status" : isXia ? 2 : 1]
+        let prama = ["status" : isXia ? 2 : 1,
+                     "page" : currentPage]
         GCNetTool.requestData(target: GCNetApi.goodsManager(prama: prama), showAcvitity: true, success: { (result) in
             self.tableview.mj_header.endRefreshing()
             self.tableview.mj_footer.endRefreshing()
@@ -142,8 +148,7 @@ extension GCGoodsManagerListVC {
             }else {
                 self.dataList.append(contentsOf: models)
             }
-            
-            
+
             self.tableview.reloadData()
             
         }) { (error) in
@@ -153,11 +158,18 @@ extension GCGoodsManagerListVC {
     }
     
     ///请求下架
-    private func requestXiaJia(with gId: String) {
+    private func requestXiaJia(with gId: String, index: IndexPath) {
         
         GCNetTool.requestData(target: GCNetApi.goodsDown(prama: gId), showAcvitity: true, success: { (result) in
             
             self.showToast("下架成功")
+            
+            self.dataList.remove(at: index.row)
+            self.tableview.beginUpdates()
+            self.tableview.deleteRows(at: [index], with: .automatic)
+            self.tableview.endUpdates()
+            
+            
             
         }) { (error) in
             JYLog(error)
@@ -165,16 +177,21 @@ extension GCGoodsManagerListVC {
         
     }
     
-//    ///请求删除
-//    private func requestXiaJia(with gId: String) {
-//
-//        GCNetTool.requestData(target: GCNetApi.goodsDown(prama: gId), showAcvitity: true, success: { (result) in
-//
-//            self.showToast("下架成功")
-//
-//        }) { (error) in
-//            JYLog(error)
-//        }
-//
-//    }
+    ///请求删除
+    private func requestDelete(with gId: Int, index: IndexPath) {
+
+        GCNetTool.requestData(target: GCNetApi.goodsDelete(gid: gId), showAcvitity: true, success: { (result) in
+
+            self.showToast("删除成功")
+            
+            self.dataList.remove(at: index.row)
+            self.tableview.beginUpdates()
+            self.tableview.deleteRows(at: [index], with: .automatic)
+            self.tableview.endUpdates()
+
+        }) { (error) in
+            JYLog(error)
+        }
+
+    }
 }

@@ -24,5 +24,8 @@ struct MetricGlobal {
     ///主中粗字体
     static let mainMediumFamily = "HelveticaNeue-Medium"
     
+    //TODO: ------------通知------------
+    ///进入前台发送呆在后台时间的通知
+    static let LeaveTimeNoti = "LeaveTimeNoti"
 
 }

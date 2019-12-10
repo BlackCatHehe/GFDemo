@@ -29,6 +29,8 @@ class GCGoodsModel : Mappable{
     var updatedAt : String?
     var userId : Int?
     var user: UserModel?
+    var isBestSeller: Bool?
+    
     required init?(map: Map){}
 
     func mapping(map: Map)
@@ -50,5 +52,6 @@ class GCGoodsModel : Mappable{
         updatedAt <- map["updated_at"]
         userId <- map["user_id"]
         user <- map["user"]
+        isBestSeller <- map["is_best_seller"]
     }
 }

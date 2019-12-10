@@ -6,7 +6,7 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:help.wechat.com</string>
+		<string>applinks:www.uioj.com</string>
 	</array>
 </dict>
 </plist>
